@@ -1,0 +1,268 @@
+<title>세컨 스킨 누드 신상 소개</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: new-collection introduction post. At a glance, then each product with key points and a swatch grid, then gifts, how to use, and Olive Young where to buy. */
+:root {
+  --ivory: #fbfaef;
+  --paper: #ffffff;
+  --ink: #353535;
+  --mute: #8a8a84;
+  --line: #e9e5d3;
+  --brick: #b42722;
+  --brick-soft: #f6e6dc;
+  --caramel: #a86a3d;
+  --photo: #f1ecdd;
+  --oy: #3f8f3a;
+  --display: "Gowun Batang", "Noto Serif KR", serif;
+  --body: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --label: "Figtree", "Noto Sans KR", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ivory); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.8;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+p { margin: 0; }
+
+.example { margin-top: 16px; font-size: 13px; color: var(--caramel); background: #fbf3e6; border-left: 2px solid var(--caramel); padding: 10px 14px; line-height: 1.6; }
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.wordmark { font-family: var(--label); font-weight: 800; color: var(--brick); line-height: .86; font-size: 20px; letter-spacing: -.02em; }
+.wordmark span { display: block; }
+.wordmark span:first-child { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 2px; }
+.jump { font: 600 13px var(--body); color: var(--paper); background: var(--brick); padding: 6px 14px; border-radius: 999px; text-decoration: none; }
+
+.label { font-family: var(--label); font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brick); font-weight: 600; }
+.post-head { padding-block: 32px 28px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 6vw, 36px); line-height: 1.35; margin: 0; text-wrap: balance; }
+.meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--mute); }
+.ad { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: .12em; color: var(--brick); border: 1px solid var(--brick); padding: 1px 8px; }
+
+article { background: var(--paper); padding: clamp(20px, 6vw, 52px); border-top: 3px solid var(--brick); display: grid; gap: 22px; }
+section { display: grid; gap: 18px; scroll-margin-top: 16px; }
+section + section { margin-top: 48px; }
+h2 { font-family: var(--display); font-size: 26px; line-height: 1.35; margin: 0; }
+.sub { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.price { font-family: var(--label); font-size: 14px; color: var(--mute); font-variant-numeric: tabular-nums; }
+.quote { font-family: var(--display); font-size: 21px; line-height: 1.6; text-align: center; padding-block: 8px; text-wrap: balance; }
+.quote em { font-style: normal; color: var(--brick); }
+
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure img { display: block; width: 100%; max-width: 100%; height: auto; background: var(--photo); }
+figcaption { font-size: 12px; color: var(--mute); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.crop { position: relative; overflow: hidden; max-width: 100%; background: var(--photo); }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+
+.kw { color: var(--brick); font-weight: 700; }
+.kwbar { display: flex; flex-wrap: wrap; gap: 6px; }
+.kwbar span { font-family: var(--body); font-size: 12.5px; color: var(--brick); border: 1px solid var(--brick); padding: 1px 10px; border-radius: 999px; }
+
+.glance { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
+.glance a { padding: 16px; display: grid; gap: 4px; text-decoration: none; color: var(--ink); }
+.glance a + a { border-left: 1px solid var(--line); }
+.glance a:hover { background: var(--ivory); }
+.glance b { font-family: var(--label); font-size: 10px; letter-spacing: .24em; color: var(--brick); }
+.glance strong { font-family: var(--display); font-size: 18px; line-height: 1.35; }
+.glance span { font-size: 13px; color: var(--mute); line-height: 1.5; }
+
+.keys { display: grid; border-top: 1px solid var(--line); }
+.key { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.key > b { font-family: var(--label); font-weight: 800; color: var(--brick); font-size: 15px; }
+.key p { font-size: 15px; }
+.key small { display: block; font-size: 13.5px; color: var(--mute); line-height: 1.6; margin-top: 2px; }
+
+.swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 8px; }
+.sw { display: grid; gap: 6px; align-content: start; }
+.sw img { aspect-ratio: 1; object-fit: cover; }
+.sw strong { font-size: 14px; line-height: 1.3; }
+.sw .tone { font-family: var(--label); font-size: 10px; letter-spacing: .2em; color: var(--mute); }
+.sw p { font-size: 12.5px; color: var(--mute); line-height: 1.5; }
+.sw .gift { font-size: 11px; color: var(--brick); background: var(--brick-soft); padding: 0 8px; border-radius: 999px; justify-self: start; }
+
+.palette { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.palette-body { display: grid; gap: 8px; min-width: 0; }
+.palette-body h3 { margin: 0; font-size: 17px; }
+.palette-body .tone { font-family: var(--label); font-size: 10px; letter-spacing: .2em; color: var(--mute); }
+.palette-body p { font-size: 14px; line-height: 1.6; }
+.shades6 { font-size: 12.5px; color: var(--mute); line-height: 1.6; }
+.shades6 b { color: var(--ink); font-weight: 500; }
+
+.gifts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.giftcard { background: var(--ivory); padding: 16px; display: grid; gap: 6px; align-content: start; }
+.giftcard strong { font-size: 15px; }
+.giftcard p { font-size: 13.5px; color: var(--mute); line-height: 1.6; }
+
+ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 8px; font-size: 15px; }
+ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--label); font-weight: 800; color: var(--brick); }
+
+.shop { border: 1.5px solid var(--oy); }
+.shop-head { background: var(--oy); color: #ffffff; padding: 12px 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.shop-head strong { font-size: 15px; }
+.shop-head span { font-family: var(--label); font-size: 12px; letter-spacing: .14em; }
+.buy { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 14px 18px; align-items: center; text-decoration: none; color: var(--ink); }
+.buy + .buy { border-top: 1px dashed var(--line); }
+.buy:hover { background: var(--ivory); }
+.buy .name { font-weight: 700; font-size: 15px; }
+.buy .sub2 { grid-column: 1; font-size: 13px; color: var(--mute); }
+.buy .num { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-family: var(--label); font-variant-numeric: tabular-nums; white-space: nowrap; display: grid; gap: 2px; justify-items: end; }
+.buy .num s { color: var(--mute); font-size: 12.5px; }
+.buy .num b { color: var(--oy); font-size: 16px; }
+.buy .go { font-family: var(--body); font-size: 12px; color: var(--oy); }
+.shop-note { font-size: 12.5px; color: var(--mute); line-height: 1.6; }
+
+.disclosure { font-size: 12.5px; color: var(--mute); border-top: 1px solid var(--line); padding-top: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 12.5px; color: var(--brick); background: var(--brick-soft); padding: 2px 10px; border-radius: 999px; }
+footer { text-align: center; padding-top: 28px; font-family: var(--label); font-size: 11px; letter-spacing: .32em; color: var(--mute); text-transform: uppercase; }
+
+@media (max-width: 480px) {
+  .glance, .gifts { grid-template-columns: 1fr; }
+  .glance a + a { border-left: 0; border-top: 1px solid var(--line); }
+  .swatches { grid-template-columns: repeat(2, 1fr); }
+  .palette { grid-template-columns: 1fr; }
+}
+:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <p class="example">작성 예시예요. 사진은 올리브영 상품 페이지의 브랜드 공식 이미지라, 실제 리뷰에는 직접 찍은 사진을 넣어야 해요. 빨간 글씨는 브랜드 핵심 키워드예요. 가격은 2026년 11월 3일 올리브영 기준이에요.</p>
+  <header class="mast">
+    <div class="wordmark" aria-label="alternative stereo"><span>alter</span><span>native</span><span>stereo</span></div>
+    <a class="jump" href="#buy">구매처 바로가기</a>
+  </header>
+
+  <div class="post-head">
+    <span class="label">26 FW · Second Skin Nude Collection</span>
+    <h1>내 스킨톤을 따라 깊어지는 누드, 세컨 스킨 누드 컬렉션 신상 소개</h1>
+    <div class="meta"><span class="ad">#제품제공 #광고</span><span>뷰티노트 · 2026. 11. 3.</span></div>
+  </div>
+
+  <article>
+    <section>
+      <figure><img src="img-new/hero.jpg" alt="카라멜 글레이즈 밤과 수플레이어 아이팔레트"></figure>
+      <p>오늘 소개할 제품은 얼터너티브스테레오의 26FW 신상, <strong>세컨 스킨 누드 컬렉션</strong>입니다. 11월 올영픽으로 선정되어 올리브영에서 먼저 만나볼 수 있어요.</p>
+      <p>컬렉션의 컨셉은 <span class="kw">내 스킨톤을 따라 깊어지는 음영</span>입니다. 가볍게 바르면 맑고, 겹칠수록 깊어지는 <span class="kw">로우톤 누드</span>로 눈과 입술 위에서 둥둥 뜨지 않아요.</p>
+      <div class="kwbar"><span>#세컨스킨누드컬렉션</span><span>#로우톤누드</span><span>#카라멜꾸덕밤</span><span>#3타입텍스처</span></div>
+    </section>
+
+    <section>
+      <span class="label">At a glance</span>
+      <h2>컬렉션 한눈에 보기</h2>
+      <div class="glance">
+        <a href="#balm"><b>LIP</b><strong>카라멜 글레이즈 밤</strong><span>6컬러 · 녹진한 광의 컬러 립밤<br>정가 21,000원</span></a>
+        <a href="#eye"><b>EYE</b><strong>수플레이어 아이팔레트</strong><span>2종 · 매트·쉬머·젤 라이너 6구<br>정가 27,000원</span></a>
+      </div>
+    </section>
+
+    <section id="balm">
+      <span class="label">Lip · New</span>
+      <div class="sub"><h2>립 포션 카라멜 글레이즈 밤</h2><span class="price">3.1g · 6 Colors</span></div>
+      <div class="pair">
+        <figure><img src="img-new/balm.jpg" alt="카라멜 글레이즈 밤 제품 사진" style="aspect-ratio:1"></figure>
+        <figure><div class="crop" style="aspect-ratio:1"><img src="img-new/model.jpg" alt="카라멜 글레이즈 밤을 바른 모델" style="width:166.67%;left:-16.67%;top:-15%"></div></figure>
+      </div>
+      <p>얼터너티브스테레오의 대표 제품 카라멜 글레이즈의 쫀득한 광을 그대로 담고, 케어까지 더한 밤 타입입니다.</p>
+      <div class="keys">
+        <div class="key"><b>01</b><div><p><span class="kw">녹진한 광 #카라멜꾸덕밤</span></p><small>끈적임 없이 슥 발리고 광만 촤르르 쌓입니다. 글로스의 찐득함이 부담스러운 분께 추천해요.</small></div></div>
+        <div class="key"><b>02</b><div><p><span class="kw">뜨지 않는 #로우톤누드</span></p><small>투명하게 날아가지 않고, 쌓을수록 컬러가 차오르는 고밀도 누드 쉐이드입니다.</small></div></div>
+        <div class="key"><b>03</b><div><p><span class="kw">케어까지 챙긴 #멀티케어밤</span></p><small>주름개선 기능성에 보습과 각질 케어까지 담아 수시로 덧바르기 좋습니다.</small></div></div>
+      </div>
+
+      <h3 style="margin:8px 0 0;font-size:17px">컬러별 입술 발색</h3>
+      <div class="swatches">
+        <div class="sw"><img src="img-new/lip01.jpg" alt="1호 헤이즐넛 입술 발색"><strong>01 헤이즐넛</strong><span class="tone">WARM</span><p>구운 헤이즐넛 같은 소프트 토프 베이지</p><span class="gift">치크 팟 기획</span></div>
+        <div class="sw"><img src="img-new/lip02.jpg" alt="2호 바닐라 로즈 입술 발색"><strong>02 바닐라 로즈</strong><span class="tone">NEUTRAL</span><p>바닐라 잼에 말린 장미 한 스푼, MLBB 코랄 로즈</p><span class="gift">치크 팟 기획</span></div>
+        <div class="sw"><img src="img-new/lip03.jpg" alt="3호 이즈니 빈 입술 발색"><strong>03 이즈니 빈</strong><span class="tone">WARM</span><p>버터 위에 빈 스프레드를 얹은 부드러운 베이지</p></div>
+        <div class="sw"><img src="img-new/lip04.jpg" alt="4호 핑크 누가 입술 발색"><strong>04 핑크 누가</strong><span class="tone">NEUTRAL</span><p>누가 크림에 핑크 한 방울, 뉴트럴 핑크 베이지</p><span class="gift">치크 팟 기획</span></div>
+        <div class="sw"><img src="img-new/lip05.jpg" alt="5호 시나몬 로즈 입술 발색"><strong>05 시나몬 로즈</strong><span class="tone">WARM</span><p>계피 향을 머금은 MLBB 로즈 브라운</p></div>
+        <div class="sw"><img src="img-new/lip06.jpg" alt="6호 에스프레소 입술 발색"><strong>06 에스프레소</strong><span class="tone">WARM</span><p>갓 내린 에스프레소 같은 딥 코코아 브라운</p></div>
+      </div>
+    </section>
+
+    <section id="eye">
+      <span class="label">Eye · New</span>
+      <div class="sub"><h2>수플레이어 아이팔레트</h2><span class="price">8g · 2 Types</span></div>
+      <p>눈가에 사르르 녹아드는 6구 음영 팔레트입니다. 데일리 누드부터 분위기 있는 누드 스모키까지 한 판으로 연출할 수 있어요.</p>
+      <div class="keys">
+        <div class="key"><b>01</b><div><p><span class="kw">자연스럽게 깊어지는 #로우톤누드</span></p><small>흰기 때문에 눈이 부어 보이는 누드가 아니라, 쌓을수록 내 피부톤처럼 깊어지는 음영입니다.</small></div></div>
+        <div class="key"><b>02</b><div><p><span class="kw">필요한 것만 모은 #3타입텍스처</span></p><small>수플레 매트, 쉬머-라이터, 젤 라이너를 한 판에 담았습니다.</small></div></div>
+        <div class="key"><b>03</b><div><p><span class="kw">누드 스모키 한 끗 #애쉬음영컬러</span></p><small>팔레트마다 애쉬 포인트 컬러가 있어 한 겹만 더해도 분위기가 달라져요.</small></div></div>
+      </div>
+
+      <div class="palette">
+        <figure><img src="img-new/palette01.jpg" alt="01 누드 크레마 팔레트" style="aspect-ratio:1"></figure>
+        <div class="palette-body">
+          <h3>01 누드 크레마</h3><span class="tone">WARM</span>
+          <img src="img-new/eye01.jpg" alt="누드 크레마 6컬러 텍스처" style="width:100%;height:auto;display:block">
+          <p>우유에 버터를 녹인 듯한 웜 누드 음영. 흰기 없이 스며드는 브라운 베이지 구성이에요.</p>
+          <p class="shades6"><b>버터 밀크</b> · 아몬드 피치 · 몽블랑 · 크림 샤인 · 비터 코코아 · 딥 브라우니</p>
+        </div>
+      </div>
+      <div class="palette">
+        <figure><img src="img-new/palette02.jpg" alt="02 스킴드 로즈 팔레트" style="aspect-ratio:1"></figure>
+        <div class="palette-body">
+          <h3>02 스킴드 로즈</h3><span class="tone">COOL</span>
+          <img src="img-new/eye02.jpg" alt="스킴드 로즈 6컬러 텍스처" style="width:100%;height:auto;display:block">
+          <p>생크림을 섞은 듯 부드러운 베리 로즈와 애쉬빛의 쿨 누드 음영. 누드 메이크업이 어려웠던 쿨톤께 추천해요.</p>
+          <p class="shades6"><b>베리 요거트</b> · 로지 무스 · 애쉬 카푸치노 · 슈가 글림 · 모브 가나슈 · 콜드 브루</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Gift</span>
+      <h2>기획세트 증정품</h2>
+      <div class="gifts">
+        <div class="giftcard"><strong>마시멜로우 치크 팟</strong><p>카라멜 글레이즈 밤 1·2·4호 기획세트 증정. 아직 출시되지 않은 크림 치크로, 젤리처럼 말랑한 광이 올라옵니다.</p></div>
+        <div class="giftcard"><strong>아이 브러쉬 듀오</strong><p>수플레이어 아이팔레트 기획세트 증정. 블렌딩용 스머징 브러쉬와 젤 라이너용 디테일 브러쉬 구성입니다.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">How to use</span>
+      <h2>세컨 스킨 누드 메이크업 순서</h2>
+      <ol class="steps">
+        <li><span>누드 크레마의 아몬드 피치로 눈두덩이 전체에 음영을 깔아 줍니다.</span></li>
+        <li><span>디테일 브러쉬에 딥 브라우니 젤 라이너를 묻혀 아이라인을 그려 줍니다.</span></li>
+        <li><span>크림 샤인을 애교살과 코끝에 하이라이터처럼 얹어 줍니다.</span></li>
+        <li><span>카라멜 글레이즈 밤 02 바닐라 로즈를 입술 전체에, 06 에스프레소를 안쪽에만 더해 그라데이션을 완성합니다.</span></li>
+      </ol>
+    </section>
+
+    <section id="buy">
+      <span class="label">Where to buy</span>
+      <h2>구매처</h2>
+      <div class="shop">
+        <div class="shop-head"><strong>올리브영</strong><span>11월 올영픽 · 블프 단독 선런칭 11.1 – 11.7</span></div>
+        <a class="buy" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001003808" target="_blank" rel="noopener">
+          <span class="name">립 포션 카라멜 글레이즈 밤 3.1g</span>
+          <span class="sub2">6컬러 · 1·2·4호 기획세트 치크 팟 증정</span>
+          <span class="num"><s>21,000원</s><b>16,380원~</b><span class="go">올리브영에서 보기 →</span></span>
+        </a>
+        <a class="buy" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002971" target="_blank" rel="noopener">
+          <span class="name">수플레이어 아이팔레트 8g</span>
+          <span class="sub2">2종 · 기획세트 브러쉬 듀오 증정</span>
+          <span class="num"><s>27,000원</s><b>21,060원~</b><span class="go">올리브영에서 보기 →</span></span>
+        </a>
+      </div>
+      <p class="shop-note">세컨 스킨 누드 컬렉션은 올리브영 단독 선런칭 제품입니다. 가격은 2026년 11월 3일 올리브영 기준이며, 옵션과 행사에 따라 달라질 수 있어요.</p>
+    </section>
+
+    <section>
+      <p class="quote">둥둥 뜨는 누드 말고,<br><em>내 스킨톤을 따라 깊어지는</em> 누드</p>
+      <p style="text-align:center">자연스럽게 깊어지는 로우톤 누드를 찾는 분께 세컨 스킨 누드 컬렉션을 추천합니다.</p>
+      <p class="disclosure">본 포스팅은 얼터너티브스테레오로부터 제품과 원고료를 제공받아 직접 사용 후 작성되었습니다.</p>
+      <div class="tags"><span>#얼터너티브스테레오</span><span>#세컨스킨누드컬렉션</span><span>#카라멜글레이즈밤</span><span>#카라멜꾸덕밤</span><span>#수플레이어아이팔레트</span><span>#로우톤누드</span><span>#올영픽</span><span>#올리브영신상</span></div>
+    </section>
+  </article>
+  <footer>alternative stereo · example post</footer>
+</div>

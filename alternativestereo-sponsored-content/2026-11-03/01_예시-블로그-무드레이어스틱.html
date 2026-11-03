@@ -1,0 +1,317 @@
+<title>무드 레이어 스틱 예시 글</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: a product introduction post for shoppers. At a glance first, then brand keywords, one card per shade, how to use, and where to buy. */
+:root {
+  --ivory: #fbfaef;
+  --paper: #ffffff;
+  --ink: #353535;
+  --mute: #8a8a84;
+  --line: #e9e5d3;
+  --brick: #b42722;
+  --brick-soft: #f6e6dc;
+  --caramel: #a86a3d;
+  --photo: #f1ecdd;
+  --display: "Gowun Batang", "Noto Serif KR", serif;
+  --body: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --label: "Figtree", "Noto Sans KR", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ivory); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.8;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+p { margin: 0; }
+
+.example { margin-top: 16px; font-size: 13px; color: var(--caramel); background: #fbf3e6; border-left: 2px solid var(--caramel); padding: 10px 14px; line-height: 1.6; }
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.wordmark { font-family: var(--label); font-weight: 800; color: var(--brick); line-height: .86; font-size: 20px; letter-spacing: -.02em; }
+.wordmark span { display: block; }
+.wordmark span:first-child { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 2px; }
+.jump { font: 600 13px var(--body); color: var(--paper); background: var(--brick); padding: 6px 14px; border-radius: 999px; text-decoration: none; }
+
+.label { font-family: var(--label); font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brick); font-weight: 600; }
+.post-head { padding-block: 32px 28px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 6vw, 36px); line-height: 1.35; margin: 0; text-wrap: balance; }
+.meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--mute); }
+.ad { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: .12em; color: var(--brick); border: 1px solid var(--brick); padding: 1px 8px; }
+
+article { background: var(--paper); padding: clamp(20px, 6vw, 52px); border-top: 3px solid var(--brick); display: grid; gap: 22px; }
+section { display: grid; gap: 18px; scroll-margin-top: 16px; }
+section + section { margin-top: 48px; }
+h2 { font-family: var(--display); font-size: 26px; line-height: 1.35; margin: 0; }
+.quote { font-family: var(--display); font-size: 21px; line-height: 1.6; text-align: center; padding-block: 8px; text-wrap: balance; }
+.quote em { font-style: normal; color: var(--brick); }
+.tagline { font-family: var(--label); font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--mute); text-align: center; }
+
+.crop { position: relative; overflow: hidden; max-width: 100%; background: var(--photo); }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figcaption { font-size: 12px; color: var(--mute); }
+
+.kw { color: var(--brick); font-weight: 700; }
+.kwbar { display: flex; flex-wrap: wrap; gap: 6px; }
+.kwbar span { font-family: var(--label); font-size: 12px; color: var(--brick); border: 1px solid var(--brick); padding: 2px 10px; border-radius: 999px; }
+
+.glance { border: 1px solid var(--line); }
+.glance-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.glance-top strong { font-family: var(--display); font-size: 20px; }
+.glance-top span { font-family: var(--label); font-variant-numeric: tabular-nums; color: var(--mute); }
+.glance-top span b { color: var(--brick); }
+.specs { display: grid; grid-template-columns: repeat(4, 1fr); }
+.specs div { padding: 14px 10px; text-align: center; display: grid; gap: 2px; }
+.specs div + div { border-left: 1px solid var(--line); }
+.specs b { font-family: var(--label); font-size: 10px; letter-spacing: .24em; color: var(--brick); font-weight: 600; }
+.specs span { font-size: 14px; line-height: 1.45; }
+.uses { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 16px; justify-content: center; }
+.uses span { font-size: 13px; background: var(--ivory); padding: 2px 12px; border-radius: 999px; }
+
+.keys { display: grid; border-top: 1px solid var(--line); }
+.key { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.key > b { font-family: var(--label); font-weight: 800; color: var(--brick); font-size: 15px; }
+.key h3 { margin: 0; font-family: var(--label); font-size: 15px; letter-spacing: .08em; font-weight: 800; }
+.key p { font-size: 15px; }
+.key small { display: block; font-size: 13.5px; color: var(--mute); margin-top: 2px; line-height: 1.6; }
+
+.index { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.index a { display: grid; justify-items: center; gap: 4px; text-decoration: none; color: var(--ink); font-size: 12px; line-height: 1.3; text-align: center; padding: 8px 2px; border-radius: 4px; }
+.index a:hover { background: var(--ivory); }
+.index i { width: 34px; height: 34px; border-radius: 50%; display: block; box-shadow: inset 0 -5px 8px rgba(0,0,0,.12); }
+
+.shades { display: grid; gap: 32px; }
+.shade { display: grid; gap: 10px; scroll-margin-top: 16px; }
+.shade-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.shade-head i { width: 22px; height: 22px; border-radius: 50%; display: block; }
+.shade-head strong { font-size: 18px; }
+.shade-head .en { font-family: var(--label); font-size: 13px; color: var(--mute); }
+.badge { font-family: var(--label); font-size: 10.5px; letter-spacing: .14em; font-weight: 600; color: var(--paper); background: #7a4a3c; padding: 2px 9px; border-radius: 999px; }
+.shade p { font-size: 15px; }
+.shade .use { font-size: 13.5px; color: var(--mute); }
+.shade .use::before { content: "추천 활용 · "; color: var(--brick); font-weight: 500; }
+
+.looks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 8px; font-size: 15px; }
+ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--label); font-weight: 800; color: var(--brick); }
+
+.combo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.combo div { border: 1px solid var(--line); padding: 14px 10px; text-align: center; display: grid; gap: 6px; }
+.combo .pair { display: flex; justify-content: center; gap: 4px; }
+.combo .pair i { width: 22px; height: 22px; border-radius: 50%; display: block; }
+.combo b { font-family: var(--label); font-size: 11px; letter-spacing: .24em; color: var(--brick); }
+.combo span { font-size: 12.5px; color: var(--mute); line-height: 1.5; }
+
+/* where to buy */
+.shop { border: 1.5px solid var(--brick); }
+.shop-head { background: var(--brick); color: #fffdf3; padding: 12px 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.shop-head strong { font-family: var(--label); font-size: 13px; letter-spacing: .2em; }
+.shop-head span { font-size: 12px; opacity: .85; }
+.buy { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 14px 18px; align-items: center; text-decoration: none; color: var(--ink); }
+.buy + .buy { border-top: 1px dashed #dcb7ab; }
+.buy:hover { background: var(--ivory); }
+.buy .name { font-weight: 700; font-size: 15px; }
+.buy .sub { grid-column: 1; font-size: 13px; color: var(--mute); }
+.buy .num { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-family: var(--label); font-variant-numeric: tabular-nums; white-space: nowrap; display: grid; gap: 2px; justify-items: end; }
+.buy .num s { color: var(--mute); font-size: 12.5px; }
+.buy .num b { color: var(--brick); font-size: 16px; }
+.buy .num em { font-style: normal; font-size: 12px; color: var(--paper); background: var(--brick); padding: 0 8px; border-radius: 999px; }
+.oy { padding: 14px 18px; border-top: 1px solid var(--line); background: var(--ivory); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 14px; }
+.oy b { font-weight: 700; }
+.oy span { color: var(--caramel); font-size: 13px; }
+.shop-note { font-size: 12.5px; color: var(--mute); }
+
+.disclosure { font-size: 12.5px; color: var(--mute); border-top: 1px solid var(--line); padding-top: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 12.5px; color: var(--brick); background: var(--brick-soft); padding: 2px 10px; border-radius: 999px; }
+footer { text-align: center; padding-top: 28px; font-family: var(--label); font-size: 11px; letter-spacing: .32em; color: var(--mute); text-transform: uppercase; }
+
+@media (max-width: 480px) {
+  .specs { grid-template-columns: 1fr 1fr; }
+  .specs div:nth-child(3) { border-left: 0; }
+  .specs div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .combo { grid-template-columns: 1fr; }
+}
+:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <p class="example">작성 예시예요. 사진은 얼터너티브스테레오 공식 상세페이지 이미지라, 실제 리뷰에는 직접 찍은 사진을 넣어야 해요. 빨간 글씨는 브랜드 공식 키워드예요. 공식몰 가격은 2026년 11월 3일 기준이에요.</p>
+  <header class="mast">
+    <div class="wordmark" aria-label="alternative stereo"><span>alter</span><span>native</span><span>stereo</span></div>
+    <a class="jump" href="#buy">구매처 바로가기</a>
+  </header>
+
+  <div class="post-head">
+    <span class="label">Multi Stick · Mood Layer</span>
+    <h1>Layer up your Mood, 무드 레이어 스틱 크레용 5가지 뮤트럴 컬러 소개</h1>
+    <div class="meta"><span class="ad">#제품제공 #광고</span><span>뷰티노트 · 2026. 11. 3.</span></div>
+  </div>
+
+  <article>
+    <section>
+      <figure>
+        <div class="crop" style="aspect-ratio:1000/750"><img src="img/hero.jpg" alt="찻잔 위에 놓인 무드 레이어 스틱 크레용" style="width:100%;left:0;top:-69.33%"></div>
+      </figure>
+      <p class="tagline">Layer up your Mood</p>
+      <p class="quote" style="padding-block:0">겹겹이 쌓이는 레이어,<br><em>완성된 나만의 무드</em></p>
+      <p>오늘 소개할 제품은 얼터너티브스테레오의 <strong>무드 레이어 스틱 크레용</strong>입니다. 일상의 아날로그 감성을 담는 브랜드답게 크레용을 닮은 패키지가 눈에 띄는 제품이에요.</p>
+      <p>이름처럼 <span class="kw">메이크업에 레이어를 더하는</span> 멀티 스틱으로, 립 베이스부터 치크, 애교살, 음영까지 하나로 연출할 수 있습니다.</p>
+      <div class="kwbar"><span>#멀티스틱</span><span>#실키스프레드텍스쳐</span><span>#뮤트럴컬러</span></div>
+    </section>
+
+    <section>
+      <span class="label">At a glance</span>
+      <h2>제품 한눈에 보기</h2>
+      <div class="glance">
+        <div class="glance-top"><strong>무드 레이어 스틱 크레용</strong><span>정가 16,000원 · 공식몰 <b>14,400원</b></span></div>
+        <div class="specs">
+          <div><b>COLORS</b><span>5가지<br>뮤트럴 컬러</span></div>
+          <div><b>TEXTURE</b><span>실키<br>스프레드</span></div>
+          <div><b>FINISH</b><span>반투명<br>레이어링</span></div>
+          <div><b>TYPE</b><span>멀티<br>스틱</span></div>
+        </div>
+        <div class="uses"><span>립 베이스</span><span>오버립</span><span>치크</span><span>애교살</span><span>인중 음영</span></div>
+      </div>
+      <figure>
+        <div class="crop" style="aspect-ratio:1000/825"><img src="img/swatch.jpg" alt="무드 레이어 스틱 5컬러와 각 컬러 발색" style="width:100%;left:0;top:-71.88%"></div>
+        <figcaption>5컬러 스틱과 크레용 발색</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <span class="label">Key points</span>
+      <h2>무드 레이어 스틱의 세 가지 포인트</h2>
+      <div class="keys">
+        <div class="key"><b>01</b><div><h3>MULTI MOOD STICK</h3><p>단순한 립 베이스를 넘어 <span class="kw">아이, 치크 무드까지 레이어 업</span>합니다.</p><small>원펜슬로 충분한 TONE &amp; MOOD. 립, 치크, 애교살을 스틱 하나로 연출할 수 있어 파우치가 가벼워져요.</small></div></div>
+        <div class="key"><b>02</b><div><h3>MUTERAL COLOR</h3><p><span class="kw">깊고 부드러운 5가지 뮤트럴 컬러</span>로 구성되어 있습니다.</p><small>뮤트와 뉴트럴 사이의 채도라 피부 위에서 튀지 않고, 웜톤과 쿨톤 모두 고를 수 있는 컬러가 있어요.</small></div></div>
+        <div class="key"><b>03</b><div><h3>SILKY SPREAD TEXTURE</h3><p><span class="kw">피부에 녹아들 듯 부드러운 블렌딩</span>이 특징입니다.</p><small>스틱 타입이지만 뻑뻑하지 않게 미끄러지듯 발리고, 손끝으로 펴면 내 피부톤과 자연스럽게 어우러져요.</small></div></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Colors</span>
+      <h2>5가지 뮤트럴 컬러 발색</h2>
+      <p>Muted &amp; Neutral Shades. 채도를 한 톤 눌러 <span class="kw">매일 손이 가는</span> 컬러들로 구성했습니다. 컬러를 누르면 해당 발색으로 이동해요.</p>
+      <nav class="index" aria-label="컬러 바로가기">
+        <a href="#c00"><i style="background:#e7b9b0"></i><span>00 밀키 시럽</span></a>
+        <a href="#c01"><i style="background:#c99073"></i><span>01 카라멜 드리즐</span></a>
+        <a href="#c02"><i style="background:#c08a80"></i><span>02 로즈 밀크 티</span></a>
+        <a href="#c03"><i style="background:#b08088"></i><span>03 모브 라떼</span></a>
+        <a href="#c04"><i style="background:#a58676"></i><span>04 코코아 더스트</span></a>
+      </nav>
+
+      <div class="shades">
+        <div class="shade" id="c00">
+          <div class="shade-head"><i style="background:#e7b9b0"></i><strong>00 밀키 시럽</strong><span class="en">Milky Syrup</span><span class="badge">애교살 활용</span></div>
+          <div class="crop" style="aspect-ratio:832/328"><img src="img/lips.jpg" alt="00 밀키 시럽 입술 발색과 텍스처" style="width:120.19%;left:-12.74%;top:-147.56%"></div>
+          <p>맑은 딸기 두유 빛의 누디 핑크입니다. 자연스러운 피부 색상으로 입술 톤을 정리해 줍니다.</p>
+          <p class="use">애교살, 립 베이스</p>
+        </div>
+        <div class="shade" id="c01">
+          <div class="shade-head"><i style="background:#c99073"></i><strong>01 카라멜 드리즐</strong><span class="en">Caramel Drizzle</span><span class="badge">WARM BEST</span></div>
+          <div class="crop" style="aspect-ratio:832/328"><img src="img/lips.jpg" alt="01 카라멜 드리즐 입술 발색과 텍스처" style="width:120.19%;left:-9.13%;top:-263.11%"></div>
+          <p>그윽함 한 스푼을 더하는 크림 베이지입니다. 블러셔로 쓰면 고급스러운 베이지 무드가 연출돼요.</p>
+          <p class="use">치크, 언더 음영, 립 라인 확장</p>
+        </div>
+        <div class="shade" id="c02">
+          <div class="shade-head"><i style="background:#c08a80"></i><strong>02 로즈 밀크 티</strong><span class="en">Rose Milk Tea</span><span class="badge">NEUTRAL BEST</span></div>
+          <div class="crop" style="aspect-ratio:832/328"><img src="img/lips.jpg" alt="02 로즈 밀크 티 입술 발색과 텍스처" style="width:120.19%;left:-12.74%;top:-378.96%"></div>
+          <p>물 먹은 로즈 티 같은, 생기 가득한 로즈 베이지입니다. 본래 입술색과 가까워 오버립을 처음 시도하는 분께 추천합니다.</p>
+          <p class="use">오버립, 립 라인, 치크</p>
+        </div>
+        <div class="shade" id="c03">
+          <div class="shade-head"><i style="background:#b08088"></i><strong>03 모브 라떼</strong><span class="en">Mauve Latte</span><span class="badge">COOL BEST</span></div>
+          <div class="crop" style="aspect-ratio:832/328"><img src="img/lips.jpg" alt="03 모브 라떼 입술 발색과 텍스처" style="width:120.19%;left:-9.13%;top:-494.51%"></div>
+          <p>미지근하고 멀멀한 뮤티드 모브입니다. 쿨톤의 오버립과 눈가 포인트에 잘 어울립니다.</p>
+          <p class="use">오버립, 눈두덩이 음영, 치크</p>
+        </div>
+        <div class="shade" id="c04">
+          <div class="shade-head"><i style="background:#a58676"></i><strong>04 코코아 더스트</strong><span class="en">Cocoa Dust</span><span class="badge">오버립 활용</span></div>
+          <div class="crop" style="aspect-ratio:832/328"><img src="img/lips.jpg" alt="04 코코아 더스트 입술 발색과 텍스처" style="width:120.19%;left:-12.74%;top:-610.06%"></div>
+          <p>차분한 코코아 브라운입니다. 입꼬리와 인중 음영, 오버립 라인 정리에 활용하기 좋습니다.</p>
+          <p class="use">인중 음영, 오버립 라인, 코 쉐딩</p>
+        </div>
+      </div>
+
+      <figure>
+        <div class="crop" style="aspect-ratio:860/1003"><img src="img/swatch.jpg" alt="팔뚝에 그은 5컬러 발색" style="width:116.28%;left:-8.14%;top:-155.93%"></div>
+        <figcaption>팔뚝 발색 한눈에 보기 (위에서부터 00 → 04)</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <span class="label">How to use</span>
+      <h2>이렇게 활용해 보세요</h2>
+      <div class="keys">
+        <div class="key"><b>A</b><div><h3>LIP TONE COVER</h3><p>립 라이너 &amp; 베이스로 쓰면 <span class="kw">진한 착색도 매끈하게 톤 커버</span>하고 정돈합니다.</p></div></div>
+        <div class="key"><b>B</b><div><h3>MULTI MOOD SHAPING</h3><p>음영 메이커로 쓰면 <span class="kw">메이크업의 톤과 무드를 잡아</span> 분위기 있는 룩을 완성합니다.</p></div></div>
+      </div>
+      <figure>
+        <div class="crop" style="aspect-ratio:1000/715"><img src="img/face.jpg" alt="애교살, 치크, 인중과 오버립에 쓴 모습" style="width:100%;left:0;top:-41.54%"></div>
+        <figcaption>애교살 · 치크 · 인중 음영 · 오버립까지 스틱 하나로</figcaption>
+      </figure>
+      <ol class="steps">
+        <li><span>00 밀키 시럽을 눈 밑 애교살에 가볍게 그어 줍니다.</span></li>
+        <li><span>02 로즈 밀크 티를 입술 라인보다 살짝 넘겨 그린 뒤 손끝으로 펴 줍니다.</span></li>
+        <li><span>같은 컬러를 볼 중앙에 두 번 찍어 블렌딩하면 치크까지 완성돼요.</span></li>
+        <li><span>04 코코아 더스트로 인중과 입꼬리에 음영을 더해 줍니다.</span></li>
+      </ol>
+      <div class="looks">
+        <figure><div class="crop" style="aspect-ratio:629/741"><img src="img/looks.jpg" alt="밀키 시럽 메이크업 룩" style="width:158.98%;left:-13.04%;top:-105.67%"></div><figcaption>00 밀키 시럽 룩</figcaption></figure>
+        <figure><div class="crop" style="aspect-ratio:732/824"><img src="img/looks.jpg" alt="카라멜 드리즐 메이크업 룩" style="width:136.61%;left:-29.51%;top:-273.79%"></div><figcaption>01 카라멜 드리즐 룩</figcaption></figure>
+      </div>
+      <p>얼터너티브스테레오의 카라멜 글레이즈를 위에 덧바르면 광까지 더할 수 있습니다. 톤별 추천 조합은 아래와 같아요.</p>
+      <div class="combo">
+        <div><b>WARM</b><div class="pair"><i style="background:#c99073"></i><i style="background:#a77a64"></i></div><span>카라멜 드리즐<br>+ 카카오 50%</span></div>
+        <div><b>NEUTRAL</b><div class="pair"><i style="background:#c08a80"></i><i style="background:#c9928a"></i></div><span>로즈 밀크 티<br>+ 토피 로즈</span></div>
+        <div><b>COOL</b><div class="pair"><i style="background:#c08a80"></i><i style="background:#d9a0a8"></i></div><span>로즈 밀크 티<br>+ 솔티드 핑크</span></div>
+      </div>
+    </section>
+
+    <section id="buy">
+      <span class="label">Where to buy</span>
+      <h2>구매처</h2>
+      <div class="shop">
+        <div class="shop-head"><strong>얼터너티브스테레오 공식몰</strong><span>2026.11.3 기준 판매가</span></div>
+        <a class="buy" href="https://alternativestereo.com/product/detail.html?product_no=243" target="_blank" rel="noopener">
+          <span class="name">무드 레이어 스틱 크레용</span>
+          <span class="sub">단품 · 5컬러 중 택 1</span>
+          <span class="num"><s>16,000원</s><b>14,400원</b><em>10%</em></span>
+        </a>
+        <a class="buy" href="https://alternativestereo.com/product/detail.html?product_no=244" target="_blank" rel="noopener">
+          <span class="name">무드 레이어 스틱 크레용 2종 SET</span>
+          <span class="sub">스틱 2개 구성</span>
+          <span class="num"><s>32,000원</s><b>27,200원</b><em>15%</em></span>
+        </a>
+        <a class="buy" href="https://alternativestereo.com/product/detail.html?product_no=245" target="_blank" rel="noopener">
+          <span class="name">무드 레이어 스틱 + 카라멜 글레이즈 2종 SET</span>
+          <span class="sub">스틱 + 글로스 조합</span>
+          <span class="num"><s>35,000원</s><b>29,750원</b><em>15%</em></span>
+        </a>
+        <a class="buy" href="https://alternativestereo.com/product/detail.html?product_no=246" target="_blank" rel="noopener">
+          <span class="name">무드 레이어 스틱 + 슈가 글레이즈 2종 SET</span>
+          <span class="sub">스틱 + 틴트 조합</span>
+          <span class="num"><s>35,000원</s><b>29,750원</b><em>15%</em></span>
+        </a>
+        <div class="oy"><b>올리브영</b><span>캠페인 시 올리브영 상품 링크를 넣어 주세요</span></div>
+      </div>
+      <p class="shop-note">가격과 할인율은 공식몰 기준이며 시점에 따라 달라질 수 있습니다. 링크를 누르면 새 창에서 상품 페이지가 열려요.</p>
+    </section>
+
+    <section>
+      <p class="quote">한 겹씩 쌓이는 음영,<br><em>나만의 무드를 완성</em></p>
+      <p style="text-align:center">스틱 하나로 립, 치크, 음영까지 연출하고 싶은 분께 무드 레이어 스틱 크레용을 추천합니다.</p>
+      <p class="disclosure">본 포스팅은 얼터너티브스테레오로부터 제품과 원고료를 제공받아 직접 사용 후 작성되었습니다.</p>
+      <div class="tags"><span>#얼터너티브스테레오</span><span>#무드레이어스틱</span><span>#멀티스틱</span><span>#실키스프레드텍스쳐</span><span>#뮤트럴컬러</span><span>#LayerUpYourMood</span><span>#오버립</span></div>
+    </section>
+  </article>
+  <footer>alternative stereo · example post</footer>
+</div>

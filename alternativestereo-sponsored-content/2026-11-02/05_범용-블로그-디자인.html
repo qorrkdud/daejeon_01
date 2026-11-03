@@ -1,0 +1,260 @@
+<title>얼터 협찬 블로그 템플릿</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: same brand blog column as the collection page; a product picker swaps every [slot] so one template serves any Alternative Stereo product. */
+:root {
+  --ivory: #fbfaef;
+  --paper: #ffffff;
+  --ink: #353535;
+  --mute: #8a8a84;
+  --line: #e9e5d3;
+  --brick: #b42722;
+  --brick-soft: #f6e6dc;
+  --caramel: #a86a3d;
+  --photo: #f1ecdd;
+  --display: "Gowun Batang", "Noto Serif KR", serif;
+  --body: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --label: "Figtree", "Noto Sans KR", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ivory); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.8;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+p { margin: 0; }
+
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.wordmark { font-family: var(--label); font-weight: 800; color: var(--brick); line-height: .86; font-size: 20px; letter-spacing: -.02em; }
+.wordmark span { display: block; }
+.wordmark span:first-child { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 2px; }
+
+.picker { display: flex; gap: 8px; flex-wrap: wrap; padding-block: 18px 0; }
+.picker button { font: 500 13px var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--brick); border-color: var(--brick); color: #fffdf3; }
+.picker-cap { font-size: 12.5px; color: var(--mute); padding-top: 8px; }
+
+.label { font-family: var(--label); font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brick); font-weight: 600; }
+.post-head { padding-block: 32px 28px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 6vw, 36px); line-height: 1.35; margin: 0; text-wrap: balance; }
+.meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--mute); }
+.ad { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: .12em; color: var(--brick); border: 1px solid var(--brick); padding: 1px 8px; }
+
+article { background: var(--paper); padding: clamp(22px, 6vw, 52px); border-top: 3px solid var(--brick); display: grid; gap: 22px; }
+section { display: grid; gap: 18px; }
+section + section { margin-top: 44px; }
+h2 { font-family: var(--display); font-size: 26px; line-height: 1.35; margin: 0; }
+.sub { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.price { font-family: var(--label); font-size: 14px; color: var(--mute); font-variant-numeric: tabular-nums; }
+.quote { font-family: var(--display); font-size: 21px; line-height: 1.6; text-align: center; padding-block: 8px; text-wrap: balance; }
+.quote em { font-style: normal; color: var(--brick); }
+
+.slot { background: var(--brick-soft); color: var(--brick); padding: 1px 6px; font-size: .92em; }
+.note { font-size: 13px; color: var(--caramel); background: #fbf3e6; padding: 10px 14px; border-left: 2px solid var(--caramel); }
+
+.photo { background: var(--photo); aspect-ratio: 4 / 5; max-width: 100%; display: grid; place-items: center; text-align: center; font-size: 13px; color: var(--mute); border: 1px dashed #d6ccb0; }
+.photo b { display: block; font-family: var(--label); font-size: 10px; letter-spacing: .32em; color: var(--caramel); font-weight: 600; }
+.photo.wide { aspect-ratio: 3 / 2; }
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.brand { background: var(--ivory); padding: 20px; display: grid; gap: 8px; }
+.brand p { font-size: 15px; }
+
+.chips3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.chips3 div { background: var(--ivory); padding: 16px 12px; text-align: center; display: grid; gap: 4px; align-content: start; }
+.chips3 b { font-size: 15px; }
+.chips3 span { font-size: 13px; color: var(--mute); line-height: 1.5; }
+
+.shades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 10px; }
+.shade { display: grid; justify-items: center; gap: 6px; text-align: center; align-content: start; }
+.dot { width: 56px; height: 56px; border-radius: 50%; box-shadow: inset 0 -6px 10px rgba(0,0,0,.12); }
+.dot.empty { background: repeating-linear-gradient(45deg, var(--photo) 0 6px, #e6dec6 6px 12px); box-shadow: none; }
+.shade strong { font-size: 14px; line-height: 1.3; }
+.tone { font-family: var(--label); font-size: 10px; letter-spacing: .24em; color: var(--mute); }
+.shade p { font-size: 12.5px; color: var(--mute); line-height: 1.5; }
+
+ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 8px; font-size: 15px; }
+ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--label); font-weight: 800; color: var(--brick); }
+
+.ticket { border: 1.5px solid var(--brick); }
+.ticket-head { background: var(--brick); color: #fffdf3; padding: 10px 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: var(--label); font-size: 12px; letter-spacing: .2em; font-weight: 600; }
+.ticket-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 14px 18px; align-items: baseline; }
+.ticket-row .num { font-family: var(--label); font-variant-numeric: tabular-nums; }
+.ticket-row small { grid-column: 1 / -1; color: var(--mute); font-size: 13px; }
+
+.disclosure { font-size: 12.5px; color: var(--mute); border-top: 1px solid var(--line); padding-top: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 12.5px; color: var(--brick); background: var(--brick-soft); padding: 2px 10px; border-radius: 999px; }
+footer { text-align: center; padding-top: 28px; font-family: var(--label); font-size: 11px; letter-spacing: .32em; color: var(--mute); text-transform: uppercase; }
+
+@media (max-width: 480px) {
+  .chips3 { grid-template-columns: 1fr; }
+  .shades { grid-template-columns: repeat(2, 1fr); }
+}
+:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="wordmark" aria-label="alternative stereo"><span>alter</span><span>native</span><span>stereo</span></div>
+    <span class="label">Sponsored Review Template</span>
+  </header>
+
+  <div class="picker" role="group" aria-label="예시 제품 선택" id="picker"></div>
+  <p class="picker-cap" id="pickerCap"></p>
+
+  <div class="post-head">
+    <span class="label" id="eyebrow"></span>
+    <h1 id="title"></h1>
+    <div class="meta"><span class="ad">#제품제공 #광고</span><span><span class="slot">[닉네임]</span> · <span class="slot">[작성일]</span></span></div>
+  </div>
+
+  <article>
+    <section>
+      <div class="photo wide"><div><b>PHOTO</b>제품 누끼컷</div></div>
+      <p>안녕하세요, <span class="slot">[닉네임]</span>이에요.</p>
+      <p id="hello"></p>
+      <p><span class="slot">[요즘 내 메이크업 고민이나 추구미 한 줄]</span></p>
+    </section>
+
+    <section>
+      <div class="brand">
+        <span class="label">About the brand</span>
+        <p>얼터너티브스테레오는 일상의 아날로그 감성을 담은 뷰티 브랜드예요. 둥둥 뜨지 않고 피부에 녹아드는 감각적인 컬러, 카라멜처럼 쫀득한 광으로 유명하죠.</p>
+        <p><span class="slot">[이 브랜드를 알게 된 계기나 써본 제품 한 줄]</span></p>
+      </div>
+    </section>
+
+    <section>
+      <span class="label" id="cat"></span>
+      <div class="sub"><h2 id="pname"></h2><span class="price" id="price"></span></div>
+      <p id="oneline"></p>
+      <div class="chips3" id="points"></div>
+      <p><span class="slot">[직접 써보고 느낀 점 한 줄]</span></p>
+      <div class="photos">
+        <div class="photo"><div><b>PHOTO</b>텍스처 클로즈업</div></div>
+        <div class="photo"><div><b>PHOTO</b>팔뚝 발색</div></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Colors</span>
+      <h2>컬러별 발색</h2>
+      <div class="shades" id="shades"></div>
+      <p class="note">받은 컬러만 남기고, 컬러마다 자연광 발색 사진과 추천 대상 한 줄을 넣어 주세요. 컬러 칩은 분위기용 참고색이에요.</p>
+      <div class="photo wide"><div><b>PHOTO</b>컬러별 발색 · 자연광</div></div>
+    </section>
+
+    <section>
+      <span class="label">How I use it</span>
+      <h2>이렇게 써봤어요</h2>
+      <ol class="steps" id="steps"></ol>
+      <div class="photos">
+        <div class="photo"><div><b>BEFORE</b></div></div>
+        <div class="photo"><div><b>AFTER</b></div></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Promotion</span>
+      <div class="ticket">
+        <div class="ticket-head"><span class="slot" style="background:transparent;color:inherit">[채널 · 행사명]</span><span>[기간]</span></div>
+        <div class="ticket-row"><strong id="tname"></strong><span class="num"><span class="slot">[정가 → 할인가]</span></span><small><span class="slot">[증정품이 있다면 한 줄]</span></small></div>
+      </div>
+      <p class="note">프로모션 기간·가격·증정품은 캠페인마다 브랜드가 전달하는 값으로 넣고, 제품 링크를 붙여 주세요.</p>
+    </section>
+
+    <section>
+      <p class="quote" id="outro"></p>
+      <p style="text-align:center">최애 컬러는 <span class="slot">[컬러명 · 이유 한 줄]</span></p>
+      <p class="disclosure">본 포스팅은 얼터너티브스테레오로부터 제품과 원고료를 제공받아 직접 사용 후 작성되었습니다.</p>
+      <div class="tags" id="tags"></div>
+    </section>
+  </article>
+  <footer>alternative stereo · 2026.11</footer>
+</div>
+
+<script>
+const S = t => `<span class="slot">${t}</span>`;
+const P = {
+  blank: {
+    btn: "빈 템플릿", cap: "모든 칸이 [대괄호]로 비어 있어요. 아래 제품을 누르면 예시가 채워져요.",
+    eyebrow: S("[시즌 · 컬렉션명]"), title: `얼터너티브스테레오 ${S("[제품명]")} 발색 후기`,
+    hello: `요즘 ${S("[계절·날씨]")}라 메이크업도 ${S("[원하는 분위기]")}로 바꾸고 싶더라고요.`,
+    cat: S("[카테고리]"), name: S("[제품명]"), price: S("[가격] · [N] Colors"), oneline: S("[제품을 한 문장으로]"),
+    points: [[S("[장점 1]"), S("[한두 줄]")], [S("[장점 2]"), S("[한두 줄]")], [S("[장점 3]"), S("[한두 줄]")]],
+    shades: [[null, S("[번호 컬러명]"), "TONE", S("[컬러 묘사]")], [null, S("[번호 컬러명]"), "TONE", S("[컬러 묘사]")], [null, S("[번호 컬러명]"), "TONE", S("[컬러 묘사]")]],
+    steps: [S("[사용 순서 1]"), S("[사용 순서 2]"), S("[얼터 다른 제품과의 조합이 있다면]")],
+    outro: `${S("[제품을 한 줄로 다시 정리]")}`,
+    tags: ["#얼터너티브스테레오", "#[제품명]", "#[컬러명]", "#[핵심키워드]", "#올리브영신상"]
+  },
+  caramel: {
+    btn: "카라멜 글레이즈", cap: "레퍼런스 리뷰에 나온 표현으로 채운 예시예요. 가격·컬러는 캠페인 시점에 다시 확인해 주세요.",
+    eyebrow: "Lip Potion · Caramel Glaze", title: "얼터 대표 글로스, 카라멜 글레이즈 쫀득광 발색 후기",
+    hello: "요즘처럼 건조한 날엔 입술에 도톰한 광이 있어야 얼굴이 살아 보이더라고요.",
+    cat: "Lip", name: "립 포션 카라멜 글레이즈", price: "19,000원", oneline: "카라멜 시럽처럼 쫀득하게 녹아드는 멜팅 텍스처의 고밀도 글로스예요.",
+    points: [["카라멜 쫀득광", "입술에 닿자마자<br>착 붙는 광"], ["도톰한 볼륨", "입술이 말랑하고<br>도톰해 보여요"], ["누드 컬러", "뜨지 않는<br>소프트 컬러"]],
+    shades: [["#d29a8c", "02 바닐라로즈", "NEUTRAL", "핑크빛 도는 뉴트럴 피치"], ["#a77a64", "05 카카오50%", "WARM", "차분한 코코아 베이지"], ["#e2a7a8", "06 딸기바나나", "COOL", "부드러운 밀키 핑크"], ["#7e3f3d", "07 블랙체리", "COOL", "톤다운된 체리 브라운"], ["#b07a72", "18 차이 로즈", "WARM", "차이티에 빈티지 로즈"], ["#8c6658", "19 모카 30%", "COOL", "쿨톤용 모카 브라운"]],
+    steps: ["립 라인을 정리하고 입술 중앙부터 한 번", "광이 더 필요하면 한 겹 더 레이어링", "무드 레이어 스틱으로 오버립 후 덧바르면 조합 완성"],
+    outro: "바르는 순간 차오르는<br><em>카라멜 쫀득광</em>",
+    tags: ["#얼터너티브스테레오", "#카라멜글레이즈", "#카라멜쫀득광", "#글로스추천", "#올리브영"]
+  },
+  stick: {
+    btn: "무드 레이어 스틱", cap: "레퍼런스 리뷰에 나온 표현으로 채운 예시예요. 가격·컬러는 캠페인 시점에 다시 확인해 주세요.",
+    eyebrow: "Multi Stick · Mood Layer", title: "오버립부터 치크까지, 무드 레이어 스틱 전색상 발색",
+    hello: "바쁜 아침엔 스틱 하나로 립, 치크, 눈가까지 끝내고 싶더라고요.",
+    cat: "Multi", name: "무드 레이어 스틱", price: "16,000원 · 5 Colors", oneline: "반투명하게 발색되며 톤온톤으로 쌓이는, 레이어링에 최적화된 음영 스틱이에요.",
+    points: [["반투명 레이어링", "과하지 않게<br>차곡차곡"], ["멀티 유즈", "오버립 · 치크<br>애교살 · 음영"], ["쉬운 블렌딩", "손으로 톡톡<br>경계 없이"]],
+    shades: [["#e7b9b0", "0 밀키 시럽", "NEUTRAL", "딸기우유 같은 누디 핑크"], ["#c99073", "1 카라멜 드리즐", "WARM", "크림 베이지 + 코랄"], ["#b9827a", "2 로즈 밀크티", "NEUTRAL", "물먹은 로즈 베이지"], ["#a07780", "3 모브 라떼", "COOL", "미지근한 뮤티드 모브"], ["#7d5a4b", "4 코코아 더스트", "WARM", "입술·코 쉐딩용 브라운"]],
+    steps: ["로즈 밀크티로 입술 라인을 살짝 넘겨 오버립", "같은 컬러를 볼에 톡톡 치크로", "코코아 더스트로 입꼬리·인중 쉐딩"],
+    outro: "스틱 하나로<br><em>분위기가 차곡차곡</em>",
+    tags: ["#얼터너티브스테레오", "#무드레이어스틱", "#오버립", "#만능스틱", "#올리브영"]
+  },
+  sugar: {
+    btn: "슈가 글레이즈", cap: "레퍼런스 리뷰에 나온 표현으로 채운 예시예요. 가격·컬러는 캠페인 시점에 다시 확인해 주세요.",
+    eyebrow: "Lip Potion · Sugar Glaze", title: "틴트와 글로스를 한 병에, 슈가 글레이즈 유리구슬광 후기",
+    hello: "착색은 오래가면서 광도 포기 못 하는 분들 많으시죠?",
+    cat: "Tint", name: "립 포션 슈가 글레이즈", price: "19,000원", oneline: "틴트와 글로스를 한 병에 담은 슈가광 유리구슬 틴트예요.",
+    points: [["유리구슬광", "맑고 투명하게<br>차오르는 광"], ["끈적임 없이 촉촉", "가볍게 발리고<br>촉촉하게 유지"], ["사탕 뚜껑", "소장 욕구<br>자극하는 패키지"]],
+    shades: [["#9a6a4f", "22 피넛 토핑 볼", "WARM", "고소한 피넛 브라운"], ["#7b4e3e", "23 초코 카라멜 볼", "WARM", "밀키한 초코 브라운"], [null, S("[컬러 추가]"), "TONE", S("[컬러 묘사]")]],
+    steps: ["입술 안쪽에 한 번 발라 착색", "바깥으로 톡톡 펴서 그라데이션", "광이 필요하면 중앙에 한 겹 더"],
+    outro: "틴트처럼 남고<br><em>글로스처럼 빛나는</em>",
+    tags: ["#얼터너티브스테레오", "#슈가글레이즈", "#틴트추천", "#유리구슬광", "#올리브영"]
+  }
+};
+
+const $ = id => document.getElementById(id);
+function render(key) {
+  const d = P[key];
+  $("pickerCap").textContent = d.cap;
+  $("eyebrow").innerHTML = d.eyebrow;
+  $("title").innerHTML = d.title;
+  $("hello").innerHTML = d.hello;
+  $("cat").innerHTML = d.cat;
+  $("pname").innerHTML = d.name;
+  $("tname").innerHTML = d.name;
+  $("price").innerHTML = d.price;
+  $("oneline").innerHTML = d.oneline;
+  $("points").innerHTML = d.points.map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
+  $("shades").innerHTML = d.shades.map(([c, n, t, p]) =>
+    `<div class="shade"><div class="dot${c ? "" : " empty"}" ${c ? `style="background:${c}"` : ""} aria-hidden="true"></div><strong>${n}</strong><span class="tone">${t}</span><p>${p}</p></div>`).join("");
+  $("steps").innerHTML = d.steps.map(s => `<li><span>${s}</span></li>`).join("");
+  $("outro").innerHTML = d.outro;
+  $("tags").innerHTML = d.tags.map(t => `<span>${t}</span>`).join("");
+  document.querySelectorAll("#picker button").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === key));
+  try { localStorage.setItem("as-tpl", key); } catch (e) {}
+}
+$("picker").innerHTML = Object.entries(P).map(([k, d]) => `<button type="button" data-k="${k}" id="pick-${k}">${d.btn}</button>`).join("");
+$("picker").addEventListener("click", e => { const b = e.target.closest("button"); if (b) render(b.dataset.k); });
+let start = "blank";
+try { const v = localStorage.getItem("as-tpl"); if (v && P[v]) start = v; } catch (e) {}
+render(start);
+</script>

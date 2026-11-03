@@ -1,0 +1,228 @@
+<title>세컨 스킨 누드 블로그</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: a light, scannable blog column on brand ivory. Short lines, big photo slots, shades as a chip grid; brick-red only for labels and the promo ticket. */
+:root {
+  --ivory: #fbfaef;
+  --paper: #ffffff;
+  --ink: #353535;
+  --mute: #8a8a84;
+  --line: #e9e5d3;
+  --brick: #b42722;
+  --brick-soft: #f6e6dc;
+  --caramel: #a86a3d;
+  --photo: #f1ecdd;
+  --display: "Gowun Batang", "Noto Serif KR", serif;
+  --body: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --label: "Figtree", "Noto Sans KR", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ivory); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.8;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+p { margin: 0; }
+
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.wordmark { font-family: var(--label); font-weight: 800; color: var(--brick); line-height: .86; font-size: 20px; letter-spacing: -.02em; }
+.wordmark span { display: block; }
+.wordmark span:first-child { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 2px; }
+.guide-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--mute); cursor: pointer; }
+.guide-toggle input { accent-color: var(--brick); width: 16px; height: 16px; }
+
+.label { font-family: var(--label); font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brick); font-weight: 600; }
+.post-head { padding-block: 40px 28px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 6vw, 36px); line-height: 1.35; margin: 0; text-wrap: balance; }
+.meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--mute); }
+.ad { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: .12em; color: var(--brick); border: 1px solid var(--brick); padding: 1px 8px; }
+
+article { background: var(--paper); padding: clamp(22px, 6vw, 52px); border-top: 3px solid var(--brick); display: grid; gap: 22px; }
+section { display: grid; gap: 18px; }
+section + section { margin-top: 44px; }
+
+h2 { font-family: var(--display); font-size: 26px; line-height: 1.35; margin: 0; }
+.sub { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.price { font-family: var(--label); font-size: 14px; color: var(--mute); font-variant-numeric: tabular-nums; }
+.quote { font-family: var(--display); font-size: 21px; line-height: 1.6; text-align: center; padding-block: 8px; text-wrap: balance; }
+.quote em { font-style: normal; color: var(--brick); }
+
+.fill { background: var(--brick-soft); color: var(--brick); padding: 1px 6px; font-size: .9em; }
+.note { font-size: 13px; color: var(--caramel); background: #fbf3e6; padding: 10px 14px; border-left: 2px solid var(--caramel); }
+body.hide-guide .fill, body.hide-guide .note { display: none; }
+
+.photo { background: var(--photo); aspect-ratio: 4 / 5; max-width: 100%; display: grid; place-items: center; text-align: center; font-size: 13px; color: var(--mute); border: 1px dashed #d6ccb0; }
+.photo b { display: block; font-family: var(--label); font-size: 10px; letter-spacing: .32em; color: var(--caramel); font-weight: 600; }
+.photo.wide { aspect-ratio: 3 / 2; }
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.chips3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.chips3 div { background: var(--ivory); padding: 16px 12px; text-align: center; display: grid; gap: 4px; }
+.chips3 b { font-size: 15px; }
+.chips3 span { font-size: 13px; color: var(--mute); line-height: 1.5; }
+
+.shades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 10px; }
+.shade { display: grid; justify-items: center; gap: 6px; text-align: center; }
+.dot { width: 56px; height: 56px; border-radius: 50%; box-shadow: inset 0 -6px 10px rgba(0,0,0,.12); }
+.shade strong { font-size: 14px; line-height: 1.3; }
+.tone { font-family: var(--label); font-size: 10px; letter-spacing: .24em; color: var(--mute); }
+.shade p { font-size: 12.5px; color: var(--mute); line-height: 1.5; }
+
+.pals { display: grid; gap: 14px; }
+.pal { display: grid; gap: 8px; }
+.pal-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.pal-head p { font-size: 13px; color: var(--mute); }
+.strip { display: grid; grid-template-columns: repeat(6, 1fr); height: 34px; }
+
+.gift { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; background: var(--ivory); padding: 16px 18px; }
+.gift .label { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .3em; font-size: 10px; }
+.gift strong { display: block; }
+.gift p { font-size: 14px; color: var(--mute); line-height: 1.6; }
+
+ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 8px; font-size: 15px; }
+ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--label); font-weight: 800; color: var(--brick); }
+ol.steps small { color: var(--mute); }
+
+.ticket { border: 1.5px solid var(--brick); }
+.ticket-head { background: var(--brick); color: #fffdf3; padding: 10px 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: var(--label); font-size: 12px; letter-spacing: .2em; font-weight: 600; }
+.ticket-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 14px 18px; align-items: baseline; }
+.ticket-row + .ticket-row { border-top: 1px dashed #dcb7ab; }
+.ticket-row .num { font-family: var(--label); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ticket-row .num s { color: var(--mute); margin-right: 6px; font-size: 13px; }
+.ticket-row .num b { color: var(--brick); }
+.ticket-row small { grid-column: 1 / -1; color: var(--mute); font-size: 13px; }
+
+.disclosure { font-size: 12.5px; color: var(--mute); border-top: 1px solid var(--line); padding-top: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 12.5px; color: var(--brick); background: var(--brick-soft); padding: 2px 10px; border-radius: 999px; }
+footer { text-align: center; padding-top: 28px; font-family: var(--label); font-size: 11px; letter-spacing: .32em; color: var(--mute); text-transform: uppercase; }
+
+@media (max-width: 480px) {
+  .chips3 { grid-template-columns: 1fr; }
+  .shades { grid-template-columns: repeat(2, 1fr); }
+}
+:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="wordmark" aria-label="alternative stereo"><span>alter</span><span>native</span><span>stereo</span></div>
+    <label class="guide-toggle" for="guide"><input type="checkbox" id="guide"> 작성 가이드 보기</label>
+  </header>
+
+  <div class="post-head">
+    <span class="label">26 FW · Second Skin Nude</span>
+    <h1>내 피부처럼 깊어지는 누드, 세컨 스킨 누드 컬렉션 후기</h1>
+    <div class="meta"><span class="ad">#제품제공 #광고</span><span><span class="fill">[닉네임]</span> · 2026. 11. 2.</span></div>
+  </div>
+
+  <article>
+    <section>
+      <p class="note">작성 가이드: 분홍 글씨는 본인 경험으로 바꿀 부분, 점선 상자는 사진 자리예요.</p>
+      <div class="photo wide"><div><b>PHOTO</b>컬렉션 전체 누끼컷</div></div>
+      <p>요즘 추구미는 <strong>어른여자 · 배우상 누드</strong>예요.<br>둥둥 뜨는 누드 말고, 피부에 착 녹아드는 <strong>로우톤 누드</strong>요.</p>
+      <p><span class="fill">[요즘 내 메이크업 고민 한 줄]</span></p>
+      <p class="quote">가볍게 바르면 맑고,<br><em>겹칠수록 깊어지는</em> 누드</p>
+    </section>
+
+    <section>
+      <span class="label">Lip · New</span>
+      <div class="sub"><h2>카라멜 글레이즈 밤</h2><span class="price">21,000원 · 6 Colors</span></div>
+      <p>얼터 대표템 카글의 쫀득한 광 그대로, 케어까지 더한 밤이에요.</p>
+      <div class="chips3">
+        <div><b>녹진한 광</b><span>끈적임 없이<br>광만 촤르르</span></div>
+        <div><b>로우톤 누드</b><span>쌓을수록<br>컬러가 꽉</span></div>
+        <div><b>멀티 케어</b><span>주름개선 기능성<br>보습·각질 케어</span></div>
+      </div>
+      <p><span class="fill">[직접 바르고 느낀 발림성 한 줄]</span></p>
+      <div class="photos">
+        <div class="photo"><div><b>PHOTO</b>텍스처</div></div>
+        <div class="photo"><div><b>PHOTO</b>팔뚝 발색</div></div>
+      </div>
+
+      <div class="shades">
+        <div class="shade"><div class="dot" style="background:#b68a6e" aria-hidden="true"></div><strong>01 헤이즐넛</strong><span class="tone">WARM</span><p>차분한 토프 베이지</p></div>
+        <div class="shade"><div class="dot" style="background:#c98073" aria-hidden="true"></div><strong>02 바닐라 로즈</strong><span class="tone">NEUTRAL</span><p>데일리 MLBB 코랄 로즈</p></div>
+        <div class="shade"><div class="dot" style="background:#b07c5e" aria-hidden="true"></div><strong>03 이즈니 빈</strong><span class="tone">WARM</span><p>버터 같은 부드러움</p></div>
+        <div class="shade"><div class="dot" style="background:#cf9a92" aria-hidden="true"></div><strong>04 핑크 누가</strong><span class="tone">NEUTRAL</span><p>청순한 핑크 베이지</p></div>
+        <div class="shade"><div class="dot" style="background:#9c5a4c" aria-hidden="true"></div><strong>05 시나몬 로즈</strong><span class="tone">WARM</span><p>깊이감 있는 가을 립</p></div>
+        <div class="shade"><div class="dot" style="background:#6b4434" aria-hidden="true"></div><strong>06 에스프레소</strong><span class="tone">WARM</span><p>안쪽 그라데이션용 딥 브라운</p></div>
+      </div>
+      <p class="note">컬러 칩은 참고색이에요. 받은 컬러만 남기고 입술 발색 사진을 넣어 주세요.</p>
+      <div class="photo wide"><div><b>PHOTO</b>컬러별 입술 발색 · 자연광</div></div>
+
+      <div class="gift"><span class="label">Gift</span><div><strong>마시멜로우 치크 팟 (미출시)</strong><p>젤리처럼 말랑한 광의 크림 치크<br>밤 01·02호 → 아몬드 로즈 / 04호 → 로즈 머랭</p></div></div>
+    </section>
+
+    <section>
+      <span class="label">Eye · New</span>
+      <div class="sub"><h2>수플레이어 아이팔레트</h2><span class="price">27,000원 · 2 Colors</span></div>
+      <p>매트 · 쉬머 · 젤 라이너가 한 판에. 데일리부터 누드 스모키까지.</p>
+      <div class="pals">
+        <div class="pal">
+          <div class="pal-head"><strong>01 누드 크레마 <span class="tone">WARM</span></strong><p>버터 녹인 듯한 웜 음영</p></div>
+          <div class="strip" aria-hidden="true"><div style="background:#ead6bf"></div><div style="background:#d6a98a"></div><div style="background:#9a7458"></div><div style="background:#e6c99a"></div><div style="background:#6e5446"></div><div style="background:#3e2a22"></div></div>
+        </div>
+        <div class="pal">
+          <div class="pal-head"><strong>02 스킴드 로즈 <span class="tone">COOL</span></strong><p>베리 로즈 + 애쉬 쿨 음영</p></div>
+          <div class="strip" aria-hidden="true"><div style="background:#e7cfcf"></div><div style="background:#c08b8e"></div><div style="background:#9a8a8c"></div><div style="background:#efd3d0"></div><div style="background:#7a5a62"></div><div style="background:#4a3a36"></div></div>
+        </div>
+      </div>
+      <div class="photos">
+        <div class="photo"><div><b>PHOTO</b>누드 크레마 눈</div></div>
+        <div class="photo"><div><b>PHOTO</b>스킴드 로즈 눈</div></div>
+      </div>
+      <div class="gift"><span class="label">Gift</span><div><strong>아이 브러쉬 듀오</strong><p>스머징 + 디테일 브러쉬로 바로 풀메 가능</p></div></div>
+    </section>
+
+    <section>
+      <span class="label">How I wear it</span>
+      <h2>오늘의 메이크업</h2>
+      <ol class="steps">
+        <li><span>아몬드 피치로 눈두덩이 음영</span></li>
+        <li><span>딥 브라우니 젤 라이너로 아이라인</span></li>
+        <li><span>크림 샤인을 애교살·코끝에</span></li>
+        <li><span>치크 팟 아몬드 로즈를 톡톡</span></li>
+        <li><span>바닐라 로즈 + 안쪽에 에스프레소</span></li>
+      </ol>
+      <p><span class="fill">[본인 조합으로 바꿔주세요]</span></p>
+      <div class="photos">
+        <div class="photo"><div><b>BEFORE</b></div></div>
+        <div class="photo"><div><b>AFTER</b></div></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Olive Young</span>
+      <div class="ticket">
+        <div class="ticket-head"><span>11월 올영 블프 선런칭</span><span>11.1 — 11.7</span></div>
+        <div class="ticket-row"><strong>카라멜 글레이즈 밤</strong><span class="num"><s>21,000</s><b>17,640원</b></span><small>기획세트 구매 시 치크 팟 증정</small></div>
+        <div class="ticket-row"><strong>수플레이어 아이팔레트</strong><span class="num"><s>27,000</s><b>22,680원</b></span><small>기획세트 구매 시 브러쉬 듀오 증정</small></div>
+      </div>
+      <p class="note">기간·가격은 브랜드 전달값으로 바꾸고, 올리브영 링크를 넣어 주세요.</p>
+    </section>
+
+    <section>
+      <p class="quote">둥둥 뜨는 누드 말고,<br><em>내 피부처럼</em> 깊어지는 누드</p>
+      <p style="text-align:center">최애 컬러는 <span class="fill">[컬러명 · 이유 한 줄]</span></p>
+      <p class="disclosure">본 포스팅은 얼터너티브스테레오로부터 제품과 원고료를 제공받아 직접 사용 후 작성되었습니다.</p>
+      <div class="tags"><span>#얼터너티브스테레오</span><span>#세컨스킨누드컬렉션</span><span>#카라멜글레이즈밤</span><span>#카라멜꾸덕밤</span><span>#수플레이어아이팔레트</span><span>#로우톤누드</span><span>#올리브영신상</span></div>
+    </section>
+  </article>
+  <footer>alternative stereo · 2026.11</footer>
+</div>
+<script>
+  const t = document.getElementById('guide');
+  const apply = () => document.body.classList.toggle('hide-guide', !t.checked);
+  try { const v = localStorage.getItem('as-guide2'); if (v !== null) t.checked = v === '1'; } catch (e) {}
+  apply();
+  t.addEventListener('change', () => { apply(); try { localStorage.setItem('as-guide2', t.checked ? '1' : '0'); } catch (e) {} });
+</script>
