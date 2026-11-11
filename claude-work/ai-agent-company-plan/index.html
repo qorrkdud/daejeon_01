@@ -1,0 +1,678 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>휩드 콘텐츠 크루 계획서</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a long-form report on one reading column; a sticky chapter bar with scroll progress; foam bubbles rise behind the cover. */
+:root{
+  --milk:#F7F5FA; --paper:#FFFFFF; --ink:#1F1A26; --soft:#6A6275; --line:#E4DDEC;
+  --berry:#B23C77; --berry-wash:#F6E4EE; --matcha:#2E7D63; --matcha-wash:#E1F1EA; --sky:#3E5FAE; --sky-wash:#E4EAF8; --foam:#EFE9F6;
+  --f-display:"Do Hyeon","IBM Plex Sans KR","Malgun Gothic",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --milk:#141118; --paper:#1D1922; --ink:#F1ECF5; --soft:#ABA2B6; --line:#332D3B;
+  --berry:#EE8DBE; --berry-wash:#3A2232; --matcha:#77CDB2; --matcha-wash:#1C332C; --sky:#9BB4F2; --sky-wash:#222B42; --foam:#241F2B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --milk:#141118; --paper:#1D1922; --ink:#F1ECF5; --soft:#ABA2B6; --line:#332D3B;
+  --berry:#EE8DBE; --berry-wash:#3A2232; --matcha:#77CDB2; --matcha-wash:#1C332C; --sky:#9BB4F2; --sky-wash:#222B42; --foam:#241F2B; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--milk);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--milk)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.col{max-width:960px;margin:0 auto}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.3}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,4.4vw,40px);letter-spacing:-.01em}
+h3{font-size:17px;font-weight:700}
+h4{font-size:14px;font-weight:600;color:var(--soft)}
+p{margin:0}
+a{color:var(--berry)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--berry-wash);color:var(--berry);white-space:nowrap}
+.pill.m{background:var(--matcha-wash);color:var(--matcha)}
+.pill.s{background:var(--sky-wash);color:var(--sky)}
+.lead{font-size:17px;max-width:62ch}
+.muted{color:var(--soft)}
+.note{font-size:13px;color:var(--soft)}
+
+/* cover */
+.cover{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--foam),var(--milk))}
+#foam{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cover .col{position:relative;padding-block:72px 48px;display:flex;flex-direction:column;gap:22px}
+.kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--berry)}
+.cover h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,8vw,84px);line-height:1.05;letter-spacing:-.02em}
+.cover h1 em{font-style:normal;color:var(--berry)}
+.cover .thesis{font-size:18px;max-width:46ch}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:8px}
+.stat{padding:16px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{font-family:var(--f-display);font-weight:400;font-size:34px;line-height:1}
+.stat span{font-size:12px;color:var(--soft)}
+.byline{font-size:13px;color:var(--soft);display:flex;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.3s}.d4{animation-delay:.42s}
+}
+@keyframes rise{from{transform:translateY(14px);opacity:.15}to{transform:none;opacity:1}}
+
+/* chapter bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--milk) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:8px}
+.bar nav::-webkit-scrollbar{display:none}
+.bar a{flex:none;text-decoration:none;color:var(--soft);font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px}
+.bar a.on{color:var(--berry);background:var(--berry-wash)}
+.bar a:focus-visible{outline:2px solid var(--berry)}
+.progress{height:2px;background:var(--berry);transform-origin:left;transform:scaleX(0)}
+
+/* chapters */
+main{display:flex;flex-direction:column}
+.ch{padding-block:64px;border-bottom:1px solid var(--line)}
+.ch .col{display:flex;flex-direction:column;gap:28px}
+.ch-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:16px;align-items:start}
+.ch-no{font-family:var(--f-display);font-size:56px;line-height:.9;color:var(--berry)}
+.ch-head div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.block{display:flex;flex-direction:column;gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--soft);background:var(--foam)}
+tr:last-child td{border-bottom:0}
+td.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.seen{animation:none}
+@media (prefers-reduced-motion:no-preference){.rv.seen{animation:rise .6s cubic-bezier(.2,.7,.2,1)}}
+
+/* principles */
+.principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:p}
+.pr{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pr b{font-size:15px}
+.pr span{font-size:14px;color:var(--soft)}
+
+/* personas */
+.personas{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px}
+.persona{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.persona.main{border-color:var(--berry);box-shadow:0 0 0 3px var(--berry-wash)}
+.face{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-size:24px;color:var(--paper)}
+.face.a{background:var(--berry)}.face.b{background:var(--matcha)}.face.c{background:var(--sky)}
+.persona .q{font-size:15px;font-weight:600}
+.kv{display:grid;grid-template-columns:76px minmax(0,1fr);gap:4px 10px;font-size:13px;margin:0}
+.kv dt{color:var(--soft)}.kv dd{margin:0}
+.warn{font-size:12px;color:var(--berry);border-top:1px dashed var(--line);padding-top:8px}
+.neg{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;border:1px dashed var(--line);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--soft)}
+.neg b{color:var(--ink)}
+
+/* week mix */
+.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.slot{border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-height:150px;border:1px solid var(--line);background:var(--paper);min-width:0}
+.slot.reel{background:var(--matcha-wash);border-color:transparent}
+.slot.card{background:var(--berry-wash);border-color:transparent}
+.slot .d{font-family:var(--f-mono);font-size:11px;color:var(--soft)}
+.slot b{font-size:13px;line-height:1.45}
+.slot .who{margin-top:auto;font-size:12px;color:var(--soft)}
+.tone{display:grid;grid-template-columns:1fr 2.4fr 1fr;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.tone div{padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0;background:var(--paper)}
+.tone div:nth-child(odd){background:var(--berry-wash)}
+.tone b{font-size:13px}.tone span{font-size:13px;color:var(--soft)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.sw{display:flex;align-items:center;gap:8px;font-size:13px}
+.sw i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line)}
+
+/* org chart */
+.org{display:flex;flex-direction:column;align-items:center;gap:0}
+.boss{background:var(--sky-wash);border:2px solid var(--sky);border-radius:14px;padding:12px 22px;text-align:center}
+.boss b{display:block;font-size:16px}.boss span{font-size:12px;color:var(--sky)}
+.stem{width:2px;height:26px;background:var(--line)}
+.teams{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%;padding-top:26px}
+.teams::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:2px;background:var(--line);transform-origin:center}
+.team{position:relative;display:flex;flex-direction:column;gap:8px;min-width:0}
+.team::before{content:"";position:absolute;top:-26px;left:50%;width:2px;height:26px;background:var(--line)}
+.team h4{text-align:center;color:var(--ink)}
+.team h4 span{color:var(--soft);font-weight:500}
+.ag{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.ag b{font-size:14px}.ag span{font-size:12px;color:var(--soft)}
+.base{margin-top:18px;width:100%;border-radius:12px;background:var(--foam);padding:12px 16px;text-align:center;font-size:13px}
+.base b{display:block;font-size:14px;margin-bottom:2px}
+@media (prefers-reduced-motion:no-preference){.org.seen .teams::before{animation:draw .8s ease-out}}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* pipeline */
+.pipe{display:flex;flex-direction:column;gap:10px}
+.prow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.node{position:relative;font:inherit;color:inherit;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;cursor:pointer;min-width:0}
+.node b{font-size:14px}.node span{font-size:12px;color:var(--soft)}
+.node.gate{background:var(--sky-wash);border-color:color-mix(in srgb,var(--sky) 40%,transparent)}
+.node.gate span{color:var(--sky)}
+.node:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+.node[aria-pressed="true"]{border-color:var(--berry)}
+.node.live{box-shadow:0 0 0 4px var(--berry-wash);border-color:var(--berry)}
+.prow .node:not(:last-child)::after{content:"";position:absolute;right:-21px;top:50%;width:16px;height:2px;background:var(--line)}
+.turn{text-align:center;font-size:12px;color:var(--soft)}
+.detail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.detail h3{grid-column:1/-1}
+.detail dt{font-size:12px;color:var(--soft)}.detail dd{margin:0;font-size:14px}
+@media (prefers-reduced-motion:no-preference){.node{transition:box-shadow .3s,border-color .3s}}
+
+/* hours */
+.hours{display:flex;flex-direction:column;gap:8px}
+.hr{display:grid;grid-template-columns:28px minmax(0,1fr) 44px;gap:12px;align-items:center}
+.hr>b{font-family:var(--f-display);font-weight:400;font-size:20px}
+.track{background:var(--foam);border-radius:8px;overflow:hidden}
+.fill{background:var(--berry-wash);border-left:3px solid var(--berry);padding:8px 12px;font-size:13px;transform-origin:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hr>span{text-align:right;font-family:var(--f-mono);color:var(--berry)}
+@media (prefers-reduced-motion:no-preference){.hours.seen .fill{animation:grow .9s cubic-bezier(.2,.7,.2,1) both}.hours.seen .hr:nth-child(2) .fill{animation-delay:.08s}.hours.seen .hr:nth-child(3) .fill{animation-delay:.16s}.hours.seen .hr:nth-child(4) .fill{animation-delay:.24s}.hours.seen .hr:nth-child(5) .fill{animation-delay:.32s}}
+@keyframes grow{from{transform:scaleX(.08)}to{transform:scaleX(1)}}
+
+/* shots */
+.shots{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.shot{aspect-ratio:9/16;max-width:100%;border-radius:10px;background:linear-gradient(170deg,var(--berry-wash),var(--matcha-wash));padding:8px;display:flex;flex-direction:column;justify-content:space-between;font-size:11px;line-height:1.4;min-width:0}
+.shot .n{font-family:var(--f-mono);color:var(--berry)}
+.shot b{font-size:11px;font-weight:600}
+
+/* competitors */
+.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:3px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper)}
+.chip.us{border-color:var(--berry);color:var(--berry);font-weight:600}
+.opps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.opp{border-top:2px solid var(--matcha);padding-top:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.opp span{font-size:14px;color:var(--soft)}
+.callout{background:var(--ink);color:var(--milk);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
+.callout b{font-family:var(--f-display);font-weight:400;font-size:44px;line-height:1;color:var(--berry)}
+.callout p{font-size:15px}
+
+/* roadmap */
+.road{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-top:28px}
+.road::before{content:"";position:absolute;top:10px;left:0;right:0;height:4px;border-radius:4px;background:var(--foam)}
+.today{position:absolute;top:0;left:0;font-family:var(--f-mono);font-size:11px;color:var(--berry);display:flex;align-items:center;gap:6px}
+.today::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--berry);box-shadow:0 0 0 4px var(--berry-wash)}
+@media (prefers-reduced-motion:no-preference){.today::before{animation:pulse 2s ease-in-out infinite}}
+@keyframes pulse{50%{box-shadow:0 0 0 9px transparent}}
+.phase{display:flex;flex-direction:column;gap:8px;min-width:0}
+.phase .when{font-family:var(--f-mono);font-size:12px;color:var(--berry)}
+.later{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.later div{border-left:2px solid var(--line);padding-left:12px;font-size:14px;min-width:0}
+.later b{display:block}
+
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.kpi{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.kpi span:last-child{color:var(--soft);text-align:right}
+
+/* appendix */
+details{background:var(--paper);border:1px solid var(--line);border-radius:12px}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-mono);color:var(--berry);font-size:18px}
+details[open] summary::after{content:"−"}
+summary:focus-visible{outline:2px solid var(--berry);border-radius:12px}
+.pbody{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px}
+pre{margin:0;background:var(--foam);border-radius:8px;padding:14px;font-family:var(--f-mono);font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.copy{align-self:flex-end;font:inherit;font-size:12px;font-weight:600;color:var(--berry);background:var(--berry-wash);border:0;border-radius:999px;padding:4px 12px;cursor:pointer}
+.copy:focus-visible{outline:2px solid var(--berry)}
+.prompts{display:flex;flex-direction:column;gap:10px}
+footer{padding-block:40px 64px;font-size:13px;color:var(--soft)}
+
+@media (max-width:820px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat+.stat{border-left:0}
+  .stat{border-bottom:1px solid var(--line)}
+  .principles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .personas,.grid2,.grid3,.groups,.opps,.road,.later,.kpis,.detail{grid-template-columns:1fr}
+  .week{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .teams{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .teams::before,.team::before{display:none}
+  .prow{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .prow .node::after{display:none}
+  .tone{grid-template-columns:1fr}
+  .shots{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ch-head{grid-template-columns:1fr}
+  .callout{grid-template-columns:1fr}
+}
+</style>
+
+<header class="cover">
+  <canvas id="foam" aria-hidden="true"></canvas>
+  <div class="col gut">
+    <span class="kicker rise">WHIPPED · CONTENT AI CREW · 2026-11-11</span>
+    <h1 class="rise d1">마케터 1명과 AI 6명,<br><em>휘핑처럼 가볍게</em> 매주 5개</h1>
+    <p class="thesis rise d2">비건 팩 클렌저 하나로 바쁜 날의 모공·각질 루틴을 제안하는 인스타그램 계정을, AI 에이전트 팀으로 운영하는 계획입니다.</p>
+    <div class="stats rise d3">
+      <div class="stat"><b class="mono-n" data-to="6">6</b><span>AI 에이전트</span></div>
+      <div class="stat"><b><span class="mono-n" data-to="3">3</span> + <span class="mono-n" data-to="2">2</span></b><span>주간 카드뉴스 + 릴스</span></div>
+      <div class="stat"><b><span class="mono-n" data-to="15">15</span>h</b><span>한 주 운영 시간</span></div>
+      <div class="stat"><b>$<span class="mono-n" data-to="40">40</span></b><span>월 구독료 (약)</span></div>
+      <div class="stat"><b><span class="mono-n" data-to="3">3</span>주</b><span>포트폴리오 완성</span></div>
+    </div>
+    <div class="byline rise d4"><span>대상 브랜드 휩드(WHIPPED)</span><span>채널 인스타그램 테스트 계정</span><span>용도 콘텐츠 마케터 지원 포트폴리오</span></div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="col gut"><nav id="nav">
+    <a href="#c1">개요</a><a href="#c2">브랜드·타겟</a><a href="#c3">에이전트</a><a href="#c4">제작 흐름</a><a href="#c5">경쟁사</a><a href="#c6">예산</a><a href="#c7">로드맵·KPI</a><a href="#ax">부록</a>
+  </nav></div>
+  <div class="progress" id="progress"></div>
+</div>
+
+<main>
+<!-- 1 -->
+<section class="ch" id="c1"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">01</span><div><h2>사업 개요</h2>
+    <p class="lead">신입 마케터 혼자서도 AI 에이전트 팀을 설계하면 브랜드 톤을 지키면서 주 5개 발행을 유지할 수 있다는 것을 보여주는 계획입니다.</p></div></div>
+  <div class="grid3 rv">
+    <div class="card"><h4>문제</h4><p>뷰티 인스타그램은 신제품, 성분, 루틴, 트렌드를 빠르게 소화해야 해서 콘텐츠 수요가 높아요.</p></div>
+    <div class="card"><h4>현실</h4><p>신입이나 소수 인원 마케터는 기획, 카피, 디자인, 검수, 분석을 혼자 맡아 발행량과 품질을 함께 지키기 어려워요.</p></div>
+    <div class="card"><h4>기회</h4><p>휩드는 비건, 간편 루틴, 감성 비주얼이라는 톤이 뚜렷해서 AI에게 브랜드 기준을 학습시키기 좋아요.</p></div>
+  </div>
+  <div class="block rv"><h3>운영 원칙</h3>
+    <div class="principles">
+      <div class="pr"><b>사람이 최종 승인</b><span>모든 콘텐츠는 마케터가 승인한 뒤 발행해요.</span></div>
+      <div class="pr"><b>브랜드 가이드 우선</b><span>톤, 금지어, 비건 표현 기준을 모든 에이전트가 공유해요.</span></div>
+      <div class="pr"><b>광고 심의 준수</b><span>치료, 재생 같은 의약품 오인 표현은 검수에서 걸러요.</span></div>
+      <div class="pr"><b>노코드로 시작</b><span>Claude·ChatGPT 프로젝트로 시작하고 자동화는 나중에 붙여요.</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 -->
+<section class="ch" id="c2"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">02</span><div><h2>브랜드·타겟</h2>
+    <p class="lead">핵심 메시지는 "바쁜 날에도 팩 클렌저 하나로 모공·각질을 간단하지만 제대로"예요. 콘텐츠마다 대상은 한 명만 정해요.</p></div></div>
+
+  <div class="personas rv">
+    <div class="persona main"><div class="face a">지</div><span class="pill">메인 · 주 3.5~4개</span>
+      <p class="q">지수, 28세 · "간단하지만 제대로 관리하고 싶다"</p>
+      <dl class="kv"><dt>유형</dt><dd>바쁜 클린뷰티 직장인 (25~32세)</dd><dt>피부 고민</dt><dd>모공, 각질</dd><dt>생활</dt><dd>아침엔 시간이 없고 퇴근 후엔 지쳐 있음</dd><dt>구매 기준</dt><dd>간편함, 비건, 전성분 확인</dd><dt>인스타</dt><dd>저장 위주, 짧고 실용적인 정보</dd><dt>콘텐츠</dt><dd>How-to·공감형 카드뉴스, 공감형 릴스</dd></dl></div>
+    <div class="persona"><div class="face b">가</div><span class="pill m">서브 · 릴스 주 1개</span>
+      <p class="q">가은, 23세 · "써보는 재미가 있는 제품"</p>
+      <dl class="kv"><dt>유형</dt><dd>트렌드형 사회초년생</dd><dt>발견</dt><dd>릴스, 틱톡, 친구 태그</dd><dt>구매 기준</dt><dd>텍스처·향의 재미, 올영 세일</dd><dt>콘텐츠</dt><dd>거품 ASMR, 향 5종 비교 릴스</dd></dl></div>
+    <div class="persona"><div class="face c">민</div><span class="pill s">서브 · 격주 1개</span>
+      <p class="q">민서, 31세 · "순하고 근거 있는 제품"</p>
+      <dl class="kv"><dt>유형</dt><dd>성분 깐깐형 민감 피부</dd><dt>발견</dt><dd>성분 분석 계정, 전성분 표</dd><dt>구매 기준</dt><dd>비건 인증, 저자극</dd><dt>콘텐츠</dt><dd>성분 풀이 카드뉴스</dd></dl>
+      <p class="warn">트러블 개선·진정 효과 표현 금지. 비건 인증 기관 확인 전에는 제작 보류.</p></div>
+  </div>
+  <p class="neg rv"><b>타겟이 아닌 사람</b>10단계 스킨케어를 즐기는 루틴 마니아. 단계를 늘리라고 권하는 콘텐츠는 만들지 않아요.</p>
+
+  <div class="block rv"><h3>한 주의 콘텐츠 5개</h3>
+    <div class="week">
+      <div class="slot card"><span class="d">월 21:00 · 카드</span><b>퇴근 후 5분, 팩 클렌저로 모공 루틴 3단계</b><span class="who">How-to · 지수</span></div>
+      <div class="slot reel"><span class="d">화 21:00 · 릴스</span><b>팩도 하고 세안도, 휘핑 거품으로 두 가지 쓰는 법</b><span class="who">How-to · 가은</span></div>
+      <div class="slot card"><span class="d">수 21:00 · 카드</span><b>아침엔 클렌저 모드, 저녁엔 팩 모드로 쓰는 법</b><span class="who">How-to · 지수</span></div>
+      <div class="slot reel"><span class="d">목 21:00 · 릴스</span><b>야근한 날 세안 3단계 다 못 하겠더라</b><span class="who">공감형 · 지수</span></div>
+      <div class="slot card"><span class="d">금 21:00 · 카드</span><b>세수했는데 코가 까끌? 각질 신호예요</b><span class="who">공감형 · 지수 (격주 민서)</span></div>
+    </div>
+    <p class="note">발행 요일은 예시예요. 11~12월에는 겨울 각질 카드, 연말 모임 전날 릴스, 향으로 고르는 연말 선물 릴스를 1~2개 섞어요.</p>
+  </div>
+
+  <div class="block rv"><h3>장별 톤</h3>
+    <div class="tone">
+      <div><b>훅 · 1~2장</b><span>친근한 언니 말투</span></div>
+      <div><b>본문 · 3~7장</b><span>깔끔한 정보형 · STEP 1. 마른 얼굴에 도톰하게</span></div>
+      <div><b>CTA · 마지막</b><span>저장해두고 오늘 밤 해봐요</span></div>
+    </div>
+  </div>
+
+  <div class="grid2 rv">
+    <div class="card"><h3>훅 공식</h3>
+      <div><span class="pill">숫자형 · How-to</span><p>[상황] + [숫자] + [결과]</p><p class="muted">퇴근 후 5분, 모공 루틴 3단계</p></div>
+      <div><span class="pill m">공감 고백형 · 공감형</span><p>[솔직한 고백] + [나만의 해결]</p><p class="muted">야근한 날 세안 3단계 다 못 하겠더라</p></div>
+    </div>
+    <div class="card"><h3>해시태그 10개</h3>
+      <p><span class="pill s">큰 2</span> #스킨케어 #클렌징</p>
+      <p><span class="pill">중간 4</span> #팩클렌저 #비건화장품 #모공케어 #각질케어</p>
+      <p><span class="pill m">작은 4</span> #직장인스킨케어 #퇴근후루틴 #5분루틴 #휘핑클렌저</p>
+    </div>
+  </div>
+
+  <div class="grid2 rv">
+    <div class="card"><h3>제품 비율 8:2</h3>
+      <p><b>메인</b> 비건 휘핑 팩클렌저 130g. 클렌저로 쓸 때는 젖은 얼굴에 30초 이상 롤링, 팩으로 쓸 때는 마른 얼굴에 도톰하게 펴 바르고 약 1분 뒤 헹궈요.</p>
+      <p><b>서브</b> 한 콘텐츠에 1개만, 다음 단계로 연결해요.</p>
+      <ul class="list"><li>저녁: 팩 → 팩 미스트 → 수플레 크림</li><li>아침: 클렌저 → 팩 미스트 → 톤업 선크림</li><li>샤워 후: 바디버터 (가은 향 매칭)</li></ul>
+      <p class="note">서브 제품의 국내 정식 명칭은 확인이 필요해요.</p>
+    </div>
+    <div class="card"><h3>비주얼 가이드</h3>
+      <div class="swatches"><span class="sw"><i style="background:#F6D9E8"></i>파스텔</span><span class="sw"><i style="background:#FFFFFF"></i>흰 배경</span><span class="sw"><i style="background:#E7E0F3"></i>거품 텍스처</span></div>
+      <ul class="list"><li>파스텔톤, 휘핑 거품 텍스처, 부드러운 자연광</li><li>1080×1350, 상단에 큰 훅, 장당 2줄 이내</li><li>제품은 실제 사진만, AI로 그리지 않음</li><li>색상 코드는 공식 계정에서 추출해 고정</li></ul>
+      <p class="note">색 견본은 무드 예시예요. 실제 색상은 휩드 공식 계정에서 추출해요.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3 -->
+<section class="ch" id="c3"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">03</span><div><h2>에이전트 팀</h2>
+    <p class="lead">마케터 아래 네 팀에 AI 6명이 있어요. 사람은 주제 승인과 최종 승인, 두 지점에서만 판단해요.</p></div></div>
+
+  <div class="org rv" id="org">
+    <div class="boss"><b>마케터 (당신)</b><span>주제 승인 · 최종 승인 · 릴스 촬영</span></div>
+    <div class="stem"></div>
+    <div class="teams">
+      <div class="team"><h4>리서치팀 <span>· 월</span></h4>
+        <div class="ag"><b>경쟁사 분석가</b><span>Claude · 브랜드 7곳 관찰</span></div>
+        <div class="ag"><b>리서처</b><span>Claude · 소재 10개</span></div></div>
+      <div class="team"><h4>기획팀 <span>· 월</span></h4>
+        <div class="ag"><b>기획자</b><span>Claude · 카드 3·릴스 2, 페르소나 지정</span></div></div>
+      <div class="team"><h4>제작팀 <span>· 화~수</span></h4>
+        <div class="ag"><b>카피라이터</b><span>Claude · 카피·자막·해시태그</span></div>
+        <div class="ag"><b>디자이너</b><span>ChatGPT · 카드 배경·릴스 커버</span></div></div>
+      <div class="team"><h4>품질팀 <span>· 수</span></h4>
+        <div class="ag"><b>검수관</b><span>Claude · 톤·금지어·팩트 확인</span></div></div>
+    </div>
+    <div class="base"><b>공통 자료 (노션)</b>브랜드 가이드 · 팩트 시트 · 프롬프트 라이브러리 · 경쟁사 관찰 로그</div>
+  </div>
+
+  <div class="block rv"><h3>한 주의 흐름 <span class="note">· 단계를 누르면 자세히 보여요</span></h3>
+    <div class="pipe">
+      <div class="prow">
+        <button class="node" data-k="analyst" aria-pressed="false"><b>경쟁사 분석가</b><span>월 · 5줄 요약</span></button>
+        <button class="node" data-k="research" aria-pressed="false"><b>리서처</b><span>월 · 소재 10개</span></button>
+        <button class="node" data-k="plan" aria-pressed="false"><b>기획자</b><span>월 · 기획안 5개</span></button>
+        <button class="node gate" data-k="gate1" aria-pressed="false"><b>주제 승인</b><span>마케터 · 월</span></button>
+      </div>
+      <p class="turn">↓ 승인된 주제 5개</p>
+      <div class="prow">
+        <button class="node" data-k="copy" aria-pressed="false"><b>카피라이터</b><span>화 · 카피·자막</span></button>
+        <button class="node" data-k="design" aria-pressed="false"><b>디자이너</b><span>화~수 · 이미지</span></button>
+        <button class="node" data-k="review" aria-pressed="false"><b>검수관</b><span>수 · 체크리스트</span></button>
+        <button class="node gate" data-k="gate2" aria-pressed="false"><b>최종 승인·발행</b><span>마케터 · 목</span></button>
+      </div>
+      <p class="turn">검수관이 문제를 찾으면 카피라이터나 디자이너로 되돌려요</p>
+      <div class="detail" id="detail" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div class="grid2 rv">
+    <div class="card"><h3>AI 이미지 사용 원칙</h3>
+      <ol class="list"><li>제품 패키지는 실제 사진만 써요. AI는 배경, 무드, 손·텍스처 연출에만 써요.</li><li>이미지 속 한글은 한 글자씩 확인하고, 깨지면 Canva에서 텍스트를 얹어요.</li><li>사용 전후 비교나 피부 변화 이미지는 AI로 만들지 않아요.</li></ol></div>
+    <div class="card"><h3>검수 체크리스트</h3>
+      <ul class="list"><li>브랜드 톤 (훅, 본문, CTA)</li><li>금지 표현 (치료, 재생, 완벽 제거, 최상급)</li><li>비건·성분·사용법이 팩트 시트와 일치</li><li>오탈자, 이미지 속 한글</li><li>장당 글자 수와 기둥</li></ul></div>
+  </div>
+</div></section>
+
+<!-- 4 -->
+<section class="ch" id="c4"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">04</span><div><h2>제작 흐름</h2>
+    <p class="lead">글은 Claude, 이미지는 ChatGPT, 마감은 Canva, 릴스 편집은 CapCut이 맡고, 결과물은 노션 한 곳에 모아요.</p></div></div>
+
+  <div class="block rv"><h3>요일별 작업 시간 · 주 15시간</h3>
+    <div class="hours" id="hours">
+      <div class="hr"><b>월</b><div class="track"><div class="fill" style="width:75%">경쟁사 요약 · 소재 10개 · 기획안 5개 · 주제 승인</div></div><span>3h</span></div>
+      <div class="hr"><b>화</b><div class="track"><div class="fill" style="width:100%">카피·자막 5개 · 카드 디자인 2개 · 릴스 2개 촬영</div></div><span>4h</span></div>
+      <div class="hr"><b>수</b><div class="track"><div class="fill" style="width:100%">카드 디자인 1개 · 릴스 편집·커버 · 검수</div></div><span>4h</span></div>
+      <div class="hr"><b>목</b><div class="track"><div class="fill" style="width:50%">최종 승인 · 예약 발행</div></div><span>2h</span></div>
+      <div class="hr"><b>금</b><div class="track"><div class="fill" style="width:50%">성과 기록 · 프롬프트 개선</div></div><span>2h</span></div>
+    </div>
+    <p class="note">콘텐츠 1개당 약 3시간에서 시작해 2시간 이하로 줄이는 것이 목표예요.</p>
+  </div>
+
+  <div class="block rv"><h3>릴스 샷리스트 예시 · 팩도 하고 세안도</h3>
+    <div class="shots">
+      <div class="shot"><span class="n">01</span><b>튜브 짜는 손</b><span>이거 하나로 팩도 하고 세안도 해요</span></div>
+      <div class="shot"><span class="n">02</span><b>손등 위 휘핑 거품</b><span>(텍스처만)</span></div>
+      <div class="shot"><span class="n">03</span><b>손톱만큼 덜어 거품내기</b><span>클렌저: 젖은 얼굴에 30초 이상 롤링</span></div>
+      <div class="shot"><span class="n">04</span><b>마른 손등에 도톰하게</b><span>팩: 마른 얼굴에 도톰하게, 약 1분</span></div>
+      <div class="shot"><span class="n">05</span><b>타이머 1분</b><span>퇴근 후엔 팩 모드 추천</span></div>
+      <div class="shot"><span class="n">06</span><b>미온수로 헹구기</b><span>산뜻하게 끝</span></div>
+      <div class="shot"><span class="n">07</span><b>세면대 위 제품</b><span>저장해두고 오늘 밤 해봐요</span></div>
+    </div>
+    <p class="note">9:16, 15초 안팎에서 시작해요. 얼굴 없이 손·제품·거품만 찍고, 음악은 인스타 앱 제공 음원을 써요.</p>
+  </div>
+
+  <div class="tbl rv"><table>
+    <thead><tr><th>노션 페이지</th><th>담는 것</th></tr></thead>
+    <tbody>
+      <tr><td>콘텐츠 캘린더</td><td>제목 / 기둥 / 대상 페르소나 / 형식 / 상태(기획→카피→디자인→검수→발행) / 발행일</td></tr>
+      <tr><td>브랜드 가이드</td><td>페르소나, 톤, 금지어, 비주얼 가이드</td></tr>
+      <tr><td>프롬프트 라이브러리</td><td>에이전트 6명의 프롬프트와 버전 기록</td></tr>
+      <tr><td>성과 기록</td><td>도달, 저장, 공유, 댓글, 릴스 평균 시청 시간</td></tr>
+      <tr><td>경쟁사 관찰 로그</td><td>날짜 / 브랜드 / 유형 / 내용 / 링크 / 휩드에 주는 시사점</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<!-- 5 -->
+<section class="ch" id="c5"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">05</span><div><h2>경쟁사</h2>
+    <p class="lead">팩클렌저는 휩드가 처음 선보인 카테고리예요. 원조라는 강점이 있지만, 따라오는 브랜드도 빠르게 늘고 있어요.</p></div></div>
+  <div class="callout rv"><b>약 1,700%</b><p>올리브영 클렌징 카테고리 검색량이 전년 대비 늘었다는 보도가 있어요. <a href="https://www.elle.co.kr/article/1892830" target="_blank" rel="noopener" style="color:inherit">ELLE, 2025-12-03</a></p></div>
+  <div class="groups rv">
+    <div class="card"><h3>팩클렌저 직접 경쟁</h3><p class="note">같은 카테고리의 제품·훅·가격</p><div class="chips"><span class="chip us">휩드</span><span class="chip">풀리</span><span class="chip">한율</span><span class="chip">아렌시아</span></div></div>
+    <div class="card"><h3>비건 메시지</h3><p class="note">비건을 어떻게 말하는지</p><div class="chips"><span class="chip">아로마티카</span><span class="chip">멜릭서</span></div></div>
+    <div class="card"><h3>모공 클렌징</h3><p class="note">같은 고민을 푸는 포맷</p><div class="chips"><span class="chip">마녀공장</span><span class="chip">아누아</span></div></div>
+  </div>
+  <div class="tbl rv"><table>
+    <thead><tr><th>브랜드</th><th>주력 클렌저</th><th>핵심 메시지</th><th>가격 (조사 시점)</th></tr></thead>
+    <tbody>
+      <tr><td><b>휩드</b></td><td>비건 휘핑 팩클렌저 130g</td><td>클렌징만으로 팩한 듯 피부케어</td><td class="r">19,700원~ (컬리)</td></tr>
+      <tr><td>풀리</td><td>그린 토마토 클레이 팩 클렌저</td><td>세안 + 워시오프 클레이 마스크</td><td class="r">확인 필요</td></tr>
+      <tr><td>한율</td><td>달빛유자 클렌징 톤업 팩폼</td><td>유자로 칙칙한 안색 톤업</td><td class="r">28,000원 (ELLE)</td></tr>
+      <tr><td>아렌시아</td><td>그린 아르티장 클렌저 떡솝</td><td>떡 같은 텍스처의 클렌저</td><td class="r">확인 필요</td></tr>
+      <tr><td>아로마티카</td><td>로즈마리 포어 클리어링 폼</td><td>로즈마리·그린 클레이 모공 케어</td><td class="r">확인 필요</td></tr>
+      <tr><td>멜릭서</td><td>클렌저 아님 (선크림·립밤)</td><td>비건을 라이프스타일로 제안</td><td class="r">해당 없음</td></tr>
+      <tr><td>마녀공장</td><td>퓨어 클렌징 오일</td><td>롤링으로 블랙헤드까지 (브랜드 주장)</td><td class="r">할인 따라 차이 큼</td></tr>
+      <tr><td>아누아</td><td>어성초 포어 컨트롤 클렌징 오일</td><td>어성초 + 모공 케어</td><td class="r">23,700원 / 350ml</td></tr>
+    </tbody>
+  </table></div>
+  <div class="block rv"><h3>휩드의 기회 영역 (가설)</h3>
+    <div class="opps">
+      <div class="opp"><b>시간 절약</b><span>오일형 경쟁사는 더 깨끗하게, 휩드는 팩까지 한 번에</span></div>
+      <div class="opp"><b>가벼운 비건</b><span>가치 선언보다 편한 루틴 안에 비건을 자연스럽게</span></div>
+      <div class="opp"><b>감각적인 사용감</b><span>휘핑 거품과 향 5종은 오일·폼에 없는 비주얼 소재</span></div>
+    </div>
+  </div>
+  <p class="note rv">경쟁사 분석가가 매주 월요일 30분 관찰하고 매달 첫 주 리포트를 써요. 기록 항목은 반응 좋은 게시물(평균 2배 이상), 신제품, 프로모션·올영세일, 리뷰 새 키워드, 협업이에요. 신규 발굴 후보는 비플레인, 바닐라코, 아이소이, 티르티르예요.</p>
+</div></section>
+
+<!-- 6 -->
+<section class="ch" id="c6"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">06</span><div><h2>예산·도구</h2>
+    <p class="lead">유료 구독은 두 개, 월 약 40달러예요. 나머지는 무료 도구로 운영해요.</p></div></div>
+  <div class="tbl rv"><table>
+    <thead><tr><th>도구</th><th>용도</th><th>요금제</th><th>월 비용 (약)</th></tr></thead>
+    <tbody>
+      <tr><td>Claude</td><td>경쟁사 분석가 · 리서처 · 기획자 · 카피라이터 · 검수관</td><td>Pro</td><td class="r">$20</td></tr>
+      <tr><td>ChatGPT</td><td>디자이너 (이미지 생성)</td><td>Plus</td><td class="r">$20</td></tr>
+      <tr><td>Canva</td><td>실제 제품 사진 합성, 텍스트 마감</td><td>무료</td><td class="r">0</td></tr>
+      <tr><td>CapCut</td><td>릴스 편집</td><td>무료</td><td class="r">0</td></tr>
+      <tr><td>노션</td><td>캘린더 · 가이드 · 성과 · 경쟁사 로그</td><td>무료</td><td class="r">0</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note rv">요금은 기억에 의존한 대략적인 값이라 구독 전에 확인해야 해요. 촬영은 보유한 스마트폰과 거치대면 충분해요.</p>
+</div></section>
+
+<!-- 7 -->
+<section class="ch" id="c7"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">07</span><div><h2>로드맵·KPI</h2>
+    <p class="lead">3주 안에 테스트 계정에 샘플 5개를 발행하고, 실제 반응 데이터까지 담은 포트폴리오를 완성해요.</p></div></div>
+  <div class="road rv">
+    <span class="today">오늘 11/11</span>
+    <div class="phase"><span class="when">1주차 · 11/12–11/18</span><h3>준비</h3><ul class="list"><li>계정 이름, 크리에이터 계정 전환</li><li>팩트 시트 빈칸 채우기</li><li>프로젝트 6개 + 노션 세팅</li><li>경쟁사 분석가 첫 실행</li></ul></div>
+    <div class="phase"><span class="when">2주차 · 11/19–11/25</span><h3>제작·발행</h3><ul class="list"><li>카드뉴스 3개 + 릴스 2개</li><li>매일 저녁 9시 발행</li></ul></div>
+    <div class="phase"><span class="when">3주차 · 11/26–12/2</span><h3>성과 정리</h3><ul class="list"><li>게시물별 7일 데이터 기록</li><li>회고, PDF 포트폴리오 마감</li></ul></div>
+  </div>
+  <div class="later rv">
+    <div><b>입사 후 30일</b>실제 가이드로 프롬프트 교체, 주 3개로 시작</div>
+    <div><b>60일</b>주 5개 발행, 성과 분석 강화</div>
+    <div><b>90일</b>잘된 포맷 템플릿화, 일부 자동화</div>
+  </div>
+  <div class="kpis rv">
+    <div><h3>반응 · 신규 계정이라 비율로 봐요</h3>
+      <div class="kpi"><span>저장률 (저장 ÷ 도달)</span><span>How-to가 더 높을 것</span></div>
+      <div class="kpi"><span>공유·댓글률</span><span>공감형이 더 높을 것</span></div>
+      <div class="kpi"><span>비팔로워 도달 비중</span><span>릴스가 더 높을 것</span></div>
+      <div class="kpi"><span>릴스 평균 시청 시간</span><span>다음 릴스 길이·훅에 반영</span></div></div>
+    <div><h3>운영</h3>
+      <div class="kpi"><span>카드 1개 제작 시간</span><span class="mono">3h → 2h 이하</span></div>
+      <div class="kpi"><span>1차 검수 통과율</span><span>주차마다 상승</span></div>
+      <div class="kpi"><span>발행 준수율</span><span class="mono">100%</span></div></div>
+  </div>
+  <div class="tbl rv"><table>
+    <thead><tr><th>리스크</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td>AI 이미지의 제품 왜곡, 한글 깨짐</td><td>제품은 실제 사진만 합성, 텍스트는 Canva에서 마감</td></tr>
+      <tr><td>광고 심의 위반 표현</td><td>검수관 금지어 리스트 + 마케터 최종 확인</td></tr>
+      <tr><td>없는 제품 정보를 지어냄</td><td>팩트 시트에 있는 정보만 사용, 모르면 [확인 필요]</td></tr>
+      <tr><td>휩드 공식 계정으로 오인</td><td>프로필에 포트폴리오용 개인 작업이라고 명시</td></tr>
+      <tr><td>톤이 점점 흐트러짐</td><td>금요일 회고에서 프롬프트 수정, 버전 기록</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<!-- appendix -->
+<section class="ch" id="ax"><div class="col gut">
+  <div class="ch-head rv"><span class="ch-no">+</span><div><h2>부록 · 팩트 시트와 프롬프트</h2>
+    <p class="lead">에이전트는 팩트 시트에 있는 정보만 써요. 프롬프트는 공통 블록 + 에이전트 블록을 함께 프로젝트 지침에 붙여 넣어요.</p></div></div>
+  <div class="tbl rv"><table>
+    <thead><tr><th>팩트 시트</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>정식 제품명</td><td>비건 휘핑 팩클렌저 튜브 (5종 중 택1)</td></tr>
+      <tr><td>용량·가격</td><td>130g (200ml 튜브도 있어 향별 확인 필요), 정가 29,000원</td></tr>
+      <tr><td>사용법: 클렌저</td><td>젖은 손에 손톱만큼 덜어 거품내고, 젖은 얼굴에 30초 이상 롤링 후 미온수로 헹굼</td></tr>
+      <tr><td>사용법: 팩</td><td>마른 얼굴에 도톰하게 펴 바르고 약 1분 뒤 미온수로 헹굼</td></tr>
+      <tr><td>비건 인증 기관</td><td><span class="pill">확인 필요</span></td></tr>
+      <tr><td>주의사항 전문</td><td><span class="pill">확인 필요</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note rv">출처: <a href="https://www.kurly.com/goods/1002154195" target="_blank" rel="noopener">컬리 상품 페이지</a> (조사일 2026-11-11)</p>
+
+  <div class="prompts rv">
+<details><summary>공통 브랜드 블록 (모든 프로젝트 맨 위)</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[브랜드] 비건 뷰티 브랜드 '휩드(WHIPPED)'의 인스타그램 카드뉴스와 릴스를 만드는 팀이다.
+[타겟] 25~32세 직장인 여성. 모공·각질 고민. 아침엔 바쁘고 퇴근 후엔 지쳐서 간단한 루틴을 원한다.
+       비건 여부와 전성분을 꼼꼼히 확인하고, 인스타그램에서는 저장 위주로 본다.
+[서브 타겟] 가은(23세, 사회초년생, 릴스·휘핑 거품·향에 반응) / 민서(31세, 민감 피부, 비건 인증·전성분 확인).
+       콘텐츠마다 대상은 지수·가은·민서 중 1명만. 민서용에는 트러블 개선·진정 효과 표현 금지.
+[핵심 메시지] 바쁜 날에도 팩 클렌저 하나로 모공·각질을 간단하지만 제대로.
+[제품 비율] 비건 팩 클렌저 80%, 나머지 라인업 20%(루틴 앞뒤 단계로 연결).
+[콘텐츠] 주 5개 = 카드뉴스 3 + 릴스 2. How-to(숫자형 훅) / 공감형(공감 고백형 훅).
+[톤] 훅·CTA는 친근한 언니 말투, 본문은 깔끔한 정보형.
+[금지] 치료, 재생, 완벽 제거, 유일한, 최고 등 의약품 오인·최상급 표현. 루틴 단계를 늘리라고 권하는 내용.
+[사실] 제품 정보는 아래 팩트 시트에 있는 것만 쓴다. 없는 정보는 추측하지 말고 [확인 필요]라고 쓴다.
+[팩트 시트] (부록의 표 내용을 그대로 붙여 넣기)</pre></div></details>
+<details><summary>경쟁사 분석가 · Claude</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 경쟁사 분석가다.
+[관찰 브랜드] 풀리, 한율, 아렌시아, 아로마티카, 멜릭서, 마녀공장, 아누아.
+[입력] 자동 검색 요약 + 내가 넣는 인스타 캡처·올리브영 리뷰 캡처.
+[할 일]
+1. 항목을 5가지 유형으로 분류한다: 반응 좋은 게시물 / 신제품 / 프로모션·올영세일 / 리뷰 새 키워드 / 협업.
+2. 반응 좋은 게시물은 훅·포맷·구성이 왜 통했는지 한 줄로 분석한다. 문구는 베끼지 않는다.
+3. 항목마다 '휩드에 주는 시사점'을 한 줄 쓴다.
+4. 출처 없는 사실은 쓰지 않는다. 모르는 것은 [확인 필요].
+[출력]
+- 주간: 관찰 로그 표(날짜/브랜드/유형/내용/링크/시사점) + 리서처에게 넘길 5줄 요약
+- 월간(매달 첫 주): 브랜드별 움직임 요약 + 반복되는 흐름 + 휩드 시사점 3가지 + 다음 달 추가 관찰 브랜드 1곳 추천</pre></div></details>
+<details><summary>리서처 · Claude</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 리서처다.
+[입력] 경쟁사 분석가의 5줄 요약, 올리브영·자사몰 리뷰, 틱톡 트렌드 메모.
+[할 일]
+1. 리뷰에서 반복되는 고민·상황 키워드를 뽑는다. (원문 표현을 짧게 인용)
+2. 반응이 좋은 게시물의 포맷과 구조만 분석한다. 문구·이미지는 가져오지 않는다.
+3. 이번 주 소재 10개를 제안한다.
+[출력] 표: 소재 / 근거 / 연결 제품 / 추천 기둥(How-to·공감형)</pre></div></details>
+<details><summary>기획자 · Claude</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 콘텐츠 기획자다.
+[입력] 리서처의 소재 10개.
+[할 일]
+1. 카드뉴스 3개(How-to 2, 공감형 1)와 릴스 2개(How-to 1, 공감형 1)를 고른다. 메인 제품 비율 80%를 지킨다.
+2. 카드뉴스는 6~8장 구성안, 릴스는 샷리스트(컷 번호/장면/길이/화면 자막)로 만든다.
+3. 사용법이 들어가는 장이나 컷은 팩트 시트의 공식 사용법만 따른다.
+[출력] 콘텐츠별: 제목 / 기둥 / 대상 페르소나(지수·가은·민서 중 1명) / 타깃 상황 한 줄 / 핵심 메시지 / 장별 내용 또는 샷리스트 / 목표 지표</pre></div></details>
+<details><summary>카피라이터 · Claude</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 카피라이터다.
+[입력] 기획자가 만든 콘텐츠 1개의 구성안 또는 샷리스트.
+[할 일]
+1. 훅 후보 3개. How-to는 [상황]+[숫자]+[결과], 공감형은 [솔직한 고백]+[나만의 해결].
+2. 카드 장별 카피는 25자 안팎·최대 2줄, 릴스 자막은 화면당 한 줄 15자 안팎.
+3. 캡션(3~5줄)과 해시태그 10개(큰 2 + 중간 4 + 작은 4).
+4. 금지 표현을 쓰지 않는다. 팩트 시트에 없는 수치·효과는 쓰지 않는다.
+[출력] 훅 후보 3개 / 장별 카피 또는 자막 표 / 캡션 / 해시태그</pre></div></details>
+<details><summary>디자이너 · ChatGPT</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 디자이너다.
+[입력] 확정된 장별 카피.
+[비주얼 규칙] 파스텔톤, 휘핑 거품 텍스처, 부드러운 자연광, 여백 넉넉히.
+         색상: [메인 코드] [보조 코드 2개] + 흰색.
+[할 일]
+1. 카드는 4:5, 장별 배경 이미지를 만든다. 상단에 텍스트 자리를 비워 둔다.
+2. 릴스 커버는 9:16, 제목은 중앙에 둬서 프로필 그리드에서 잘리지 않게 한다.
+3. 제품은 그리지 않는다. 마케터가 Canva에서 실제 사진으로 합성한다.
+4. 피부 사용 전후 비교나 피부 변화 이미지는 만들지 않는다.
+5. 이미지 안 한글이 틀리면 텍스트 없는 버전을 다시 만든다.
+[출력] 장별 이미지 + 사용한 프롬프트 + Canva에서 얹을 텍스트 위치 메모</pre></div></details>
+<details><summary>검수관 · Claude</summary><div class="pbody"><button class="copy" type="button">복사</button><pre>[역할] 너는 이 팀의 검수관이다. 까다롭게 본다.
+[입력] 완성 카드 이미지(또는 장별 카피), 릴스 자막, 캡션.
+[체크리스트]
+1. 톤: 훅·CTA는 언니 말투, 본문은 정보형인가
+2. 금지 표현이 있는가 (있으면 대체 문구 제안)
+3. 비건·성분·사용법이 팩트 시트와 일치하는가
+4. 오탈자, 이미지 속 한글 깨짐
+5. 글자 수, 기둥, 대상 페르소나에 맞는가
+[출력] 항목별 통과/수정 표 + 최종 판정(승인 또는 수정 요청) + 되돌릴 단계(카피라이터/디자이너)</pre></div></details>
+  </div>
+</div></section>
+</main>
+
+<footer class="gut"><div class="col">편집 가능한 원본과 출처 전체는 <a href="https://claude.ai/artifact/3GRuR4mquryg5vUagzvDyE" target="_blank" rel="noopener">휩드 콘텐츠 AI 에이전트 팀 구축 계획서</a>에 있어요. 방 구조로 보는 버전은 <a href="https://claude.ai/artifact/SW5cKa921GAEsuYF9KsPmc" target="_blank" rel="noopener">휩드 AI 크루 빌딩</a>이에요.</div></footer>
+
+<script>
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* foam bubbles on the cover */
+(function(){
+  const c=document.getElementById('foam'),x=c.getContext('2d');let w,h,b=[];
+  const cs=getComputedStyle(document.documentElement);
+  function col(n){return cs.getPropertyValue(n).trim()||'#B23C77'}
+  function size(){const r=c.parentElement.getBoundingClientRect();const d=window.devicePixelRatio||1;w=r.width;h=r.height;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    b=Array.from({length:Math.round(w/26)},()=>({x:Math.random()*w,y:Math.random()*h,r:4+Math.random()*22,v:.15+Math.random()*.45,s:Math.random()*6.28}))}
+  function draw(){x.clearRect(0,0,w,h);const a=col('--berry'),m=col('--matcha');
+    b.forEach((p,i)=>{x.beginPath();x.arc(p.x+Math.sin(p.s)*6,p.y,p.r,0,6.283);x.strokeStyle=i%3?a:m;x.globalAlpha=.16;x.lineWidth=1.2;x.stroke();
+      x.globalAlpha=.05;x.fillStyle=i%3?a:m;x.fill();x.globalAlpha=.35;x.beginPath();x.arc(p.x+Math.sin(p.s)*6-p.r*.35,p.y-p.r*.35,p.r*.18,0,6.283);x.fillStyle='#fff';x.fill()});x.globalAlpha=1}
+  function step(){b.forEach(p=>{p.y-=p.v;p.s+=.01;if(p.y<-p.r*2){p.y=h+p.r;p.x=Math.random()*w}});draw();requestAnimationFrame(step)}
+  size();draw();addEventListener('resize',()=>{size();draw()});if(!reduce)requestAnimationFrame(step);
+})();
+
+/* count-up */
+document.querySelectorAll('.mono-n').forEach(el=>{
+  const to=+el.dataset.to;if(reduce)return;let t0=null;
+  function f(t){if(!t0)t0=t;const k=Math.min(1,(t-t0)/900);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)}
+  el.textContent='0';requestAnimationFrame(f);
+});
+
+/* reveal on scroll: content is visible at rest; entering view replays a short rise */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.rv,#hours').forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight)io.observe(el);else el.classList.add('seen')});
+
+/* chapter bar + progress */
+const links=[...document.querySelectorAll('#nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href'))),prog=document.getElementById('progress');
+function onScroll(){const max=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(max>0?scrollY/max:0)+')';
+  let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<140)cur=i});links.forEach((a,i)=>a.classList.toggle('on',i===cur&&scrollY>200))}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* pipeline */
+const D={
+  analyst:['경쟁사 분석가','자동 검색 요약 + 인스타·올리브영 리뷰 캡처','7곳의 움직임을 5가지 유형으로 분류, 휩드 시사점 정리','주간 로그 + 5줄 요약, 월간 리포트'],
+  research:['리서처','분석가 요약, 리뷰, 틱톡 트렌드','고민 키워드 추출, 반응 좋은 포맷 분석','주간 소재 10개'],
+  plan:['기획자','소재 10개 + 브랜드 가이드','카드 3·릴스 2 선정, 대상 페르소나 지정, 제품 비율 8:2','카드 구성안, 릴스 샷리스트'],
+  gate1:['주제 승인 · 마케터','기획안 5개','이번 주 주제와 방향 결정','확정된 주제 5개'],
+  copy:['카피라이터','기획안 + 톤 가이드','훅 후보 3개, 카피·자막, 캡션','장별 카피, 릴스 자막, 해시태그 10개'],
+  design:['디자이너','확정 카피 + 비주얼 가이드','파스텔·거품 배경 생성, 제품은 실제 사진 합성','4:5 카드, 9:16 릴스 커버'],
+  review:['검수관','완성 카드·자막·캡션','톤, 금지어, 팩트 시트, 오탈자, 이미지 속 한글','승인 또는 수정 요청'],
+  gate2:['최종 승인·발행 · 마케터','검수 통과본','최종 확인, 캡션·해시태그 확정','저녁 9시 예약 발행']
+};
+const nodes=[...document.querySelectorAll('.node')],det=document.getElementById('detail');
+function show(k){const [t,a,b,c]=D[k];det.innerHTML='<h3>'+t+'</h3><dl><dt>들어오는 것</dt><dd>'+a+'</dd></dl><dl><dt>하는 일</dt><dd>'+b+'</dd></dl><dl><dt>나가는 것</dt><dd>'+c+'</dd></dl>';
+  nodes.forEach(n=>n.setAttribute('aria-pressed',n.dataset.k===k?'true':'false'))}
+let li=0,auto=!reduce,tm=null;
+function pulse(){nodes.forEach(n=>n.classList.remove('live'));nodes[li].classList.add('live');li=(li+1)%nodes.length}
+nodes.forEach(n=>n.addEventListener('click',()=>{auto=false;clearInterval(tm);nodes.forEach(x=>x.classList.remove('live'));show(n.dataset.k)}));
+show('plan');if(auto){pulse();tm=setInterval(pulse,1100)}
+
+/* copy buttons */
+document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=>{
+  const pre=btn.nextElementSibling;
+  navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='복사됨';setTimeout(()=>btn.textContent='복사',1500)})
+  .catch(()=>{const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택됨, Ctrl+C로 복사'});
+}));
+</script>
+
+</body></html>
