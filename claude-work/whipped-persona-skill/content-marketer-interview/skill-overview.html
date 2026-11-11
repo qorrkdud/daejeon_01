@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>콘텐츠 마케터 면접 준비 스킬</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface-2:#efece4; --ink:#22251f; --ink-2:#5b6056; --line:#dfdbd0;
+  --accent:#5e7f5a; --accent-soft:#e3ece0; --accent-ink:#2f4a2c;
+  --warm:#c88a5a; --warm-soft:#f6e7da; --info:#4f6f8f; --info-soft:#e2eaf2;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161815; --surface:#1f221e; --surface-2:#272b26; --ink:#ecebe5; --ink-2:#a7aba0; --line:#353a33;
+    --accent:#8fb589; --accent-soft:#263524; --accent-ink:#c6dfc1;
+    --warm:#e0a676; --warm-soft:#3a2b20; --info:#8fb0d0; --info-soft:#1f2b37;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161815; --surface:#1f221e; --surface-2:#272b26; --ink:#ecebe5; --ink-2:#a7aba0; --line:#353a33;
+  --accent:#8fb589; --accent-soft:#263524; --accent-ink:#c6dfc1;
+  --warm:#e0a676; --warm-soft:#3a2b20; --info:#8fb0d0; --info-soft:#1f2b37;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+nav.switch{display:flex;gap:6px;padding:16px 0 0;flex-wrap:wrap}
+nav.switch a{font-size:13px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);text-decoration:none;background:var(--surface)}
+nav.switch a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+header.hero{padding:40px 0 32px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--info);background:var(--info-soft);padding:4px 10px;border-radius:99px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.25;margin:14px 0 12px;font-weight:900;letter-spacing:-.02em}
+.lead{color:var(--ink-2);font-size:16px;max-width:680px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--ink-2)}
+.chip b{color:var(--ink)}
+section{padding:36px 0;border-top:1px solid var(--line)}
+h2{font-size:22px;margin:0 0 6px;letter-spacing:-.01em}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--ink-2);margin:0 0 22px;font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.mini h4{margin:0 0 6px;font-size:14px}
+.mini p,.mini li{font-size:13px;color:var(--ink-2);margin:0}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:3px 0}
+.quote{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0 0;color:var(--accent-ink)}
+.quote.warm{border-color:var(--warm);background:var(--warm-soft);color:var(--ink)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:2px;background:var(--info-soft);color:var(--info)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.fstep{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);text-decoration:none;color:inherit;position:relative;transition:transform .15s,border-color .15s}
+.fstep:hover{transform:translateY(-2px);border-color:var(--info)}
+.fstep .n{font-size:12px;font-weight:700;color:var(--info)}
+.fstep h3{margin:4px 0 4px;font-size:15px}
+.fstep p{margin:0;font-size:12px;color:var(--ink-2)}
+
+/* bridge */
+.bridge{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center}
+.bridge .arrow{font-size:26px;color:var(--ink-2);text-align:center}
+.bridge .card h3{font-size:15px}
+.bridge .card.left{border-color:var(--accent)}
+.bridge .card.right{border-color:var(--info)}
+
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink-2);font-weight:500;background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+
+/* weights */
+.weights{display:flex;flex-direction:column;gap:10px}
+.w{display:grid;grid-template-columns:170px 1fr 44px;gap:10px;align-items:center;font-size:13px}
+.w .track{height:14px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.w .fill{height:100%;border-radius:99px;background:var(--info)}
+.w .fill.top{background:var(--accent)}
+.w b{text-align:right;font-size:13px}
+.wnote{font-size:12px;color:var(--ink-2);margin-top:12px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+/* question template */
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.qcard .head{padding:14px 18px;background:var(--surface-2);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.qcard .head b{font-size:15px}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--warm-soft);color:var(--warm)}
+.qcard .body{padding:16px 18px;display:grid;gap:12px}
+.qrow{display:grid;grid-template-columns:120px 1fr;gap:10px;font-size:13px}
+.qrow span{color:var(--ink-2)}
+.bones{display:flex;gap:6px;flex-wrap:wrap}
+.bones div{flex:1;min-width:110px;background:var(--info-soft);color:var(--ink);border-radius:8px;padding:8px 10px;font-size:12px}
+.bones div i{font-style:normal;font-weight:700;color:var(--info);margin-right:4px}
+
+/* defense */
+.defense{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.defense div{padding:16px;border-right:1px solid var(--line)}
+.defense div:last-child{border-right:0}
+.defense .k{font-size:12px;font-weight:700;margin-bottom:6px}
+.defense .k1{color:var(--warm)} .defense .k2{color:var(--info)} .defense .k3{color:var(--accent)}
+.defense p{margin:0;font-size:13px}
+
+/* chat */
+.chat{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.msg{max-width:78%;padding:10px 14px;border-radius:14px;font-size:14px}
+.msg small{display:block;font-size:11px;font-weight:700;margin-bottom:2px;opacity:.75}
+.msg.iv{background:var(--surface-2);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.me{background:var(--info-soft);align-self:flex-end;border-bottom-right-radius:4px}
+.msg.fu{background:var(--warm-soft);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.fb{align-self:stretch;max-width:100%;background:var(--accent-soft);color:var(--accent-ink);border-radius:12px}
+.msg.fb ul{margin:4px 0 0;padding-left:18px}
+.triggers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.trig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}
+.trig .if{color:var(--ink-2);font-size:12px}
+.trig .then{font-weight:500;margin-top:2px}
+.cmds{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cmd{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.cmd code{display:inline-block;font-family:ui-monospace,Consolas,monospace;font-size:15px;font-weight:700;background:var(--surface-2);padding:3px 10px;border-radius:6px;margin-bottom:6px}
+.cmd p{margin:0;font-size:12px;color:var(--ink-2)}
+
+/* score */
+.score{display:flex;flex-direction:column;gap:12px}
+.srow{display:grid;grid-template-columns:150px auto 1fr;gap:12px;align-items:center;font-size:13px}
+.dots{display:flex;gap:4px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line)}
+.dots i.on{background:var(--info);border-color:var(--info)}
+.srow span:last-child{color:var(--ink-2);font-size:12px}
+.sample{font-size:11px;color:var(--ink-2);margin-top:8px}
+
+ol.steps{margin:0;padding-left:20px;font-size:14px}
+ol.steps li{margin:6px 0}
+pre.tree{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13px;line-height:1.7;overflow-x:auto;margin:0;font-family:ui-monospace,Consolas,monospace}
+pre.tree .c{color:var(--ink-2)}
+.cmds{grid-template-columns:repeat(3,1fr)}
+.summary{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:10px}
+.sm{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.sm.big{border-color:var(--info);background:var(--info-soft)}
+.sm .k{font-size:13px;font-weight:700;color:var(--info)}
+.sm p{margin:0;font-size:13px}
+.sm small{margin-top:auto;font-size:11px;color:var(--ink-2)}
+.intro{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.intro div{padding:14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.intro div:last-child{border-right:0}
+.intro i{font-style:normal;font-weight:900;color:var(--info);font-size:18px}
+.intro b{font-size:14px}
+.intro span{font-size:12px;color:var(--ink-2)}
+.formula{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.formula div{background:var(--info);color:#fff;border-radius:10px;padding:10px;text-align:center;font-weight:700;font-size:14px}
+.formula span{display:inline-block;width:20px;height:20px;line-height:20px;border-radius:50%;background:rgba(255,255,255,.25);font-size:12px;margin-right:6px}
+.types{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.types span{font-size:12px;padding:5px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+@media (max-width:900px){.summary{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .cmds{grid-template-columns:repeat(2,1fr)}
+  .summary,.intro{grid-template-columns:1fr}
+  .intro div{border-right:0;border-bottom:1px solid var(--line)}
+  .intro div:last-child{border-bottom:0}
+  .formula{grid-template-columns:1fr 1fr}
+}
+footer{padding:28px 0 48px;color:var(--ink-2);font-size:12px;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .cmds{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .flow{grid-template-columns:1fr 1fr}
+  .grid2,.grid3,.triggers{grid-template-columns:1fr}
+  .bridge{grid-template-columns:1fr}
+  .bridge .arrow{transform:rotate(90deg)}
+  .defense{grid-template-columns:1fr}
+  .defense div{border-right:0;border-bottom:1px solid var(--line)}
+  .defense div:last-child{border-bottom:0}
+  .w{grid-template-columns:110px 1fr 40px}
+  .qrow{grid-template-columns:1fr;gap:2px}
+  .msg{max-width:92%}
+  .srow{grid-template-columns:1fr auto;}
+  .srow span:last-child{grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+<header class="hero">
+  <span class="eyebrow">CLAUDE SKILL · content-marketer-interview</span>
+  <h1>콘텐츠 마케터 인턴 면접 준비 스킬</h1>
+  <p class="lead">페르소나 분석 포트폴리오와 자기소개서를 읽고, 예상 질문을 정리한 뒤 실전형 모의 면접으로 연습해요. 내가 만든 분석을 말로 설명하고 방어할 수 있게 돕는 스킬이에요.</p>
+  <div class="chips">
+    <span class="chip">기본 대상 <b>휩드 · 콘텐츠 마케터 인턴</b></span>
+    <span class="chip">면접 종류 <b>실무 + 인성</b></span>
+    <span class="chip">질문 카테고리 <b>8개</b></span>
+    <span class="chip">1분 자기소개 <b>3가지 버전</b></span>
+    <span class="chip">즉석 과제 <b>7가지 유형</b></span>
+    <span class="chip">모의 면접 <b>5 또는 10문항</b></span>
+    <span class="chip">평가 기준 <b>6개</b></span>
+  </div>
+</header>
+
+<section id="bridge">
+  <h2>두 스킬은 이렇게 이어져요</h2>
+  <p class="sub">페르소나 분석 스킬이 만든 결과 폴더가 그대로 면접 준비의 재료가 돼요.</p>
+  <div class="bridge">
+    <div class="card left">
+      <h3>① 페르소나 분석 스킬의 결과물</h3>
+      <ul class="clean" style="font-size:13px;color:var(--ink-2)">
+        <li>핵심 페르소나, 1순위 기회, 차별점</li>
+        <li>리뷰 통계 "N개 중 M개(○%)"</li>
+        <li>캠페인 제안과 KPI</li>
+        <li>분석의 한계</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="card right">
+      <h3>② 면접 준비 스킬이 만드는 것</h3>
+      <ul class="clean" style="font-size:13px;color:var(--ink-2)">
+        <li><b>포트폴리오 면접 요약</b> (30초 답변 등)</li>
+        <li>포트폴리오 질문 (B·C 카테고리)</li>
+        <li>즉석 콘텐츠 과제의 근거</li>
+        <li>약점 방어 노트</li>
+        <li>면접관이 찌를 만한 곳</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <h2>전체 흐름</h2>
+  <p class="sub">질문을 정리한 다음 모의 면접으로 연습해요. 원하면 둘 중 하나만 진행할 수도 있어요.</p>
+  <div class="flow">
+    <a class="fstep" href="#s0"><div class="n">STEP 0</div><h3>시작 설정</h3><p>회사, 직무, 면접 종류, 자료 위치</p></a>
+    <a class="fstep" href="#s1"><div class="n">STEP 1</div><h3>자료 읽기 + 면접 요약</h3><p>포트폴리오, 자기소개서를 읽고 30초 답변까지</p></a>
+    <a class="fstep" href="#s2"><div class="n">STEP 2</div><h3>예상 질문 정리</h3><p>1분 자기소개, 8개 카테고리, 즉석 과제, 약점 방어</p></a>
+    <a class="fstep" href="#s3"><div class="n">STEP 3</div><h3>모의 면접</h3><p>실전형, 꼬리 질문, 즉시 피드백</p></a>
+    <a class="fstep" href="#s4"><div class="n">STEP 4</div><h3>종합 리포트</h3><p>5개 기준 점수, 지난번과 비교</p></a>
+  </div>
+</section>
+
+<section id="s0">
+  <h2>STEP 0 · 시작 설정</h2>
+  <p class="sub">이미 알고 있는 값은 다시 묻지 않아요.</p>
+  <div class="tbl"><table>
+    <tr><th style="width:170px">항목</th><th>기본값</th></tr>
+    <tr><td>회사 · 직무</td><td>휩드(WHIPPED) · 콘텐츠 마케터 인턴</td></tr>
+    <tr><td>면접 종류</td><td>실무 + 인성 (과제·PT 면접이 있다고 하면 추가)</td></tr>
+    <tr><td>포트폴리오 자료</td><td><code>휩드_페르소나분석_YYYYMMDD/</code> 폴더 중 가장 최근 것</td></tr>
+    <tr><td>자기소개서·이력서</td><td>파일 위치를 묻거나 붙여넣기를 요청 (없으면 관련 질문은 건너뜀)</td></tr>
+    <tr><td>모의 면접 문항 수</td><td>짧게 5문항 / 실전 10문항 중 선택</td></tr>
+  </table></div>
+</section>
+
+<section id="s1">
+  <h2>STEP 1 · 자료 읽기</h2>
+  <p class="sub">면접관이 어디를 찌를지 미리 찾아 두는 단계예요.</p>
+  <div class="grid2">
+    <div class="mini">
+      <h4>포트폴리오에서 뽑는 것</h4>
+      <ul class="clean"><li>핵심 주장: 페르소나, 1순위 기회, 차별점, 캠페인명</li><li>사용한 숫자와 출처</li><li>분석의 한계: 모수, 채널 편향, 추정</li><li>면접관이 찌를 만한 곳</li></ul>
+    </div>
+    <div class="mini">
+      <h4>자기소개서·이력서에서 뽑는 것</h4>
+      <ul class="clean"><li>경험별 상황, 역할, 행동, 결과(숫자), 배운 점</li><li>"주도했다" 같은 강한 표현 (꼬리 질문이 가장 많이 나오는 곳)</li><li>포트폴리오와 연결되는 지점</li></ul>
+    </div>
+  </div>
+  <p class="quote warm">경험을 지어내지 않아요. 자료에 없는 내용은 <b>[본인 경험으로 채우기]</b>로 표시하고, 자료끼리 숫자나 역할이 어긋나면 따로 알려 줘요.</p>
+
+  <h3 style="margin:28px 0 10px">1-4. 포트폴리오 면접 요약 <span class="tag">페르소나 스킬에서 옮겨 옴</span></h3>
+  <div class="summary">
+    <div class="sm big"><span class="k">30초 답변</span><p>"휩드의 핵심 고객은 누구라고 생각하나요?"에 대한 답</p><small>3~4문장 · 포트폴리오 말투 · 숫자 1개 이상</small></div>
+    <div class="sm"><span class="k">핵심 발견 3가지</span><p>리뷰 집계 · 불만에서 찾은 기회 · 경쟁사 대비 차별점</p><small>각 한 줄 + 근거 숫자</small></div>
+    <div class="sm"><span class="k">캠페인 한 줄 요약</span><p>"○○한 [핵심 페르소나]에게, △△을 통해 □□을 느끼게 한다."</p><small>1문장</small></div>
+    <div class="sm"><span class="k">꼭 기억할 숫자</span><p>숫자와 그 숫자를 어떻게 셌는지, 분석 문서의 어느 항목인지</p><small>최대 5개</small></div>
+  </div>
+  <p class="quote">이 요약이 1분 자기소개의 대표 경험, 포트폴리오 질문의 답, 즉석 과제의 근거로 계속 쓰여요. 분석 결과에 있는 숫자만 쓰고 새로 만들지 않아요.</p>
+</section>
+
+<section id="s2">
+  <h2>STEP 2 · 예상 질문 + 답변 방향</h2>
+  <p class="sub">인턴 면접 기준으로 카테고리별 비중을 나눴어요. 포트폴리오 질문이 가장 많아요.</p>
+  <div class="card">
+    <div class="weights">
+      <div class="w"><span>B·C 포트폴리오·캠페인</span><div class="track"><div class="fill top" style="width:100%"></div></div><b>25%</b></div>
+      <div class="w"><span>A 지원 동기·회사 이해</span><div class="track"><div class="fill" style="width:60%"></div></div><b>15%</b></div>
+      <div class="w"><span>E 콘텐츠 실무 감각</span><div class="track"><div class="fill" style="width:60%"></div></div><b>15%</b></div>
+      <div class="w"><span>H 즉석 콘텐츠 과제</span><div class="track"><div class="fill" style="width:60%"></div></div><b>15%</b></div>
+      <div class="w"><span>D 자기소개서·경험</span><div class="track"><div class="fill" style="width:60%"></div></div><b>15%</b></div>
+      <div class="w"><span>F 인성·태도</span><div class="track"><div class="fill" style="width:60%"></div></div><b>15%</b></div>
+    </div>
+    <p class="wnote">1분 자기소개는 항상 첫 질문이고, G 역질문은 비중과 상관없이 항상 2~3개를 준비해요.</p>
+  </div>
+
+  <h3 style="margin:28px 0 10px">카테고리별 질문 예시</h3>
+  <div class="tbl"><table>
+    <tr><th style="width:150px">카테고리</th><th>질문 예시</th></tr>
+    <tr><td>A 지원 동기</td><td>"휩드 콘텐츠 중 가장 인상 깊었던 건?"</td></tr>
+    <tr><td>B 포트폴리오</td><td>"리뷰 50개로 충분하다고 봤나요?", "핵심 페르소나를 그렇게 정한 이유는?"</td></tr>
+    <tr><td>C 캠페인</td><td>"이 캠페인을 다음 주에 시작한다면 첫 번째로 할 일은?"</td></tr>
+    <tr><td>D 경험</td><td>"그 프로젝트에서 본인이 직접 한 일은?"</td></tr>
+    <tr><td>E 실무 감각</td><td>"릴스 성과가 낮으면 무엇부터 보나요?"</td></tr>
+    <tr><td>F 인성·태도</td><td>"기획안이 반려되면 어떻게 하나요?"</td></tr>
+    <tr><td>G 역질문</td><td>면접관에게 할 질문 2~3개</td></tr>
+    <tr><td>H 즉석 과제</td><td>"지금 휩드 클렌저 릴스 아이디어 3개 말해 보세요"</td></tr>
+  </table></div>
+
+  <h3 style="margin:28px 0 10px">2-5. 1분 자기소개</h3>
+  <div class="intro">
+    <div><i>①</i><b>한 줄 정체성</b><span>나를 설명하는 키워드 1개</span></div>
+    <div><i>②</i><b>대표 경험</b><span>휩드 페르소나 분석 + 숫자 1개</span></div>
+    <div><i>③</i><b>역량의 일관성</b><span>다른 포트폴리오가 같은 역량으로 이어짐</span></div>
+    <div><i>④</i><b>휩드와 연결</b><span>왜 휩드, 들어가서 하고 싶은 것</span></div>
+  </div>
+  <div class="grid3" style="margin-top:12px">
+    <div class="mini"><h4>30초 버전</h4><p>①②④만</p></div>
+    <div class="mini"><h4>1분 버전</h4><p>기본 · 300~350자</p></div>
+    <div class="mini"><h4>키워드 카드</h4><p>외우지 않고 말하도록 순서별 키워드만</p></div>
+  </div>
+  <p class="quote">포트폴리오를 나열하지 않고, "근거로 기획하는 사람"처럼 <b>하나의 키워드</b>로 모든 경험을 꿰어 말해요.</p>
+
+  <h3 style="margin:28px 0 10px">2-6. 즉석 콘텐츠 과제</h3>
+  <div class="formula">
+    <div><span>1</span>근거</div><div><span>2</span>아이디어</div><div><span>3</span>형식·채널</div><div><span>4</span>측정</div>
+  </div>
+  <div class="card" style="margin-top:12px;font-size:14px">
+    <p style="margin:0 0 6px"><b style="color:var(--info)">근거</b> 리뷰 52개 중 14개(27%)에서 사용법이 헷갈린다는 불만이 있었습니다.</p>
+    <p style="margin:0 0 6px"><b style="color:var(--info)">아이디어</b> 1분 안에 따라 할 수 있는 세안 레시피 릴스를 제안합니다.</p>
+    <p style="margin:0 0 6px"><b style="color:var(--info)">형식·채널</b> 아침에 바쁜 핵심 페르소나를 위해 15초 컷, 인스타 릴스와 상세페이지에 함께 씁니다.</p>
+    <p style="margin:0"><b style="color:var(--info)">측정</b> 저장 수와, 이후 리뷰에서 사용법 불만이 줄어드는지로 효과를 봅니다.</p>
+    <p class="sample" style="margin-top:10px">※ 숫자는 답변 형식을 보여 주기 위한 예시예요.</p>
+  </div>
+  <div class="types">
+    <span>포맷 지정</span><span>페르소나 지정</span><span>불만 해결</span><span>시즌·이슈</span><span>트렌드 활용</span><span>위기 대응</span><span>제약 조건</span>
+  </div>
+
+  <h3 style="margin:28px 0 10px">질문 하나는 이렇게 정리돼요</h3>
+  <div class="qcard">
+    <div class="head"><b>Q. 핵심 페르소나를 그렇게 정한 이유는?</b><span class="pill">필수</span></div>
+    <div class="body">
+      <div class="qrow"><span>질문 의도</span><div>근거를 가지고 판단하는 사람인지 확인</div></div>
+      <div class="qrow"><span>답변 뼈대</span><div class="bones"><div><i>1</i>결론 한 문장</div><div><i>2</i>근거(숫자)</div><div><i>3</i>과정</div><div><i>4</i>휩드와 연결</div></div></div>
+      <div class="qrow"><span>꼭 넣을 숫자</span><div>"리뷰 N개 중 M개(○%)" + 분석 문서 출처</div></div>
+      <div class="qrow"><span>예상 꼬리 질문</span><div>2~3개</div></div>
+      <div class="qrow"><span>피해야 할 답</span><div>흔한 실수 1~2개</div></div>
+    </div>
+  </div>
+  <p class="quote">답변 뼈대는 키워드로만 써요. 완성된 문장을 주지 않아서 내 말로 답하는 연습이 되도록 했어요.</p>
+
+  <h3 style="margin:28px 0 10px">약점 방어 노트</h3>
+  <div class="defense">
+    <div><div class="k k1">① 인정</div><p>"리뷰 50개는 전체를 대표하기엔 적은 숫자라고 생각합니다."</p></div>
+    <div><div class="k k2">② 보완한 점</div><p>"그래서 채널 두 곳에서 나눠 모았고, 비율보다 반복되는 표현에 집중했습니다."</p></div>
+    <div><div class="k k3">③ 다음에 하고 싶은 것</div><p>"입사한다면 자사몰 전체 리뷰로 같은 분석을 다시 해 보고 싶습니다."</p></div>
+  </div>
+  <p class="sub" style="margin:10px 0 0">예상 약점: 리뷰 모수, 실무 경험 부족, 내부 데이터 없는 추정, 캠페인 실행 가능성</p>
+</section>
+
+<section id="s3">
+  <h2>STEP 3 · 모의 면접 <span class="tag">실전형</span></h2>
+  <p class="sub">질문은 한 번에 하나씩 해요. 꼬리 질문은 정해진 목록이 아니라 방금 한 답변에서 만들어요.</p>
+
+  <div class="chat">
+    <div class="msg iv"><small>면접관</small>포트폴리오에서 핵심 페르소나를 정하셨는데, 왜 그 유형을 골랐나요?</div>
+    <div class="msg me"><small>나</small>리뷰를 보니 그 유형이 가장 많았고, 휩드의 비건 포인트에 반응을 많이 했습니다.</div>
+    <div class="msg fu"><small>면접관 · 꼬리 질문 1</small>가장 많았다는 게 구체적으로 얼마나였나요?</div>
+    <div class="msg me"><small>나</small>리뷰 52개 중 21개, 약 40%였습니다.</div>
+    <div class="msg fu"><small>면접관 · 꼬리 질문 2</small>그 21개는 어떤 기준으로 분류하셨나요? 한계는 없었나요?</div>
+    <div class="msg me"><small>나</small>…</div>
+    <div class="msg fb"><small>피드백</small>
+      <ul>
+        <li><b>좋았던 점:</b> 꼬리 질문에서 숫자를 정확히 말했어요.</li>
+        <li><b>고칠 점:</b> 첫 답변부터 숫자로 시작하세요.</li>
+        <li><b>이렇게 말해 보세요:</b> "리뷰 52개 중 21개(40%)가 같은 고민을 말해서, 이 유형을 핵심으로 정했습니다."</li>
+      </ul>
+    </div>
+  </div>
+  <p class="sample">※ 대화는 진행 방식을 보여 주기 위한 예시예요.</p>
+
+  <h3 style="margin:28px 0 10px">꼬리 질문이 나오는 순간</h3>
+  <div class="triggers">
+    <div class="trig"><div class="if">숫자 없이 말하면</div><div class="then">"구체적으로 얼마나요?"</div></div>
+    <div class="trig"><div class="if">"우리가 했다"고 하면</div><div class="then">"그중 본인이 직접 한 일은요?"</div></div>
+    <div class="trig"><div class="if">결론이 모호하면</div><div class="then">"한 문장으로 정리하면요?"</div></div>
+    <div class="trig"><div class="if">포트폴리오 숫자를 말하면</div><div class="then">"어떻게 셌나요? 한계는요?"</div></div>
+  </div>
+
+  <h3 style="margin:28px 0 10px">면접 중 쓸 수 있는 명령</h3>
+  <div class="cmds">
+    <div class="cmd"><code>패스</code><p>건너뛰고 "다시 연습할 질문"으로 표시</p></div>
+    <div class="cmd"><code>다시</code><p>같은 질문에 다시 답하기</p></div>
+    <div class="cmd"><code>힌트</code><p>결론 방향만 살짝 보기</p></div>
+    <div class="cmd"><code>종료</code><p>바로 끝내고 리포트로</p></div>
+    <div class="cmd"><code>자기소개</code><p>1분 자기소개만 반복 연습</p></div>
+    <div class="cmd"><code>즉석과제</code><p>즉석 과제만 유형을 바꿔 가며 연습</p></div>
+  </div>
+</section>
+
+<section id="s4">
+  <h2>STEP 4 · 종합 리포트</h2>
+  <p class="sub">기준마다 1~5점을 매기고, 실제 답변을 인용해서 그 점수를 준 이유를 적어요.</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="score">
+        <div class="srow"><b>답변 구조</b><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span>결론을 먼저 말하는가</span></div>
+        <div class="srow"><b>숫자·근거</b><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span>포트폴리오 숫자를 정확히 쓰는가</span></div>
+        <div class="srow"><b>답변 길이</b><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span>본 질문 기준 1분 안팎인가</span></div>
+        <div class="srow"><b>마케터 관점</b><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span>고객, 채널, 반응, 성과로 생각하는가</span></div>
+        <div class="srow"><b>회사 이해도</b><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span>휩드의 제품, 톤, 고객을 아는가</span></div>
+        <div class="srow"><b>즉석 아이디어</b><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span>근거 → 아이디어 → 형식·채널 → 측정</span></div>
+      </div>
+      <p class="sample">※ 점수는 예시예요.</p>
+    </div>
+    <div class="card">
+      <h3>리포트 구성</h3>
+      <ol class="steps">
+        <li>기준별 점수와 이유</li>
+        <li>가장 잘한 답변 1개</li>
+        <li><b>가장 먼저 고칠 점 3가지</b></li>
+        <li>다시 연습할 질문 (패스한 질문 포함)</li>
+        <li>다음에 더 연습할 카테고리</li>
+      </ol>
+      <p class="quote">이전 기록이 있으면 지난번 점수와 비교해서, 좋아진 점과 여전한 점을 맨 앞에 보여 줘요.</p>
+    </div>
+  </div>
+</section>
+
+<section id="output">
+  <h2>저장되는 파일</h2>
+  <p class="sub">면접 질문 정리와 모의 면접 기록이 따로 남아요.</p>
+  <pre class="tree">면접준비_휩드_YYYYMMDD.md   <span class="c">← 면접 요약, 1분 자기소개, 예상 질문, 즉석 과제, 약점 방어, 역질문</span>
+모의면접기록_YYYYMMDD.md    <span class="c">← 질문, 내 답변, 피드백, 종합 리포트</span></pre>
+  <p class="quote" style="margin-top:16px">다른 회사에 쓸 때는 STEP 0에서 회사와 직무만 바꾸면 돼요. 그 회사 포트폴리오가 없으면 B·C는 보유 포트폴리오 설명 질문으로 바뀌어요.</p>
+</section>
+
+<footer>content-marketer-interview · SKILL.md 내용을 시각화한 페이지</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>브랜드 페르소나 분석</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f4f1; --card:#ffffff; --text:#1b1b1b; --sub:#5d5d5d; --line:#e3e1dc;
+  --pink:#c2426b; --pink-bg:#fcebf1;
+  --c1:#c2426b; --c2:#3b7bbf; --c3:#d18a1c; --c4:#8a8a8a;
+  --c1-bg:#fcebf1; --c2-bg:#e8f1fb; --c3-bg:#fcf2e2; --c4-bg:#efefef;
+  --green:#1f7a4f; --green-bg:#e6f4ec; --red:#b3402a; --red-bg:#fbe9e5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151517; --card:#212124; --text:#f1f1f1; --sub:#b3b3b3; --line:#38383c;
+    --pink:#f08fb0; --pink-bg:#3a2430;
+    --c1:#f08fb0; --c2:#7fb2ea; --c3:#f0bb66; --c4:#aaaaaa;
+    --c1-bg:#3a2430; --c2-bg:#1e2d3d; --c3-bg:#3a2f1c; --c4-bg:#2c2c2f;
+    --green:#7ccfa4; --green-bg:#1d3229; --red:#f09a86; --red-bg:#3b2420;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151517; --card:#212124; --text:#f1f1f1; --sub:#b3b3b3; --line:#38383c;
+  --pink:#f08fb0; --pink-bg:#3a2430;
+  --c1:#f08fb0; --c2:#7fb2ea; --c3:#f0bb66; --c4:#aaaaaa;
+  --c1-bg:#3a2430; --c2-bg:#1e2d3d; --c3-bg:#3a2f1c; --c4-bg:#2c2c2f;
+  --green:#7ccfa4; --green-bg:#1d3229; --red:#f09a86; --red-bg:#3b2420;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;font-size:16px;line-height:1.6;word-break:keep-all}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 16px 80px}
+
+/* 헤더 */
+.top{text-align:center;margin-bottom:28px}
+.top h1{font-size:clamp(26px,5vw,38px);font-weight:900;margin:0 0 8px;line-height:1.3}
+.top p{margin:0;color:var(--sub);font-size:17px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
+.kpi{background:var(--card);border-radius:16px;padding:20px 12px;text-align:center}
+.kpi .ic{font-size:26px}
+.kpi b{display:block;font-size:26px;font-weight:900;color:var(--pink);line-height:1.3;margin-top:4px}
+.kpi span{font-size:14px;color:var(--sub)}
+
+/* 섹션 */
+.block{background:var(--card);border-radius:20px;padding:28px;margin-bottom:20px}
+.block-title{display:flex;align-items:center;gap:10px;margin:0 0 20px;font-size:21px;font-weight:900}
+.block-title .n{width:30px;height:30px;border-radius:8px;background:var(--pink);color:#fff;font-size:15px;display:grid;place-items:center;flex:none}
+.block-title small{font-size:14px;font-weight:400;color:var(--sub);margin-left:4px}
+
+/* 흐름 */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.fstep{position:relative;background:var(--bg);border-radius:14px;padding:18px 12px;text-align:center}
+.fstep:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--pink);font-weight:900;font-size:18px;z-index:1}
+.fstep .ic{font-size:30px;line-height:1}
+.fstep b{display:block;margin:10px 0 4px;font-size:16px}
+.fstep span{font-size:13px;color:var(--sub);display:block;line-height:1.5}
+.outputs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;align-items:center}
+.outputs .lab{font-size:14px;font-weight:700;color:var(--sub);margin-right:4px}
+.chip{background:var(--pink-bg);color:var(--pink);font-weight:700;font-size:14px;padding:6px 12px;border-radius:999px}
+
+/* 페르소나 */
+.example{display:inline-block;font-size:13px;font-weight:700;color:var(--red);background:var(--red-bg);padding:3px 10px;border-radius:6px;margin-left:6px;vertical-align:middle}
+.share{display:flex;height:34px;border-radius:10px;overflow:hidden;margin-bottom:6px;font-size:13px;font-weight:700;color:#fff}
+.share div{display:flex;align-items:center;justify-content:center}
+.share-note{font-size:13px;color:var(--sub);margin:0 0 20px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.p{border:2px solid var(--line);border-radius:16px;padding:20px}
+.p-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px;flex:none}
+.p-head b{display:block;font-size:18px;line-height:1.3}
+.p-head span{font-size:13px;color:var(--sub)}
+.pct{margin-left:auto;font-size:22px;font-weight:900}
+.p .q{border-radius:10px;padding:10px 14px;font-size:15px;margin-bottom:12px}
+.p dl{display:grid;grid-template-columns:76px 1fr;gap:6px 10px;margin:0;font-size:15px}
+.p dt{color:var(--sub);font-weight:500}
+.p dd{margin:0}
+.p.loyal1{border-color:var(--c1)} .loyal1 .av,.loyal1 .q{background:var(--c1-bg)} .loyal1 .pct{color:var(--c1)}
+.p.loyal2{border-color:var(--c2)} .loyal2 .av,.loyal2 .q{background:var(--c2-bg)} .loyal2 .pct{color:var(--c2)}
+.p.loyal3{border-color:var(--c3)} .loyal3 .av,.loyal3 .q{background:var(--c3-bg)} .loyal3 .pct{color:var(--c3)}
+.p.churn{border-color:var(--c4);border-style:dashed} .churn .av,.churn .q{background:var(--c4-bg)} .churn .pct{color:var(--c4)}
+.p h4{font-size:14px;margin:18px 0 8px;color:var(--sub);font-weight:700}
+.day{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid var(--line);font-size:14px}
+.day li{position:relative;padding:3px 0 3px 4px;display:grid;grid-template-columns:48px 1fr;gap:6px}
+.day li::before{content:"";position:absolute;left:-20px;top:11px;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--line)}
+.day li.hit::before{background:var(--pt);border-color:var(--pt)}
+.day li.hit span{font-weight:700}
+.day time{color:var(--sub);font-variant-numeric:tabular-nums}
+.loyal1{--pt:var(--c1)} .loyal2{--pt:var(--c2)} .loyal3{--pt:var(--c3)} .churn{--pt:var(--c4)}
+.prefs{display:flex;flex-wrap:wrap;gap:6px}
+.pf{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--bg)}
+.pf.like::before{content:"♥ ";color:var(--pt)}
+.pf.dislike{color:var(--sub);text-decoration:line-through;text-decoration-color:var(--sub)}
+.legend{font-size:13px;color:var(--sub);margin:16px 0 0}
+.tag-out{font-size:12px;font-weight:700;color:var(--red);background:var(--red-bg);padding:1px 7px;border-radius:5px;margin-left:4px}
+.fields{margin-top:20px;font-size:14px;color:var(--sub)}
+.fields b{color:var(--text)}
+
+/* 평가 */
+.eval{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.bubble{background:var(--c1-bg);border-radius:16px 16px 16px 4px;padding:14px 16px;font-size:15px;margin-bottom:6px}
+.who{font-size:13px;color:var(--sub);margin-bottom:16px}
+.srow{display:grid;grid-template-columns:72px 1fr 28px;gap:10px;align-items:center;margin-bottom:10px;font-size:15px}
+.srow .bar{height:12px;background:var(--bg);border-radius:999px;overflow:hidden}
+.srow .bar i{display:block;height:100%;background:var(--pink);border-radius:999px}
+.srow b{text-align:right}
+.total{display:flex;justify-content:space-between;border-top:2px solid var(--line);padding-top:10px;font-weight:900;font-size:17px}
+.mini-list{margin:0;padding-left:20px;font-size:15px}
+.mini-list li{margin:4px 0}
+.subhead{font-size:15px;font-weight:700;margin:0 0 10px}
+
+/* 설정 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tree{font-family:ui-monospace,Consolas,monospace;font-size:13px;line-height:2;background:var(--bg);border-radius:12px;padding:14px 16px;white-space:pre;overflow-x:auto}
+.tree span{color:var(--sub)}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:8px 12px;font-size:15px;margin:0}
+.kv dt{color:var(--sub)}
+.kv dd{margin:0}
+.chk{font-size:12px;color:var(--c3);font-weight:700}
+
+/* 규칙 */
+.rule-box{border-radius:14px;padding:18px 20px}
+.rule-box.no{background:var(--red-bg)}
+.rule-box.yes{background:var(--green-bg)}
+.rule-box h3{margin:0 0 10px;font-size:16px}
+.rule-box.no h3{color:var(--red)}
+.rule-box.yes h3{color:var(--green)}
+.rule-box ul{margin:0;padding-left:20px;font-size:15px}
+.rule-box li{margin:5px 0}
+.motto{text-align:center;font-weight:900;font-size:18px;margin-top:20px}
+
+@media (max-width:760px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:1fr}
+  .fstep{display:grid;grid-template-columns:44px 1fr;text-align:left;gap:0 12px;align-items:center;padding:14px 16px}
+  .fstep .ic{grid-row:span 2}
+  .fstep b{margin:0}
+  .fstep:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%)}
+  .pgrid,.eval,.two{grid-template-columns:1fr}
+  .block{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <h1>브랜드 고객 페르소나 분석</h1>
+    <p>실제 리뷰로 고객을 나누고, 그 고객의 눈으로 콘텐츠를 평가해요</p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="ic">💄</div><b>뷰티</b><span>화장품 브랜드 전용</span></div>
+    <div class="kpi"><div class="ic">💬</div><b>30+</b><span>최소 리뷰 수</span></div>
+    <div class="kpi"><div class="ic">👥</div><b>3 + 1</b><span>충성 + 이탈 고객</span></div>
+    <div class="kpi"><div class="ic">📦</div><b>80 : 20</b><span>주력 : 보조 제품</span></div>
+  </div>
+
+  <!-- 1 -->
+  <div class="block">
+    <h2 class="block-title"><span class="n">1</span>어떻게 분석하나요</h2>
+    <div class="flow">
+      <div class="fstep"><div class="ic">🏷️</div><b>브랜드 확인</b><span>제품·경쟁사 불러오기</span></div>
+      <div class="fstep"><div class="ic">🔎</div><b>리뷰 수집</b><span>쇼핑몰 + SNS에서 30개 이상</span></div>
+      <div class="fstep"><div class="ic">🧩</div><b>유형 분류</b><span>반복되는 패턴으로 묶기</span></div>
+      <div class="fstep"><div class="ic">🪪</div><b>카드 작성</b><span>리뷰 인용 3개 이상</span></div>
+      <div class="fstep"><div class="ic">📊</div><b>결과 정리</b><span>마크다운 / HTML</span></div>
+    </div>
+    <div class="outputs">
+      <span class="lab">결과물</span>
+      <span class="chip">분석 개요</span>
+      <span class="chip">유형 요약표</span>
+      <span class="chip">페르소나 카드 3~4장</span>
+      <span class="chip">경쟁사 비교</span>
+      <span class="chip">핵심 인사이트 3~5줄</span>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="block">
+    <h2 class="block-title"><span class="n">2</span>페르소나 예시 <span class="example">가상 예시</span></h2>
+    <p class="share-note" style="margin-top:-8px">가상의 브랜드 "샘플뷰티"의 비건 폼 클렌저 기준. 실제로 없는 브랜드이고, 내용은 모두 지어낸 예시예요.</p>
+
+    <div class="share">
+      <div style="width:35%;background:var(--c1)">A 35%</div>
+      <div style="width:30%;background:var(--c2)">B 30%</div>
+      <div style="width:20%;background:var(--c3)">C 20%</div>
+      <div style="width:15%;background:var(--c4)">D 15%</div>
+    </div>
+    <p class="share-note">전체 리뷰 중 각 유형의 비중</p>
+
+    <div class="pgrid">
+      <div class="p loyal1">
+        <div class="p-head"><div class="av">⏱️</div><div><b>A. 서윤</b><span>20대 후반 · 직장인</span></div><div class="pct">35%</div></div>
+        <div class="q">"거품이 금방 나고 한 번에 끝나니까 손이 자꾸 가요."</div>
+        <dl>
+          <dt>유형</dt><dd><b>시간 절약형</b></dd>
+          <dt>고민</dt><dd>복합성, 짧은 세안 시간</dd>
+          <dt>구매 이유</dt><dd>펌프형이라 편함</dd>
+          <dt>통하는 말</dt><dd>"세안 1분 끝"</dd>
+        </dl>
+        <h4>🕒 하루</h4>
+        <ul class="day">
+          <li class="hit"><time>07:30</time><span>기상, 5분 만에 세안·스킨케어</span></li>
+          <li class="hit"><time>08:30</time><span>출근 지하철에서 인스타 릴스</span></li>
+          <li class="hit"><time>12:30</time><span>점심시간에 쇼핑 앱 세일 확인</span></li>
+          <li><time>21:00</time><span>야근 후 귀가</span></li>
+          <li class="hit"><time>23:00</time><span>1분 세안 후 바로 취침</span></li>
+        </ul>
+        <h4>👍 선호</h4>
+        <div class="prefs"><span class="pf like">펌프형</span><span class="pf like">은은한 향</span><span class="pf like">올리브영 세일</span><span class="pf like">15초 릴스</span><span class="pf like">직설적인 말투</span><span class="pf dislike">긴 단계 루틴</span></div>
+      </div>
+      <div class="p loyal2">
+        <div class="p-head"><div class="av">🌿</div><div><b>B. 하은</b><span>30대 초반 · 프리랜서</span></div><div class="pct">30%</div></div>
+        <div class="q">"세안하고 당기거나 따가우면 바로 탈락이에요."</div>
+        <dl>
+          <dt>유형</dt><dd><b>순한 세안 추구형</b></dd>
+          <dt>고민</dt><dd>민감성, 붉어짐</dd>
+          <dt>구매 이유</dt><dd>순한 성분, 비건 인증</dd>
+          <dt>통하는 말</dt><dd>저자극 테스트 결과</dd>
+        </dl>
+        <h4>🕒 하루</h4>
+        <ul class="day">
+          <li class="hit"><time>09:00</time><span>늦은 기상, 미온수로 순한 세안</span></li>
+          <li><time>10:00</time><span>재택 디자인 작업</span></li>
+          <li class="hit"><time>15:00</time><span>쉬는 시간에 성분 분석 유튜브</span></li>
+          <li><time>19:00</time><span>요가 수업</span></li>
+          <li class="hit"><time>22:30</time><span>저녁 세안 후 진정 케어</span></li>
+        </ul>
+        <h4>👍 선호</h4>
+        <div class="prefs"><span class="pf like">무향</span><span class="pf like">약산성</span><span class="pf like">성분 분석 영상</span><span class="pf like">자세한 설명</span><span class="pf like">차분한 말투</span><span class="pf dislike">과장 광고</span></div>
+      </div>
+      <div class="p loyal3">
+        <div class="p-head"><div class="av">☁️</div><div><b>C. 지민</b><span>20대 초반 · 대학생</span></div><div class="pct">20%</div></div>
+        <div class="q">"몽글몽글한 거품이랑 향 때문에 세안이 기다려져요."</div>
+        <dl>
+          <dt>유형</dt><dd><b>감성 사용감형</b></dd>
+          <dt>고민</dt><dd>지성, 가끔 트러블</dd>
+          <dt>구매 이유</dt><dd>텍스처, 향, 패키지</dd>
+          <dt>통하는 말</dt><dd>쓰는 순간이 즐거운 세안</dd>
+        </dl>
+        <h4>🕒 하루</h4>
+        <ul class="day">
+          <li><time>09:00</time><span>오전 수업</span></li>
+          <li class="hit"><time>13:00</time><span>카페에서 인스타·틱톡 구경</span></li>
+          <li><time>18:00</time><span>아르바이트</span></li>
+          <li class="hit"><time>22:00</time><span>샤워하며 거품 세안 즐기기</span></li>
+          <li class="hit"><time>00:30</time><span>침대에서 틱톡, 신상 발견</span></li>
+        </ul>
+        <h4>👍 선호</h4>
+        <div class="prefs"><span class="pf like">달콤한 향</span><span class="pf like">파스텔 패키지</span><span class="pf like">한정판</span><span class="pf like">틱톡·릴스</span><span class="pf like">친근한 말투</span><span class="pf dislike">비싼 가격</span></div>
+      </div>
+      <div class="p churn">
+        <div class="p-head"><div class="av">🚪</div><div><b>D. 수아 <span class="tag-out">이탈</span></b><span>20대 후반 · 영업직</span></div><div class="pct">15%</div></div>
+        <div class="q">"화장이 잘 안 지워져서 다른 클렌저를 또 써야 했어요."</div>
+        <dl>
+          <dt>유형</dt><dd><b>세정력 아쉬움형</b></dd>
+          <dt>고민</dt><dd>진한 메이크업</dd>
+          <dt>떠난 이유</dt><dd>세정력 부족, 용량 대비 가격</dd>
+          <dt>개선점</dt><dd>메이크업 후 사용법 안내, 대용량</dd>
+        </dl>
+        <h4>🕒 하루</h4>
+        <ul class="day">
+          <li class="hit"><time>07:00</time><span>풀메이크업으로 출근 준비</span></li>
+          <li><time>09:00</time><span>외근, 하루 종일 이동</span></li>
+          <li><time>19:30</time><span>고객과 저녁 미팅</span></li>
+          <li class="hit"><time>22:30</time><span>오일 + 폼으로 이중 세안</span></li>
+          <li class="hit"><time>23:00</time><span>세정력 비교 리뷰 검색</span></li>
+        </ul>
+        <h4>👍 선호</h4>
+        <div class="prefs"><span class="pf like">강한 세정력</span><span class="pf like">대용량</span><span class="pf like">가성비</span><span class="pf like">비교 리뷰</span><span class="pf like">수치로 된 효과</span><span class="pf dislike">이중 세안</span></div>
+      </div>
+    </div>
+
+    <p class="legend">🕒 하루: 색이 채워진 점은 브랜드와 만나는 순간(세안, 쇼핑, SNS)이에요. · 👍 선호: ♥는 좋아하는 것, 취소선은 싫어하는 것이에요.<br>실제 분석에서는 리뷰에 나온 시간대를 뼈대로 하고, 나머지 시간은 "추정"으로 표시해요.</p>
+    <p class="fields">실제 카드에는 <b>기본 정보 · 피부 니즈 · 구매 행동 · 가치관 · 24시간 생활 패턴 · 선호 · 근거 리뷰 3개 · 마케팅 시사점</b>이 모두 들어가요.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="block">
+    <h2 class="block-title"><span class="n">3</span>콘텐츠 평가 <small>카드뉴스 · 광고 문구 · 상세페이지</small></h2>
+    <div class="eval">
+      <div>
+        <p class="subhead">① 페르소나의 1인칭 반응</p>
+        <div class="bubble">"시간 줄여준다는 말은 끌리는데, 진짜 1분인지 영상으로 보여주면 더 믿을 것 같아요."</div>
+        <div class="who">— A. 서윤 (가상 예시)</div>
+        <p class="subhead">③ 종합</p>
+        <ul class="mini-list">
+          <li>페르소나별 점수 비교</li>
+          <li>반응이 갈리는 지점</li>
+          <li>먼저 고칠 것 3가지</li>
+        </ul>
+      </div>
+      <div>
+        <p class="subhead">② 점수표 (각 5점 만점)</p>
+        <div class="srow"><span>주목도</span><div class="bar"><i style="width:80%"></i></div><b>4</b></div>
+        <div class="srow"><span>공감도</span><div class="bar"><i style="width:100%"></i></div><b>5</b></div>
+        <div class="srow"><span>신뢰도</span><div class="bar"><i style="width:60%"></i></div><b>3</b></div>
+        <div class="srow"><span>구매 의향</span><div class="bar"><i style="width:80%"></i></div><b>4</b></div>
+        <div class="total"><span>합계</span><span>16 / 20</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="block">
+    <h2 class="block-title"><span class="n">4</span>브랜드 설정 <small>파일만 추가하면 다른 브랜드에도 사용</small></h2>
+    <div class="two">
+<div class="tree">brand-persona-analysis/
+├── SKILL.md            <span>분석 절차</span>
+├── references/
+│   ├── persona-card.md <span>카드 양식</span>
+│   └── content-evaluation.md
+└── brands/
+    ├── _template.md    <span>새 브랜드</span>
+    └── whipped.md      <span>휩드</span></div>
+      <div>
+        <p class="subhead">휩드 (WHIPPED) · 첫 적용 브랜드</p>
+        <dl class="kv">
+          <dt>특징</dt><dd>비건 뷰티·바디케어 <span class="chk">확인 필요</span></dd>
+          <dt>주력 80%</dt><dd>팩 클렌저 <span class="chk">확인 필요</span></dd>
+          <dt>보조 20%</dt><dd>그 밖의 제품 <span class="chk">확인 필요</span></dd>
+          <dt>경쟁사</dt><dd>리뷰에서 자주 나오는 2~3곳</dd>
+          <dt>수집 채널</dt><dd>올리브영, 쿠팡, 자사몰, 인스타그램, 유튜브, 블로그</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="block">
+    <h2 class="block-title"><span class="n">5</span>지키는 규칙</h2>
+    <div class="two">
+      <div class="rule-box no">
+        <h3>✕ 하지 않아요</h3>
+        <ul>
+          <li>리뷰 없이 상상으로 만들기</li>
+          <li>리뷰·개수·비중 지어내기</li>
+          <li>리뷰를 길게 옮겨 적기</li>
+          <li>리뷰 작성자 개인 특정하기</li>
+        </ul>
+      </div>
+      <div class="rule-box yes">
+        <h3>✓ 이렇게 해요</h3>
+        <ul>
+          <li>리뷰 30개 미만이면 멈추고 요청</li>
+          <li>막힌 사이트는 건너뛰고 기록</li>
+          <li>광고·협찬 후기는 비중 낮추기</li>
+          <li>억지로 그룹 나누지 않기</li>
+        </ul>
+      </div>
+    </div>
+    <p class="motto">모든 페르소나는 실제 리뷰에서 나와요.</p>
+  </div>
+
+</div>
+</body>
+</html>

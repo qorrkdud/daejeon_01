@@ -1,0 +1,1477 @@
+<title>리얼베리어 홈쇼핑 전략</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Montserrat:wght@500;700;800&display=swap">
+<style>
+/* Layout: 발표용 슬라이드 덱. 한 화면 = 한 주제, 세로 스크롤 스냅. 리얼베리어 코발트 블루 + 흰 바탕, 장 시작·결론은 파란 슬라이드. 모션은 화면에 들어올 때 한 번 재생(보이는 상태에서 시작) */
+:root{
+  --bg:#ffffff;
+  --surface:#f4f6fb;
+  --fg:#101318;
+  --muted:#5d6372;
+  --line:#e2e5ee;
+  --brand:#0030a7;
+  --brand-bright:#2e3fe0;
+  --brand-soft:#e8ecff;
+  --on-brand:#ffffff;
+  --sand:#d0ac88;
+  --sand-soft:#f6efe7;
+  --bar-other:#c3c8d6;
+  --warn:#c2412d;
+  --font-body:Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --font-label:Montserrat,Pretendard,"Noto Sans KR",sans-serif;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c0e15;--surface:#151925;--fg:#eef0f6;--muted:#a2a8b7;--line:#262b3a;
+  --brand:#8ea4ff;--brand-bright:#2a3bd0;--brand-soft:#1a2246;--on-brand:#ffffff;--sand:#d9b896;--sand-soft:#2a241d;--bar-other:#4a5064;--warn:#ff8a72;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0e15;--surface:#151925;--fg:#eef0f6;--muted:#a2a8b7;--line:#262b3a;
+  --brand:#8ea4ff;--brand-bright:#2a3bd0;--brand-soft:#1a2246;--on-brand:#ffffff;--sand:#d9b896;--sand-soft:#2a241d;--bar-other:#4a5064;--warn:#ff8a72;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0}
+ul{margin:0;padding-left:18px}
+img{display:block;max-width:100%}
+
+/* ---------- top bar ---------- */
+.bar-top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-top .in{display:flex;align-items:center;gap:14px;height:52px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wordmark{font-family:var(--font-label);font-weight:800;font-size:18px;color:var(--brand);letter-spacing:-.01em;text-decoration:none}
+.now{flex:1;min-width:0;font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.count{font-family:var(--font-label);font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
+.count b{color:var(--brand)}
+.navbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;cursor:pointer;font-size:15px}
+.navbtn:hover{border-color:var(--brand);color:var(--brand)}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;transform-origin:left;transform:scaleX(var(--p,0));background:var(--brand-bright);transition:transform .4s var(--ease)}
+
+/* ---------- slides ---------- */
+.slide{min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;position:relative;padding-block:84px 56px;border-bottom:1px solid var(--line);overflow:hidden}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.slide.blue{background:var(--brand-bright);color:var(--on-brand);border-bottom-color:transparent}
+.slide.mist{background:var(--surface)}
+.sn{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:18px;font-family:var(--font-label);font-weight:700;font-size:12px;color:var(--muted);letter-spacing:.1em}
+.blue .sn{color:rgba(255,255,255,.7)}
+.kick{font-family:var(--font-label);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:10px}
+.blue .kick{color:var(--sand)}
+.h2{font-size:clamp(26px,4vw,46px);font-weight:900;letter-spacing:-.03em}
+.lead{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:62ch;margin-top:12px}
+.blue .lead{color:rgba(255,255,255,.88)}
+.head{margin-bottom:clamp(20px,3.5vh,36px)}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+.blue .note{color:rgba(255,255,255,.75)}
+.note a{color:var(--brand)}
+.blue .note a{color:#fff}
+.finding{font-size:16.5px;font-weight:700}
+
+/* ---------- motion ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes ring{0%{transform:scale(.55);opacity:0}25%{opacity:.55}100%{transform:scale(1.35);opacity:0}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes moveup{from{transform:translateY(219px)}to{transform:none}}
+@keyframes slideup{from{transform:translateY(100%)}to{transform:none}}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+.play [data-a]{animation:rise .75s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms)}
+.play [data-pop]{animation:pop .55s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms + 200ms)}
+.play .grow{transform-box:fill-box;transform-origin:left center;animation:growx 1s var(--ease) both;animation-delay:calc(var(--i,0) * 110ms + 250ms)}
+.play .fade{animation:fadein .8s ease both;animation-delay:var(--d,.8s)}
+.play .kb{animation:kenburns 2.4s var(--ease) both}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ---------- cover ---------- */
+.cover .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+@media (max-width:820px){.cover .wrap{grid-template-columns:1fr}}
+.cover h1{font-size:clamp(36px,6.4vw,76px);font-weight:900;letter-spacing:-.04em;line-height:1.1}
+.cover h1 em{font-style:normal;color:var(--sand)}
+.cover .sub{font-size:clamp(15px,1.6vw,19px);opacity:.9;margin-top:18px;max-width:46ch}
+.facts{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:30px;font-size:14px}
+.facts b{font-family:var(--font-label);font-size:30px;display:block;line-height:1.1}
+.rings{position:absolute;right:-12vw;top:50%;width:70vw;max-width:900px;aspect-ratio:1;translate:0 -50%;pointer-events:none}
+.rings i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.35);animation:ring 6s linear infinite}
+.rings i:nth-child(2){animation-delay:-2s}
+.rings i:nth-child(3){animation-delay:-4s}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px}
+.mosaic img:nth-child(2){margin-top:34px}
+.mosaic img:nth-child(3){margin-top:-34px}
+
+/* ---------- contents ---------- */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 28px;counter-reset:c}
+@media (max-width:820px){.toc{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.toc{grid-template-columns:1fr}}
+.toc a{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:baseline;text-decoration:none;padding:14px 0;border-top:1px solid var(--line)}
+.toc a:hover b{color:var(--brand)}
+.toc span{font-family:var(--font-label);font-weight:800;font-size:20px;color:var(--brand)}
+.toc b{font-size:17px;display:block}
+.toc small{font-size:13px;color:var(--muted)}
+
+/* ---------- glance ---------- */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}
+.flow .step{border-radius:8px;padding:26px;display:grid;gap:10px;align-content:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25)}
+.flow .step.goal{background:#fff;color:var(--brand)}
+.flow .step .kick{margin:0}
+.flow .step.goal .kick{color:var(--brand)}
+.flow .big{font-size:clamp(20px,2.4vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.3}
+.flow .step p{font-size:15px;opacity:.9}
+.flow .step.goal p{color:#2a2f3c}
+.flow .arrow{align-self:center;font-family:var(--font-label);font-weight:800;font-size:26px;color:var(--sand)}
+@media (max-width:820px){.flow{grid-template-columns:1fr}.flow .arrow{justify-self:center;transform:rotate(90deg)}}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{background:var(--surface);font-weight:700;font-size:13px;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.matrix{min-width:660px}
+.matrix td:not(:first-child),.matrix th:not(:first-child){text-align:center}
+.matrix td:first-child{font-weight:700;white-space:nowrap}
+.matrix .us td{background:var(--brand-soft);color:var(--brand)}
+.d{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:-3px}
+.d.full{background:var(--brand)}
+.d.half{background:linear-gradient(90deg,var(--brand) 50%,transparent 50%);border:2px solid var(--brand)}
+.d.none{border:2px solid var(--bar-other)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px}
+.legend .d{width:12px;height:12px}
+
+/* ---------- store feature slides ---------- */
+.feature{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+@media (max-width:860px){.feature{grid-template-columns:1fr}}
+.feature .photo{position:relative;border-radius:10px;overflow:hidden;background:var(--surface)}
+.feature .photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.feature .photo img.poster{object-fit:contain}
+.feature .photo .cap{position:absolute;left:12px;bottom:12px;font-size:12.5px;font-weight:700;background:rgba(16,19,24,.75);color:#fff;padding:4px 10px;border-radius:999px;max-width:calc(100% - 24px)}
+.storeno{font-family:var(--font-label);font-weight:800;font-size:13px;letter-spacing:.14em;color:var(--brand)}
+.feature h2{font-size:clamp(28px,3.6vw,42px);font-weight:900;letter-spacing:-.03em;margin-top:6px}
+.feature h2 small{font-family:var(--font-label);font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em;margin-left:8px}
+.hook{font-size:clamp(19px,2.2vw,26px);font-weight:900;color:var(--brand);margin:16px 0 14px;line-height:1.35;letter-spacing:-.02em}
+.feature ul{display:grid;gap:6px;font-size:15.5px}
+.apply{margin-top:18px;padding:14px 16px;border-radius:8px;background:var(--brand-soft);font-size:15px}
+.apply b{color:var(--brand)}
+.field{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.field span{font-size:12px;font-weight:700;color:var(--muted);margin-right:4px}
+.field img{width:58px;height:58px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.src{font-size:12px;color:var(--muted);margin-top:10px}
+.src a{color:var(--brand)}
+
+/* whipped experience */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:820px){.shots{grid-template-columns:repeat(2,1fr)}}
+.shots figure{margin:0;display:grid;gap:8px;align-content:start}
+.shots img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px}
+.shots figcaption{font-size:14px;line-height:1.45}
+.shots figcaption b{display:block;color:var(--brand);font-size:12px;font-family:var(--font-label);letter-spacing:.08em}
+
+/* trends */
+.trends{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.trends{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.trends{grid-template-columns:1fr}}
+.trend{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:6px;align-content:start}
+.trend .stat{font-family:var(--font-label);font-size:clamp(26px,3vw,36px);font-weight:800;color:var(--brand);line-height:1.1;letter-spacing:-.02em}
+.trend h3{font-size:18px}
+.trend p{font-size:14px;color:var(--muted)}
+
+/* proof */
+.proof3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:820px){.proof3{grid-template-columns:1fr}}
+.pv{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.pv img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.pv .in{padding:16px 18px;display:grid;gap:10px;align-content:start}
+.pv h3{font-size:18px}
+.eg{display:flex;flex-wrap:wrap;gap:6px}
+.eg span{font-size:12.5px;padding:3px 10px;border-radius:999px;background:var(--surface)}
+.pv .use{font-size:14px;border-top:1px dashed var(--line);padding-top:10px}
+.pv .use b{color:var(--brand)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:22px;display:grid;gap:6px;align-content:start}
+.stat b{font-family:var(--font-label);font-size:clamp(34px,4.4vw,54px);line-height:1;letter-spacing:-.03em}
+.stat span{font-size:15px;font-weight:700}
+.stat small{font-size:12.5px;opacity:.8;line-height:1.45}
+
+/* TV mockup */
+.tvwrap{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.tvwrap{grid-template-columns:1fr}}
+.tv{background:#0b0d14;border-radius:12px;padding:10px}
+.screen{position:relative;aspect-ratio:16/9;background:#f3f4f8;border-radius:5px;overflow:hidden;color:#111318}
+.screen .ba{position:absolute;left:3%;top:6%;width:58%;height:62%;display:grid;grid-template-columns:1fr 1fr;gap:2%}
+.screen .ba div{border-radius:4px;overflow:hidden}
+.screen .ba img{width:100%;height:100%;object-fit:cover}
+.screen .side{position:absolute;right:3%;top:6%;width:33%;display:grid;gap:6px}
+.screen .badge{background:#2e3fe0;color:#fff;border-radius:4px;padding:6px 8px;font-weight:900;font-size:clamp(9px,1.4vw,15px);line-height:1.25}
+.screen .badge small{display:block;font-weight:500;font-size:clamp(7px,.95vw,10px);opacity:.85}
+.screen .rev{background:#fff;border-radius:4px;padding:6px 8px;font-size:clamp(7px,1vw,11px);line-height:1.35;border:1px solid #e3e6ee}
+.screen .rev b{color:#2e3fe0}
+.screen .tag{position:absolute;left:3%;top:70%;font-size:clamp(6px,.9vw,10px);line-height:1.5;color:#4a5064;margin:0}
+.screen .lower{position:absolute;left:0;right:0;bottom:0;background:#0030a7;color:#fff;padding:1.4% 3%;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.play .screen .lower{animation:slideup .7s var(--ease) both;animation-delay:.5s}
+.screen .lower strong{font-size:clamp(10px,2vw,20px);font-weight:900;letter-spacing:-.02em}
+.screen .lower strong span{font-size:clamp(7px,1vw,10px);opacity:.85;display:block;font-weight:400;letter-spacing:0}
+.screen .lower .offer-tag{font-family:var(--font-label);font-weight:700;font-size:clamp(10px,1.7vw,18px);background:#d0ac88;color:#111318;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.tvnote{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.tvnote a{color:var(--brand)}
+.rules h3{font-size:18px;margin-bottom:10px}
+.rules ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:14.5px}
+.rules li b{display:block}
+
+/* charts */
+.charts2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:900px){.charts2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0;background:var(--bg)}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:440px;height:auto}
+.chart text{font-family:var(--font-body);fill:var(--fg)}
+.chart .m{fill:var(--muted)}
+.chart .grid{stroke:var(--line);stroke-width:1;fill:none}
+.chart .bar-us{fill:var(--brand)}
+.chart .bar-other{fill:var(--bar-other)}
+.chart .val-us{fill:var(--brand);font-weight:700}
+.chart .b{fill:var(--brand);font-weight:700}
+.chart .goalzone{fill:var(--brand-soft)}
+.chart .dot{fill:var(--bar-other);stroke:var(--bg);stroke-width:2}
+.chart .dot-us{fill:var(--brand);stroke:var(--bg);stroke-width:2}
+.chart .dot-now{fill:var(--bg);stroke:var(--brand);stroke-width:2.5}
+.chart .arrow{stroke:var(--brand);stroke-width:2;stroke-dasharray:5 4;fill:none}
+.chart .ah{fill:var(--brand)}
+.play .mover{animation:moveup 1.6s var(--ease) both;animation-delay:.6s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chips strong{font-size:14px;margin-right:4px}
+.chip{font-size:13.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.chip.us{background:var(--brand-bright);color:#fff;border-color:var(--brand-bright);font-weight:700}
+
+/* lineup */
+.lineup{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+@media (max-width:900px){.lineup{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.lineup{grid-template-columns:repeat(2,1fr)}}
+.prod{display:grid;gap:6px;align-content:start;text-align:center}
+.prod img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.prod b{font-size:14.5px;line-height:1.35}
+.prod span{font-size:12.5px;color:var(--muted)}
+.role{justify-self:center;font-style:normal;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand)}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+@media (max-width:700px){.sw{grid-template-columns:1fr}}
+.sw > div{border-radius:10px;padding:20px 22px;display:grid;gap:8px;align-content:start}
+.sw .plus{background:var(--brand-soft)}
+.sw .minus{background:var(--sand-soft)}
+.sw h3{font-size:17px}
+.sw ul{display:grid;gap:5px;font-size:15px}
+
+/* home shopping */
+.hs-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media (max-width:900px){.hs-stats{grid-template-columns:repeat(2,1fr)}}
+.hs-stat{border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:4px;align-content:start;background:var(--bg)}
+.hs-stat b{font-family:var(--font-label);font-size:clamp(26px,2.8vw,34px);line-height:1.05;letter-spacing:-.02em}
+.hs-stat b.dn{color:var(--warn)}
+.hs-stat b.up{color:var(--brand)}
+.hs-stat span{font-size:14px;font-weight:700}
+.hs-stat small{font-size:12px;color:var(--muted);line-height:1.4}
+.split{display:grid;gap:14px;margin-top:28px;max-width:760px}
+.split .row{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}
+.split .yr{font-family:var(--font-label);font-weight:800;font-size:15px}
+.split .bars{display:flex;height:40px;border-radius:6px;overflow:hidden;font-size:13px;font-weight:700}
+.split .bars i{font-style:normal;display:flex;align-items:center;padding:0 12px;white-space:nowrap}
+.split .tvp{background:var(--brand-bright);color:#fff}
+.split .etc{background:var(--bar-other);color:var(--fg)}
+.moves{min-width:560px}
+.moves td:first-child{font-weight:700;white-space:nowrap}
+.impl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media (max-width:820px){.impl{grid-template-columns:1fr}}
+.impl article{border-radius:10px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.impl .fact{background:var(--surface);padding:14px 16px;font-size:14px}
+.impl .fact b,.impl .so b{display:block;font-size:12px;margin-bottom:2px}
+.impl .fact b{color:var(--muted)}
+.impl .so{padding:14px 16px;font-size:14.5px}
+.impl .so b{color:var(--brand)}
+.impl .so strong{display:block;font-size:17px;margin-bottom:4px}
+
+/* personas */
+.personas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.personas{grid-template-columns:1fr}}
+.persona{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr;background:var(--bg)}
+.persona header{background:var(--surface);padding:20px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center}
+.persona.primary header{background:var(--brand-bright);color:#fff}
+.persona.primary header .kick{color:var(--sand)}
+.persona header .kick{margin:0 0 2px}
+.avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-label);font-weight:800;font-size:21px;background:var(--bg);color:var(--brand)}
+.persona h3{font-size:19px;font-weight:900}
+.persona .who{font-size:13px;opacity:.85}
+.persona .quote{padding:16px 20px 0;font-size:16px;font-weight:700;color:var(--brand)}
+.persona dl{margin:0;padding:12px 20px 20px;display:grid;gap:10px}
+.persona dl div{display:grid;grid-template-columns:74px 1fr;gap:10px}
+.persona dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.persona dd{margin:0;font-size:14.5px}
+
+/* strategy + offers */
+.strat{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media (max-width:900px){.strat{grid-template-columns:1fr 1fr}}
+.st{border-top:4px solid var(--brand);padding-top:14px;display:grid;gap:6px;align-content:start}
+.st .no{font-family:var(--font-label);font-weight:800;color:var(--brand);font-size:13px;letter-spacing:.1em}
+.st h3{font-size:18px}
+.st p{font-size:14px;color:var(--muted)}
+.blue .st{border-top-color:var(--sand)}
+.blue .st h3{color:#fff}
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.offers{grid-template-columns:1fr}}
+.offer{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;background:var(--bg)}
+.offer.main{border:2px solid var(--brand)}
+.offer .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.offer h3{font-size:18px}
+.offer .for{font-size:12.5px;font-weight:700;color:var(--brand)}
+.offer .imgs{display:flex;gap:6px}
+.offer .imgs img{width:33%;max-width:110px;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--line)}
+.offer ul{display:grid;gap:3px;font-size:15px}
+.offer .why{font-size:12.5px;color:var(--muted)}
+
+/* price */
+.price-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}
+@media (max-width:900px){.price-grid{grid-template-columns:1fr}}
+.price-tbl{min-width:520px}
+.price-tbl td.num,.price-tbl th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price-tbl .rec td{background:var(--brand-soft);font-weight:700}
+.bignum{font-family:var(--font-label);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-.04em;color:var(--brand);line-height:1}
+
+/* timing & channel */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.opts{grid-template-columns:1fr}}
+.opt{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--bg)}
+.opt.rec{border:2px solid var(--brand);background:var(--brand-soft)}
+.opt .k{font-size:12px;font-weight:700;color:var(--muted)}
+.opt.rec .k{color:var(--brand)}
+.opt h3{font-size:17px}
+.opt ul{font-size:14.5px;display:grid;gap:3px}
+.opt .pm{font-size:13px;color:var(--muted)}
+.tl{display:flex;margin-top:30px;overflow-x:auto;padding-top:8px}
+.tl div{flex:1;min-width:150px;border-top:3px solid var(--bar-other);padding:12px 12px 0 0;position:relative}
+.tl div::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--bar-other)}
+.tl div.now{border-top-color:var(--brand)}
+.tl div.now::before,.tl div.next::before{border-color:var(--brand)}
+.tl div.next{border-top:3px dashed var(--brand)}
+.tl b{display:block;font-family:var(--font-label);font-size:13px;color:var(--brand)}
+.tl span{font-size:14px}
+.chs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.chs{grid-template-columns:1fr}}
+.ch{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.ch header{padding:16px 18px;background:var(--surface);display:grid;gap:2px}
+.ch.main header{background:var(--brand-bright);color:#fff}
+.ch header small{font-size:12px;font-weight:700;opacity:.8}
+.ch header b{font-size:18px}
+.ch dl{margin:0;padding:16px 18px;display:grid;gap:10px}
+.ch dl div{display:grid;grid-template-columns:58px 1fr;gap:8px}
+.ch dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.ch dd{margin:0;font-size:14.5px}
+
+/* explain */
+.insight-q{font-size:clamp(26px,4.2vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.3}
+.insight-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+@media (max-width:760px){.insight-list{grid-template-columns:1fr}}
+.insight-list li{border-top:2px solid rgba(255,255,255,.4);padding-top:12px;font-size:16px}
+.insight-list b{display:block;font-family:var(--font-label);color:var(--sand);font-size:14px;margin-bottom:4px}
+.loop-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:30px;align-items:center}
+@media (max-width:860px){.loop-wrap{grid-template-columns:1fr}}
+.loop svg{display:block;width:100%;max-width:540px;height:auto;margin:0 auto}
+.loop text{font-family:var(--font-body);fill:var(--fg)}
+.loop .ring0{fill:none;stroke:var(--line);stroke-width:2}
+.loop .arc{fill:none;stroke:var(--brand);stroke-width:3}
+.loop .node{fill:var(--brand-bright)}
+.loop .nt{fill:#fff;font-weight:700;font-family:var(--font-label)}
+.loop .orbit{transform-box:view-box;transform-origin:300px 190px;animation:orbit 9s linear infinite}
+.loop .orbit circle{fill:var(--sand)}
+.steps4{display:grid;gap:14px}
+.steps4 div{display:grid;grid-template-columns:38px 1fr;gap:14px;align-items:start}
+.steps4 > div > span{width:38px;height:38px;border-radius:50%;background:var(--brand-bright);color:#fff;font-family:var(--font-label);font-weight:800;display:grid;place-items:center}
+.steps4 b{display:block;font-size:17px}
+.steps4 p{font-size:14.5px;color:var(--muted)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+.how div{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center;background:var(--bg)}
+.how img{width:84px;height:84px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--line)}
+.how .n{font-family:var(--font-label);font-size:12px;font-weight:800;color:var(--brand)}
+.how b{display:block;font-size:17px;margin:2px 0}
+.how p{font-size:14px;color:var(--muted)}
+.fixed{margin-top:30px;border:2px dashed var(--brand);border-radius:12px;padding:18px 20px;display:grid;gap:12px}
+.fixed .pills{display:flex;flex-wrap:wrap;gap:8px}
+.fixed .pills span{background:var(--brand);color:#fff;font-weight:700;font-size:15px;padding:8px 14px;border-radius:6px}
+.fixed .pills span.p{background:var(--sand);color:#111318}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:860px){.two-col{grid-template-columns:1fr}}
+.words td:first-child{color:var(--muted);white-space:nowrap}
+.words td:last-child{font-weight:700}
+.faq{display:grid;gap:10px}
+.faq div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.faq b{display:block;font-size:15.5px;margin-bottom:4px}
+.faq b::before{content:"Q. ";color:var(--brand);font-family:var(--font-label)}
+.faq p{font-size:14px}
+.faq p::before{content:"A. ";font-weight:700;color:var(--brand);font-family:var(--font-label)}
+.faq small{display:block;margin-top:6px;font-size:12px;color:var(--muted)}
+
+/* rundown */
+.runbar{display:flex;border-radius:10px;overflow:hidden;min-width:680px}
+.seg{padding:14px 12px;display:grid;gap:3px;align-content:start;border-right:2px solid var(--bg);background:var(--surface);transform-origin:left center}
+.play .seg{animation:growx .5s var(--ease) both;animation-delay:calc(var(--i,0) * 140ms + 200ms)}
+.seg:last-child{border-right:0}
+.seg.key{background:var(--brand-bright);color:#fff}
+.seg .t{font-family:var(--font-label);font-size:12px;font-weight:700;opacity:.8}
+.seg b{font-size:16px}
+.seg span{font-size:13px;opacity:.9;line-height:1.4}
+.seg .p{font-size:11.5px;font-weight:700;margin-top:4px}
+.kpi{min-width:560px}
+
+/* conclusion */
+.concl{display:grid;gap:4px;margin-top:6px}
+.concl div{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:baseline;border-top:1px solid rgba(255,255,255,.28);padding:16px 0}
+.concl dt{font-family:var(--font-label);font-weight:800;font-size:14px;letter-spacing:.12em;color:var(--sand)}
+.concl dd{margin:0;font-size:clamp(18px,2.4vw,26px);font-weight:700;line-height:1.4}
+@media (max-width:560px){.concl div{grid-template-columns:1fr;gap:4px}}
+.closing{margin-top:24px;font-size:17px;opacity:.92;max-width:62ch}
+
+/* seongsu summary */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:22px}
+@media (max-width:760px){.strip{grid-template-columns:repeat(3,1fr)}}
+.strip figure{margin:0;display:grid;gap:6px}
+.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--bg)}
+.strip figcaption{font-size:13px;font-weight:700;text-align:center}
+.take4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.take4{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.take4{grid-template-columns:1fr}}
+.take4 article{background:var(--bg);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:10px;padding:18px;display:grid;gap:8px;align-content:start}
+.take4 .from{font-size:13.5px;color:var(--muted)}
+.take4 h3{font-size:clamp(19px,2vw,23px);font-weight:900}
+.take4 .to{font-size:15.5px;font-weight:700;color:var(--brand)}
+
+/* journey */
+@keyframes draw{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+.journey-line{width:100%;height:auto;display:block;margin-bottom:-6px}
+.journey-line path{fill:none;stroke:var(--brand-bright);stroke-width:4;stroke-linecap:round;stroke-dasharray:1200;vector-effect:non-scaling-stroke}
+.play .journey-line path{animation:draw 1.8s var(--ease) both;animation-delay:.3s}
+.journey-line circle{fill:var(--bg);stroke:var(--brand-bright);stroke-width:3}
+.journey-line text{font-family:var(--font-body);font-size:12px;fill:var(--muted)}
+.stages{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:900px){.stages{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.stages{grid-template-columns:1fr}}
+.stage{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start;background:var(--bg)}
+.stage.dip{border-color:var(--sand);background:var(--sand-soft)}
+.stage.win{border:2px solid var(--brand)}
+.stage .t{font-family:var(--font-label);font-size:12px;font-weight:800;color:var(--brand);letter-spacing:.08em}
+.stage h3{font-size:18px}
+.stage .mind{font-size:14.5px;font-weight:700}
+.stage .mind::before{content:"속마음 ";font-size:11.5px;color:var(--muted);font-weight:700}
+.stage .how2{font-size:13.5px;color:var(--muted)}
+.objections{min-width:620px}
+.objections td:nth-child(1){white-space:nowrap;font-weight:700}
+.objections td:nth-child(2){font-weight:700}
+.objections td:nth-child(3){color:var(--brand)}
+
+/* simulation */
+.sim{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:start}
+@media (max-width:900px){.sim{grid-template-columns:1fr}}
+.calc{border-radius:14px;padding:22px;background:var(--brand-bright);color:#fff;display:grid;gap:16px}
+.calc label{font-size:14px;font-weight:700;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.calc label output{font-family:var(--font-label);font-size:22px}
+.calc input[type=range]{width:100%;accent-color:var(--sand)}
+.calc .outs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.calc .outs div{background:rgba(255,255,255,.12);border-radius:10px;padding:12px;display:grid;gap:2px}
+.calc .outs b{font-family:var(--font-label);font-size:clamp(22px,2.6vw,30px);line-height:1.1}
+.calc .outs span{font-size:12.5px;opacity:.85}
+.calc small{font-size:12px;opacity:.8;line-height:1.45}
+.sim-tbl{min-width:480px}
+.sim-tbl td.num,.sim-tbl th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sim-tbl .rec td{background:var(--brand-soft);font-weight:700}
+
+/* script */
+.script{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.cue{display:grid;grid-template-columns:96px 1fr 1.4fr;gap:0;border-bottom:1px solid var(--line)}
+.cue:last-child{border-bottom:0}
+.cue > *{padding:16px 18px}
+.cue .tc{font-family:var(--font-label);font-weight:800;color:var(--brand);font-size:15px;background:var(--surface)}
+.cue .scr{font-size:13.5px;color:var(--muted);border-right:1px dashed var(--line)}
+.cue .scr b{display:block;font-size:11.5px;letter-spacing:.06em;color:var(--fg);margin-bottom:2px}
+.cue .say{font-size:clamp(15px,1.5vw,18px);font-weight:700;line-height:1.5}
+@media (max-width:760px){.cue{grid-template-columns:1fr}.cue .scr{border-right:0}}
+
+/* popup idea */
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+@media (max-width:900px){.zones{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.zones{grid-template-columns:1fr}}
+.zone{border-radius:14px;padding:20px;display:grid;gap:8px;align-content:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);position:relative}
+.zone .zn{font-family:var(--font-label);font-weight:800;font-size:28px;color:var(--sand);line-height:1}
+.zone h3{font-size:19px;color:#fff}
+.zone p{font-size:14px;opacity:.9}
+.zone .from{font-size:12px;opacity:.75;border-top:1px dashed rgba(255,255,255,.3);padding-top:8px}
+.zone:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;translate:0 -50%;font-family:var(--font-label);font-weight:800;color:var(--sand);font-size:18px;z-index:1}
+@media (max-width:900px){.zone::after{display:none}}
+.popkpi{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.popkpi span{font-size:13.5px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14)}
+
+.sources{font-size:13px;color:var(--muted);display:grid;gap:6px}
+
+/* ---------- readability pass: bigger, darker, roomier ---------- */
+:root{--muted:#4b5161}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--muted:#b7bccb}}
+:root[data-theme="dark"]{--muted:#b7bccb}
+body{font-size:17px;line-height:1.65}
+.lead{font-size:clamp(16px,1.7vw,20px)}
+.feature ul{font-size:17px;gap:8px}
+.apply{font-size:16px}
+.trend p,.st p,.how p,.steps4 p{font-size:15.5px}
+.trend h3,.st h3{font-size:19px}
+.persona dd,.ch dd,.opt ul,.offer ul,.sw ul,.impl .so,.stage .how2{font-size:15.5px}
+.persona dt,.ch dt{font-size:13px}
+table{font-size:16px}
+th{font-size:13.5px}
+.pv .use,.impl .fact{font-size:15px}
+.eg span{font-size:13.5px}
+.note,.src,.tvnote{font-size:13px}
+.hs-stat small,.stat small{font-size:13px}
+.faq2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){.faq2{grid-template-columns:1fr}}
+.faq2 > div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:grid;gap:10px;align-content:start}
+.faq2 .q{font-size:clamp(18px,1.9vw,22px);font-weight:900;letter-spacing:-.02em}
+.faq2 .q::before{content:"Q. ";color:var(--brand);font-family:var(--font-label)}
+.faq2 .a{font-size:16.5px;line-height:1.65}
+.faq2 .a strong{color:var(--brand);font-weight:900}
+.faq2 small{font-size:12.5px;color:var(--muted)}
+.words-big{max-width:860px}
+.words-big td{font-size:17px;padding:16px 18px}
+.words-big td:last-child{font-size:18px}
+.sources a{color:var(--brand)}
+</style>
+
+<header class="bar-top">
+  <div class="in">
+    <a class="wordmark" href="#s1">Realbarrier</a>
+    <span class="now" id="nowTitle">리얼베리어 홈쇼핑 전략</span>
+    <span class="count" aria-live="polite"><b id="cur">01</b> / <span id="tot">30</span></span>
+    <button class="navbtn" id="prev" type="button" aria-label="이전 슬라이드">↑</button>
+    <button class="navbtn" id="next" type="button" aria-label="다음 슬라이드">↓</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="deck">
+
+<!-- 1 COVER -->
+<section class="slide blue cover" id="s1" data-title="표지">
+  <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div>
+      <span class="kick" data-a>Seongsu Beauty Tour · 2026.11</span>
+      <h1 data-a style="--i:1">성수에서 배우고,<br><em>홈쇼핑에서</em><br>증명한다</h1>
+      <p class="sub" data-a style="--i:2">성수동 뷰티 매장 5곳에서 찾은 '팔리는 장치'로 만든 리얼베리어 홈쇼핑 판매 전략</p>
+      <div class="facts" data-a style="--i:3">
+        <div><b data-count>5</b>방문 매장</div>
+        <div><b data-count>45</b>현장 사진</div>
+        <div><b data-count>8+</b>'장벽' 경쟁 제품</div>
+        <div><b data-count>3</b>타깃 페르소나</div>
+      </div>
+    </div>
+    <div class="mosaic" aria-hidden="true">
+      <img src="img/off-rbfy-popup.jpg" alt="" data-a style="--i:2">
+      <img src="img/off-musinsa-beauty.jpg" alt="" data-a style="--i:3">
+      <img src="img/off-whipped-popup.jpg" alt="" data-a style="--i:4">
+      <img src="img/off-ongredients-popup.jpg" alt="" data-a style="--i:5">
+    </div>
+  </div>
+  <span class="sn">01</span>
+</section>
+
+<!-- 2 CONTENTS -->
+<section class="slide" id="s2" data-title="목차">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Contents</span><h2 class="h2" data-a style="--i:1">이 보고서의 흐름</h2></div>
+    <nav class="toc" aria-label="목차">
+      <a href="#s3" data-a style="--i:2"><span>01</span><div><b>한눈에 보기</b><small>관찰 → 인사이트 → 제안</small></div></a>
+      <a href="#s5" data-a style="--i:3"><span>02</span><div><b>매장별 핵심</b><small>5개 매장 + 휩드 체험</small></div></a>
+      <a href="#s11" data-a style="--i:4"><span>03</span><div><b>트렌드와 신뢰 장치</b><small>비포/애프터, 1등, 추천</small></div></a>
+      <a href="#s15" data-a style="--i:5"><span>04</span><div><b>시장과 브랜드</b><small>가격·포지션·라인업</small></div></a>
+      <a href="#s18" data-a style="--i:6"><span>05</span><div><b>홈쇼핑 시장 분석</b><small>숫자로 본 홈쇼핑</small></div></a>
+      <a href="#s20" data-a style="--i:7"><span>06</span><div><b>페르소나와 구매 여정</b><small>누구에게, 어떻게 설득할까</small></div></a>
+      <a href="#s21" data-a style="--i:8"><span>07</span><div><b>전략·구성·가격·성과</b><small>무엇을 얼마에, 얼마나</small></div></a>
+      <a href="#s24" data-a style="--i:9"><span>08</span><div><b>타이밍·채널·설명</b><small>언제, 어디서, 어떻게</small></div></a>
+      <a href="#sScript" data-a style="--i:10"><span>09</span><div><b>대본·방송 흐름·결론</b><small>오프닝 30초부터 성수 팝업까지</small></div></a>
+    </nav>
+  </div>
+  <span class="sn">02</span>
+</section>
+
+<!-- 3 GLANCE FLOW -->
+<section class="slide blue" id="s3" data-title="한눈에 보기">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>At a Glance</span><h2 class="h2" data-a style="--i:1">한눈에 보기</h2></div>
+    <div class="flow">
+      <div class="step" data-a style="--i:2"><span class="kick">관찰</span><p class="big">'장벽'은 이제 흔한 말</p><p>장벽을 내세운 제품만 8곳 이상. 단어만으로는 차별화가 안 됩니다.</p></div>
+      <span class="arrow" aria-hidden="true" data-a style="--i:3">→</span>
+      <div class="step" data-a style="--i:4"><span class="kick">인사이트</span><p class="big">써보게 하고, 숫자로 증명</p><p>잘 팔리는 매장은 체험, 시험 수치, 사람 이야기를 함께 보여줍니다.</p></div>
+      <span class="arrow" aria-hidden="true" data-a style="--i:5">→</span>
+      <div class="step goal" data-a style="--i:6"><span class="kick">제안</span><p class="big">"20년 연구한 장벽은 다르다"</p><p>화면 시연 + 대용량 본품 + 고민별 7일 체험 키트로 판매합니다.</p></div>
+    </div>
+  </div>
+  <span class="sn">03</span>
+</section>
+
+<!-- 4 MATRIX -->
+<section class="slide" id="s4" data-title="매장별 판매 장치 비교">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Store Matrix</span><h2 class="h2" data-a style="--i:1">다섯 가지 장치를 모두 갖춘 곳은 온그리디언츠뿐</h2></div>
+    <div class="tbl" data-a style="--i:2">
+      <table class="matrix">
+        <thead><tr><th>매장</th><th>체험·테스터</th><th>시험 수치</th><th>사람·스토리</th><th>세트·키트</th><th>한정 혜택</th></tr></thead>
+        <tbody>
+          <tr><td>리바이포유</td><td><i class="d full" data-pop style="--i:1"></i></td><td><i class="d half" data-pop style="--i:2"></i></td><td><i class="d full" data-pop style="--i:3"></i></td><td><i class="d full" data-pop style="--i:4"></i></td><td><i class="d half" data-pop style="--i:5"></i></td></tr>
+          <tr><td>휩드</td><td><i class="d full" data-pop style="--i:3"></i></td><td><i class="d none" data-pop style="--i:4"></i></td><td><i class="d none" data-pop style="--i:5"></i></td><td><i class="d full" data-pop style="--i:6"></i></td><td><i class="d half" data-pop style="--i:7"></i></td></tr>
+          <tr><td>온그리디언츠</td><td><i class="d full" data-pop style="--i:5"></i></td><td><i class="d full" data-pop style="--i:6"></i></td><td><i class="d full" data-pop style="--i:7"></i></td><td><i class="d full" data-pop style="--i:8"></i></td><td><i class="d full" data-pop style="--i:9"></i></td></tr>
+          <tr><td>무신사뷰티</td><td><i class="d full" data-pop style="--i:7"></i></td><td><i class="d full" data-pop style="--i:8"></i></td><td><i class="d half" data-pop style="--i:9"></i></td><td><i class="d full" data-pop style="--i:10"></i></td><td><i class="d full" data-pop style="--i:11"></i></td></tr>
+          <tr><td>약국형 매장</td><td><i class="d half" data-pop style="--i:9"></i></td><td><i class="d full" data-pop style="--i:10"></i></td><td><i class="d full" data-pop style="--i:11"></i></td><td><i class="d full" data-pop style="--i:12"></i></td><td><i class="d full" data-pop style="--i:13"></i></td></tr>
+          <tr class="us"><td>리얼베리어 홈쇼핑 (제안)</td><td><i class="d full" data-pop style="--i:14"></i></td><td><i class="d full" data-pop style="--i:15"></i></td><td><i class="d full" data-pop style="--i:16"></i></td><td><i class="d full" data-pop style="--i:17"></i></td><td><i class="d full" data-pop style="--i:18"></i></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend"><span><i class="d full"></i>뚜렷하게 사용</span><span><i class="d half"></i>일부 사용</span><span><i class="d none"></i>보지 못함</span></div>
+  </div>
+  <span class="sn">04</span>
+</section>
+
+<!-- 5 RBFY -->
+<section class="slide" id="s5" data-title="매장 1 · 리바이포유">
+  <div class="wrap feature">
+    <div class="photo" data-a><img class="poster kb" src="img/off-rbfy-popup.jpg" alt="리바이포유 10주년 성수 팝업 공식 포스터" style="background:#dfe9f7"><span class="cap">10주년 팝업 · LECT성수 · 10.28–11.12</span></div>
+    <div>
+      <span class="storeno" data-a style="--i:1">STORE 01</span>
+      <h2 data-a style="--i:2">리바이포유<small>Rbfy.</small></h2>
+      <p class="hook" data-a style="--i:3">"고객 1만 명과 270일 동안 함께 만든 클렌저"</p>
+      <ul data-a style="--i:4"><li>손글씨 후기 보드, 출시 당일 완판·리뷰 1만 개</li><li>'내 아이를 위한 비누'로 시작한 대표 이야기</li><li>4단계 세트 40% 할인</li></ul>
+      <p class="apply" data-a style="--i:5"><b>→ 적용</b> 고객 후기와 '온 가족 장벽 크림' 메시지</p>
+      <div class="field" data-a style="--i:6"><span>현장 사진</span><img src="img/rbfy-reviews.jpg" alt="고객 후기 보드" loading="lazy"><img src="img/rbfy-lotion.jpg" alt="컨트롤 장벽 로션 진열" loading="lazy"></div>
+      <p class="src">대표 사진: 리바이포유 공식 포스터 (팝가 게재)</p>
+    </div>
+  </div>
+  <span class="sn">05</span>
+</section>
+
+<!-- 6 WHIPPED -->
+<section class="slide mist" id="s6" data-title="매장 2 · 휩드">
+  <div class="wrap feature">
+    <div class="photo" data-a><img class="poster kb" src="img/off-whipped-popup.jpg" alt="휩드 성수 피치스파 팝업 포스터" style="background:#f6e8e0"><span class="cap">휩드 하우스 · 성수이로20길 16</span></div>
+    <div>
+      <span class="storeno" data-a style="--i:1">STORE 02</span>
+      <h2 data-a style="--i:2">휩드<small>WHIPPED</small></h2>
+      <p class="hook" data-a style="--i:3">"작게 여러 개 써보게 한다"</p>
+      <ul data-a style="--i:4"><li>4종 미니 디스커버리 키트 (25,700원 → 23,100원)</li><li>미니 튜브 테스터를 키링으로 걸어 굿즈처럼 진열</li><li>클렌저를 직접 휘핑해 만드는 클래스 (다음 장)</li></ul>
+      <p class="apply" data-a style="--i:5"><b>→ 적용</b> 고민별 미니 체험 키트로 다음 라인 구매 유도</p>
+      <div class="field" data-a style="--i:6"><span>현장·공식몰 사진</span><img src="img/whipped-kit.jpg" alt="디스커버리 키트" loading="lazy"><img src="img/whipped-keyring.jpg" alt="키링 테스터" loading="lazy"><img src="img/whipped-official.jpg" alt="공식몰 팩클렌저 3종" loading="lazy"></div>
+      <p class="src">대표 사진: 2026년 5~6월 '피치스파' 팝업 공식 포스터 (팝가 게재)</p>
+    </div>
+  </div>
+  <span class="sn">06</span>
+</section>
+
+<!-- 7 WHIPPED EXPERIENCE -->
+<section class="slide mist" id="s7" data-title="휩드 하우스 체험">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Whipped House</span><h2 class="h2" data-a style="--i:1">휩드는 '만드는 과정'을 체험으로 팔았다</h2></div>
+    <div class="shots">
+      <figure data-a style="--i:2"><img src="img/wh-house.jpg" alt="휩드 하우스 매장 진열" loading="lazy"><figcaption><b>SPACE</b>디저트 가게처럼 꾸민 매장. 크림 케이크와 과일 소품으로 '휘핑' 콘셉트를 보여줌</figcaption></figure>
+      <figure data-a style="--i:3"><img src="img/wh-skin-scan.jpg" alt="휩드 하우스의 피부 측정 기기" loading="lazy"><figcaption><b>SKIN CHECK</b>매장에 놓인 피부 측정 기기로 내 피부 상태 확인</figcaption></figure>
+      <figure data-a style="--i:4"><img src="img/wh-recipe.jpg" alt="휩드 클래스 레시피 카드" loading="lazy"><figcaption><b>CLASS</b>레시피 카드 6단계: 팩클렌저 80g을 볼에 담고 300번 이상 휘핑해 짤주머니에 담기</figcaption></figure>
+      <figure data-a style="--i:5"><img src="img/wh-result.jpg" alt="직접 만든 휘핑 팩클렌저" loading="lazy"><figcaption><b>TAKE HOME</b>직접 만든 클렌저를 가져가고, 스크래치 경품과 매장 30% 할인까지</figcaption></figure>
+    </div>
+    <p class="apply" data-a style="--i:6"><b>→ 리얼베리어 적용</b> 쇼호스트가 시청자와 함께 따라 하는 '장벽 크림 바르는 3단계'와 피부 측정 전후 비교로 같은 효과를 냅니다.</p>
+    <p class="src">사진·체험 내용: <a href="https://thesoulofseoul.net/whip-it-up-in-seongsu-make-your-own-skincare-at-whipped-house/" target="_blank" rel="noopener">The Soul of Seoul, 휩드 하우스 클래스 후기 (2025)</a> · 피치스파 팝업 후기: <a href="https://popga.co.kr/popup/6900/review/4939" target="_blank" rel="noopener">팝가</a> (체험존마다 선물, 퇴장 전 럭키드로우)</p>
+  </div>
+  <span class="sn">07</span>
+</section>
+
+<!-- 8 ONGREDIENTS -->
+<section class="slide" id="s8" data-title="매장 3 · 온그리디언츠">
+  <div class="wrap feature">
+    <div class="photo" data-a><img class="kb" src="img/off-ongredients-popup.jpg" alt="온그리디언츠 성수 팝업 스킨 베리어 라인 진열"><span class="cap">스킨 베리어 라인 진열</span></div>
+    <div>
+      <span class="storeno" data-a style="--i:1">STORE 03</span>
+      <h2 data-a style="--i:2">온그리디언츠<small>ongredients</small></h2>
+      <p class="hook" data-a style="--i:3">"유명인 + 임상 수치 + 장벽"</p>
+      <ul data-a style="--i:4"><li>스킨 베리어 로션·미스트가 대표 라인 (직접 경쟁)</li><li>물광 +172.67% 등 수치와 시험기관 함께 표기</li><li>에스쿱스 픽 기프트 45%, 1+1 굿즈</li></ul>
+      <p class="apply" data-a style="--i:5"><b>→ 적용</b> 수치는 시험기관·대상 인원까지 함께</p>
+      <div class="field" data-a style="--i:6"><span>현장 사진</span><img src="img/ongredients-device.jpg" alt="디바이스와 임상 수치" loading="lazy"><img src="img/ongredients-scoups.jpg" alt="에스쿱스 픽 기프트" loading="lazy"></div>
+      <p class="src">대표 사진: 2026년 2월 성수 팝업 (팝가 매거진 취재)</p>
+    </div>
+  </div>
+  <span class="sn">08</span>
+</section>
+
+<!-- 9 MUSINSA -->
+<section class="slide mist" id="s9" data-title="매장 4 · 무신사뷰티">
+  <div class="wrap feature">
+    <div class="photo" data-a><img class="kb" src="img/off-musinsa-beauty.jpg" alt="무신사 메가스토어 성수 뷰티 매장"><span class="cap">무신사 메가스토어 성수 뷰티</span></div>
+    <div>
+      <span class="storeno" data-a style="--i:1">STORE 04</span>
+      <h2 data-a style="--i:2">무신사뷰티<small>MUSINSA BEAUTY</small></h2>
+      <p class="hook" data-a style="--i:3">"모든 매대에 테스터, 모든 제품에 숫자"</p>
+      <ul data-a style="--i:4"><li>잡티 −46.1%, 붉은기 −80.7%, 피부 온도 −5.8℃</li><li>PDRN·엑소좀·레티날 등 성분이 곧 제품명</li><li>'1위', 단독기획, 원데이 키트, 7일 프로그램</li></ul>
+      <p class="apply" data-a style="--i:5"><b>→ 적용</b> 기간을 정한 사용법(7일)과 수치 시연</p>
+      <div class="field" data-a style="--i:6"><span>현장 사진</span><img src="img/musinsa-shelf.jpg" alt="테스터와 1위 표시 매대" loading="lazy"></div>
+      <p class="src">대표 사진: 무신사 제공 (바이라인네트워크 게재)</p>
+    </div>
+  </div>
+  <span class="sn">09</span>
+</section>
+
+<!-- 10 PHARMACY -->
+<section class="slide" id="s10" data-title="매장 5 · 약국형 매장">
+  <div class="wrap feature">
+    <div class="photo" data-a><img class="kb" src="img/off-pharmacy-doremi.jpg" alt="성수 뷰티약국 TAX FREE 안내판"><span class="cap">성수 뷰티약국 · 외국인 대상 TAX FREE</span></div>
+    <div>
+      <span class="storeno" data-a style="--i:1">STORE 05</span>
+      <h2 data-a style="--i:2">약국형 매장<small>PHARMACY</small></h2>
+      <p class="hook" data-a style="--i:3">"약사가 골랐다, 1968년부터"</p>
+      <ul data-a style="--i:4"><li>옵티팜 약사 큐레이션·약국 한정 루틴 세트</li><li>마데카크림 'Since 1968' 역사 강조</li><li>BEFORE/AFTER와 개선 수치 진열</li></ul>
+      <p class="apply" data-a style="--i:5"><b>→ 적용</b> 연구원·전문가 출연으로 신뢰 확보</p>
+      <div class="field" data-a style="--i:6"><span>현장 사진</span><img src="img/pharmacy-optipharm.jpg" alt="약국한정 루틴 세트" loading="lazy"><img src="img/pharmacy-melaxin.jpg" alt="비포 애프터 진열" loading="lazy"></div>
+      <p class="src">대표 사진: 성수역 도레미약국 (한경비즈니스, 최수진 기자). 방문한 약국과 다를 수 있음</p>
+    </div>
+  </div>
+  <span class="sn">10</span>
+</section>
+
+<!-- 11 TRENDS -->
+<section class="slide mist" id="s11" data-title="공통 트렌드 6가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Trend Keywords</span><h2 class="h2" data-a style="--i:1">5개 매장의 공통 트렌드 6가지</h2></div>
+    <div class="trends">
+      <div class="trend" data-a style="--i:2"><span class="stat">TESTER</span><h3>써봐야 산다</h3><p>테스터·미니 키트·디바이스 체험이 기본</p></div>
+      <div class="trend" data-a style="--i:3"><span class="stat">−80.7%</span><h3>숫자가 곧 카피</h3><p>효과를 시험 수치로, 가장 크게 표기</p></div>
+      <div class="trend" data-a style="--i:4"><span class="stat">4 STEP</span><h3>루틴과 세트</h3><p>3~4단계 세트를 큰 할인율로 묶음</p></div>
+      <div class="trend" data-a style="--i:5"><span class="stat">1만 명</span><h3>사람이 보이는 브랜드</h3><p>대표·고객·유명인·약사가 직접 보증</p></div>
+      <div class="trend" data-a style="--i:6"><span class="stat">8+</span><h3>장벽 카테고리 포화</h3><p>장벽은 이제 기본 효능</p></div>
+      <div class="trend" data-a style="--i:7"><span class="stat">ONLY</span><h3>그곳에서만 받는 혜택</h3><p>성수점 단독·약국 한정·1+1 굿즈</p></div>
+    </div>
+  </div>
+  <span class="sn">11</span>
+</section>
+
+<!-- 12 PROOF DEVICES -->
+<section class="slide" id="s12" data-title="구매를 부르는 신뢰 장치">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Proof Devices</span><h2 class="h2" data-a style="--i:1">구매를 부르는 신뢰 장치 3가지</h2><p class="lead" data-a style="--i:2">약국형 매장과 무신사뷰티에서 가장 자주 본 장치입니다. 셋 다 홈쇼핑 화면으로 그대로 옮길 수 있습니다.</p></div>
+    <div class="proof3">
+      <article class="pv" data-a style="--i:3"><img src="img/pharmacy-melaxin.jpg" alt="Dr.Melaxin 비포 애프터 진열" loading="lazy"><div class="in"><h3>① 비포/애프터</h3><div class="eg"><span>Dr.Melaxin 모공 −160%</span><span>온그리디언츠 물광 +172.67%</span><span>리바이포유 피부결 +33.81%</span></div><p class="use"><b>→ 방송</b> 화면 왼쪽에 BEFORE / AFTER를 크게, 아래에 시험 조건</p></div></article>
+      <article class="pv" data-a style="--i:4"><img src="img/musinsa-shelf.jpg" alt="무신사뷰티 1위 표시 매대" loading="lazy"><div class="in"><h3>② '1등'·랭킹</h3><div class="eg"><span>무신사 뷰티 1위</span><span>화해 어워드 1등</span><span>글로우픽 수상</span><span>Korea's No.1 Derma Cream</span></div><p class="use"><b>→ 방송</b> '누적 250만 개' 배지를 화면 오른쪽 위에 고정</p></div></article>
+      <article class="pv" data-a style="--i:5"><img src="img/ongredients-device.jpg" alt="한가인이 선택한 디바이스 진열" loading="lazy"><div class="in"><h3>③ 인플루언서·전문가 추천</h3><div class="eg"><span>한가인이 선택한</span><span>에스쿱스 Pick</span><span>메이크업 아티스트 민킴 PICK</span><span>약사 큐레이션</span></div><p class="use"><b>→ 방송</b> 연구원 + 피부과 전문가 + 실제 고객 후기 순서로</p></div></article>
+    </div>
+  </div>
+  <span class="sn">12</span>
+</section>
+
+<!-- 13 REAL BARRIER EVIDENCE -->
+<section class="slide blue" id="s13" data-title="리얼베리어가 가진 근거">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Our Evidence</span><h2 class="h2" data-a style="--i:1">리얼베리어가 이미 가진 근거</h2><p class="lead" data-a style="--i:2">화면에 바로 쓸 수 있는 숫자들입니다.</p></div>
+    <div class="stats">
+      <div class="stat" data-a style="--i:3"><b data-count>52%</b><span>피부장벽 개선</span><small>자외선 손상 피부, 바르고 6시간 수면 후 · 코어덤 피부과학연구소 · 22명 · 2025.5</small></div>
+      <div class="stat" data-a style="--i:4"><b data-count>47%</b><span>붉어진 피부 개선</span><small>같은 시험 조건</small></div>
+      <div class="stat" data-a style="--i:5"><b data-count>100시간</b><span>보습 지속</span><small>스킨메드임상시험센터 · 20명 · 2024.7–8</small></div>
+      <div class="stat" data-a style="--i:6"><b data-count>250만 개</b><span>익스트림 크림 오리지널 누적 판매</span><small>2025년 7월 보도 기준</small></div>
+      <div class="stat" data-a style="--i:7"><b data-count>2.5배</b><span>흡수 (MLE® 미적용 자사 크림 대비)</span><small>독자 피부장벽 기술 MLE®</small></div>
+      <div class="stat" data-a style="--i:8"><b data-count>3종</b><span>저자극 테스트 완료</span><small>하이포알러제닉 · 민감성 피부 · 논코메도제닉</small></div>
+    </div>
+    <p class="note">출처: <a href="https://www.cosinkorea.com/mobile/article.html?no=55750" target="_blank" rel="noopener">코스인코리아 2025.7.24</a> · <a href="https://www.newswire.co.kr/newsRead.php?no=1015434" target="_blank" rel="noopener">뉴스와이어 보도자료</a> (네오팜 발표). 방송 전 시험 보고서 원본 확인 필요.</p>
+  </div>
+  <span class="sn">13</span>
+</section>
+
+<!-- 14 TV MOCKUP -->
+<section class="slide mist" id="s14" data-title="방송 화면 예시">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>On-Air Screen</span><h2 class="h2" data-a style="--i:1">방송 화면은 이렇게</h2></div>
+    <div class="tvwrap">
+      <div data-a style="--i:2">
+        <div class="tv" role="img" aria-label="홈쇼핑 방송 화면 구성 예시">
+          <div class="screen">
+            <div class="ba">
+              <div><img src="img/ba-ai-before.png" alt="비포 연출 이미지 (AI 생성)"></div>
+              <div><img src="img/ba-ai-after.png" alt="애프터 6시간 연출 이미지 (AI 생성)"></div>
+            </div>
+            <p class="tag">*자외선 손상 피부, 도포 후 6시간 수면 · 코어덤 피부과학연구소 · 22명 · 2025.5 · 개인차 있음<br>*사진은 AI 생성 연출 이미지이며 실제 시험 사진이 아닙니다</p>
+            <div class="side">
+              <div class="badge" data-pop style="--i:4">누적 250만 개<small>익스트림 크림 오리지널</small></div>
+              <div class="badge" data-pop style="--i:6;background:#111318">피부장벽 회복 기능성<small>저자극 테스트 3종 완료</small></div>
+              <div class="rev" data-pop style="--i:8"><b>★ 실제 구매 후기</b><br>"자고 일어나도 당기지 않아요"<br><span style="color:#5f6472">후기 원문 자리 · 동의 받은 후기만</span></div>
+            </div>
+            <div class="lower"><strong>피부장벽 52% 개선*<span>20년 장벽 연구 · 리얼베리어 익스트림 크림</span></strong><span class="offer-tag">방송 한정 구성</span></div>
+          </div>
+        </div>
+        <p class="tvnote">화면 구성 예시(목업)입니다. 비포/애프터는 화면 배치를 보여주기 위한 AI 생성 연출 이미지로, 실제 방송에서는 쓸 수 없습니다. 방송에는 네오팜의 인체적용시험 원본 사진으로 바꿔야 합니다. 후기 문구는 자리 표시용 예시입니다.</p>
+      </div>
+      <div class="rules" data-a style="--i:3">
+        <h3>쓸 때 지켜야 할 4가지</h3>
+        <ol>
+          <li><b>비포/애프터는 시험 사진만</b>인체적용시험 원본 사진을 보정 없이 쓰고, 시험 조건(대상·기간·기관)을 함께 표기</li>
+          <li><b>고객 후기 사진은 동의 후</b>얼굴이 나오는 후기는 사용 동의를 받고, 개인 효과임을 함께 안내</li>
+          <li><b>'1등'에는 출처와 시점</b>어느 채널, 어느 기간의 1등인지 화면에 함께 표기</li>
+          <li><b>추천인은 대가 여부 표기</b>협찬 여부를 밝히고, '치료' 같은 의약품 오인 표현은 쓰지 않기</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <span class="sn">14</span>
+</section>
+
+<!-- 15 DISCOUNT CHART -->
+<section class="slide" id="s15" data-title="가격 비교">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Market Map</span><h2 class="h2" data-a style="--i:1">현장 세트 할인 최대 45%</h2><p class="lead" data-a style="--i:2">리얼베리어 공식 몰 세트(17~39%)보다 커 보이는 홈쇼핑 구성이 필요합니다.</p></div>
+    <div class="card" data-a style="--i:3">
+      <div class="legend" style="margin-top:0"><span><i style="background:var(--brand)"></i>리얼베리어 공식 몰</span><span><i style="background:var(--bar-other)"></i>성수 현장 가격표</span></div>
+      <div class="chart" role="img" aria-label="세트 할인율 비교 막대 차트">
+        <svg viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg">
+          <g font-size="11">
+            <line class="grid" x1="210" y1="22" x2="210" y2="322"/><text class="m" x="210" y="14" text-anchor="middle">0%</text>
+            <line class="grid" x1="290" y1="22" x2="290" y2="322"/><text class="m" x="290" y="14" text-anchor="middle">10</text>
+            <line class="grid" x1="370" y1="22" x2="370" y2="322"/><text class="m" x="370" y="14" text-anchor="middle">20</text>
+            <line class="grid" x1="450" y1="22" x2="450" y2="322"/><text class="m" x="450" y="14" text-anchor="middle">30</text>
+            <line class="grid" x1="530" y1="22" x2="530" y2="322"/><text class="m" x="530" y="14" text-anchor="middle">40</text>
+            <line class="grid" x1="610" y1="22" x2="610" y2="322"/><text class="m" x="610" y="14" text-anchor="middle">50%</text>
+          </g>
+          <g font-size="13">
+            <text x="200" y="45" text-anchor="end">온그리디언츠 기프트</text><rect class="bar-other grow" style="--i:0" x="210" y="31" width="360" height="20" rx="2"/><text x="576" y="46" font-weight="700">45%</text>
+            <text x="200" y="82" text-anchor="end">리바이포유 4종 세트</text><rect class="bar-other grow" style="--i:1" x="210" y="68" width="320" height="20" rx="2"/><text x="536" y="83" font-weight="700">40%</text>
+            <text x="200" y="119" text-anchor="end" class="b">익스트림 크림 ×2</text><rect class="bar-us grow" style="--i:2" x="210" y="105" width="312" height="20" rx="2"/><text class="val-us" x="528" y="120">39%</text>
+            <text x="200" y="156" text-anchor="end">리바이포유 장벽 로션</text><rect class="bar-other grow" style="--i:3" x="210" y="142" width="240" height="20" rx="2"/><text x="456" y="157" font-weight="700">30%</text>
+            <text x="200" y="193" text-anchor="end" class="b">워터리 히알 세럼 ×2</text><rect class="bar-us grow" style="--i:4" x="210" y="179" width="240" height="20" rx="2"/><text class="val-us" x="456" y="194">30%</text>
+            <text x="200" y="230" text-anchor="end">나인위시스 장벽 크림</text><rect class="bar-other grow" style="--i:5" x="210" y="216" width="160" height="20" rx="2"/><text x="376" y="231" font-weight="700">20%</text>
+            <text x="200" y="267" text-anchor="end" class="b">클렌징 폼 ×2</text><rect class="bar-us grow" style="--i:6" x="210" y="253" width="136" height="20" rx="2"/><text class="val-us" x="352" y="268">17%</text>
+            <text x="200" y="304" text-anchor="end">휩드 디스커버리 키트</text><rect class="bar-other grow" style="--i:7" x="210" y="290" width="80" height="20" rx="2"/><text x="296" y="305" font-weight="700">10%</text>
+          </g>
+        </svg>
+      </div>
+      <p class="note" style="margin-top:0">성수 매장은 현장 가격표, 리얼베리어는 2026년 11월 9일 공식 몰 기준.</p>
+    </div>
+  </div>
+  <span class="sn">15</span>
+</section>
+
+<!-- 16 POSITIONING -->
+<section class="slide mist" id="s16" data-title="포지셔닝">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Positioning</span><h2 class="h2" data-a style="--i:1">'연구 근거 + 직접 체험' 자리가 비어 있다</h2><p class="lead" data-a style="--i:2">홈쇼핑 시연으로 리얼베리어가 이 자리를 가져옵니다.</p></div>
+    <div class="charts2">
+      <div class="card" data-a style="--i:3">
+        <div class="chart" role="img" aria-label="근거 방식과 체험 강도 포지셔닝 맵">
+          <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg">
+            <rect class="goalzone" x="276" y="20" width="230" height="150" rx="4"/>
+            <rect class="grid" x="40" y="20" width="466" height="310"/>
+            <line class="grid" x1="273" y1="20" x2="273" y2="330"/>
+            <line class="grid" x1="40" y1="175" x2="506" y2="175"/>
+            <text class="b" x="496" y="38" text-anchor="end" font-size="12">근거 + 체험 (목표)</text>
+            <text class="m" x="50" y="38" font-size="12">이야기 + 체험</text>
+            <text class="m" x="50" y="322" font-size="12">이야기 중심</text>
+            <text class="m" x="496" y="322" font-size="12" text-anchor="end">근거 중심</text>
+            <text class="m" x="273" y="356" text-anchor="middle" font-size="12">← 이야기·고객·유명인 · 근거 방식 · 연구·임상 수치 →</text>
+            <text class="m" x="18" y="175" text-anchor="middle" font-size="12" transform="rotate(-90 18 175)">← 낮음 · 체험 강도 · 높음 →</text>
+            <circle class="dot" cx="100" cy="80" r="8"/><text x="112" y="84" font-size="13" font-weight="700">리바이포유</text>
+            <circle class="dot" cx="130" cy="130" r="8"/><text x="142" y="134" font-size="13" font-weight="700">휩드</text>
+            <circle class="dot" cx="250" cy="62" r="8"/><text x="238" y="66" font-size="13" font-weight="700" text-anchor="end">온그리디언츠</text>
+            <circle class="dot" cx="320" cy="140" r="8"/><text x="332" y="144" font-size="13" font-weight="700">무신사뷰티 매대</text>
+            <circle class="dot" cx="380" cy="240" r="8"/><text x="368" y="244" font-size="13" font-weight="700" text-anchor="end">약국형 매장</text>
+            <circle class="dot-now" cx="460" cy="285" r="9"/><text x="446" y="289" font-size="13" font-weight="700" text-anchor="end" class="b">리얼베리어 현재</text>
+            <g class="fade" style="--d:1.4s"><path class="arrow" d="M460 272 L460 92"/><path class="ah" d="M454 94 L460 81 L466 94 Z"/></g>
+            <g class="mover"><circle class="dot-us" cx="460" cy="66" r="10"/><text class="b" x="446" y="100" font-size="13" text-anchor="end">리얼베리어 홈쇼핑</text></g>
+          </svg>
+        </div>
+        <p class="note" style="margin-top:0">현장 관찰 기반 정성 평가. 리얼베리어 현재 위치는 공식 몰 기준.</p>
+      </div>
+      <div class="chips" data-a style="--i:4" aria-label="장벽 표방 경쟁 제품">
+        <strong>현장에서 본 '장벽' 제품</strong>
+        <span class="chip">리바이포유 컨트롤 장벽 로션</span>
+        <span class="chip">온그리디언츠 스킨 베리어 로션</span>
+        <span class="chip">나인위시스 장벽 보습 크림</span>
+        <span class="chip">나시픽 시카 장벽 크림</span>
+        <span class="chip">포레스트 122 Barrier Cream</span>
+        <span class="chip">프루디아 블루베리어</span>
+        <span class="chip">지성피부용 장벽크림</span>
+        <span class="chip">옵티팜 센서티브 루틴</span>
+        <span class="chip us">리얼베리어 = 피부장벽 전문, 20년 연구</span>
+      </div>
+    </div>
+  </div>
+  <span class="sn">16</span>
+</section>
+
+<!-- 17 LINEUP -->
+<section class="slide" id="s17" data-title="리얼베리어 라인업">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Brand Check</span><h2 class="h2" data-a style="--i:1">라인업마다 홈쇼핑 역할을 나눈다</h2></div>
+    <div class="lineup">
+      <div class="prod" data-a style="--i:2"><img src="img/rb-extreme-cream.jpg" alt="익스트림 크림" loading="lazy"><b>익스트림 크림</b><span>건조·장벽 집중</span><em class="role">메인 본품</em></div>
+      <div class="prod" data-a style="--i:3"><img src="img/rb-essence-toner.jpg" alt="익스트림 에센스 토너" loading="lazy"><b>익스트림 에센스 토너</b><span>건조 루틴 1단계</span><em class="role">메인 구성</em></div>
+      <div class="prod" data-a style="--i:4"><img src="img/rb-cleansing-foam.jpg" alt="세라마이드 클렌징 폼" loading="lazy"><b>세라마이드 클렌징 폼</b><span>장벽 세안</span><em class="role">가족 세트</em></div>
+      <div class="prod" data-a style="--i:5"><img src="img/rb-aqua-soothing.jpg" alt="아쿠아 수딩 크림" loading="lazy"><b>아쿠아 수딩 크림</b><span>열감·쿨링 진정</span><em class="role">시연·키트</em></div>
+      <div class="prod" data-a style="--i:6"><img src="img/rb-cica-relief.jpg" alt="시카릴리프Rx 카밍 크림" loading="lazy"><b>시카릴리프Rx 크림</b><span>트러블 흔적 진정</span><em class="role">체험 키트</em></div>
+      <div class="prod" data-a style="--i:7"><img src="img/rb-control-t.jpg" alt="컨트롤-T 티트리 캡슐 세럼" loading="lazy"><b>컨트롤-T 캡슐 세럼</b><span>지복합성 트러블</span><em class="role">체험 키트</em></div>
+    </div>
+    <div class="sw">
+      <div class="plus" data-a style="--i:8"><h3>쓸 수 있는 강점</h3><ul><li>피부장벽 전문 더모 코스메틱, 20년 넘는 연구(네오팜)</li><li>고민별 6개 라인으로 바로 답할 수 있음</li><li>쿨링·보습은 화면에서 측정해 보여주기 좋음</li></ul></div>
+      <div class="minus" data-a style="--i:9"><h3>풀어야 할 과제</h3><ul><li>'장벽'만으로는 경쟁 제품과 구분이 어려움</li><li>방송용 대표 수치를 정리해야 함</li><li>앰버서더(세븐틴 조슈아)는 있지만, 30대 후반 이상 시청자에게는 연구원·실제 고객 이야기가 더 필요함</li></ul></div>
+    </div>
+    <p class="note">제품 사진: 리얼베리어 공식 몰(myrealbarrier.co.kr), 2026년 11월 9일 기준</p>
+  </div>
+  <span class="sn">17</span>
+</section>
+
+<!-- 18 HOME SHOPPING NUMBERS -->
+<section class="slide mist" id="s18" data-title="홈쇼핑 시장 분석">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Home Shopping Market</span><h2 class="h2" data-a style="--i:1">TV홈쇼핑은 줄지만, 5060은 여전하다</h2><p class="lead" data-a style="--i:2">그래서 TV 방송 한 번의 효율을 높이고, 모바일·숏폼으로 함께 팔아야 합니다.</p></div>
+    <div class="hs-stats">
+      <div class="hs-stat" data-a style="--i:3"><b class="dn" data-count>18.5조</b><span>7개사 전체 거래액</span><small>18조 5,053억 원 · 전년 대비 −5.1%</small></div>
+      <div class="hs-stat" data-a style="--i:4"><b class="dn" data-count>2.62조</b><span>TV 방송매출</span><small>2조 6,181억 원 · 4년 연속 감소, 2012년 이후 최저</small></div>
+      <div class="hs-stat" data-a style="--i:5"><b data-count>46.7%</b><span>전체 매출 중 방송 비중</span><small>2021년 51.5%에서 하락</small></div>
+      <div class="hs-stat" data-a style="--i:6"><b class="dn" data-count>73.2%</b><span>방송매출 대비 송출수수료</span><small>팔아도 상당 부분이 유통 비용</small></div>
+      <div class="hs-stat" data-a style="--i:7"><b class="up" data-count>60%+</b><span>구매 고객 중 50·60대</span><small>재주문율·충성도가 높은 핵심층</small></div>
+    </div>
+    <div class="split" role="img" aria-label="전체 매출 중 방송 매출 비중 2021년 51.5%, 2025년 46.7%">
+      <p class="finding" data-a style="--i:8">이제 매출의 절반 이상이 TV 방송 밖에서 나옵니다</p>
+      <div class="row" data-a style="--i:9"><span class="yr">2021</span><div class="bars"><i class="tvp grow" style="width:51.5%;--i:1">TV 방송 51.5%</i><i class="etc" style="width:48.5%">모바일 등 48.5%</i></div></div>
+      <div class="row" data-a style="--i:10"><span class="yr">2025</span><div class="bars"><i class="tvp grow" style="width:46.7%;--i:2">TV 방송 46.7%</i><i class="etc" style="width:53.3%">모바일 등 53.3%</i></div></div>
+    </div>
+    <p class="note">2025년 기준, 한국TV홈쇼핑협회 'TV홈쇼핑 산업 현황'. 50·60대 비중은 2024년 보고서 기준. '모바일 등'은 전체 매출에서 방송 매출을 뺀 나머지.</p>
+  </div>
+  <span class="sn">18</span>
+</section>
+
+<!-- 19 HOME SHOPPING MOVES -->
+<section class="slide mist" id="s19" data-title="홈쇼핑 업계 동향">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Industry Moves</span><h2 class="h2" data-a style="--i:1">업계 동향과 리얼베리어 시사점</h2></div>
+    <div class="tbl" data-a style="--i:2">
+      <table class="moves">
+        <thead><tr><th>회사</th><th>움직임</th><th>리얼베리어에 주는 힌트</th></tr></thead>
+        <tbody>
+          <tr><td>CJ온스타일</td><td>숏폼 커머스: 상반기 숏폼 경유 주문 상품 300만 개, 모바일 방문자 3명 중 1명이 숏폼으로 유입, 30대 이하 주문 6배</td><td>방송 시연을 숏폼으로 잘라 재활용</td></tr>
+          <tr><td>현대홈쇼핑</td><td>4050 여성 대상 자체 뷰티 편집숍 '코아시스' 4호점, 매출 목표 대비 50% 이상 초과</td><td>4050 여성의 뷰티 수요는 강함</td></tr>
+          <tr><td>NS홈쇼핑</td><td>60세 이상 고객용 '느린말 ARS' 도입</td><td>설명은 천천히, 주문은 쉽게</td></tr>
+          <tr><td>업계 전반</td><td>5060 맞춤 편성, 종이 카탈로그 유지·재발행</td><td>시니어가 이해하기 쉬운 정보 정리</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="impl">
+      <article data-a style="--i:3"><div class="fact"><b>시장</b>방송매출은 줄고, 송출수수료는 방송매출의 73.2%</div><div class="so"><b>그래서 리얼베리어는</b><strong>방송 1회 효율을 최대로</strong>한 번에 많이 사는 6통 대용량 구성(99,900원)으로 객단가를 높입니다.</div></article>
+      <article data-a style="--i:4"><div class="fact"><b>시장</b>매출의 53%가 TV 방송 밖, 숏폼 유입 급증</div><div class="so"><b>그래서 리얼베리어는</b><strong>방송 + 숏폼 + 앱을 함께</strong>측정 시연과 비포/애프터 장면을 숏폼으로 잘라 모바일 주문으로 연결합니다.</div></article>
+      <article data-a style="--i:5"><div class="fact"><b>시장</b>구매 고객 60% 이상이 50·60대, 재주문율 높음</div><div class="so"><b>그래서 리얼베리어는</b><strong>첫 구매를 단골로</strong>쉬운 설명으로 첫 구매를 만들고, 재구매 쿠폰·정기 방송으로 다시 사게 합니다.</div></article>
+    </div>
+    <p class="note">출처: <a href="https://mobile.newsis.com/view/NISX20260710_0003704386" target="_blank" rel="noopener">뉴시스 2026.7.10</a> · <a href="https://www.ddaily.co.kr/page/view/2026041509142671861" target="_blank" rel="noopener">디지털데일리 2026.4.15</a> · <a href="https://mobile.newsis.com/view/NISX20260310_0003542234" target="_blank" rel="noopener">뉴시스 2026.3.11</a> (한국TV홈쇼핑협회 자료 인용). 홈쇼핑 내 뷰티 카테고리 매출 비중은 공개 자료를 찾지 못했습니다.</p>
+  </div>
+  <span class="sn">19</span>
+</section>
+
+<!-- 20 PERSONAS -->
+<section class="slide" id="s20" data-title="페르소나">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Target Persona</span><h2 class="h2" data-a style="--i:1">누구에게 팔까: 페르소나 3명</h2><p class="lead" data-a style="--i:2">현장 메시지와 홈쇼핑 시청층 데이터로 만든 가설입니다. 채널 데이터로 확인이 필요합니다.</p></div>
+    <div class="personas">
+      <article class="persona primary" data-a style="--i:3">
+        <header><span class="avatar">A</span><div><span class="kick">1차 타깃</span><h3>속건조 고민 50대</h3><div class="who">50대 초반 여성 · 채널을 돌리다 멈춰서 구매</div></div></header>
+        <p class="quote">"크림을 발라도 오후면 당겨요."</p>
+        <dl><div><dt>고민</dt><dd>환절기 속건조, 탄력 저하</dd></div><div><dt>결정 요인</dt><dd>쉬운 사용 설명, 눈에 보이는 효과, 넉넉한 구성</dd></div><div><dt>방송 공략</dt><dd>연구원 출연 + 수분 측정 시연 + 익스트림 크림 다구성</dd></div></dl>
+      </article>
+      <article class="persona" data-a style="--i:4">
+        <header><span class="avatar">B</span><div><span class="kick">2차 타깃</span><h3>가족 피부 챙기는 40대</h3><div class="who">40대 초반 여성 · 초등학생 자녀</div></div></header>
+        <p class="quote">"아이랑 같이 쓸 만큼 순했으면."</p>
+        <dl><div><dt>고민</dt><dd>본인 건조함 + 아이의 민감 피부</dd></div><div><dt>결정 요인</dt><dd>저자극, 온 가족 공용, 대용량 가격</dd></div><div><dt>방송 공략</dt><dd>가족 사용 장면 + 클렌징 폼·크림 가족 세트</dd></div></dl>
+      </article>
+      <article class="persona" data-a style="--i:5">
+        <header><span class="avatar">C</span><div><span class="kick">확장 타깃</span><h3>성분 공부하는 20·30대</h3><div class="who">20대 후반 민감 피부 · 성수 방문층</div></div></header>
+        <p class="quote">"작은 걸로 먼저 써볼래요."</p>
+        <dl><div><dt>고민</dt><dd>트러블 뒤 붉은기, 수분 부족</dd></div><div><dt>결정 요인</dt><dd>성분명, 시험 수치, 랭킹, 미니 키트</dd></div><div><dt>방송 공략</dt><dd>모바일 라이브 동시 송출 + 고민별 7일 체험 키트</dd></div></dl>
+      </article>
+    </div>
+  </div>
+  <span class="sn">20</span>
+</section>
+
+<!-- JOURNEY -->
+<section class="slide mist" id="sJourney" data-title="구매 여정">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Customer Journey</span><h2 class="h2" data-a style="--i:1">채널을 멈춘 50대가 구매하기까지</h2><p class="lead" data-a style="--i:2">1차 타깃 '속건조 고민 50대'의 5단계입니다. 관심이 꺾이는 '망설임'을 넘기는 장면이 승부처입니다.</p></div>
+    <svg class="journey-line" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true" data-a style="--i:2">
+      <path d="M100 76 C180 76 220 54 300 50 S420 26 500 24 S620 60 700 58 S820 10 900 8"/>
+    </svg>
+    <div class="stages">
+      <div class="stage" data-a style="--i:3"><span class="t">01 멈춤 · 0~10초</span><h3>"어, 나도 당기는데?"</h3><p class="mind">채널 돌리다 손이 멈춤</p><p class="how2">공감 질문 + 손등에 크림 바르는 클로즈업</p></div>
+      <div class="stage" data-a style="--i:4"><span class="t">02 관심</span><h3>"왜 그렇지?"</h3><p class="mind">이유가 궁금해짐</p><p class="how2">'수분을 막는 보호막 = 장벽' 쉬운 설명, 연구원 출연</p></div>
+      <div class="stage" data-a style="--i:5"><span class="t">03 확인</span><h3>"진짜야?"</h3><p class="mind">증거를 보고 싶음</p><p class="how2">장벽 52% 개선 시험, 측정기 전후 비교, 누적 250만 개</p></div>
+      <div class="stage dip" data-a style="--i:6"><span class="t">04 망설임</span><h3>"비싸지 않나?"</h3><p class="mind">또 실패할까 걱정</p><p class="how2">한 통 16,650원·한 달 7천 원 미만, 100시간 보습 지속</p></div>
+      <div class="stage win" data-a style="--i:7"><span class="t">05 구매</span><h3>"지금 사야겠다"</h3><p class="mind">놓치기 싫음</p><p class="how2">방송 한정 체험 키트, 남은 수량, 쉬운 주문(ARS·앱)</p></div>
+    </div>
+    <p class="note">위 곡선은 단계별 관심도를 개념적으로 그린 것입니다(측정값 아님).</p>
+  </div>
+  <span class="sn">21</span>
+</section>
+
+<section class="slide" id="sObjection" data-title="망설임을 푸는 멘트">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Objection Handling</span><h2 class="h2" data-a style="--i:1">페르소나별 망설임과 푸는 멘트</h2></div>
+    <div class="tbl" data-a style="--i:2">
+      <table class="objections">
+        <thead><tr><th>누구</th><th>망설임</th><th>방송에서 이렇게 답한다</th><th>근거</th></tr></thead>
+        <tbody>
+          <tr><td>속건조 50대</td><td>"비싸지 않나?"</td><td>"한 통에 16,650원, 6통이면 1년 넘게 써서 한 달 7천 원이 안 됩니다."</td><td>가격 시뮬레이션 예시</td></tr>
+          <tr><td>속건조 50대</td><td>"또 효과 없으면?"</td><td>"자외선 손상 피부에서 장벽 52% 개선, 100시간 보습 지속 시험 결과가 있습니다."</td><td>인체적용시험 2건</td></tr>
+          <tr><td>가족 챙기는 40대</td><td>"순한 거 맞아?"</td><td>"자극·민감 피부·모공 테스트 3가지를 모두 마쳤습니다. 처음엔 귀 뒤에 먼저 발라 보세요."</td><td>저자극 테스트 3종</td></tr>
+          <tr><td>가족 챙기는 40대</td><td>"6통이나 필요할까?"</td><td>"가족이 각자 한 통씩 쓰고, 클렌징 폼까지 같이 쓰는 가족 세트도 있습니다."</td><td>가족 세트 구성안</td></tr>
+          <tr><td>성분 따지는 20·30대</td><td>"나한테 맞는 라인은?"</td><td>"7일 체험 키트로 아쿠아 수딩·시카릴리프Rx·컨트롤-T를 먼저 써 보세요."</td><td>7일 체험 키트</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">아이 사용 여부는 공식 사용 연령을 확인한 뒤 안내합니다. 가격은 예시입니다.</p>
+  </div>
+  <span class="sn">22</span>
+</section>
+
+<!-- 21 STRATEGY -->
+<section class="slide blue" id="s21" data-title="판매 전략 5가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Home Shopping Strategy</span><h2 class="h2" data-a style="--i:1">판매 전략 5가지</h2></div>
+    <div class="strat">
+      <div class="st" data-a style="--i:2"><span class="no" style="color:var(--sand)">01 메시지</span><h3>"진짜 장벽은 연구가 다르다"</h3><p style="color:rgba(255,255,255,.85)">방송 초반에 20년 연구를 먼저</p></div>
+      <div class="st" data-a style="--i:3"><span class="no" style="color:var(--sand)">02 증명</span><h3>비포/애프터 + 수치</h3><p style="color:rgba(255,255,255,.85)">장벽 52% 개선 시험 사진, 측정기 전후 비교</p></div>
+      <div class="st" data-a style="--i:4"><span class="no" style="color:var(--sand)">03 구성</span><h3>대용량 + 미니 키트</h3><p style="color:rgba(255,255,255,.85)">본품 다구성에 고민별 7일 키트</p></div>
+      <div class="st" data-a style="--i:5"><span class="no" style="color:var(--sand)">04 출연</span><h3>연구원 + 실제 고객</h3><p style="color:rgba(255,255,255,.85)">장벽 원리 설명, 손글씨 후기</p></div>
+      <div class="st" data-a style="--i:6"><span class="no" style="color:var(--sand)">05 혜택</span><h3>방송에서만</h3><p style="color:rgba(255,255,255,.85)">시간 한정 추가 증정·파우치</p></div>
+    </div>
+  </div>
+  <span class="sn">23</span>
+</section>
+
+<!-- 22 OFFERS -->
+<section class="slide" id="s22" data-title="구성안 3가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Offers</span><h2 class="h2" data-a style="--i:1">구성안 3가지</h2></div>
+    <div class="offers">
+      <article class="offer main" data-a style="--i:2">
+        <div class="top"><h3>메인 구성</h3><span class="for">속건조 고민 50대</span></div>
+        <div class="imgs"><img src="img/rb-extreme-cream.jpg" alt="익스트림 크림" loading="lazy"><img src="img/rb-extreme-cream.jpg" alt="" loading="lazy"><img src="img/rb-essence-toner.jpg" alt="익스트림 에센스 토너" loading="lazy"></div>
+        <ul><li>익스트림 크림 75ml × 6 (또는 × 4)</li><li>+ 익스트림 에센스 토너</li><li>+ 방송 한정 미니 키트</li></ul>
+        <p class="why">한 통 16,650원 예시 · 공식 몰 2통 세트보다 33% 저렴 (다음 장)</p>
+      </article>
+      <article class="offer" data-a style="--i:3">
+        <div class="top"><h3>가족 세트</h3><span class="for">가족 피부 챙기는 40대</span></div>
+        <div class="imgs"><img src="img/rb-cleansing-foam.jpg" alt="세라마이드 클렌징 폼" loading="lazy"><img src="img/rb-extreme-cream.jpg" alt="익스트림 크림" loading="lazy"></div>
+        <ul><li>세라마이드 클렌징 폼 220ml × 2</li><li>+ 익스트림 크림</li><li>'온 가족 장벽 루틴'으로 소개</li></ul>
+        <p class="why">리바이포유의 '온 가족' 메시지에서 착안</p>
+      </article>
+      <article class="offer" data-a style="--i:4">
+        <div class="top"><h3>7일 고민별 체험 키트</h3><span class="for">성분 따지는 20·30대 · 사은품</span></div>
+        <div class="imgs"><img src="img/rb-aqua-soothing.jpg" alt="아쿠아 수딩 크림" loading="lazy"><img src="img/rb-cica-relief.jpg" alt="시카릴리프Rx 크림" loading="lazy"><img src="img/rb-control-t.jpg" alt="컨트롤-T 세럼" loading="lazy"></div>
+        <ul><li>아쿠아 수딩 · 시카릴리프Rx · 컨트롤-T 미니어처</li><li>7일 사용 가이드 카드 동봉</li></ul>
+        <p class="why">휩드 디스커버리 키트, 무신사 7일 프로그램에서 착안</p>
+      </article>
+    </div>
+  </div>
+  <span class="sn">24</span>
+</section>
+
+<!-- 23 PRICE -->
+<section class="slide mist" id="s23" data-title="구성·가격 시뮬레이션">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Price Simulation</span><h2 class="h2" data-a style="--i:1">6통이면 한 통 <span style="color:var(--brand)" data-count>16,650원</span></h2><p class="lead" data-a style="--i:2">홈쇼핑 시청자는 '한 통에 얼마'로 비교합니다. 공식 몰 2통 세트보다 33% 싸 보입니다.</p></div>
+    <div class="price-grid">
+      <div class="card" data-a style="--i:3">
+        <div class="chart" role="img" aria-label="익스트림 크림 75ml 한 통당 가격 비교">
+          <svg viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg">
+            <g font-size="11">
+              <line class="grid" x1="170" y1="18" x2="170" y2="200"/><text class="m" x="170" y="12" text-anchor="middle">0</text>
+              <line class="grid" x1="241" y1="18" x2="241" y2="200"/><text class="m" x="241" y="12" text-anchor="middle">1만</text>
+              <line class="grid" x1="312" y1="18" x2="312" y2="200"/><text class="m" x="312" y="12" text-anchor="middle">2만</text>
+              <line class="grid" x1="383" y1="18" x2="383" y2="200"/><text class="m" x="383" y="12" text-anchor="middle">3만</text>
+              <line class="grid" x1="455" y1="18" x2="455" y2="200"/><text class="m" x="455" y="12" text-anchor="middle">4만원</text>
+            </g>
+            <g font-size="12.5">
+              <text x="162" y="42" text-anchor="end">공식 몰 정가</text><rect class="bar-other grow" style="--i:0" x="170" y="27" width="292" height="22" rx="2"/><text x="466" y="43" font-weight="700">41,000</text>
+              <text x="162" y="87" text-anchor="end">공식 몰 2통 세트</text><rect class="bar-other grow" style="--i:1" x="170" y="72" width="177" height="22" rx="2"/><text x="352" y="88" font-weight="700">24,950</text>
+              <text x="162" y="132" text-anchor="end" class="b">홈쇼핑 4통 안</text><rect class="bar-us grow" style="--i:2" x="170" y="117" width="142" height="22" rx="2"/><text class="val-us" x="317" y="133">19,975</text>
+              <text x="162" y="177" text-anchor="end" class="b">홈쇼핑 6통 안</text><rect class="bar-us grow" style="--i:3" x="170" y="162" width="118" height="22" rx="2"/><text class="val-us" x="293" y="178">16,650</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div data-a style="--i:4">
+        <div class="tbl">
+          <table class="price-tbl">
+            <thead><tr><th>구성</th><th class="num">판매가</th><th class="num">한 통당</th><th class="num">몰 세트 대비</th></tr></thead>
+            <tbody>
+              <tr><td>공식 몰 2통 세트</td><td class="num">49,900원</td><td class="num">24,950원</td><td class="num">기준</td></tr>
+              <tr><td>홈쇼핑 4통 + 토너 + 체험 키트</td><td class="num">79,900원</td><td class="num">19,975원</td><td class="num">−20%</td></tr>
+              <tr class="rec"><td>홈쇼핑 6통 + 토너 + 체험 키트 (추천)</td><td class="num">99,900원</td><td class="num">16,650원</td><td class="num">−33%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">공식 몰 가격은 2026년 11월 9일 기준(75ml×2 세트 정가 82,000원 → 49,900원). 홈쇼핑 판매가는 설명용 예시이며 원가·채널 수수료·사은품 비용을 반영해 확정해야 합니다. 한 통당 가격은 크림만 기준.</p>
+        <p class="note">방송 멘트 예: "한 통에 1만 6천 원대, 6통이면 1년 넘게 쓰는 양". 사용 기간은 하루 2회, 1회 0.5g 가정의 예시 계산입니다.</p>
+      </div>
+    </div>
+  </div>
+  <span class="sn">25</span>
+</section>
+
+<!-- SIMULATION -->
+<section class="slide" id="sSim" data-title="예상 성과 시뮬레이션">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Sales Simulation</span><h2 class="h2" data-a style="--i:1">1억 원을 팔려면 분당 17세트</h2><p class="lead" data-a style="--i:2">6통 세트(99,900원) 기준으로 목표 매출을 맞추려면 얼마나 팔아야 하는지 계산했습니다. 목표 매출을 움직여 보세요.</p></div>
+    <div class="sim">
+      <div class="calc" data-a style="--i:3">
+        <label for="simTarget">방송 1회 목표 매출 <output id="simOut">1억 원</output></label>
+        <input type="range" id="simTarget" min="1000" max="30000" step="500" value="10000" aria-label="방송 1회 목표 매출(만 원)">
+        <div class="outs">
+          <div><b id="simSets">1,002</b><span>필요한 세트 수</span></div>
+          <div><b id="simMin">16.7</b><span>분당 세트 (60분)</span></div>
+          <div><b id="simTubes">6,012</b><span>나가는 크림 (통)</span></div>
+        </div>
+        <small>예시 계산: 모든 주문이 6통 세트(99,900원)라고 가정. 실제로는 4통 구성·모바일 주문·반품률을 반영해야 합니다.</small>
+      </div>
+      <div data-a style="--i:4">
+        <div class="tbl">
+          <table class="sim-tbl">
+            <thead><tr><th>목표 매출 (예시)</th><th class="num">필요 세트</th><th class="num">분당</th><th class="num">크림 통수</th></tr></thead>
+            <tbody>
+              <tr><td>5천만 원</td><td class="num">501</td><td class="num">8.4</td><td class="num">3,006</td></tr>
+              <tr class="rec"><td>1억 원</td><td class="num">1,002</td><td class="num">16.7</td><td class="num">6,012</td></tr>
+              <tr><td>2억 원</td><td class="num">2,003</td><td class="num">33.4</td><td class="num">12,018</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">재고 준비: 목표 1억 원이면 크림 6천 통, 토너와 체험 키트 각 1천 개 이상이 필요합니다. 목표 매출은 채널사와 협의해 정하며, 송출수수료·원가를 빼면 실제 이익은 훨씬 작습니다.</p>
+      </div>
+    </div>
+  </div>
+  <span class="sn">26</span>
+</section>
+
+<!-- 24 TIMING -->
+<section class="slide" id="s24" data-title="방송 타이밍과 신제품">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Timing</span><h2 class="h2" data-a style="--i:1">겨울 건조 시즌, 신제품은 어떻게 다룰까</h2><p class="lead" data-a style="--i:2">11월부터 겨울은 보습 크림 방송의 적기입니다. 9월 말 나온 '익스트림 프로세라'를 어떻게 쓸지가 중요한 결정입니다.</p></div>
+    <div class="opts">
+      <article class="opt" data-a style="--i:3"><span class="k">선택 1</span><h3>오리지널만</h3><ul><li>누적 250만 개, 장벽 52% 시험 결과로 설득</li><li>가격이 검증돼 구성 짜기 쉬움</li></ul><p class="pm">아쉬운 점: 신제품 화제성을 놓침</p></article>
+      <article class="opt rec" data-a style="--i:4"><span class="k">선택 2 · 추천</span><h3>오리지널 메인 + 프로세라 체험</h3><ul><li>판매는 검증된 오리지널 대용량으로</li><li>프로세라 미니를 사은품으로 넣어 신제품 체험</li><li>체험 후 공식 몰·올리브영 재구매로 연결</li></ul><p class="pm">확인할 점: 프로세라 미니 제작 가능 여부</p></article>
+      <article class="opt" data-a style="--i:5"><span class="k">선택 3</span><h3>프로세라 신제품 중심</h3><ul><li>세라마이드 흡수량 5배, 4종 라인 루틴 구성</li><li>'신제품' 화제성</li></ul><p class="pm">아쉬운 점: 올리브영 우선 판매 중이라 채널 조율 필요, 홈쇼핑 가격 근거 부족</p></article>
+    </div>
+    <div class="tl" aria-label="일정" data-a style="--i:6">
+      <div><b>2026.9.29</b><span>익스트림 프로세라 4종 발표</span></div>
+      <div><b>10월</b><span>올리브영 우선 판매·올영라이브</span></div>
+      <div class="now"><b>11월</b><span>성수 투어, 이 보고서</span></div>
+      <div class="next"><b>12월~1월 (제안)</b><span>겨울 건조 시즌 홈쇼핑 방송</span></div>
+    </div>
+    <p class="note">신제품 정보: <a href="https://www.insight.co.kr/amp/news/575787" target="_blank" rel="noopener">인사이트, 2026.9.29 (네오팜 발표)</a>. 프로세라 크림은 식약처 '피부 장벽 회복' 기능성, 브랜드 앰버서더는 세븐틴 조슈아.</p>
+  </div>
+  <span class="sn">27</span>
+</section>
+
+<!-- 25 CHANNEL -->
+<section class="slide mist" id="s25" data-title="채널별 역할">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Channel</span><h2 class="h2" data-a style="--i:1">TV 홈쇼핑이 메인, 나머지 둘은 반복과 확장</h2></div>
+    <div class="chs">
+      <article class="ch main" data-a style="--i:2"><header><small>메인</small><b>TV 홈쇼핑 (생방송)</b></header><dl><div><dt>누구</dt><dd>속건조 50대, 가족 챙기는 40대</dd></div><div><dt>무엇을</dt><dd>6통 대용량 구성, 연구원 출연, 측정 시연</dd></div><div><dt>언제</dt><dd>주부·직장인 시청이 많은 오전·저녁 시간대 (채널사 편성 데이터로 확정)</dd></div></dl></article>
+      <article class="ch" data-a style="--i:3"><header><small>반복 노출</small><b>T커머스 (녹화 방송)</b></header><dl><div><dt>누구</dt><dd>채널을 돌리다 들어오는 30대 후반 이상</dd></div><div><dt>무엇을</dt><dd>15분 반복 설명 영상을 하루 여러 번 송출</dd></div><div><dt>장점</dt><dd>생방송 내용을 재편집해 제작비 절감</dd></div></dl></article>
+      <article class="ch" data-a style="--i:4"><header><small>확장</small><b>모바일 라이브</b></header><dl><div><dt>누구</dt><dd>성분 따지는 20·30대</dd></div><div><dt>무엇을</dt><dd>7일 체험 키트, 성분 Q&amp;A, 프로세라 소개</dd></div><div><dt>장점</dt><dd>채팅으로 바로 질문, 앰버서더 활용 여지</dd></div></dl></article>
+    </div>
+  </div>
+  <span class="sn">28</span>
+</section>
+
+<!-- 26 INSIGHT + LOOP -->
+<section class="slide blue" id="s26" data-title="채널을 돌리다 멈춘 시청자">
+  <div class="wrap">
+    <span class="kick" data-a>Product Explanation</span>
+    <p class="insight-q" data-a style="--i:1">"제품을 알고 사는 게 아니라,<br>사용법과 구성을 보고 산다"</p>
+    <ul class="insight-list">
+      <li data-a style="--i:2"><b>01</b>주 시청층은 30대 후반 이상</li>
+      <li data-a style="--i:3"><b>02</b>대부분 채널을 돌리다 중간에 들어옴</li>
+      <li data-a style="--i:4"><b>03</b>사용 설명과 구성을 보고 그 자리에서 구매 결정</li>
+    </ul>
+  </div>
+  <span class="sn">29</span>
+</section>
+
+<section class="slide" id="s27" data-title="15분 반복 설명">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>15-Minute Loop</span><h2 class="h2" data-a style="--i:1">언제 들어와도 이해되게, 15분마다 처음부터</h2></div>
+    <div class="loop-wrap">
+      <div class="loop" role="img" aria-label="15분마다 반복하는 설명 4단계 순환도" data-a style="--i:2">
+        <svg viewBox="0 0 600 384" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="ah2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" style="fill:var(--brand)"/></marker></defs>
+          <circle class="ring0" cx="300" cy="190" r="130"/>
+          <path class="arc" d="M336 65 A130 130 0 0 1 425 154" marker-end="url(#ah2)"/>
+          <path class="arc" d="M425 226 A130 130 0 0 1 336 315" marker-end="url(#ah2)"/>
+          <path class="arc" d="M264 315 A130 130 0 0 1 175 226" marker-end="url(#ah2)"/>
+          <path class="arc" d="M175 154 A130 130 0 0 1 264 65" marker-end="url(#ah2)"/>
+          <g class="orbit"><circle cx="300" cy="60" r="7"/></g>
+          <text x="300" y="182" text-anchor="middle" font-size="34" font-weight="900" style="fill:var(--brand)">15분</text>
+          <text x="300" y="210" text-anchor="middle" font-size="15" style="fill:var(--muted)">마다 처음부터 반복</text>
+          <circle class="node" cx="300" cy="60" r="30"/><text class="nt" x="300" y="67" text-anchor="middle" font-size="19">1</text>
+          <text x="300" y="20" text-anchor="middle" font-size="17" font-weight="700">무엇인가</text>
+          <circle class="node" cx="430" cy="190" r="30"/><text class="nt" x="430" y="197" text-anchor="middle" font-size="19">2</text>
+          <text x="472" y="196" text-anchor="start" font-size="17" font-weight="700">누구에게</text>
+          <circle class="node" cx="300" cy="320" r="30"/><text class="nt" x="300" y="327" text-anchor="middle" font-size="19">3</text>
+          <text x="300" y="377" text-anchor="middle" font-size="17" font-weight="700">어떻게 쓰나</text>
+          <circle class="node" cx="170" cy="190" r="30"/><text class="nt" x="170" y="197" text-anchor="middle" font-size="19">4</text>
+          <text x="128" y="196" text-anchor="end" font-size="17" font-weight="700">구성·가격</text>
+        </svg>
+      </div>
+      <div class="steps4">
+        <div data-a style="--i:3"><span>1</span><div><b>무엇인가</b><p>"20년 피부장벽 연구로 만든 보습 크림, 누적 250만 개"</p></div></div>
+        <div data-a style="--i:4"><span>2</span><div><b>누구에게</b><p>"크림을 발라도 금방 당기는 분, 온 가족이 같이 쓸 순한 크림 찾는 분"</p></div></div>
+        <div data-a style="--i:5"><span>3</span><div><b>어떻게 쓰나</b><p>바르는 양과 순서를 손등·얼굴에 직접 보여주기 (다음 장)</p></div></div>
+        <div data-a style="--i:6"><span>4</span><div><b>구성·가격</b><p>"6통, 1년 넘게 쓰는 양, 한 통에 16,650원"을 한 문장으로</p></div></div>
+      </div>
+    </div>
+  </div>
+  <span class="sn">30</span>
+</section>
+
+<!-- 28 HOW TO + FIXED + WORDS + FAQ -->
+<section class="slide mist" id="s28" data-title="사용법 3단계">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>How to Use</span><h2 class="h2" data-a style="--i:1">사용법은 3단계로, 화면에서 직접 보여준다</h2></div>
+    <div class="how">
+      <div data-a style="--i:2"><img src="img/rb-essence-toner.jpg" alt="익스트림 에센스 토너" loading="lazy"><div><span class="n">STEP 1</span><b>세안 후 토너</b><p>익스트림 에센스 토너로 피부결 정돈</p></div></div>
+      <div data-a style="--i:3"><img src="img/rb-extreme-cream.jpg" alt="익스트림 크림" loading="lazy"><div><span class="n">STEP 2</span><b>크림 펴 바르기</b><p>얼굴 전체에 펴 바르고 건조한 부위는 한 번 더</p></div></div>
+      <div data-a style="--i:4"><img src="img/rb-press-cream.jpg" alt="익스트림 크림 오리지널" loading="lazy"><div><span class="n">STEP 3</span><b>자기 전 듬뿍</b><p>밤 케어로 한 겹 더. '6시간 수면 후' 시험 결과와 연결</p></div></div>
+    </div>
+    <div class="fixed" data-a style="--i:5">
+      <p class="finding" style="font-size:15px">화면에 항상 띄워 둘 4가지 (언제 들어와도 보이게)</p>
+      <div class="pills"><span>리얼베리어 익스트림 크림</span><span>건조·당김 피부 장벽 보습</span><span>본품 75ml 6통 + 토너 + 7일 체험 키트</span><span class="p">총 99,900원 · 한 통당 16,650원</span></div>
+      <p class="note" style="margin-top:0">예시는 가격 시뮬레이션의 추천안 기준. 사용 순서·양은 방송 전 공식 사용 가이드로 확인합니다.</p>
+    </div>
+  </div>
+  <span class="sn">31</span>
+</section>
+
+<section class="slide" id="s29" data-title="쉬운 말로 바꾸기">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Plain Words</span><h2 class="h2" data-a style="--i:1">어려운 말은 쉬운 말로</h2></div>
+    <div data-a style="--i:2">
+        <div class="tbl words-big">
+          <table class="words">
+            <thead><tr><th>제품 설명 용어</th><th>방송에서 이렇게</th></tr></thead>
+            <tbody>
+              <tr><td>피부장벽</td><td>피부 속 수분이 빠져나가지 않게 막는 보호막</td></tr>
+              <tr><td>MLE® 기술</td><td>피부 구조를 닮게 만들어 잘 스며드는 기술</td></tr>
+              <tr><td>세라마이드</td><td>보호막을 채우는 보습 성분</td></tr>
+              <tr><td>논코메도제닉</td><td>모공을 막지 않는지 시험을 마친 제품</td></tr>
+              <tr><td>피부장벽 회복 기능성</td><td>식약처에 보고한 기능성 화장품</td></tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <span class="sn">32</span>
+</section>
+
+<section class="slide mist" id="sFaq" data-title="시청자 질문 4가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>FAQ</span><h2 class="h2" data-a style="--i:1">시청자가 바로 묻는 질문, 숫자로 답한다</h2></div>
+    <div class="faq2">
+      <div data-a style="--i:2"><p class="q">예민한 피부도 써도 되나요?</p><p class="a">네. <strong>저자극 테스트 3가지</strong>(자극·민감 피부·모공)를 모두 마쳤습니다. 2015년부터 민감 피부 장벽만 연구한 브랜드입니다. 처음엔 귀 뒤나 팔 안쪽에 먼저 발라 보세요.</p><small>근거: 네오팜 발표(코스인코리아 2025.7) · 인사이트 2026.9</small></div>
+      <div data-a style="--i:3"><p class="q">여름에도 쓰나요?</p><p class="a">네. 햇볕에 손상된 피부에 바르고 6시간 자고 나니 <strong>장벽 52%, 붉어짐 47%</strong> 좋아졌습니다. 여름엔 야외 활동 뒤 저녁 진정 크림으로 쓰세요.</p><small>근거: 코어덤 피부과학연구소 · 22명 · 2025.5 · 개인차 있음</small></div>
+      <div data-a style="--i:4"><p class="q">얼마나 촉촉함이 가나요?</p><p class="a">시험에서 <strong>100시간(4일 넘게)</strong> 보습이 이어졌습니다. 바르고 몇 시간 뒤 다시 당기는 분께 특히 맞습니다.</p><small>근거: 스킨메드임상시험센터 · 20명 · 2024.7~8 · 개인차 있음</small></div>
+      <div data-a style="--i:5"><p class="q">한 통으로 얼마나 쓰나요?</p><p class="a">하루 두 번 쓰면 한 통에 <strong>약 2달 반</strong>, 6통이면 <strong>1년 넘게</strong> 씁니다. 한 통 16,650원이라 <strong>한 달 7천 원 미만</strong>입니다.</p><small>예시 계산: 1회 0.5g, 하루 2회, 1ml≈1g 가정 · 공식 사용량으로 확인</small></div>
+    </div>
+  </div>
+  <span class="sn">33</span>
+</section>
+
+<!-- SCRIPT -->
+<section class="slide" id="sScript" data-title="오프닝 30초 대본">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Opening Script</span><h2 class="h2" data-a style="--i:1">쇼호스트 오프닝 30초</h2><p class="lead" data-a style="--i:2">채널을 돌리던 시청자를 30초 안에 붙잡는 대본입니다. 공감 → 원인 → 증거 → 구성·가격 순서입니다.</p></div>
+    <div class="script">
+      <div class="cue" data-a style="--i:3"><span class="tc">0–5초</span><p class="scr"><b>화면</b>손등에 크림 클로즈업 · 하단 자막 '피부장벽 52% 개선*'</p><p class="say">"크림 바르고 오후만 되면 얼굴이 당기세요? 채널, 잠깐만 멈춰 주세요."</p></div>
+      <div class="cue" data-a style="--i:4"><span class="tc">5–15초</span><p class="scr"><b>화면</b>연구소·제품 컷 · 오른쪽 위 배지 '누적 250만 개'</p><p class="say">"보습이 부족해서가 아니라, 수분을 붙잡는 피부 보호막인 '장벽'이 약해서 그렇습니다. 리얼베리어는 이 장벽을 20년 넘게 연구했고, 익스트림 크림은 250만 개 넘게 팔렸습니다."</p></div>
+      <div class="cue" data-a style="--i:5"><span class="tc">15–25초</span><p class="scr"><b>화면</b>측정기 전후 수치 · 시험 조건 자막</p><p class="say">"자외선에 손상된 피부에 바르고 6시간 자고 일어났더니, 피부장벽이 52% 좋아졌다는 시험 결과도 있습니다."</p></div>
+      <div class="cue" data-a style="--i:6"><span class="tc">25–30초</span><p class="scr"><b>화면</b>구성 카드 + 가격 · 상시 정보 바</p><p class="say">"오늘은 75ml 6통에 토너, 7일 체험 키트까지. 한 통에 16,650원입니다."</p></div>
+    </div>
+    <p class="note">*자외선 손상 피부, 6시간 수면 후 · 코어덤 피부과학연구소 · 22명 · 2025.5 · 개인차 있음. 가격은 예시이며, 실제 대본은 방송 심의를 거쳐 확정합니다.</p>
+  </div>
+  <span class="sn">34</span>
+</section>
+
+<!-- 30 RUNDOWN + KPI -->
+<section class="slide" id="s30" data-title="60분 방송 흐름">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Broadcast Rundown</span><h2 class="h2" data-a style="--i:1">60분 방송 흐름 (안)</h2><p class="lead" data-a style="--i:2">막대 길이가 시간 비중입니다. 0·15·30·45분에 '무엇·누구·사용법·구성' 요약을 1분씩 다시 넣습니다.</p></div>
+    <div class="tbl" style="border:0;background:transparent;--i:3" data-a>
+      <div class="runbar">
+        <div class="seg" style="flex:8;--i:0"><span class="t">0–8분</span><b>고민 공감</b><span>"보습해도 왜 건조할까?"</span><span class="p">→ 속건조 50대</span></div>
+        <div class="seg" style="flex:10;--i:1"><span class="t">8–18분</span><b>원인과 브랜드</b><span>연구원이 장벽 원리 설명</span></div>
+        <div class="seg key" style="flex:14;--i:2"><span class="t">18–32분</span><b>시연</b><span>온도계·수분 측정기 전후 비교</span></div>
+        <div class="seg" style="flex:10;--i:3"><span class="t">32–42분</span><b>후기와 가족</b><span>실제 고객 후기, 가족 사용</span><span class="p">→ 가족 챙기는 40대</span></div>
+        <div class="seg key" style="flex:10;--i:4"><span class="t">42–52분</span><b>구성 공개</b><span>본품 + 7일 키트, 개당 가격</span><span class="p">→ 성분 따지는 20·30대</span></div>
+        <div class="seg" style="flex:8;--i:5"><span class="t">52–60분</span><b>마감</b><span>한정 사은품, 남은 수량</span></div>
+      </div>
+    </div>
+    <div class="tbl" style="margin-top:28px;--i:4" data-a>
+      <table class="kpi">
+        <thead><tr><th>단계</th><th>할 일</th><th>성과 지표</th></tr></thead>
+        <tbody>
+          <tr><td>준비</td><td>방송용 수치 정리, 광고 심의, 페르소나 검증</td><td>사용 가능한 수치 3개 이상</td></tr>
+          <tr><td>구성</td><td>메인·가족·체험 키트 3종 기획, 가격 설계</td><td>공식 몰 대비 개당 체감 할인율</td></tr>
+          <tr><td>제작</td><td>시연 장비, 연구원 섭외, 후기 수집</td><td>시연 리허설 완료</td></tr>
+          <tr><td>방송</td><td>60분 흐름대로 진행</td><td>분당 주문 수, 매출 달성률</td></tr>
+          <tr><td>이후</td><td>체험 키트 고객의 다른 라인 구매 추적</td><td>재구매율, 몰 신규 가입</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span class="sn">35</span>
+</section>
+
+<!-- POPUP IDEA -->
+<section class="slide blue" id="sPopup" data-title="성수 팝업 역제안">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Next Idea</span><h2 class="h2" data-a style="--i:1">성수에서 배운 것을, 성수에 돌려준다</h2><p class="lead" data-a style="--i:2">리얼베리어 '장벽 랩' 팝업(아이디어): 성수에서 직접 측정하고 체험한 사람을 홈쇼핑 방송과 공식 몰 구매로 연결합니다.</p></div>
+    <div class="zones">
+      <div class="zone" data-a style="--i:3"><span class="zn">01</span><h3>측정 존</h3><p>내 피부 수분·장벽 상태를 측정하고 결과 카드 받기</p><p class="from">착안: 휩드 하우스 피부 측정 기기</p></div>
+      <div class="zone" data-a style="--i:4"><span class="zn">02</span><h3>체험 존</h3><p>측정 결과에 맞춰 7일 체험 키트를 직접 골라 담기</p><p class="from">착안: 휩드 디스커버리 키트·휘핑 클래스</p></div>
+      <div class="zone" data-a style="--i:5"><span class="zn">03</span><h3>연구 존</h3><p>MLE® 기술과 20년 장벽 연구를 쉬운 그림과 시험 결과로 소개</p><p class="from">착안: 약국형 매장의 전문성·역사 강조</p></div>
+      <div class="zone" data-a style="--i:6"><span class="zn">04</span><h3>연결</h3><p>QR로 홈쇼핑 방송 알림 신청, 공식 몰 첫 구매 쿠폰</p><p class="from">착안: 성수점 단독 혜택·럭키드로우</p></div>
+    </div>
+    <div class="popkpi" data-a style="--i:7"><span>성과 지표: 방문 수</span><span>측정 참여율</span><span>방송 알림 신청 수</span><span>쿠폰 사용률</span><span>방송 주문 중 팝업 경유 비중</span></div>
+    <p class="note">아이디어 단계 제안입니다. 장소·예산·기간은 별도 검토가 필요합니다.</p>
+  </div>
+  <span class="sn">36</span>
+</section>
+
+<!-- 31 CONCLUSION -->
+<section class="slide blue" id="s31" data-title="결론">
+  <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Conclusion</span><h2 class="h2" data-a style="--i:1">무엇을, 누구에게, 어떻게</h2></div>
+    <dl class="concl">
+      <div data-a style="--i:2"><dt>WHAT</dt><dd>익스트림 크림 오리지널 6통 대용량 + 프로세라·고민별 7일 체험 키트</dd></div>
+      <div data-a style="--i:3"><dt>WHO</dt><dd>속건조로 고민하는 50대를 중심으로, 가족 피부를 챙기는 40대까지</dd></div>
+      <div data-a style="--i:4"><dt>HOW</dt><dd>15분마다 반복하는 쉬운 설명 + 시험 수치와 측정 시연 + 한 통당 가격</dd></div>
+      <div data-a style="--i:5"><dt>WHERE·WHEN</dt><dd>겨울 건조 시즌(12~1월) TV 홈쇼핑 생방송, T커머스 반복 송출, 모바일 라이브로 확장</dd></div>
+      <div data-a style="--i:6"><dt>GOAL</dt><dd>방송 1회 1억 원 예시 = 6통 세트 약 1천 개, 분당 17세트</dd></div>
+      <div data-a style="--i:7"><dt>NEXT</dt><dd>성수 '장벽 랩' 팝업으로 체험한 사람을 방송과 공식 몰로 연결</dd></div>
+    </dl>
+    <p class="closing" data-a style="--i:8">성수 매장들이 체험·숫자·사람 이야기로 손님을 설득했듯이, 리얼베리어는 '20년 연구한 장벽'을 화면에서 직접 보여주고 쉽게 설명할 때 홈쇼핑에서 가장 잘 팔릴 것입니다.</p>
+  </div>
+  <span class="sn">37</span>
+</section>
+
+<!-- 32 SOURCES -->
+<section class="slide" id="s32" data-title="출처">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Sources</span><h2 class="h2" data-a style="--i:1">사진과 자료 출처</h2></div>
+    <div class="sources" data-a style="--i:2">
+      <p>현장 사진: <a href="https://drive.google.com/drive/folders/1ncGnDO6meRFfk9OMg7mt7rRJz96jcFft" target="_blank" rel="noopener">Google Drive '백가영' 폴더</a> (45장 중 일부 수록)</p>
+      <p>제품 사진·가격: <a href="https://myrealbarrier.co.kr/" target="_blank" rel="noopener">리얼베리어 공식 몰</a>, <a href="https://www.whipped.co.kr/" target="_blank" rel="noopener">휩드 공식몰</a> (2026년 11월 9일 기준)</p>
+      <p>매장 대표 사진: <a href="https://popga.co.kr/popup/14552" target="_blank" rel="noopener">팝가 리바이포유 10주년 팝업</a> · <a href="https://popga.co.kr/popup/6900" target="_blank" rel="noopener">팝가 휩드 팝업</a> · <a href="https://popga.co.kr/content/magazine/92" target="_blank" rel="noopener">팝가 온그리디언츠 팝업 후기</a> · <a href="https://byline.network/2026/04/22_musinsa-3/" target="_blank" rel="noopener">바이라인네트워크(무신사 제공)</a> · <a href="https://magazine.hankyung.com/business/article/202609020520b" target="_blank" rel="noopener">한경비즈니스 뷰티약국 기사</a></p>
+      <p>휩드 체험: <a href="https://thesoulofseoul.net/whip-it-up-in-seongsu-make-your-own-skincare-at-whipped-house/" target="_blank" rel="noopener">The Soul of Seoul</a> · 리얼베리어 시험 결과: <a href="https://www.cosinkorea.com/mobile/article.html?no=55750" target="_blank" rel="noopener">코스인코리아</a>, <a href="https://www.newswire.co.kr/newsRead.php?no=1015434" target="_blank" rel="noopener">뉴스와이어</a> · 신제품: <a href="https://www.insight.co.kr/amp/news/575787" target="_blank" rel="noopener">인사이트</a></p>
+      <p>홈쇼핑 시장: <a href="https://mobile.newsis.com/view/NISX20260710_0003704386" target="_blank" rel="noopener">뉴시스 2026.7.10</a> · <a href="https://www.ddaily.co.kr/page/view/2026041509142671861" target="_blank" rel="noopener">디지털데일리 2026.4.15</a> · <a href="https://mobile.newsis.com/view/NISX20260310_0003542234" target="_blank" rel="noopener">뉴시스 2026.3.11</a></p>
+      <p>외부 사진은 내부 보고용이며, 외부 배포 전 사용 허락 확인이 필요합니다. 비포/애프터 사진은 AI 생성 연출 이미지입니다.</p>
+    </div>
+  </div>
+  <span class="sn">38</span>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const cur=document.getElementById('cur'), tot=document.getElementById('tot');
+  const nowT=document.getElementById('nowTitle'), prog=document.getElementById('progress');
+  tot.textContent=String(total).padStart(2,'0');
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let active=0;
+
+  function setActive(i){
+    active=i;
+    cur.textContent=String(i+1).padStart(2,'0');
+    nowT.textContent=slides[i].dataset.title||'';
+    prog.style.setProperty('--p',((i+1)/total).toFixed(4));
+  }
+
+  // count-up: keeps the final text in the HTML so the page is correct at rest
+  function countUp(el){
+    if(reduce)return;
+    const final=el.dataset.final||el.textContent.trim();
+    el.dataset.final=final;
+    const m=final.match(/^([^0-9]*)([0-9][0-9,]*\.?[0-9]*)(.*)$/);
+    if(!m)return;
+    const pre=m[1], numStr=m[2], suf=m[3];
+    const hasComma=numStr.includes(',');
+    const target=parseFloat(numStr.replace(/,/g,''));
+    const dec=(numStr.split('.')[1]||'').length;
+    const dur=1100, t0=performance.now();
+    function fmt(v){let s=v.toFixed(dec);if(hasComma){const [a,b]=s.split('.');s=Number(a).toLocaleString('en-US')+(b?'.'+b:'');}return pre+s+suf;}
+    function step(t){const p=Math.min(1,(t-t0)/dur);const e=1-Math.pow(1-p,3);el.textContent=fmt(target*e);if(p<1)requestAnimationFrame(step);else el.textContent=final;}
+    requestAnimationFrame(step);
+  }
+
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        const s=en.target;
+        if(en.isIntersecting&&en.intersectionRatio>=0.35){
+          if(!s.classList.contains('play')){
+            s.classList.add('play');
+            s.querySelectorAll('[data-count]').forEach(countUp);
+          }
+          setActive(slides.indexOf(s));
+        }else if(!en.isIntersecting){
+          s.classList.remove('play');
+        }
+      });
+    },{threshold:[0,0.35,0.6]});
+    slides.forEach(s=>io.observe(s));
+  }
+  setActive(0);
+
+  // sales simulation calculator
+  const rng=document.getElementById('simTarget');
+  if(rng){
+    const PRICE=99900, MIN=60, TUBES=6;
+    const fmt=n=>n.toLocaleString('ko-KR');
+    const won=v=>{const eok=Math.floor(v/10000), man=v%10000;return (eok?eok+'억 ':'')+(man?fmt(man)+'만 ':'')+'원';};
+    const upd=()=>{
+      const v=Number(rng.value); // 만 원 단위
+      const sets=Math.ceil(v*10000/PRICE);
+      document.getElementById('simOut').textContent=won(v).replace('  ',' ');
+      document.getElementById('simSets').textContent=fmt(sets);
+      document.getElementById('simMin').textContent=(sets/MIN).toFixed(1);
+      document.getElementById('simTubes').textContent=fmt(sets*TUBES);
+    };
+    rng.addEventListener('input',upd);
+  }
+
+  function go(d){
+    const i=Math.max(0,Math.min(total-1,active+d));
+    slides[i].scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+  document.getElementById('prev').addEventListener('click',()=>go(-1));
+  document.getElementById('next').addEventListener('click',()=>go(1));
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest&&e.target.closest('input,textarea,select'))return;
+    if(['ArrowRight','ArrowDown','PageDown'].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){e.preventDefault();slides[0].scrollIntoView({behavior:'smooth'});}
+    else if(e.key==='End'){e.preventDefault();slides[total-1].scrollIntoView({behavior:'smooth'});}
+  });
+})();
+</script>

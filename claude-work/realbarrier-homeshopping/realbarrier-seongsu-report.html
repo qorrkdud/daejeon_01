@@ -1,0 +1,1688 @@
+<title>리얼베리어 홈쇼핑 전략</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Montserrat:wght@500;700;800&display=swap">
+<style>
+/* Layout: 발표용 슬라이드 덱. 한 화면 = 한 주제, 세로 스크롤 스냅. 리얼베리어 코발트 블루 + 흰 바탕, 장 시작·결론은 파란 슬라이드. 모션은 화면에 들어올 때 한 번 재생(보이는 상태에서 시작) */
+:root{
+  --bg:#ffffff;
+  --surface:#f4f6fb;
+  --fg:#101318;
+  --muted:#5d6372;
+  --line:#e2e5ee;
+  --brand:#0030a7;
+  --brand-bright:#2e3fe0;
+  --brand-soft:#e8ecff;
+  --on-brand:#ffffff;
+  --sand:#d0ac88;
+  --sand-soft:#f6efe7;
+  --bar-other:#c3c8d6;
+  --warn:#c2412d;
+  --font-body:Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --font-label:Montserrat,Pretendard,"Noto Sans KR",sans-serif;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c0e15;--surface:#151925;--fg:#eef0f6;--muted:#a2a8b7;--line:#262b3a;
+  --brand:#8ea4ff;--brand-bright:#2a3bd0;--brand-soft:#1a2246;--on-brand:#ffffff;--sand:#d9b896;--sand-soft:#2a241d;--bar-other:#4a5064;--warn:#ff8a72;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0e15;--surface:#151925;--fg:#eef0f6;--muted:#a2a8b7;--line:#262b3a;
+  --brand:#8ea4ff;--brand-bright:#2a3bd0;--brand-soft:#1a2246;--on-brand:#ffffff;--sand:#d9b896;--sand-soft:#2a241d;--bar-other:#4a5064;--warn:#ff8a72;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0}
+ul{margin:0;padding-left:18px}
+img{display:block;max-width:100%}
+
+/* ---------- top bar ---------- */
+.bar-top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-top .in{display:flex;align-items:center;gap:14px;height:52px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wordmark{font-family:var(--font-label);font-weight:800;font-size:18px;color:var(--brand);letter-spacing:-.01em;text-decoration:none}
+.now{flex:1;min-width:0;font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.count{font-family:var(--font-label);font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
+.count b{color:var(--brand)}
+.navbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;cursor:pointer;font-size:15px}
+.navbtn:hover{border-color:var(--brand);color:var(--brand)}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;transform-origin:left;transform:scaleX(var(--p,0));background:var(--brand-bright);transition:transform .4s var(--ease)}
+
+/* ---------- slides ---------- */
+.slide{min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;position:relative;padding-block:84px 56px;border-bottom:1px solid var(--line);overflow:hidden}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.slide.blue{background:var(--brand-bright);color:var(--on-brand);border-bottom-color:transparent}
+.slide.mist{background:var(--surface)}
+.sn{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:18px;font-family:var(--font-label);font-weight:700;font-size:12px;color:var(--muted);letter-spacing:.1em}
+.blue .sn{color:rgba(255,255,255,.7)}
+.kick{font-family:var(--font-label);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:10px}
+.blue .kick{color:var(--sand)}
+.h2{font-size:clamp(26px,4vw,46px);font-weight:900;letter-spacing:-.03em}
+.lead{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:62ch;margin-top:12px}
+.blue .lead{color:rgba(255,255,255,.88)}
+.head{margin-bottom:clamp(20px,3.5vh,36px)}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+.blue .note{color:rgba(255,255,255,.75)}
+.note a{color:var(--brand)}
+.blue .note a{color:#fff}
+.finding{font-size:16.5px;font-weight:700}
+
+/* ---------- motion ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes ring{0%{transform:scale(.55);opacity:0}25%{opacity:.55}100%{transform:scale(1.35);opacity:0}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes moveup{from{transform:translateY(219px)}to{transform:none}}
+@keyframes slideup{from{transform:translateY(100%)}to{transform:none}}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+.play [data-a]{animation:rise .75s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms)}
+.play [data-pop]{animation:pop .55s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms + 200ms)}
+.play .grow{transform-box:fill-box;transform-origin:left center;animation:growx 1s var(--ease) both;animation-delay:calc(var(--i,0) * 110ms + 250ms)}
+.play .fade{animation:fadein .8s ease both;animation-delay:var(--d,.8s)}
+.play .kb{animation:kenburns 2.4s var(--ease) both}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ---------- cover ---------- */
+.cover .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+@media (max-width:820px){.cover .wrap{grid-template-columns:1fr}}
+.cover h1{font-size:clamp(36px,6.4vw,76px);font-weight:900;letter-spacing:-.04em;line-height:1.1}
+.cover h1 em{font-style:normal;color:var(--sand)}
+.cover-date{font-family:var(--font-label);font-weight:700;letter-spacing:.14em;margin-top:28px;opacity:.75;font-size:14px}
+.wall{width:100%;max-width:460px;height:auto;display:block;margin:0 auto;overflow:visible}
+.wall .mortar{fill:var(--sand)}
+.wall .brick{fill:#fff}
+.play .wall .brick{transform-box:fill-box;transform-origin:center;animation:pop .45s var(--ease) both;animation-delay:calc(var(--i) * 55ms + 250ms)}
+@keyframes hitbounce{0%,100%{transform:translateY(0)}45%{transform:translateY(8px)}60%{transform:translateY(-6px)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.wall .hit line{stroke:rgba(255,255,255,.75);stroke-width:3;stroke-linecap:round}
+.wall .hit path{fill:rgba(255,255,255,.75)}
+.wall .hit{animation:hitbounce 2.4s ease-in-out infinite;animation-delay:calc(var(--k) * .35s)}
+.wall .drop{fill:#9fe0ff;animation:bob 3s ease-in-out infinite;animation-delay:calc(var(--k) * .4s)}
+.wall .lab{font-family:var(--font-body);font-size:14px;font-weight:700;fill:#fff}
+.wall-cap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;font-size:13.5px;margin-top:10px;opacity:.92}
+.wall-cap i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+.cover .sub{font-size:clamp(15px,1.6vw,19px);opacity:.9;margin-top:18px;max-width:46ch}
+.facts{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:30px;font-size:14px}
+.facts b{font-family:var(--font-label);font-size:30px;display:block;line-height:1.1}
+.rings{position:absolute;right:-12vw;top:50%;width:70vw;max-width:900px;aspect-ratio:1;translate:0 -50%;pointer-events:none}
+.rings i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.35);animation:ring 6s linear infinite}
+.rings i:nth-child(2){animation-delay:-2s}
+.rings i:nth-child(3){animation-delay:-4s}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px}
+.mosaic img:nth-child(2){margin-top:34px}
+.mosaic img:nth-child(3){margin-top:-34px}
+
+/* ---------- contents ---------- */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 28px;counter-reset:c}
+@media (max-width:820px){.toc{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.toc{grid-template-columns:1fr}}
+.toc a{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:baseline;text-decoration:none;padding:14px 0;border-top:1px solid var(--line)}
+.toc a:hover b{color:var(--brand)}
+.toc span{font-family:var(--font-label);font-weight:800;font-size:20px;color:var(--brand)}
+.toc b{font-size:17px;display:block}
+.toc small{font-size:13px;color:var(--muted)}
+
+/* ---------- glance ---------- */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}
+.flow .step{border-radius:8px;padding:26px;display:grid;gap:10px;align-content:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25)}
+.flow .step.goal{background:#fff;color:var(--brand)}
+.flow .step .kick{margin:0}
+.flow .step.goal .kick{color:var(--brand)}
+.flow .big{font-size:clamp(20px,2.4vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.3}
+.flow .step p{font-size:15px;opacity:.9}
+.flow .step.goal p{color:#2a2f3c}
+.flow .arrow{align-self:center;font-family:var(--font-label);font-weight:800;font-size:26px;color:var(--sand)}
+@media (max-width:820px){.flow{grid-template-columns:1fr}.flow .arrow{justify-self:center;transform:rotate(90deg)}}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{background:var(--surface);font-weight:700;font-size:13px;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.matrix{min-width:660px}
+.matrix td:not(:first-child),.matrix th:not(:first-child){text-align:center}
+.matrix td:first-child{font-weight:700;white-space:nowrap}
+.matrix .us td{background:var(--brand-soft);color:var(--brand)}
+.d{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:-3px}
+.d.full{background:var(--brand)}
+.d.half{background:linear-gradient(90deg,var(--brand) 50%,transparent 50%);border:2px solid var(--brand)}
+.d.none{border:2px solid var(--bar-other)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px}
+.legend .d{width:12px;height:12px}
+
+/* ---------- store feature slides ---------- */
+.feature{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+@media (max-width:860px){.feature{grid-template-columns:1fr}}
+.feature .photo{position:relative;border-radius:10px;overflow:hidden;background:var(--surface)}
+.feature .photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.feature .photo img.poster{object-fit:contain}
+.feature .photo .cap{position:absolute;left:12px;bottom:12px;font-size:12.5px;font-weight:700;background:rgba(16,19,24,.75);color:#fff;padding:4px 10px;border-radius:999px;max-width:calc(100% - 24px)}
+.storeno{font-family:var(--font-label);font-weight:800;font-size:13px;letter-spacing:.14em;color:var(--brand)}
+.feature h2{font-size:clamp(28px,3.6vw,42px);font-weight:900;letter-spacing:-.03em;margin-top:6px}
+.feature h2 small{font-family:var(--font-label);font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em;margin-left:8px}
+.hook{font-size:clamp(19px,2.2vw,26px);font-weight:900;color:var(--brand);margin:16px 0 14px;line-height:1.35;letter-spacing:-.02em}
+.feature ul{display:grid;gap:6px;font-size:15.5px}
+.apply{margin-top:18px;padding:14px 16px;border-radius:8px;background:var(--brand-soft);font-size:15px}
+.apply b{color:var(--brand)}
+.field{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.field span{font-size:12px;font-weight:700;color:var(--muted);margin-right:4px}
+.field img{width:58px;height:58px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.src{font-size:12px;color:var(--muted);margin-top:10px}
+.src a{color:var(--brand)}
+
+/* whipped experience */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:820px){.shots{grid-template-columns:repeat(2,1fr)}}
+.shots figure{margin:0;display:grid;gap:8px;align-content:start}
+.shots img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px}
+.shots figcaption{font-size:14px;line-height:1.45}
+.shots figcaption b{display:block;color:var(--brand);font-size:12px;font-family:var(--font-label);letter-spacing:.08em}
+
+/* trends */
+.trends{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.trends{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.trends{grid-template-columns:1fr}}
+.trend{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:6px;align-content:start}
+.trend .stat{font-family:var(--font-label);font-size:clamp(26px,3vw,36px);font-weight:800;color:var(--brand);line-height:1.1;letter-spacing:-.02em}
+.trend h3{font-size:18px}
+.trend p{font-size:14px;color:var(--muted)}
+
+/* proof */
+.proof3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:820px){.proof3{grid-template-columns:1fr}}
+.pv{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.pv img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.pv .in{padding:16px 18px;display:grid;gap:10px;align-content:start}
+.pv h3{font-size:18px}
+.eg{display:flex;flex-wrap:wrap;gap:6px}
+.eg span{font-size:12.5px;padding:3px 10px;border-radius:999px;background:var(--surface)}
+.pv .use{font-size:14px;border-top:1px dashed var(--line);padding-top:10px}
+.pv .use b{color:var(--brand)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:22px;display:grid;gap:6px;align-content:start}
+.stat b{font-family:var(--font-label);font-size:clamp(34px,4.4vw,54px);line-height:1;letter-spacing:-.03em}
+.stat span{font-size:15px;font-weight:700}
+.stat small{font-size:12.5px;opacity:.8;line-height:1.45}
+
+/* TV mockup */
+.tvwrap{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.tvwrap{grid-template-columns:1fr}}
+.tv{background:#0b0d14;border-radius:12px;padding:10px}
+.screen{position:relative;aspect-ratio:16/9;background:#f3f4f8;border-radius:5px;overflow:hidden;color:#111318}
+.screen .ba{position:absolute;left:3%;top:6%;width:58%;height:62%;display:grid;grid-template-columns:1fr 1fr;gap:2%}
+.screen .ba div{border-radius:4px;overflow:hidden}
+.screen .ba img{width:100%;height:100%;object-fit:cover}
+.screen .side{position:absolute;right:3%;top:6%;width:33%;display:grid;gap:6px}
+.screen .badge{background:#2e3fe0;color:#fff;border-radius:4px;padding:6px 8px;font-weight:900;font-size:clamp(9px,1.4vw,15px);line-height:1.25}
+.screen .badge small{display:block;font-weight:500;font-size:clamp(7px,.95vw,10px);opacity:.85}
+.screen .rev{background:#fff;border-radius:4px;padding:6px 8px;font-size:clamp(7px,1vw,11px);line-height:1.35;border:1px solid #e3e6ee}
+.screen .rev b{color:#2e3fe0}
+.screen .tag{position:absolute;left:3%;top:70%;font-size:clamp(6px,.9vw,10px);line-height:1.5;color:#4a5064;margin:0}
+.screen .lower{position:absolute;left:0;right:0;bottom:0;background:#0030a7;color:#fff;padding:1.4% 3%;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.play .screen .lower{animation:slideup .7s var(--ease) both;animation-delay:.5s}
+.screen .lower strong{font-size:clamp(10px,2vw,20px);font-weight:900;letter-spacing:-.02em}
+.screen .lower strong span{font-size:clamp(7px,1vw,10px);opacity:.85;display:block;font-weight:400;letter-spacing:0}
+.screen .lower .offer-tag{font-family:var(--font-label);font-weight:700;font-size:clamp(10px,1.7vw,18px);background:#d0ac88;color:#111318;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.tvnote{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.tvnote a{color:var(--brand)}
+.rules h3{font-size:18px;margin-bottom:10px}
+.rules ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:14.5px}
+.rules li b{display:block}
+
+/* charts */
+.charts2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:900px){.charts2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0;background:var(--bg)}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:440px;height:auto}
+.chart text{font-family:var(--font-body);fill:var(--fg)}
+.chart .m{fill:var(--muted)}
+.chart .grid{stroke:var(--line);stroke-width:1;fill:none}
+.chart .bar-us{fill:var(--brand)}
+.chart .bar-other{fill:var(--bar-other)}
+.chart .val-us{fill:var(--brand);font-weight:700}
+.chart .b{fill:var(--brand);font-weight:700}
+.chart .goalzone{fill:var(--brand-soft)}
+.chart .dot{fill:var(--bar-other);stroke:var(--bg);stroke-width:2}
+.chart .dot-us{fill:var(--brand);stroke:var(--bg);stroke-width:2}
+.chart .dot-now{fill:var(--bg);stroke:var(--brand);stroke-width:2.5}
+.chart .arrow{stroke:var(--brand);stroke-width:2;stroke-dasharray:5 4;fill:none}
+.chart .ah{fill:var(--brand)}
+.play .mover{animation:moveup 1.6s var(--ease) both;animation-delay:.6s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chips strong{font-size:14px;margin-right:4px}
+.chip{font-size:13.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.chip.us{background:var(--brand-bright);color:#fff;border-color:var(--brand-bright);font-weight:700}
+
+/* lineup */
+.lineup{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+@media (max-width:900px){.lineup{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.lineup{grid-template-columns:repeat(2,1fr)}}
+.prod{display:grid;gap:6px;align-content:start;text-align:center}
+.prod img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.prod b{font-size:14.5px;line-height:1.35}
+.prod span{font-size:12.5px;color:var(--muted)}
+.role{justify-self:center;font-style:normal;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand)}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+@media (max-width:700px){.sw{grid-template-columns:1fr}}
+.sw > div{border-radius:10px;padding:20px 22px;display:grid;gap:8px;align-content:start}
+.sw .plus{background:var(--brand-soft)}
+.sw .minus{background:var(--sand-soft)}
+.sw h3{font-size:17px}
+.sw ul{display:grid;gap:5px;font-size:15px}
+
+/* home shopping */
+.hs-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media (max-width:900px){.hs-stats{grid-template-columns:repeat(2,1fr)}}
+.hs-stat{border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:4px;align-content:start;background:var(--bg)}
+.hs-stat b{font-family:var(--font-label);font-size:clamp(26px,2.8vw,34px);line-height:1.05;letter-spacing:-.02em}
+.hs-stat b.dn{color:var(--warn)}
+.hs-stat b.up{color:var(--brand)}
+.hs-stat span{font-size:14px;font-weight:700}
+.hs-stat small{font-size:12px;color:var(--muted);line-height:1.4}
+.split{display:grid;gap:14px;margin-top:28px;max-width:760px}
+.split .row{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}
+.split .yr{font-family:var(--font-label);font-weight:800;font-size:15px}
+.split .bars{display:flex;height:40px;border-radius:6px;overflow:hidden;font-size:13px;font-weight:700}
+.split .bars i{font-style:normal;display:flex;align-items:center;padding:0 12px;white-space:nowrap}
+.split .tvp{background:var(--brand-bright);color:#fff}
+.split .etc{background:var(--bar-other);color:var(--fg)}
+.moves{min-width:560px}
+.moves td:first-child{font-weight:700;white-space:nowrap}
+.impl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media (max-width:820px){.impl{grid-template-columns:1fr}}
+.impl article{border-radius:10px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.impl .fact{background:var(--surface);padding:14px 16px;font-size:14px}
+.impl .fact b,.impl .so b{display:block;font-size:12px;margin-bottom:2px}
+.impl .fact b{color:var(--muted)}
+.impl .so{padding:14px 16px;font-size:14.5px}
+.impl .so b{color:var(--brand)}
+.impl .so strong{display:block;font-size:17px;margin-bottom:4px}
+
+/* personas */
+.personas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.personas{grid-template-columns:1fr}}
+.persona{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr;background:var(--bg)}
+.persona header{background:var(--surface);padding:20px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center}
+.persona.primary header{background:var(--brand-bright);color:#fff}
+.persona.primary header .kick{color:var(--sand)}
+.persona header .kick{margin:0 0 2px}
+.avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-label);font-weight:800;font-size:21px;background:var(--bg);color:var(--brand)}
+.persona h3{font-size:19px;font-weight:900}
+.persona .who{font-size:13px;opacity:.85}
+.persona .quote{padding:16px 20px 0;font-size:16px;font-weight:700;color:var(--brand)}
+.persona dl{margin:0;padding:12px 20px 20px;display:grid;gap:10px}
+.persona dl div{display:grid;grid-template-columns:74px 1fr;gap:10px}
+.persona dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.persona dd{margin:0;font-size:14.5px}
+
+/* strategy + offers */
+.strat{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media (max-width:900px){.strat{grid-template-columns:1fr 1fr}}
+.st{border-top:4px solid var(--brand);padding-top:14px;display:grid;gap:6px;align-content:start}
+.st .no{font-family:var(--font-label);font-weight:800;color:var(--brand);font-size:13px;letter-spacing:.1em}
+.st h3{font-size:18px}
+.st p{font-size:14px;color:var(--muted)}
+.blue .st{border-top-color:var(--sand)}
+.blue .st h3{color:#fff}
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.offers{grid-template-columns:1fr}}
+.offer{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;background:var(--bg)}
+.offer.main{border:2px solid var(--brand)}
+.offer .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.offer h3{font-size:18px}
+.offer .for{font-size:12.5px;font-weight:700;color:var(--brand)}
+.offer .imgs{display:flex;gap:6px}
+.offer .imgs img{width:33%;max-width:110px;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--line)}
+.offer ul{display:grid;gap:3px;font-size:15px}
+.offer .why{font-size:12.5px;color:var(--muted)}
+
+/* price */
+.price-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}
+@media (max-width:900px){.price-grid{grid-template-columns:1fr}}
+.price-tbl{min-width:520px}
+.price-tbl td.num,.price-tbl th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price-tbl .rec td{background:var(--brand-soft);font-weight:700}
+.bignum{font-family:var(--font-label);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-.04em;color:var(--brand);line-height:1}
+
+/* timing & channel */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.opts{grid-template-columns:1fr}}
+.opt{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--bg)}
+.opt.rec{border:2px solid var(--brand);background:var(--brand-soft)}
+.opt .k{font-size:12px;font-weight:700;color:var(--muted)}
+.opt.rec .k{color:var(--brand)}
+.opt h3{font-size:17px}
+.opt ul{font-size:14.5px;display:grid;gap:3px}
+.opt .pm{font-size:13px;color:var(--muted)}
+.tl{display:flex;margin-top:30px;overflow-x:auto;padding-top:8px}
+.tl div{flex:1;min-width:150px;border-top:3px solid var(--bar-other);padding:12px 12px 0 0;position:relative}
+.tl div::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--bar-other)}
+.tl div.now{border-top-color:var(--brand)}
+.tl div.now::before,.tl div.next::before{border-color:var(--brand)}
+.tl div.next{border-top:3px dashed var(--brand)}
+.tl b{display:block;font-family:var(--font-label);font-size:13px;color:var(--brand)}
+.tl span{font-size:14px}
+.chs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.chs{grid-template-columns:1fr}}
+.ch{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:var(--bg)}
+.ch header{padding:16px 18px;background:var(--surface);display:grid;gap:2px}
+.ch.main header{background:var(--brand-bright);color:#fff}
+.ch header small{font-size:12px;font-weight:700;opacity:.8}
+.ch header b{font-size:18px}
+.ch dl{margin:0;padding:16px 18px;display:grid;gap:10px}
+.ch dl div{display:grid;grid-template-columns:58px 1fr;gap:8px}
+.ch dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.ch dd{margin:0;font-size:14.5px}
+
+/* explain */
+.insight-q{font-size:clamp(26px,4.2vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.3}
+.insight-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+@media (max-width:760px){.insight-list{grid-template-columns:1fr}}
+.insight-list li{border-top:2px solid rgba(255,255,255,.4);padding-top:12px;font-size:16px}
+.insight-list b{display:block;font-family:var(--font-label);color:var(--sand);font-size:14px;margin-bottom:4px}
+.loop-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:30px;align-items:center}
+@media (max-width:860px){.loop-wrap{grid-template-columns:1fr}}
+.loop svg{display:block;width:100%;max-width:540px;height:auto;margin:0 auto}
+.loop text{font-family:var(--font-body);fill:var(--fg)}
+.loop .ring0{fill:none;stroke:var(--line);stroke-width:2}
+.loop .arc{fill:none;stroke:var(--brand);stroke-width:3}
+.loop .node{fill:var(--brand-bright)}
+.loop .nt{fill:#fff;font-weight:700;font-family:var(--font-label)}
+.loop .orbit{transform-box:view-box;transform-origin:300px 190px;animation:orbit 9s linear infinite}
+.loop .orbit circle{fill:var(--sand)}
+.steps4{display:grid;gap:14px}
+.steps4 div{display:grid;grid-template-columns:38px 1fr;gap:14px;align-items:start}
+.steps4 > div > span{width:38px;height:38px;border-radius:50%;background:var(--brand-bright);color:#fff;font-family:var(--font-label);font-weight:800;display:grid;place-items:center}
+.steps4 b{display:block;font-size:17px}
+.steps4 p{font-size:14.5px;color:var(--muted)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+.how div{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center;background:var(--bg)}
+.how img{width:84px;height:84px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--line)}
+.how .n{font-family:var(--font-label);font-size:12px;font-weight:800;color:var(--brand)}
+.how b{display:block;font-size:17px;margin:2px 0}
+.how p{font-size:14px;color:var(--muted)}
+.fixed{margin-top:30px;border:2px dashed var(--brand);border-radius:12px;padding:18px 20px;display:grid;gap:12px}
+.fixed .pills{display:flex;flex-wrap:wrap;gap:8px}
+.fixed .pills span{background:var(--brand);color:#fff;font-weight:700;font-size:15px;padding:8px 14px;border-radius:6px}
+.fixed .pills span.p{background:var(--sand);color:#111318}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:860px){.two-col{grid-template-columns:1fr}}
+.words td:first-child{color:var(--muted);white-space:nowrap}
+.words td:last-child{font-weight:700}
+.faq{display:grid;gap:10px}
+.faq div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.faq b{display:block;font-size:15.5px;margin-bottom:4px}
+.faq b::before{content:"Q. ";color:var(--brand);font-family:var(--font-label)}
+.faq p{font-size:14px}
+.faq p::before{content:"A. ";font-weight:700;color:var(--brand);font-family:var(--font-label)}
+.faq small{display:block;margin-top:6px;font-size:12px;color:var(--muted)}
+
+/* rundown */
+.runbar{display:flex;border-radius:10px;overflow:hidden;min-width:680px}
+.seg{padding:14px 12px;display:grid;gap:3px;align-content:start;border-right:2px solid var(--bg);background:var(--surface);transform-origin:left center}
+.play .seg{animation:growx .5s var(--ease) both;animation-delay:calc(var(--i,0) * 140ms + 200ms)}
+.seg:last-child{border-right:0}
+.seg.key{background:var(--brand-bright);color:#fff}
+.seg .t{font-family:var(--font-label);font-size:12px;font-weight:700;opacity:.8}
+.seg b{font-size:16px}
+.seg span{font-size:13px;opacity:.9;line-height:1.4}
+.seg .p{font-size:11.5px;font-weight:700;margin-top:4px}
+.kpi{min-width:560px}
+
+/* conclusion */
+.concl{display:grid;gap:4px;margin-top:6px}
+.concl div{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:baseline;border-top:1px solid rgba(255,255,255,.28);padding:16px 0}
+.concl dt{font-family:var(--font-label);font-weight:800;font-size:14px;letter-spacing:.12em;color:var(--sand)}
+.concl dd{margin:0;font-size:clamp(18px,2.4vw,26px);font-weight:700;line-height:1.4}
+@media (max-width:560px){.concl div{grid-template-columns:1fr;gap:4px}}
+.closing{margin-top:24px;font-size:17px;opacity:.92;max-width:62ch}
+
+/* personas 50+ and 24h */
+.personas.two,.psales.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:860px){.personas.two,.psales.two{grid-template-columns:1fr}}
+.persona.b60 header{background:#6f7fe8}
+.persona .wants{margin:0;padding-left:16px;display:grid;gap:3px}
+.persona .wants b{color:var(--brand)}
+.days{position:relative;display:grid;gap:22px;padding-top:22px}
+.hours{position:absolute;left:0;right:0;top:0;height:18px;margin-left:clamp(0px,16%,170px)}
+.hours span{position:absolute;transform:translateX(-50%);font-family:var(--font-label);font-size:12px;font-weight:700;color:var(--muted)}
+.dayrow{display:grid;grid-template-columns:clamp(0px,16%,170px) 1fr;gap:10px 0;align-items:center}
+.dayrow .who{font-size:14.5px;font-weight:700;padding-right:12px}
+.dayrow .who b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--brand-bright);color:#fff;font-family:var(--font-label);font-size:13px;margin-right:6px}
+.track{position:relative;height:42px;border-radius:8px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.track i{position:absolute;top:0;bottom:0;font-style:normal;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;transform-origin:left center}
+.play .track i{animation:growx .5s var(--ease) both}
+.track i:nth-child(2){animation-delay:.05s}.track i:nth-child(3){animation-delay:.1s}.track i:nth-child(4){animation-delay:.15s}.track i:nth-child(5){animation-delay:.2s}.track i:nth-child(6){animation-delay:.25s}.track i:nth-child(7){animation-delay:.3s}.track i:nth-child(8){animation-delay:.35s}.track i:nth-child(9){animation-delay:.4s}.track i:nth-child(10){animation-delay:.45s}
+.sl{background:#2a2f45;color:rgba(255,255,255,.75)}
+.wk{background:var(--bar-other);color:var(--fg)}
+.ot{background:#e3e6ee}
+.tv{background:var(--brand-bright);color:#fff}
+.ph{background:var(--sand)}
+.sk{background:#9fe0ff}
+.moments{grid-column:2;list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.moments li{font-size:13.5px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.moments li b{font-family:var(--font-label);color:var(--brand);margin-right:4px}
+.moments li.key{background:var(--brand-bright);border-color:var(--brand-bright);color:#fff}
+.moments li.key b{color:var(--sand)}
+.daylegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-left:clamp(0px,16%,170px)}
+.daylegend span{display:inline-flex;align-items:center;gap:6px}
+.daylegend i{display:inline-block;width:14px;height:14px;border-radius:3px}
+@media (max-width:760px){.dayrow{grid-template-columns:1fr}.moments{grid-column:1}.hours,.daylegend{margin-left:0}}
+.dayso{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+@media (max-width:860px){.dayso{grid-template-columns:1fr}}
+.dayso article{background:var(--bg);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:10px;padding:14px 16px}
+.dayso b{font-size:12.5px;color:var(--brand);letter-spacing:.06em}
+.dayso p{font-size:15px;margin-top:4px}
+.dayso strong{color:var(--brand)}
+
+/* 24h v2 */
+.d2{display:grid;gap:10px}
+.d2-axis{position:relative;height:22px;margin-left:clamp(150px,20%,220px)}
+.d2-axis span{position:absolute;transform:translateX(-50%);font-family:var(--font-label);font-size:14px;font-weight:800;color:var(--fg)}
+.d2-axis span:first-child{transform:none}
+.d2-axis span:last-child{transform:translateX(-100%)}
+.d2-rows{position:relative;display:grid;gap:56px;padding:6px 0 40px}
+.d2-band{position:absolute;top:-34px;bottom:0;left:calc(clamp(150px,20%,220px) + (100% - clamp(150px,20%,220px)) * 0.7917);width:calc((100% - clamp(150px,20%,220px)) * 0.1667);background:color-mix(in srgb,var(--brand-bright) 14%,transparent);border:2px dashed var(--brand-bright);border-radius:10px;pointer-events:none}
+.d2-band span{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:12.5px;font-weight:900;color:var(--brand);line-height:1.3}
+.play .d2-band{animation:fadein .8s ease both;animation-delay:1s}
+.d2-row{display:grid;grid-template-columns:clamp(150px,20%,220px) 1fr;align-items:center;position:relative;z-index:1}
+.d2-name{display:flex;gap:10px;align-items:center;padding-right:12px}
+.d2-name b{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--brand-bright);color:#fff;font-family:var(--font-label);font-size:17px}
+.d2-name b.b{background:#6f7fe8}
+.d2-name strong{display:block;font-size:17px;line-height:1.25}
+.d2-name small{font-size:13px;color:var(--muted)}
+.d2-bar{position:relative;height:58px}
+.d2-bar .z{position:absolute;top:0;bottom:0;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:14.5px;font-weight:800;white-space:nowrap;overflow:hidden;transform-origin:left center}
+.d2-bar .z:first-child{border-radius:10px 0 0 10px}
+.d2-bar .z:nth-last-of-type(1){border-radius:0 10px 10px 0}
+.play .d2-bar .z{animation:growx .55s var(--ease) both}
+.play .d2-bar .z:nth-child(2){animation-delay:.08s}.play .d2-bar .z:nth-child(3){animation-delay:.16s}.play .d2-bar .z:nth-child(4){animation-delay:.24s}.play .d2-bar .z:nth-child(5){animation-delay:.32s}.play .d2-bar .z:nth-child(6){animation-delay:.4s}.play .d2-bar .z:nth-child(7){animation-delay:.48s}
+.z.sl{background:#2a2f45;color:rgba(255,255,255,.8)}
+.z.lf{background:var(--bg);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.z.tv{background:var(--brand-bright);color:#fff;font-size:16px}
+.pin{position:absolute;top:100%;font-style:normal;transform:translateX(-50%);display:grid;justify-items:center;padding-top:4px;z-index:2}
+.pin::before{content:"";width:3px;height:10px;background:var(--sand);border-radius:2px}
+.pin span{margin-top:2px;font-size:13.5px;font-weight:700;background:var(--sand);color:#111318;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.pin.end{transform:translateX(-85%)}
+.play .pin{animation:pop .5s var(--ease) both;animation-delay:.9s}
+.d2-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--muted);margin-left:clamp(150px,20%,220px)}
+.d2-legend span{display:inline-flex;align-items:center;gap:6px}
+.d2-legend i{display:inline-block;width:16px;height:16px;border-radius:4px}
+.d2-legend i.tv{background:var(--brand-bright)}.d2-legend i.lf{background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}.d2-legend i.sl{background:#2a2f45}.d2-legend i.pinkey{background:var(--sand);border-radius:999px}
+.d2-so{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.d2-so div{background:var(--bg);border-radius:12px;padding:14px 18px;border-left:5px solid var(--brand-bright)}
+.d2-so b{font-size:13px;color:var(--brand);letter-spacing:.06em}
+.d2-so p{font-size:clamp(16px,1.6vw,19px);font-weight:900;margin-top:2px}
+@media (max-width:760px){
+  .d2-axis,.d2-legend{margin-left:0}
+  .d2-row{grid-template-columns:1fr;gap:10px}
+  .d2-band{display:none}
+  .d2-so{grid-template-columns:1fr}
+  .pin span{font-size:12px;padding:2px 8px}
+}
+
+/* 24h timeline v3 */
+.tl3{display:grid;gap:10px;max-width:980px;margin:0 auto;width:100%}
+.tl3-head{display:grid;grid-template-columns:1fr 96px 1fr;align-items:center;font-size:16px;font-weight:900}
+.tl3-head .ha{text-align:right}
+.tl3-head b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--brand-bright);color:#fff;font-family:var(--font-label);font-size:14px;margin:0 8px}
+.tl3-head .hb b{background:#6f7fe8}
+.tl3-list{list-style:none;margin:0;padding:0;position:relative;display:grid;gap:8px}
+.tl3-list::before{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:3px;margin-left:-1.5px;background:var(--line);border-radius:2px;transform-origin:top}
+.play .tl3-list::before{animation:dropline 1.2s var(--ease) both}
+@keyframes dropline{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.tl3-list li{display:grid;grid-template-columns:1fr 96px 1fr;align-items:center;position:relative;border-radius:10px}
+.tl3-list li.eve{background:color-mix(in srgb,var(--brand-bright) 10%,transparent)}
+.tl3-list li.eve:first-of-type,.tl3-list li.eve:not(.eve + .eve){border-radius:10px 10px 0 0}
+.tl3-list time{justify-self:center;font-family:var(--font-label);font-weight:800;font-size:15px;background:var(--bg);border:2px solid var(--line);border-radius:999px;padding:3px 10px;position:relative;z-index:1}
+.tl3-list li.eve time{border-color:var(--brand-bright);color:var(--brand)}
+.ev{min-height:0}
+.ev:empty{visibility:hidden}
+.ev b{display:block;font-size:12.5px;letter-spacing:.04em;margin-bottom:1px}
+.ev.a{justify-self:end;text-align:right}
+.ev.b{justify-self:start}
+.ev.skin,.ev.tv,.ev.phone{border-radius:12px;padding:9px 14px;font-size:15.5px;font-weight:700;line-height:1.35;max-width:360px}
+.ev.skin{background:var(--sand-soft);border:1px solid var(--sand)}
+.ev.skin b{color:#9a6b3f}
+.ev.tv{background:var(--brand-bright);color:#fff}
+.ev.tv b{color:var(--sand)}
+.ev.phone{background:var(--bg);border:1px solid var(--line)}
+.ev.phone b{color:var(--muted)}
+.play .tl3-list li .ev:not(:empty){animation:rise .6s var(--ease) both}
+.play .tl3-list li:nth-child(1) .ev{animation-delay:.2s}.play .tl3-list li:nth-child(2) .ev{animation-delay:.3s}.play .tl3-list li:nth-child(3) .ev{animation-delay:.4s}.play .tl3-list li:nth-child(4) .ev{animation-delay:.5s}.play .tl3-list li:nth-child(5) .ev{animation-delay:.6s}.play .tl3-list li:nth-child(6) .ev{animation-delay:.7s}.play .tl3-list li:nth-child(7) .ev{animation-delay:.8s}.play .tl3-list li:nth-child(8) .ev{animation-delay:.9s}.play .tl3-list li:nth-child(9) .ev{animation-delay:1s}.play .tl3-list li:nth-child(10) .ev{animation-delay:1.1s}
+.tl3-eve{justify-self:center;font-size:15px;font-weight:700;color:var(--brand);background:var(--bg);border:2px dashed var(--brand-bright);border-radius:999px;padding:6px 16px;margin-top:4px}
+.tl3-eve b{font-weight:900}
+.tl3-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:13px;color:var(--muted)}
+.tl3-legend span{display:inline-flex;align-items:center;gap:6px}
+.tl3-legend i{display:inline-block;width:14px;height:14px;border-radius:4px}
+.tl3-legend i.tv{background:var(--brand-bright)}.tl3-legend i.skin{background:var(--sand-soft);border:1px solid var(--sand)}.tl3-legend i.phone{background:var(--bg);border:1px solid var(--line)}
+@media (max-width:640px){
+  .tl3-head,.tl3-list li{grid-template-columns:1fr 64px 1fr}
+  .ev.skin,.ev.tv,.ev.phone{font-size:13px;padding:7px 10px}
+  .tl3-list time{font-size:12.5px;padding:2px 6px}
+}
+
+/* cover v2: ON AIR TV */
+.cover2{background:#0b1030;color:#fff;border-bottom-color:transparent}
+.cover2 .sn{color:rgba(255,255,255,.6)}
+.tvset{display:grid;justify-items:center;width:100%}
+.tvscreen{position:relative;width:min(100%,980px);aspect-ratio:16/9;border-radius:18px;background:radial-gradient(120% 90% at 30% 20%,#3a4cf0 0%,#2e3fe0 35%,#0030a7 100%);box-shadow:0 0 0 12px #161a2e,0 0 0 14px #2a2f45,0 30px 80px rgba(0,0,0,.5);overflow:hidden;display:grid;align-items:center}
+.tvscreen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px);pointer-events:none}
+.onair{position:absolute;top:22px;left:24px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:800;font-size:clamp(11px,1.3vw,15px);letter-spacing:.12em;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:6px}
+.onair i{width:11px;height:11px;border-radius:50%;background:#ff3b30;box-shadow:0 0 12px #ff3b30;animation:blink 1.4s steps(1) infinite}
+@keyframes blink{50%{opacity:.2}}
+.chan{position:absolute;top:24px;right:26px;font-family:var(--font-label);font-weight:700;font-size:clamp(10px,1.1vw,13px);letter-spacing:.14em;opacity:.75}
+.tvtitle{padding:0 clamp(20px,6%,72px) clamp(40px,8%,80px)}
+.tvtitle .kick{color:var(--sand)}
+.tvtitle h1{font-size:clamp(28px,5.4vw,66px);font-weight:900;letter-spacing:-.04em;line-height:1.12}
+.tvtitle h1 em{font-style:normal;color:var(--sand)}
+.tvtitle .sub{margin-top:14px;font-size:clamp(14px,1.7vw,20px);opacity:.9}
+.ticker{position:absolute;left:0;right:0;bottom:0;height:clamp(30px,5.5%,46px);min-height:30px;background:#d0ac88;color:#111318;overflow:hidden;display:flex;align-items:center}
+.tick-in{display:flex;gap:48px;white-space:nowrap;animation:tick 26s linear infinite;padding-left:24px;font-weight:800;font-size:clamp(12px,1.4vw,16px)}
+.tick-in span::before{content:"●";color:#0030a7;margin-right:12px;font-size:.7em;vertical-align:2px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tvstand{width:180px;height:16px;margin-top:22px;border-radius:0 0 10px 10px;background:#161a2e;box-shadow:0 -6px 0 #2a2f45 inset}
+.play .tvscreen{animation:tvon .9s var(--ease) both}
+@keyframes tvon{0%{filter:brightness(3) saturate(0);transform:scaleY(.02)}40%{transform:scaleY(.02)}100%{filter:none;transform:none}}
+
+/* review-based personas */
+.rv-mix{display:flex;height:50px;border-radius:10px;overflow:hidden;margin-bottom:18px;font-size:14.5px;font-weight:800}
+.rv-mix i{font-style:normal;display:flex;align-items:center;gap:6px;padding:0 12px;white-space:nowrap;overflow:hidden;transform-origin:left center}
+.rv-mix .pa{background:var(--brand-bright);color:#fff}.rv-mix .pb{background:#6f7fe8;color:#fff}.rv-mix .pc{background:var(--sand);color:#111318;padding:0 6px}.rv-mix .px{background:var(--bar-other)}
+.rv-types{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:860px){.rv-types{grid-template-columns:1fr}}
+.rv-types article{background:var(--surface);border-radius:12px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.rv-types h3{font-size:17px}
+.rv-types p{font-size:15px;color:var(--brand);font-weight:700}
+.tag{display:inline-block;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;justify-self:start;letter-spacing:.02em}
+.tag.a{background:var(--brand-bright);color:#fff}.tag.b{background:#6f7fe8;color:#fff}.tag.c{background:var(--sand);color:#111318}
+.rv-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+@media (max-width:760px){.rv-facts{grid-template-columns:1fr}}
+.rv-facts div{border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:2px}
+.rv-facts b{font-family:var(--font-label);font-size:24px}
+.rv-facts span{font-size:13.5px;color:var(--muted)}
+.pcard{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,4vw,48px);align-items:start}
+@media (max-width:900px){.pcard{grid-template-columns:1fr}}
+.pc-left{display:grid;gap:12px;align-content:start}
+.pc-left .h2 small{display:block;font-size:clamp(16px,1.8vw,21px);color:var(--muted);font-weight:700;margin-top:4px;letter-spacing:-.01em}
+.pc-quote{font-size:clamp(19px,2.2vw,26px);font-weight:900;color:var(--brand);line-height:1.4;letter-spacing:-.02em}
+.pc-dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.pc-dl div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.pc-dl dt{font-size:13px;font-weight:700;color:var(--muted)}
+.pc-dl dd{margin:0;font-size:15.5px}
+.pc-right{display:grid;gap:14px}
+.pc-h{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em;margin-bottom:8px}
+.pc-ev{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.pc-ev blockquote{margin:0 0 8px;padding:8px 12px;border-left:4px solid var(--sand);background:var(--sand-soft);border-radius:0 8px 8px 0;font-size:15px;font-weight:600}
+.pc-ev blockquote:last-child{margin-bottom:0}
+.pc-ev cite{display:block;font-style:normal;font-size:12px;color:var(--muted);font-weight:500;margin-top:2px}
+.pc-so{background:var(--brand-bright);color:#fff;border-radius:14px;padding:16px 18px}
+.pc-so .pc-h{color:var(--sand)}
+.pc-so ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15.5px}
+.pc-so b{display:inline-block;min-width:44px;margin-right:8px;color:var(--sand)}
+.pc-so.fix{background:#0b1030}
+
+/* persona sales */
+
+
+
+
+
+.mixbar{display:flex;height:48px;border-radius:10px;overflow:hidden;margin-bottom:20px;font-size:14px;font-weight:700}
+.mixbar i{font-style:normal;display:flex;align-items:center;gap:6px;padding:0 14px;white-space:nowrap;overflow:hidden;transform-origin:left center}
+.mixbar .pa{background:var(--brand-bright);color:#fff}
+.mixbar .pb{background:#6f7fe8;color:#fff}
+.mixbar .pc{background:var(--sand);color:#111318}
+.psales{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.psales{grid-template-columns:1fr}}
+.ps{background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;align-content:start}
+.ps header{display:grid;grid-template-columns:46px 1fr;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+.ps .avatar{width:46px;height:46px;font-size:18px;color:#fff}
+.ps.a .avatar{background:var(--brand-bright)}
+.ps.b .avatar{background:#6f7fe8}
+.ps.c .avatar{background:var(--sand);color:#111318}
+.ps h3{font-size:18px}
+.ps header small{font-size:13px;color:var(--muted)}
+.ps .big{padding:16px 18px 6px;display:grid;gap:2px}
+.ps .big b{font-family:var(--font-label);font-size:clamp(28px,3.2vw,38px);letter-spacing:-.02em;line-height:1.1;color:var(--brand)}
+.ps.c .big b{color:#9a6b3f}
+.ps .big span{font-size:13px;color:var(--muted)}
+.ps dl{margin:0;padding:6px 18px 18px;display:grid;gap:8px}
+.ps dl div{display:grid;grid-template-columns:86px 1fr;gap:10px}
+.ps dt{font-size:13px;font-weight:700;color:var(--muted)}
+.ps dd{margin:0;font-size:15px}
+.ptotal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media (max-width:900px){.ptotal{grid-template-columns:1fr 1fr}}
+.ptotal div{border-radius:12px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);display:grid;gap:2px}
+.ptotal span{font-size:13px;color:var(--muted);font-weight:700}
+.ptotal b{font-family:var(--font-label);font-size:clamp(20px,2.2vw,26px);letter-spacing:-.02em}
+.ptotal .hl{background:var(--brand-bright);border-color:var(--brand-bright)}
+.ptotal .hl span,.ptotal .hl b{color:#fff}
+
+/* new product */
+.why3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:860px){.why3{grid-template-columns:1fr}}
+.why3 article{border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:10px;align-content:start;background:var(--bg)}
+.why3 .n{font-family:var(--font-label);font-weight:800;font-size:30px;color:var(--brand);line-height:1}
+.why3 h3{font-size:clamp(20px,2.2vw,25px);font-weight:900}
+.why3 p{font-size:15.5px;color:var(--muted)}
+.why3 .so{color:var(--brand);font-weight:700;font-size:16px;border-top:1px dashed var(--line);padding-top:10px}
+.concept{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,64px);align-items:center}
+@media (max-width:860px){.concept{grid-template-columns:1fr}}
+.pitch{font-size:clamp(17px,1.9vw,22px);font-weight:700;margin:16px 0 18px;color:#fff;line-height:1.5}
+.spec{margin:0;display:grid;gap:0}
+.spec div{display:grid;grid-template-columns:92px 1fr;gap:14px;padding:11px 0;border-top:1px solid rgba(255,255,255,.25)}
+.spec dt{font-size:13px;font-weight:700;color:var(--sand)}
+.spec dd{margin:0;font-size:16px}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.mock{display:flex;justify-content:center;align-items:flex-end;gap:22px;min-height:360px}
+.bottle{display:grid;justify-items:center;animation:floaty 5s ease-in-out infinite}
+.bottle.mini{animation-delay:-2.5s}
+.bottle .pump{width:58px;height:20px;border-radius:6px 6px 2px 2px;background:#e9ecf5;position:relative}
+.bottle .pump::after{content:"";position:absolute;right:-30px;top:6px;width:34px;height:8px;border-radius:4px;background:#e9ecf5}
+.bottle .neck{width:30px;height:16px;background:#cfd5e6}
+.bottle .body{width:clamp(150px,18vw,190px);height:clamp(260px,32vw,330px);border-radius:26px;background:#fff;box-shadow:0 20px 40px rgba(0,0,0,.25);display:grid;align-content:start;gap:6px;padding:28px 18px;position:relative;color:#0030a7;overflow:hidden}
+.bottle .body b{font-family:var(--font-label);font-weight:700;font-size:clamp(16px,1.8vw,20px)}
+.bottle .body .ln{height:3px;background:#0030a7;width:100%;margin:2px 0 6px}
+.bottle .body em{font-style:normal;font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.08em}
+.bottle .body strong{font-size:clamp(15px,1.6vw,18px);font-weight:900;color:#101318}
+.bottle .body small{font-family:var(--font-label);font-size:10px;color:#5d6372;letter-spacing:.04em}
+.bottle .body .flag{position:absolute;left:0;right:0;bottom:0;background:#2e3fe0;color:#fff;font-size:13px;font-weight:700;text-align:center;padding:10px}
+.bottle.mini .pump{width:30px;height:12px}
+.bottle.mini .pump::after{right:-16px;top:3px;width:18px;height:5px}
+.bottle.mini .neck{width:18px;height:10px}
+.bottle.mini .body{width:70px;height:120px;border-radius:14px;padding:14px 8px;gap:2px}
+.bottle.mini .body b{font-size:10px}
+.bottle.mini .body small{font-size:9px}
+.specmap{min-width:700px}
+.specmap td:first-child{font-weight:700;white-space:nowrap}
+.specmap td:last-child{color:var(--brand);font-weight:700}
+.road{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+@media (max-width:900px){.road{grid-template-columns:1fr}}
+.rstep{padding:18px 16px 0 0;border-top:4px solid var(--bar-other);position:relative;display:grid;gap:6px;align-content:start}
+.rstep::before{content:"";position:absolute;top:-11px;left:0;width:18px;height:18px;border-radius:50%;background:var(--bg);border:4px solid var(--bar-other)}
+.rstep.main{border-top-color:var(--brand)}
+.rstep.main::before{border-color:var(--brand)}
+.rstep b{font-family:var(--font-label);font-size:12.5px;color:var(--brand);letter-spacing:.08em}
+.rstep h3{font-size:18px}
+.rstep p{font-size:14.5px;color:var(--muted)}
+@media (max-width:900px){.rstep{padding:14px 0 14px 18px;border-top:0;border-left:4px solid var(--bar-other)}.rstep::before{top:14px;left:-11px}.rstep.main{border-left-color:var(--brand)}}
+.checks{margin-top:28px;background:var(--brand-soft);border-radius:12px;padding:18px 20px;display:grid;gap:8px}
+.checks ul{display:grid;gap:4px;font-size:15.5px}
+.how .minib{width:84px;height:84px;border-radius:8px;border:1px solid var(--line);background:#fff;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding-bottom:10px}
+.how .minib i{display:block;width:22px;height:54px;border-radius:6px;background:#fff;border:1px solid #c9cfdf;border-top:8px solid #e9ecf5;position:relative}
+.how .minib i::after{content:"";position:absolute;left:3px;right:3px;top:10px;height:2px;background:#0030a7}
+.offer .mockmini{display:flex;gap:8px;align-items:flex-end;height:110px}
+.offer .mockmini i{display:block;width:44px;height:96px;border-radius:10px;background:#fff;border:1px solid var(--line);border-top:10px solid #e9ecf5;position:relative}
+.offer .mockmini i::after{content:"";position:absolute;left:6px;right:6px;top:18px;height:3px;background:#0030a7}
+.offer .mockmini i.s{width:26px;height:52px;border-top-width:6px}
+
+/* seongsu summary */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:22px}
+@media (max-width:760px){.strip{grid-template-columns:repeat(3,1fr)}}
+.strip figure{margin:0;display:grid;gap:6px}
+.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--bg)}
+.strip figcaption{font-size:13px;font-weight:700;text-align:center}
+.take4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.take4{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.take4{grid-template-columns:1fr}}
+.take4 article{background:var(--bg);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:10px;padding:18px;display:grid;gap:8px;align-content:start}
+.take4 .from{font-size:13.5px;color:var(--muted)}
+.take4 h3{font-size:clamp(19px,2vw,23px);font-weight:900}
+.take4 .to{font-size:15.5px;font-weight:700;color:var(--brand)}
+
+/* journey */
+@keyframes draw{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+.journey-line{width:100%;height:auto;display:block;margin-bottom:-6px}
+.journey-line path{fill:none;stroke:var(--brand-bright);stroke-width:4;stroke-linecap:round;stroke-dasharray:1200;vector-effect:non-scaling-stroke}
+.play .journey-line path{animation:draw 1.8s var(--ease) both;animation-delay:.3s}
+.journey-line circle{fill:var(--bg);stroke:var(--brand-bright);stroke-width:3}
+.journey-line text{font-family:var(--font-body);font-size:12px;fill:var(--muted)}
+.stages{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:900px){.stages{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.stages{grid-template-columns:1fr}}
+.stage{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start;background:var(--bg)}
+.stage.dip{border-color:var(--sand);background:var(--sand-soft)}
+.stage.win{border:2px solid var(--brand)}
+.stage .t{font-family:var(--font-label);font-size:12px;font-weight:800;color:var(--brand);letter-spacing:.08em}
+.stage h3{font-size:18px}
+.stage .mind{font-size:14.5px;font-weight:700}
+.stage .mind::before{content:"속마음 ";font-size:11.5px;color:var(--muted);font-weight:700}
+.stage .how2{font-size:13.5px;color:var(--muted)}
+.objections{min-width:620px}
+.objections td:nth-child(1){white-space:nowrap;font-weight:700}
+.objections td:nth-child(2){font-weight:700}
+.objections td:nth-child(3){color:var(--brand)}
+
+/* simulation */
+.sim{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:start}
+@media (max-width:900px){.sim{grid-template-columns:1fr}}
+.calc{border-radius:14px;padding:22px;background:var(--brand-bright);color:#fff;display:grid;gap:16px}
+.calc label{font-size:14px;font-weight:700;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.calc label output{font-family:var(--font-label);font-size:22px}
+.calc input[type=range]{width:100%;accent-color:var(--sand)}
+.calc .outs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.calc .outs div{background:rgba(255,255,255,.12);border-radius:10px;padding:12px;display:grid;gap:2px}
+.calc .outs b{font-family:var(--font-label);font-size:clamp(22px,2.6vw,30px);line-height:1.1}
+.calc .outs span{font-size:12.5px;opacity:.85}
+.calc small{font-size:12px;opacity:.8;line-height:1.45}
+.sim-tbl{min-width:480px}
+.sim-tbl td.num,.sim-tbl th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sim-tbl .rec td{background:var(--brand-soft);font-weight:700}
+
+/* script */
+.script{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.cue{display:grid;grid-template-columns:96px 1fr 1.4fr;gap:0;border-bottom:1px solid var(--line)}
+.cue:last-child{border-bottom:0}
+.cue > *{padding:16px 18px}
+.cue .tc{font-family:var(--font-label);font-weight:800;color:var(--brand);font-size:15px;background:var(--surface)}
+.cue .scr{font-size:13.5px;color:var(--muted);border-right:1px dashed var(--line)}
+.cue .scr b{display:block;font-size:11.5px;letter-spacing:.06em;color:var(--fg);margin-bottom:2px}
+.cue .say{font-size:clamp(15px,1.5vw,18px);font-weight:700;line-height:1.5}
+@media (max-width:760px){.cue{grid-template-columns:1fr}.cue .scr{border-right:0}}
+
+/* popup idea */
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+@media (max-width:900px){.zones{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.zones{grid-template-columns:1fr}}
+.zone{border-radius:14px;padding:20px;display:grid;gap:8px;align-content:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);position:relative}
+.zone .zn{font-family:var(--font-label);font-weight:800;font-size:28px;color:var(--sand);line-height:1}
+.zone h3{font-size:19px;color:#fff}
+.zone p{font-size:14px;opacity:.9}
+.zone .from{font-size:12px;opacity:.75;border-top:1px dashed rgba(255,255,255,.3);padding-top:8px}
+.zone:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;translate:0 -50%;font-family:var(--font-label);font-weight:800;color:var(--sand);font-size:18px;z-index:1}
+@media (max-width:900px){.zone::after{display:none}}
+.popkpi{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.popkpi span{font-size:13.5px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14)}
+
+.sources{font-size:13px;color:var(--muted);display:grid;gap:6px}
+
+/* ---------- readability pass: bigger, darker, roomier ---------- */
+:root{--muted:#4b5161}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--muted:#b7bccb}}
+:root[data-theme="dark"]{--muted:#b7bccb}
+body{font-size:17px;line-height:1.65}
+.lead{font-size:clamp(16px,1.7vw,20px)}
+.feature ul{font-size:17px;gap:8px}
+.apply{font-size:16px}
+.trend p,.st p,.how p,.steps4 p{font-size:15.5px}
+.trend h3,.st h3{font-size:19px}
+.persona dd,.ch dd,.opt ul,.offer ul,.sw ul,.impl .so,.stage .how2{font-size:15.5px}
+.persona dt,.ch dt{font-size:13px}
+table{font-size:16px}
+th{font-size:13.5px}
+.pv .use,.impl .fact{font-size:15px}
+.eg span{font-size:13.5px}
+.note,.src,.tvnote{font-size:13px}
+.hs-stat small,.stat small{font-size:13px}
+.faq2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){.faq2{grid-template-columns:1fr}}
+.faq2 > div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:grid;gap:10px;align-content:start}
+.faq2 .q{font-size:clamp(18px,1.9vw,22px);font-weight:900;letter-spacing:-.02em}
+.faq2 .q::before{content:"Q. ";color:var(--brand);font-family:var(--font-label)}
+.faq2 .a{font-size:16.5px;line-height:1.65}
+.faq2 .a strong{color:var(--brand);font-weight:900}
+.faq2 small{font-size:12.5px;color:var(--muted)}
+.words-big{max-width:860px}
+.words-big td{font-size:17px;padding:16px 18px}
+.words-big td:last-child{font-size:18px}
+.sources a{color:var(--brand)}
+</style>
+
+<header class="bar-top">
+  <div class="in">
+    <a class="wordmark" href="#s1">Realbarrier</a>
+    <span class="now" id="nowTitle">리얼베리어 홈쇼핑 전략</span>
+    <span class="count" aria-live="polite"><b id="cur">01</b> / <span id="tot">30</span></span>
+    <button class="navbtn" id="prev" type="button" aria-label="이전 슬라이드">↑</button>
+    <button class="navbtn" id="next" type="button" aria-label="다음 슬라이드">↓</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="deck">
+
+<!-- 1 COVER -->
+<section class="slide cover2" id="s1" data-title="표지">
+  <div class="wrap">
+    <div class="tvset" data-a>
+      <div class="tvscreen">
+        <span class="onair"><i></i>ON AIR</span>
+        <span class="chan">CH. REALBARRIER</span>
+        <div class="tvtitle">
+          <span class="kick" data-a style="--i:1">Home Shopping Proposal · 2026.11</span>
+          <h1 data-a style="--i:2">성수에서 배우고,<br><em>홈쇼핑을 위해</em> 만든다</h1>
+          <p class="sub" data-a style="--i:3">리얼베리어 홈쇼핑 단독 신제품 기획안</p>
+        </div>
+        <div class="ticker" aria-hidden="true"><div class="tick-in"><span>홈쇼핑 단독 신제품 · 익스트림 장벽 탄력 크림 (가칭)</span><span>50·60대를 위한 장벽 + 탄력</span><span>100ml 4통 구성</span><span>성수 뷰티 매장 5곳 · 홈쇼핑 시장 분석</span><span>홈쇼핑 단독 신제품 · 익스트림 장벽 탄력 크림 (가칭)</span><span>50·60대를 위한 장벽 + 탄력</span><span>100ml 4통 구성</span><span>성수 뷰티 매장 5곳 · 홈쇼핑 시장 분석</span></div></div>
+      </div>
+      <div class="tvstand" aria-hidden="true"></div>
+    </div>
+  </div>
+  <span class="sn">01</span>
+</section>
+
+<section class="slide" id="s2" data-title="목차">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Contents</span><h2 class="h2" data-a style="--i:1">이 보고서의 흐름</h2></div>
+    <nav class="toc" aria-label="목차">
+      <a href="#s3" data-a style="--i:2"><span>01</span><div><b>한눈에 보기</b><small>관찰 → 인사이트 → 제안</small></div></a>
+      <a href="#s18" data-a style="--i:3"><span>02</span><div><b>홈쇼핑 시장</b><small>숫자와 업계 동향</small></div></a>
+      <a href="#sSeongsu" data-a style="--i:4"><span>03</span><div><b>성수에서 가져올 것</b><small>매장 5곳의 팔리는 장치</small></div></a>
+      <a href="#s26" data-a style="--i:5"><span>04</span><div><b>50대 이상 페르소나</b><small>실제 리뷰 59개 · 24시간</small></div></a>
+      <a href="#sWhyNew" data-a style="--i:6"><span>05</span><div><b>신제품 기획</b><small>장벽 탄력 크림 (가칭)</small></div></a>
+      <a href="#s21" data-a style="--i:7"><span>06</span><div><b>전략·구성·가격·채널</b><small>무엇을 얼마에, 어디서</small></div></a>
+      <a href="#s27" data-a style="--i:8"><span>07</span><div><b>방송 설명과 화면</b><small>15분 반복, 근거, 질문</small></div></a>
+      <a href="#sScript" data-a style="--i:9"><span>08</span><div><b>대본과 60분 흐름</b><small>오프닝 30초부터</small></div></a>
+      <a href="#s31" data-a style="--i:10"><span>09</span><div><b>결론</b><small>무엇을, 누구에게, 어떻게</small></div></a>
+    </nav>
+  </div>
+  <span class="sn">02</span>
+</section>
+
+<section class="slide blue" id="s3" data-title="한눈에 보기">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>At a Glance</span><h2 class="h2" data-a style="--i:1">한눈에 보기</h2></div>
+    <div class="flow">
+      <div class="step" data-a style="--i:2"><span class="kick">관찰</span><p class="big">'장벽'은 이제 흔한 말</p><p>장벽을 내세운 제품만 8곳 이상. 단어만으로는 차별화가 안 됩니다.</p></div>
+      <span class="arrow" aria-hidden="true" data-a style="--i:3">→</span>
+      <div class="step" data-a style="--i:4"><span class="kick">인사이트</span><p class="big">써보게 하고, 숫자로 증명</p><p>잘 팔리는 매장은 체험, 시험 수치, 사람 이야기를 함께 보여줍니다.</p></div>
+      <span class="arrow" aria-hidden="true" data-a style="--i:5">→</span>
+      <div class="step goal" data-a style="--i:6"><span class="kick">제안</span><p class="big">홈쇼핑 단독 '장벽 탄력 크림'</p><p>5060을 위한 장벽+탄력 신제품을 100ml 4통으로, 화면 시연과 함께 판매합니다.</p></div>
+    </div>
+  </div>
+  <span class="sn">03</span>
+</section>
+
+<section class="slide mist" id="s18" data-title="홈쇼핑 시장 분석">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Home Shopping Market</span><h2 class="h2" data-a style="--i:1">TV홈쇼핑은 줄지만, 5060은 여전하다</h2><p class="lead" data-a style="--i:2">그래서 TV 방송 한 번의 효율을 높이고, 모바일·숏폼으로 함께 팔아야 합니다.</p></div>
+    <div class="hs-stats">
+      <div class="hs-stat" data-a style="--i:3"><b class="dn" data-count>18.5조</b><span>7개사 전체 거래액</span><small>18조 5,053억 원 · 전년 대비 −5.1%</small></div>
+      <div class="hs-stat" data-a style="--i:4"><b class="dn" data-count>2.62조</b><span>TV 방송매출</span><small>2조 6,181억 원 · 4년 연속 감소, 2012년 이후 최저</small></div>
+      <div class="hs-stat" data-a style="--i:5"><b data-count>46.7%</b><span>전체 매출 중 방송 비중</span><small>2021년 51.5%에서 하락</small></div>
+      <div class="hs-stat" data-a style="--i:6"><b class="dn" data-count>73.2%</b><span>방송매출 대비 송출수수료</span><small>팔아도 상당 부분이 유통 비용</small></div>
+      <div class="hs-stat" data-a style="--i:7"><b class="up" data-count>60%+</b><span>구매 고객 중 50·60대</span><small>재주문율·충성도가 높은 핵심층</small></div>
+    </div>
+    <div class="split" role="img" aria-label="전체 매출 중 방송 매출 비중 2021년 51.5%, 2025년 46.7%">
+      <p class="finding" data-a style="--i:8">이제 매출의 절반 이상이 TV 방송 밖에서 나옵니다</p>
+      <div class="row" data-a style="--i:9"><span class="yr">2021</span><div class="bars"><i class="tvp grow" style="width:51.5%;--i:1">TV 방송 51.5%</i><i class="etc" style="width:48.5%">모바일 등 48.5%</i></div></div>
+      <div class="row" data-a style="--i:10"><span class="yr">2025</span><div class="bars"><i class="tvp grow" style="width:46.7%;--i:2">TV 방송 46.7%</i><i class="etc" style="width:53.3%">모바일 등 53.3%</i></div></div>
+    </div>
+    <p class="note">2025년 기준, 한국TV홈쇼핑협회 'TV홈쇼핑 산업 현황'. 50·60대 비중은 2024년 보고서 기준. '모바일 등'은 전체 매출에서 방송 매출을 뺀 나머지.</p>
+  </div>
+  <span class="sn">04</span>
+</section>
+
+<section class="slide mist" id="s19" data-title="홈쇼핑 업계 동향">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Industry Moves</span><h2 class="h2" data-a style="--i:1">업계 동향과 리얼베리어 시사점</h2></div>
+    <div class="tbl" data-a style="--i:2">
+      <table class="moves">
+        <thead><tr><th>회사</th><th>움직임</th><th>리얼베리어에 주는 힌트</th></tr></thead>
+        <tbody>
+          <tr><td>CJ온스타일</td><td>숏폼 커머스: 상반기 숏폼 경유 주문 상품 300만 개, 모바일 방문자 3명 중 1명이 숏폼으로 유입, 30대 이하 주문 6배</td><td>방송 시연을 숏폼으로 잘라 재활용</td></tr>
+          <tr><td>현대홈쇼핑</td><td>4050 여성 대상 자체 뷰티 편집숍 '코아시스' 4호점, 매출 목표 대비 50% 이상 초과</td><td>4050 여성의 뷰티 수요는 강함</td></tr>
+          <tr><td>NS홈쇼핑</td><td>60세 이상 고객용 '느린말 ARS' 도입</td><td>설명은 천천히, 주문은 쉽게</td></tr>
+          <tr><td>업계 전반</td><td>5060 맞춤 편성, 종이 카탈로그 유지·재발행</td><td>시니어가 이해하기 쉬운 정보 정리</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="impl">
+      <article data-a style="--i:3"><div class="fact"><b>시장</b>방송매출은 줄고, 송출수수료는 방송매출의 73.2%</div><div class="so"><b>그래서 리얼베리어는</b><strong>방송 1회 효율을 최대로</strong>한 번에 많이 사는 신제품 4통 대용량(99,900원)으로 객단가를 높입니다.</div></article>
+      <article data-a style="--i:4"><div class="fact"><b>시장</b>매출의 53%가 TV 방송 밖, 숏폼 유입 급증</div><div class="so"><b>그래서 리얼베리어는</b><strong>방송 + 숏폼 + 앱을 함께</strong>측정 시연과 비포/애프터 장면을 숏폼으로 잘라 모바일 주문으로 연결합니다.</div></article>
+      <article data-a style="--i:5"><div class="fact"><b>시장</b>구매 고객 60% 이상이 50·60대, 재주문율 높음</div><div class="so"><b>그래서 리얼베리어는</b><strong>첫 구매를 단골로</strong>쉬운 설명으로 첫 구매를 만들고, 재구매 쿠폰·정기 방송으로 다시 사게 합니다.</div></article>
+    </div>
+    <p class="note">출처: <a href="https://mobile.newsis.com/view/NISX20260710_0003704386" target="_blank" rel="noopener">뉴시스 2026.7.10</a> · <a href="https://www.ddaily.co.kr/page/view/2026041509142671861" target="_blank" rel="noopener">디지털데일리 2026.4.15</a> · <a href="https://mobile.newsis.com/view/NISX20260310_0003542234" target="_blank" rel="noopener">뉴시스 2026.3.11</a> (한국TV홈쇼핑협회 자료 인용). 홈쇼핑 내 뷰티 카테고리 매출 비중은 공개 자료를 찾지 못했습니다.</p>
+  </div>
+  <span class="sn">05</span>
+</section>
+
+<section class="slide mist" id="sSeongsu" data-title="성수에서 홈쇼핑으로 가져올 것">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>From Seongsu</span><h2 class="h2" data-a style="--i:1">성수 매장 5곳에서 홈쇼핑으로 가져올 4가지</h2></div>
+    <div class="strip" data-a style="--i:2">
+      <figure><img src="img/off-rbfy-popup.jpg" alt="리바이포유 성수 팝업" loading="lazy"><figcaption>리바이포유</figcaption></figure>
+      <figure><img src="img/off-whipped-popup.jpg" alt="휩드 성수 팝업" loading="lazy"><figcaption>휩드</figcaption></figure>
+      <figure><img src="img/off-ongredients-popup.jpg" alt="온그리디언츠 성수 팝업" loading="lazy"><figcaption>온그리디언츠</figcaption></figure>
+      <figure><img src="img/off-musinsa-beauty.jpg" alt="무신사뷰티 성수" loading="lazy"><figcaption>무신사뷰티</figcaption></figure>
+      <figure><img src="img/off-pharmacy-doremi.jpg" alt="성수 뷰티약국" loading="lazy"><figcaption>약국형 매장</figcaption></figure>
+    </div>
+    <div class="take4">
+      <article data-a style="--i:3"><span class="from">성수: 테스터·체험 키트·휘핑 클래스</span><h3>써보게 한다</h3><p class="to">→ 방송: 손등·얼굴 시연, 측정기 전후 비교</p></article>
+      <article data-a style="--i:4"><span class="from">성수: −80.7%, +172.67% 같은 큰 숫자</span><h3>숫자로 증명한다</h3><p class="to">→ 방송: 장벽 52% 개선 자막 + 시험 조건</p></article>
+      <article data-a style="--i:5"><span class="from">성수: 고객 후기 보드, 약사·유명인 추천</span><h3>사람이 보증한다</h3><p class="to">→ 방송: 연구원 출연 + 실제 고객 후기</p></article>
+      <article data-a style="--i:6"><span class="from">성수: 4단계 세트 40%, 성수점 단독 혜택</span><h3>지금 사야 할 이유</h3><p class="to">→ 방송: 홈쇼핑 단독 신제품 4통 + 체험 키트</p></article>
+    </div>
+    <p class="note">사진: 각 매장 공식·보도 사진 (출처는 마지막 장)</p>
+  </div>
+  <span class="sn">06</span>
+</section>
+
+<section class="slide blue" id="s26" data-title="채널을 돌리다 멈춘 시청자">
+  <div class="wrap">
+    <span class="kick" data-a>Product Explanation</span>
+    <p class="insight-q" data-a style="--i:1">"제품을 알고 사는 게 아니라,<br>사용법과 구성을 보고 산다"</p>
+    <ul class="insight-list">
+      <li data-a style="--i:2"><b>01</b>주 시청층은 30대 후반 이상</li>
+      <li data-a style="--i:3"><b>02</b>대부분 채널을 돌리다 중간에 들어옴</li>
+      <li data-a style="--i:4"><b>03</b>사용 설명과 구성을 보고 그 자리에서 구매 결정</li>
+    </ul>
+  </div>
+  <span class="sn">07</span>
+</section>
+
+<section class="slide" id="s20" data-title="리뷰로 본 고객 유형">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Review-based Persona · 50+</span><h2 class="h2" data-a style="--i:1">실제 리뷰 59개로 본 고객 3유형</h2><p class="lead" data-a style="--i:2">컬리의 익스트림 크림 후기 59개를 전부 읽고, 리뷰에서 반복되는 신호로 묶었습니다. 홈쇼핑 고객층에 맞춰 50대 이상으로 설정했습니다.</p></div>
+    <div class="rv-mix" data-a style="--i:3" role="img" aria-label="유형 비중: 건성 단골 71%, 가족 살림꾼 20%, 이탈 5%, 기타 3%">
+      <i class="pa grow" style="width:71.2%;--i:0"><b>A 건성 단골</b> 71%</i>
+      <i class="pb grow" style="width:20.3%;--i:1"><b>B 살림꾼</b> 20%</i>
+      <i class="pc grow" style="width:5.1%;--i:2" title="C 이탈 5%">5%</i>
+      <i class="px grow" style="width:3.4%;--i:3" title="기타 3%"></i>
+    </div>
+    <div class="rv-types">
+      <article data-a style="--i:4"><span class="tag a">A · 충성 · 42개</span><h3>정은숙 (56) · 겨울마다 돌아오는 건성 단골</h3><p>"겨울만 되면 돌고 돌아 결국 이 크림으로 돌아와요."</p></article>
+      <article data-a style="--i:5"><span class="tag b">B · 충성 · 12개</span><h3>오미숙 (62) · 가족 몫까지 사는 살림꾼</h3><p>"남편이랑 딸 것까지, 세일할 때 넉넉히 사 둬요."</p></article>
+      <article data-a style="--i:6"><span class="tag c">C · 이탈 · 3개</span><h3>한영미 (54) · 무거워서 떠난 고객</h3><p>"제형이 무겁고 튜브에서 잘 안 나와서 답답했어요."</p></article>
+    </div>
+    <div class="rv-facts" data-a style="--i:7">
+      <div><b>59개</b><span>수집 리뷰 (컬리, 2025.01~2026.11)</span></div>
+      <div><b>15개</b><span>연령 표시 (50대 2 · 40대 7 · 30대 6)</span></div>
+      <div><b>4곳</b><span>건너뛴 사이트 (글로우픽·화해 앱 전용, 언파·공식 몰 접근 제한)</span></div>
+    </div>
+    <p class="note">brand-persona-analysis 스킬 절차로 분석. 50대 태그 리뷰가 2개뿐이라 나이는 홈쇼핑 고객층(50·60대 60% 이상) 기준 추정이 섞여 있습니다. 충성 그룹은 2개만 나와 억지로 나누지 않았습니다.</p>
+  </div>
+  <span class="sn">08</span>
+</section>
+
+<section class="slide mist" id="sP1" data-title="페르소나 A · 건성 단골">
+  <div class="wrap pcard">
+    <div class="pc-left" data-a>
+      <span class="tag a">A · 충성 고객 · 리뷰 71%</span>
+      <h2 class="h2">정은숙 (56)<small>겨울마다 돌아오는 건성 단골</small></h2>
+      <p class="pc-quote">"겨울만 되면 돌고 돌아<br>결국 이 크림으로 돌아와요."</p>
+      <dl class="pc-dl">
+        <div><dt>나이·생활</dt><dd>50대 중반 · 직장인 (추정)</dd></div>
+        <div><dt>피부 고민</dt><dd>건성 · 건조함 · 겨울 당김</dd></div>
+        <div><dt>원하는 것</dt><dd>오래가는 보습, 장벽 회복, 자극 없음</dd></div>
+        <div><dt>재구매 이유</dt><dd>여러 크림을 써 본 뒤의 확신</dd></div>
+        <div><dt>가격 민감도</dt><dd>보통 · 효과 우선, 할인 때 더 삼</dd></div>
+        <div><dt>싫은 것</dt><dd>여름엔 무겁게 느껴짐</dd></div>
+      </dl>
+    </div>
+    <div class="pc-right">
+      <div class="pc-ev" data-a style="--i:1">
+        <p class="pc-h">실제 리뷰</p>
+        <blockquote>"보습력이 좋아 잘 쓰고 있어요" <cite>컬리 · 50대/건성</cite></blockquote>
+        <blockquote>"겨울철 칼바람 다 막아주는거 같아요" <cite>컬리</cite></blockquote>
+        <blockquote>"돌고 돌아 결국 리얼베리어." <cite>컬리</cite></blockquote>
+        <blockquote>"저녁에 얇게 펴바르고 자면 다음날 세수할 때 부들부들" <cite>컬리</cite></blockquote>
+      </div>
+      <div class="pc-so" data-a style="--i:2">
+        <p class="pc-h">홈쇼핑에서는</p>
+        <ul><li><b>메시지</b> "써 봐도 결국 돌아오는 장벽 크림"</li><li><b>편성</b> 겨울 시즌 밤 9~11시</li><li><b>시연</b> 밤에 바르고 아침 세안 때 확인</li></ul>
+      </div>
+    </div>
+  </div>
+  <span class="sn">09</span>
+</section>
+
+<section class="slide" id="sP2" data-title="페르소나 B · 가족 살림꾼">
+  <div class="wrap pcard">
+    <div class="pc-left" data-a>
+      <span class="tag b">B · 충성 고객 · 리뷰 20%</span>
+      <h2 class="h2">오미숙 (62)<small>가족 몫까지 사는 살림꾼</small></h2>
+      <p class="pc-quote">"남편이랑 딸 것까지,<br>세일할 때 넉넉히 사 둬요."</p>
+      <dl class="pc-dl">
+        <div><dt>나이·생활</dt><dd>60대 초반 · 가족 화장품까지 챙기는 주부 (추정)</dd></div>
+        <div><dt>피부 고민</dt><dd>건조함 (추정)</dd></div>
+        <div><dt>원하는 것</dt><dd>가족이 같이 쓰는 순한 보습, 넉넉한 양</dd></div>
+        <div><dt>구매 동기</dt><dd>세일 · 쿠폰 · 최저가 · 사은품</dd></div>
+        <div><dt>가격 민감도</dt><dd>높음 · 할인 언급이 반복됨</dd></div>
+        <div><dt>싫은 것</dt><dd>광고와 다른 사은품 구성</dd></div>
+      </dl>
+    </div>
+    <div class="pc-right">
+      <div class="pc-ev" data-a style="--i:1">
+        <p class="pc-h">실제 리뷰</p>
+        <blockquote>"딸아이가 쓰는 크림이예요~ 세일해서 2세트 구매했어요" <cite>컬리</cite></blockquote>
+        <blockquote>"남편이 이거 써보고는 몇년째 이것만 써요." <cite>컬리</cite></blockquote>
+        <blockquote>"다른 판매처보다 젤 싸서 사봤어요" <cite>컬리</cite></blockquote>
+        <blockquote>"추가 사은품이라고 광고하길래 주문했는데 원래구성 그대로네요" <cite>컬리</cite></blockquote>
+      </div>
+      <div class="pc-so" data-a style="--i:2">
+        <p class="pc-h">홈쇼핑에서는</p>
+        <ul><li><b>메시지</b> "온 가족이 1년 쓰는 양, 한 통 2만 원대"</li><li><b>편성</b> 오전 9~11시 · 저녁 7~10시</li><li><b>주의</b> 구성·사은품을 화면에 정확히, 과장 없이</li></ul>
+      </div>
+    </div>
+  </div>
+  <span class="sn">10</span>
+</section>
+
+<section class="slide mist" id="sP3" data-title="페르소나 C · 이탈 고객">
+  <div class="wrap pcard">
+    <div class="pc-left" data-a>
+      <span class="tag c">C · 이탈 고객 · 리뷰 5%</span>
+      <h2 class="h2">한영미 (54)<small>무거워서 떠난 고객</small></h2>
+      <p class="pc-quote">"제형이 무겁고 튜브에서<br>잘 안 나와서 답답했어요."</p>
+      <dl class="pc-dl">
+        <div><dt>나이</dt><dd>50대 (추정)</dd></div>
+        <div><dt>남은 고민</dt><dd>바르고 나서도 건조함</dd></div>
+        <div><dt>원하는 것</dt><dd>가볍게 발리면서 오래가는 보습</dd></div>
+        <div><dt>떠난 이유</dt><dd>무거운 제형 · 튜브 용기 · 끈적임</dd></div>
+        <div><dt>간 곳</dt><dd>경쟁 제품 "아토***365" (에스트라 아토베리어365로 보임)</dd></div>
+      </dl>
+    </div>
+    <div class="pc-right">
+      <div class="pc-ev" data-a style="--i:1">
+        <p class="pc-h">실제 리뷰</p>
+        <blockquote>"제형이 무거워서 튜브형 용기는 알맞지 않네요. 답답하게 내용물이 나와요." <cite>컬리</cite></blockquote>
+        <blockquote>"끈적거림 있고 어느 정도 건조함 느껴져요" <cite>컬리</cite></blockquote>
+        <blockquote>"묵직한데 발림성은 좋아요 많이건조하면 당길거같아요" <cite>컬리</cite></blockquote>
+        <blockquote>(충성 고객 리뷰 중) "여름에 바르면 확실히 무거워서" <cite>컬리</cite></blockquote>
+      </div>
+      <div class="pc-so fix" data-a style="--i:2">
+        <p class="pc-h">신제품이 바로 해결</p>
+        <ul><li><b>튜브 → 펌프</b> 100ml 에어리스 펌프로 쉽게</li><li><b>무거움 → 가벼운 마무리</b> 쫀쫀하지만 끈적이지 않게</li><li><b>방송</b> "끈적임 없음"을 손등으로 직접 확인</li></ul>
+      </div>
+    </div>
+  </div>
+  <span class="sn">11</span>
+</section>
+
+<section class="slide mist" id="sDay" data-title="50대 이상의 24시간">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>24 Hours</span><h2 class="h2" data-a style="--i:1">두 사람 모두 TV 앞에 있는 시간은 <span style="color:var(--brand)">저녁</span></h2></div>
+
+    <div class="tl3" data-a style="--i:2">
+      <div class="tl3-head"><div class="ha"><b>A</b>건성 단골 50대 (정은숙)</div><div></div><div class="hb"><b>B</b>가족 살림꾼 60대 (오미숙)</div></div>
+      <ol class="tl3-list">
+        <li><div class="ev a"></div><time>06:00</time><div class="ev b skin"><b>기상</b>거울 속 처진 볼이 신경 쓰임</div></li>
+        <li><div class="ev a skin"><b>세안</b>세안 후 바로 얼굴이 당김</div><time>06:30</time><div class="ev b"></div></li>
+        <li><div class="ev a phone"><b>출근길</b>지하철에서 숏폼·쇼핑앱</div><time>07:30</time><div class="ev b"></div></li>
+        <li><div class="ev a"></div><time>09:00</time><div class="ev b tv"><b>TV</b>아침 방송·홈쇼핑을 켜 둠</div></li>
+        <li><div class="ev a"></div><time>13:00</time><div class="ev b skin"><b>손주와 외출</b>바깥바람에 건조</div></li>
+        <li><div class="ev a skin"><b>회사</b>오후 히터에 얼굴이 당김</div><time>15:00</time><div class="ev b"></div></li>
+        <li class="eve"><div class="ev a"></div><time>19:00</time><div class="ev b tv"><b>TV</b>드라마·트로트 사이 홈쇼핑</div></li>
+        <li class="eve"><div class="ev a tv"><b>TV</b>채널 돌리다 홈쇼핑에서 멈춤</div><time>21:00</time><div class="ev b"></div></li>
+        <li class="eve"><div class="ev a"></div><time>22:00</time><div class="ev b skin"><b>밤 크림</b>"손주랑 같이 써도 될까"</div></li>
+        <li class="eve last"><div class="ev a skin"><b>밤 크림</b>"내일 아침엔 덜 당겼으면"</div><time>23:00</time><div class="ev b"></div></li>
+      </ol>
+      <p class="tl3-eve">저녁 7~11시 · 두 사람 모두 TV 앞 → <b>메인 방송</b></p>
+      <div class="tl3-legend"><span><i class="tv"></i>TV 시청</span><span><i class="skin"></i>피부가 당기는 순간</span><span><i class="phone"></i>스마트폰</span></div>
+    </div>
+
+    <div class="d2-so" data-a style="--i:3">
+      <div><b>편성</b><p>저녁 메인 + 오전 재방송</p></div>
+      <div><b>멘트</b><p>"세안하고 바로 당기시죠?"</p></div>
+      <div><b>주문</b><p>A 앱 쿠폰 · B 전화번호 크게</p></div>
+    </div>
+    <p class="note">가설 시나리오입니다(실측 아님). 시간대는 채널사 시청 데이터로 확인합니다.</p>
+  </div>
+  <span class="sn">12</span>
+</section>
+
+<section class="slide mist" id="sJourney" data-title="구매 여정">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Customer Journey</span><h2 class="h2" data-a style="--i:1">채널을 멈춘 50대가 구매하기까지</h2><p class="lead" data-a style="--i:2">1차 타깃 '속건조 고민 50대'의 5단계입니다. 관심이 꺾이는 '망설임'을 넘기는 장면이 승부처입니다.</p></div>
+    <svg class="journey-line" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true" data-a style="--i:2">
+      <path d="M100 76 C180 76 220 54 300 50 S420 26 500 24 S620 60 700 58 S820 10 900 8"/>
+    </svg>
+    <div class="stages">
+      <div class="stage" data-a style="--i:3"><span class="t">01 멈춤 · 0~10초</span><h3>"어, 나도 당기는데?"</h3><p class="mind">채널 돌리다 손이 멈춤</p><p class="how2">공감 질문 + 손등에 크림 바르는 클로즈업</p></div>
+      <div class="stage" data-a style="--i:4"><span class="t">02 관심</span><h3>"왜 그렇지?"</h3><p class="mind">이유가 궁금해짐</p><p class="how2">'수분을 막는 보호막 = 장벽' 쉬운 설명, 연구원 출연</p></div>
+      <div class="stage" data-a style="--i:5"><span class="t">03 확인</span><h3>"진짜야?"</h3><p class="mind">증거를 보고 싶음</p><p class="how2">신제품 시험 수치, 측정기 전후 비교, 리얼베리어 누적 250만 개</p></div>
+      <div class="stage dip" data-a style="--i:6"><span class="t">04 망설임</span><h3>"비싸지 않나?"</h3><p class="mind">또 실패할까 걱정</p><p class="how2">한 통 24,975원·한 달 7천 원대, 장벽+탄력 2중 기능성</p></div>
+      <div class="stage win" data-a style="--i:7"><span class="t">05 구매</span><h3>"지금 사야겠다"</h3><p class="mind">놓치기 싫음</p><p class="how2">방송 한정 체험 키트, 남은 수량, 쉬운 주문(ARS·앱)</p></div>
+    </div>
+    <p class="note">위 곡선은 단계별 관심도를 개념적으로 그린 것입니다(측정값 아님).</p>
+  </div>
+  <span class="sn">13</span>
+</section>
+
+<section class="slide" id="sWhyNew" data-title="왜 홈쇼핑 전용 신제품인가">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Why a New Product</span><h2 class="h2" data-a style="--i:1">기존 제품을 그대로 팔면 안 되는 3가지 이유</h2><p class="lead" data-a style="--i:2">홈쇼핑에서만 살 수 있고, 5060이 원하는 것을 담고, 화면에서 보여주기 좋은 제품이 필요합니다.</p></div>
+    <div class="why3">
+      <article data-a style="--i:3"><span class="n">01</span><h3>가격이 부딪힌다</h3><p>익스트림 크림은 공식 몰(2통 39% 할인)·올리브영에서 이미 팔고 있어, 홈쇼핑 가격이 다른 채널과 바로 비교됩니다.</p><p class="so">→ 홈쇼핑에서만 파는 전용 제품·전용 용량</p></article>
+      <article data-a style="--i:4"><span class="n">02</span><h3>5060은 탄력도 원한다</h3><p>홈쇼핑 구매 고객 60% 이상이 50·60대. 성수에서도 펩타이드·레티날·PDRN 같은 탄력 성분이 제품 이름이 되고 있었습니다.</p><p class="so">→ 장벽 보습 + 탄력을 한 통에</p></article>
+      <article data-a style="--i:5"><span class="n">03</span><h3>화면에서 보여줘야 한다</h3><p>채널을 돌리다 멈춘 시청자는 사용법과 구성을 보고 삽니다. 한 번에 쓰는 양과 사용 기간이 바로 이해돼야 합니다.</p><p class="so">→ 1펌프 = 1회, 대용량 펌프 용기</p></article>
+    </div>
+  </div>
+  <span class="sn">14</span>
+</section>
+
+<section class="slide blue" id="sConcept" data-title="신제품 콘셉트">
+  <div class="wrap concept">
+    <div class="mock" data-a aria-hidden="true">
+      <div class="bottle">
+        <span class="pump"></span><span class="neck"></span>
+        <div class="body"><b>Realbarrier</b><span class="ln"></span><em>EXTREME</em><strong>장벽 탄력 크림</strong><small>BARRIER LIFT CREAM · 100ml</small><span class="flag">홈쇼핑 단독</span></div>
+      </div>
+      <div class="bottle mini"><span class="pump"></span><span class="neck"></span><div class="body"><b>Realbarrier</b><small>15ml</small></div></div>
+    </div>
+    <div>
+      <span class="kick" data-a style="--i:1">New Product Concept · 가칭</span>
+      <h2 class="h2" data-a style="--i:2">리얼베리어<br>익스트림 장벽 탄력 크림</h2>
+      <p class="pitch" data-a style="--i:3">"무너진 장벽은 채우고, 처진 탄력은 끌어올리는<br>홈쇼핑 단독 대용량 크림"</p>
+      <dl class="spec" data-a style="--i:4">
+        <div><dt>타깃</dt><dd>속건조·탄력 고민 50·60대 (가족과 나눠 쓰기까지)</dd></div>
+        <div><dt>핵심 기술</dt><dd>리얼베리어 MLE® + 세라마이드 기술(프로세라™ 계열)</dd></div>
+        <div><dt>더할 성분</dt><dd>탄력용 펩타이드 + 주름 개선 기능성 성분(예: 아데노신)</dd></div>
+        <div><dt>목표 기능성</dt><dd>피부장벽 회복 + 주름 개선 2중 기능성</dd></div>
+        <div><dt>용기·용량</dt><dd>100ml 에어리스 펌프 (1펌프 = 1회 사용량), 15ml 미니</dd></div>
+        <div><dt>제형</dt><dd>쫀쫀한 고보습 크림, 바르면 가볍게 스며드는 텍스처</dd></div>
+      </dl>
+    </div>
+  </div>
+  <span class="sn">15</span>
+</section>
+
+<section class="slide mist" id="sSpecMap" data-title="분석이 제품이 되기까지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>From Insight to Spec</span><h2 class="h2" data-a style="--i:1">분석에서 찾은 근거가 제품 설계가 된다</h2></div>
+    <div class="tbl" data-a style="--i:2">
+      <table class="specmap">
+        <thead><tr><th>어디서 봤나</th><th>무엇을 봤나</th><th>제품에 이렇게 넣는다</th></tr></thead>
+        <tbody>
+          <tr><td>홈쇼핑 시장</td><td>구매 고객 60% 이상이 50·60대, 송출수수료 73.2%</td><td>5060용 탄력 기능 추가, 한 번에 많이 사는 4통 대용량</td></tr>
+          <tr><td>시청자 행동</td><td>채널을 돌리다 들어와 사용법·구성을 보고 구매</td><td>1펌프 = 1회, 사용 기간이 바로 계산되는 100ml 펌프</td></tr>
+          <tr><td>성수 무신사뷰티</td><td>펩타이드·레티날·PDRN 등 성분이 제품명이 됨</td><td>'장벽 + 탄력' 두 가지 효능을 이름에 바로 표기</td></tr>
+          <tr><td>성수 약국형 매장</td><td>시험 수치·역사·전문가 추천이 신뢰를 만듦</td><td>2중 기능성 + 출시 전 인체적용시험으로 방송용 수치 확보</td></tr>
+          <tr><td>성수 휩드·온그리디언츠</td><td>미니 키트, 체험, 한정 굿즈</td><td>15ml 미니로 체험·사은품, '홈쇼핑 단독' 표기</td></tr>
+          <tr><td>실제 리뷰 59개</td><td>71%가 꾸준한 재구매, 불만은 무거움·튜브·끈적임</td><td>4통 대용량, 펌프 용기, 가볍게 스며드는 마무리</td></tr>
+          <tr><td>채널 충돌</td><td>기존 크림은 몰·올리브영에서 이미 판매</td><td>홈쇼핑에서만 파는 전용 제품으로 가격 비교를 피함</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span class="sn">16</span>
+</section>
+
+<section class="slide" id="sRoadmap" data-title="신제품 개발 로드맵">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Development Roadmap</span><h2 class="h2" data-a style="--i:1">기존 크림으로 먼저 시험 방송, 신제품으로 본 방송</h2><p class="lead" data-a style="--i:2">개발에는 시간이 걸리므로, 기존 익스트림 크림으로 먼저 반응을 확인하고 그 데이터로 신제품을 다듬습니다.</p></div>
+    <div class="road">
+      <div class="rstep" data-a style="--i:3"><b>1단계</b><h3>기획 확정</h3><p>콘셉트·타깃·가격대·채널사 협의</p></div>
+      <div class="rstep" data-a style="--i:4"><b>2단계</b><h3>시험 방송</h3><p>겨울 시즌, 기존 익스트림 크림 대용량으로 반응·연령대·질문 데이터 수집</p></div>
+      <div class="rstep" data-a style="--i:5"><b>3단계</b><h3>제형·시험</h3><p>탄력 성분 처방, 인체적용시험(보습 지속·장벽·탄력), 기능성 보고</p></div>
+      <div class="rstep" data-a style="--i:6"><b>4단계</b><h3>방송 준비</h3><p>측정기 시연 리허설, 대본·심의, 4통 세트·미니 생산</p></div>
+      <div class="rstep main" data-a style="--i:7"><b>5단계</b><h3>신제품 론칭 방송</h3><p>다음 건조 시즌 첫 방송, 이후 T커머스·모바일 라이브 확장</p></div>
+    </div>
+    <div class="checks" data-a style="--i:8">
+      <p class="finding">출시 전에 꼭 확보할 것</p>
+      <ul><li>신제품 자체의 인체적용시험 결과 (방송 자막에 쓸 숫자)</li><li>피부장벽 회복·주름 개선 기능성 보고</li><li>저자극 테스트 (기존 크림처럼 3종)</li><li>펌프 1회 사용량 확정 → 사용 기간·가격 멘트 계산</li></ul>
+    </div>
+    <p class="note">개발 기간과 성분 구성은 네오팜 연구소와 협의해 정합니다. 위 내용은 기획 제안입니다.</p>
+  </div>
+  <span class="sn">17</span>
+</section>
+
+<section class="slide blue" id="s21" data-title="판매 전략 5가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Home Shopping Strategy</span><h2 class="h2" data-a style="--i:1">판매 전략 5가지</h2></div>
+    <div class="strat">
+      <div class="st" data-a style="--i:2"><span class="no" style="color:var(--sand)">01 메시지</span><h3>"진짜 장벽은 연구가 다르다"</h3><p style="color:rgba(255,255,255,.85)">방송 초반에 20년 연구를 먼저</p></div>
+      <div class="st" data-a style="--i:3"><span class="no" style="color:var(--sand)">02 증명</span><h3>신제품 시험 수치</h3><p style="color:rgba(255,255,255,.85)">출시 전 인체적용시험, 측정기 전후 비교</p></div>
+      <div class="st" data-a style="--i:4"><span class="no" style="color:var(--sand)">03 제품</span><h3>홈쇼핑 단독 신제품</h3><p style="color:rgba(255,255,255,.85)">장벽+탄력 100ml 4통 + 15ml 미니</p></div>
+      <div class="st" data-a style="--i:5"><span class="no" style="color:var(--sand)">04 출연</span><h3>연구원 + 실제 고객</h3><p style="color:rgba(255,255,255,.85)">장벽 원리 설명, 손글씨 후기</p></div>
+      <div class="st" data-a style="--i:6"><span class="no" style="color:var(--sand)">05 혜택</span><h3>방송에서만</h3><p style="color:rgba(255,255,255,.85)">시간 한정 추가 증정·파우치</p></div>
+    </div>
+  </div>
+  <span class="sn">18</span>
+</section>
+
+<section class="slide" id="s22" data-title="구성안 3가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Offers</span><h2 class="h2" data-a style="--i:1">구성안 3가지</h2></div>
+    <div class="offers">
+      <article class="offer main" data-a style="--i:2">
+        <div class="top"><h3>메인 구성 (신제품)</h3><span class="for">속건조 고민 50대</span></div>
+        <div class="mockmini" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="s"></i><i class="s"></i></div>
+        <ul><li>장벽 탄력 크림 100ml × 4</li><li>+ 15ml 미니 × 2 (휴대·선물용)</li><li>+ 방송 한정 7일 체험 키트</li></ul>
+        <p class="why">총 99,900원 예시 · 한 통 24,975원, ml당 공식 몰 세트보다 25% 저렴 (다음 장)</p>
+      </article>
+      <article class="offer" data-a style="--i:3">
+        <div class="top"><h3>가족 세트</h3><span class="for">가족 살림꾼 60대 · 가족과 나눠 쓰기</span></div>
+        <div class="imgs"><img src="img/rb-cleansing-foam.jpg" alt="세라마이드 클렌징 폼" loading="lazy"></div>
+        <ul><li>세라마이드 클렌징 폼 220ml × 2</li><li>+ 장벽 탄력 크림 100ml × 2</li><li>'온 가족 장벽 루틴'으로 소개</li></ul>
+        <p class="why">리바이포유의 '온 가족' 메시지에서 착안</p>
+      </article>
+      <article class="offer" data-a style="--i:4">
+        <div class="top"><h3>7일 고민별 체험 키트</h3><span class="for">방송 한정 사은품</span></div>
+        <div class="imgs"><img src="img/rb-aqua-soothing.jpg" alt="아쿠아 수딩 크림" loading="lazy"><img src="img/rb-cica-relief.jpg" alt="시카릴리프Rx 크림" loading="lazy"><img src="img/rb-control-t.jpg" alt="컨트롤-T 세럼" loading="lazy"></div>
+        <ul><li>아쿠아 수딩 · 시카릴리프Rx · 컨트롤-T 미니어처</li><li>7일 사용 가이드 카드 동봉</li></ul>
+        <p class="why">휩드 디스커버리 키트, 무신사 7일 프로그램에서 착안</p>
+      </article>
+    </div>
+  </div>
+  <span class="sn">19</span>
+</section>
+
+<section class="slide mist" id="s23" data-title="구성·가격 시뮬레이션">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Price Simulation</span><h2 class="h2" data-a style="--i:1">100ml 한 통 <span style="color:var(--brand)" data-count>24,975원</span></h2><p class="lead" data-a style="--i:2">신제품은 용량이 달라 'ml당 가격'으로 비교합니다. 4통 세트는 공식 몰 기존 크림 2통 세트보다 ml당 25% 저렴합니다.</p></div>
+    <div class="price-grid">
+      <div class="card" data-a style="--i:3">
+        <p class="finding" style="margin:0">ml당 가격 (원)</p>
+        <div class="chart" role="img" aria-label="ml당 가격 비교: 공식 몰 정가 547원, 공식 몰 2통 세트 333원, 신제품 3통 266원, 신제품 4통 250원">
+          <svg viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg">
+            <g font-size="11">
+              <line class="grid" x1="190" y1="18" x2="190" y2="200"/><text class="m" x="190" y="12" text-anchor="middle">0</text>
+              <line class="grid" x1="240" y1="18" x2="240" y2="200"/><text class="m" x="240" y="12" text-anchor="middle">100</text>
+              <line class="grid" x1="290" y1="18" x2="290" y2="200"/><text class="m" x="290" y="12" text-anchor="middle">200</text>
+              <line class="grid" x1="340" y1="18" x2="340" y2="200"/><text class="m" x="340" y="12" text-anchor="middle">300</text>
+              <line class="grid" x1="390" y1="18" x2="390" y2="200"/><text class="m" x="390" y="12" text-anchor="middle">400</text>
+              <line class="grid" x1="440" y1="18" x2="440" y2="200"/><text class="m" x="440" y="12" text-anchor="middle">500</text>
+            </g>
+            <g font-size="12.5">
+              <text x="182" y="42" text-anchor="end">기존 크림 몰 정가</text><rect class="bar-other grow" style="--i:0" x="190" y="27" width="274" height="22" rx="2"/><text x="469" y="43" font-weight="700">547</text>
+              <text x="182" y="87" text-anchor="end">기존 크림 몰 2통 세트</text><rect class="bar-other grow" style="--i:1" x="190" y="72" width="167" height="22" rx="2"/><text x="362" y="88" font-weight="700">333</text>
+              <text x="182" y="132" text-anchor="end" class="b">신제품 3통 세트</text><rect class="bar-us grow" style="--i:2" x="190" y="117" width="133" height="22" rx="2"/><text class="val-us" x="328" y="133">266</text>
+              <text x="182" y="177" text-anchor="end" class="b">신제품 4통 세트</text><rect class="bar-us grow" style="--i:3" x="190" y="162" width="125" height="22" rx="2"/><text class="val-us" x="320" y="178">250</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div data-a style="--i:4">
+        <div class="tbl">
+          <table class="price-tbl">
+            <thead><tr><th>구성</th><th class="num">판매가</th><th class="num">한 통당</th><th class="num">ml당 (몰 세트 대비)</th></tr></thead>
+            <tbody>
+              <tr><td>기존 크림 몰 2통 세트 (75ml×2)</td><td class="num">49,900원</td><td class="num">24,950원</td><td class="num">333원 (기준)</td></tr>
+              <tr><td>신제품 3통 (100ml×3) + 미니 + 키트</td><td class="num">79,900원</td><td class="num">26,633원</td><td class="num">266원 (−20%)</td></tr>
+              <tr class="rec"><td>신제품 4통 (100ml×4) + 미니 + 키트 (추천)</td><td class="num">99,900원</td><td class="num">24,975원</td><td class="num">250원 (−25%)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">기존 크림 가격은 공식 몰 2026년 11월 9일 기준. 신제품 판매가는 설명용 가정이며 원가·채널 수수료·사은품 비용을 반영해 확정합니다. ml당 가격은 크림만 기준.</p>
+        <p class="note">방송 멘트 예: "100ml 큰 통 4개, 1년 넘게 쓰는 양에 한 통 2만 4천 원대". 사용 기간은 1펌프 0.5g, 하루 2회 가정의 예시 계산입니다.</p>
+      </div>
+    </div>
+  </div>
+  <span class="sn">20</span>
+</section>
+
+<section class="slide" id="sSim" data-title="예상 성과 시뮬레이션">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Sales Simulation</span><h2 class="h2" data-a style="--i:1">1억 원을 팔려면 분당 17세트</h2><p class="lead" data-a style="--i:2">신제품 4통 세트(99,900원) 기준으로 목표 매출을 맞추려면 얼마나 팔아야 하는지 계산했습니다. 목표 매출을 움직여 보세요.</p></div>
+    <div class="sim">
+      <div class="calc" data-a style="--i:3">
+        <label for="simTarget">방송 1회 목표 매출 <output id="simOut">1억 원</output></label>
+        <input type="range" id="simTarget" min="1000" max="30000" step="500" value="10000" aria-label="방송 1회 목표 매출(만 원)">
+        <div class="outs">
+          <div><b id="simSets">1,002</b><span>필요한 세트 수</span></div>
+          <div><b id="simMin">16.7</b><span>분당 세트 (60분)</span></div>
+          <div><b id="simTubes">4,008</b><span>신제품 (100ml 통)</span></div>
+        </div>
+        <small>예시 계산: 모든 주문이 신제품 4통 세트(99,900원)라고 가정. 실제로는 4통 구성·모바일 주문·반품률을 반영해야 합니다.</small>
+      </div>
+      <div data-a style="--i:4">
+        <div class="tbl">
+          <table class="sim-tbl">
+            <thead><tr><th>목표 매출 (예시)</th><th class="num">필요 세트</th><th class="num">분당</th><th class="num">신제품 통수</th></tr></thead>
+            <tbody>
+              <tr><td>5천만 원</td><td class="num">501</td><td class="num">8.4</td><td class="num">2,004</td></tr>
+              <tr class="rec"><td>1억 원</td><td class="num">1,002</td><td class="num">16.7</td><td class="num">4,008</td></tr>
+              <tr><td>2억 원</td><td class="num">2,003</td><td class="num">33.4</td><td class="num">8,012</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">재고 준비: 목표 1억 원이면 신제품 100ml 약 4천 통, 15ml 미니 2천 개, 체험 키트 1천 개 이상이 필요합니다. 목표 매출은 채널사와 협의해 정하며, 송출수수료·원가를 빼면 실제 이익은 훨씬 작습니다.</p>
+      </div>
+    </div>
+  </div>
+  <span class="sn">21</span>
+</section>
+
+<section class="slide mist" id="sPersonaSales" data-title="페르소나별 예상 매출">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Sales by Persona · 예시</span><h2 class="h2" data-a style="--i:1">방송 1회 1억 원, 누가 얼마나 살까</h2><p class="lead" data-a style="--i:2">구매 고객 60% 이상이 50·60대라는 홈쇼핑 자료를 바탕으로, 페르소나별 매출 비중과 주력 구성을 가정해 계산했습니다.</p></div>
+
+    <div class="mixbar" role="img" aria-label="매출 비중: 속건조 50대 65%, 가족 살림꾼 60대 35%" data-a style="--i:3">
+      <i class="pa grow" style="width:65%;--i:0"><b>속건조 50대</b> 65%</i>
+      <i class="pb grow" style="width:35%;--i:1"><b>가족 살림꾼 60대</b> 35%</i>
+    </div>
+
+    <div class="psales two">
+      <article class="ps a" data-a style="--i:4">
+        <header><span class="avatar">A</span><div><h3>속건조 고민 50대</h3><small>밤 TV · 앱 주문</small></div></header>
+        <div class="big"><b data-count>6,500만 원</b><span>방송 매출</span></div>
+        <dl>
+          <div><dt>주력 구성</dt><dd>신제품 4통 세트 · 99,900원</dd></div>
+          <div><dt>예상 주문</dt><dd><b>651건</b></dd></div>
+          <div><dt>재구매율 목표</dt><dd>40% → 260건 · 2,597만 원</dd></div>
+          <div><dt>볼 지표</dt><dd>밤 방송 시연 구간 분당 주문, 앱 주문 비중</dd></div>
+        </dl>
+      </article>
+      <article class="ps b" data-a style="--i:5">
+        <header><span class="avatar">B</span><div><h3>가족 살림꾼 60대</h3><small>오전·저녁 TV · 전화(ARS) 주문</small></div></header>
+        <div class="big"><b data-count>3,500만 원</b><span>방송 매출</span></div>
+        <dl>
+          <div><dt>주력 구성</dt><dd>가족 세트 · 89,900원</dd></div>
+          <div><dt>예상 주문</dt><dd><b>390건</b></dd></div>
+          <div><dt>재구매율 목표</dt><dd>30% → 117건 · 1,052만 원</dd></div>
+          <div><dt>볼 지표</dt><dd>오전·저녁 방송별 주문, 전화 주문 비중, 가족 세트 비중</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="ptotal" data-a style="--i:7">
+      <div><span>총 주문</span><b data-count>1,041건</b></div>
+      <div><span>평균 객단가</span><b data-count>96,061원</b></div>
+      <div><span>재구매 매출 (1년 목표)</span><b data-count>3,649만 원</b></div>
+      <div class="hl"><span>방송 1회 → 1년 누적</span><b>1억 3,649만 원</b></div>
+    </div>
+    <p class="note">모두 예시 가정입니다. 매출 비중(65/35%), 가족 세트 89,900원, 재구매율 목표는 기획용 가정이며 시험 방송 데이터로 바꿉니다. 근거: 홈쇼핑 구매 고객 60% 이상이 50·60대, 재주문율이 높다는 업계 자료(뉴시스 2026.3.11, 한국TV홈쇼핑협회 인용).</p>
+  </div>
+  <span class="sn">22</span>
+</section>
+
+<section class="slide mist" id="s25" data-title="채널별 역할">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Channel</span><h2 class="h2" data-a style="--i:1">TV 홈쇼핑이 메인, 나머지 둘은 반복과 확장</h2></div>
+    <div class="chs">
+      <article class="ch main" data-a style="--i:2"><header><small>메인</small><b>TV 홈쇼핑 (생방송)</b></header><dl><div><dt>누구</dt><dd>속건조 50대, 가족 살림꾼 60대</dd></div><div><dt>무엇을</dt><dd>신제품 4통 대용량, 연구원 출연, 측정 시연</dd></div><div><dt>언제</dt><dd>60대는 오전 9~11시, 50대 직장인은 밤 9~11시 (채널사 시청 데이터로 확정)</dd></div></dl></article>
+      <article class="ch" data-a style="--i:3"><header><small>반복 노출</small><b>T커머스 (녹화 방송)</b></header><dl><div><dt>누구</dt><dd>채널을 돌리다 들어오는 30대 후반 이상</dd></div><div><dt>무엇을</dt><dd>15분 반복 설명 영상을 하루 여러 번 송출</dd></div><div><dt>장점</dt><dd>생방송 내용을 재편집해 제작비 절감</dd></div></dl></article>
+      <article class="ch" data-a style="--i:4"><header><small>확장</small><b>모바일 앱·라이브</b></header><dl><div><dt>누구</dt><dd>출퇴근길 스마트폰을 보는 50대</dd></div><div><dt>무엇을</dt><dd>방송 다시보기·숏폼, 앱 전용 쿠폰</dd></div><div><dt>장점</dt><dd>채팅으로 바로 질문, 재구매 쿠폰 연결</dd></div></dl></article>
+    </div>
+  </div>
+  <span class="sn">23</span>
+</section>
+
+<section class="slide" id="s27" data-title="15분 반복 설명">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>15-Minute Loop</span><h2 class="h2" data-a style="--i:1">언제 들어와도 이해되게, 15분마다 처음부터</h2></div>
+    <div class="loop-wrap">
+      <div class="loop" role="img" aria-label="15분마다 반복하는 설명 4단계 순환도" data-a style="--i:2">
+        <svg viewBox="0 0 600 384" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="ah2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" style="fill:var(--brand)"/></marker></defs>
+          <circle class="ring0" cx="300" cy="190" r="130"/>
+          <path class="arc" d="M336 65 A130 130 0 0 1 425 154" marker-end="url(#ah2)"/>
+          <path class="arc" d="M425 226 A130 130 0 0 1 336 315" marker-end="url(#ah2)"/>
+          <path class="arc" d="M264 315 A130 130 0 0 1 175 226" marker-end="url(#ah2)"/>
+          <path class="arc" d="M175 154 A130 130 0 0 1 264 65" marker-end="url(#ah2)"/>
+          <g class="orbit"><circle cx="300" cy="60" r="7"/></g>
+          <text x="300" y="182" text-anchor="middle" font-size="34" font-weight="900" style="fill:var(--brand)">15분</text>
+          <text x="300" y="210" text-anchor="middle" font-size="15" style="fill:var(--muted)">마다 처음부터 반복</text>
+          <circle class="node" cx="300" cy="60" r="30"/><text class="nt" x="300" y="67" text-anchor="middle" font-size="19">1</text>
+          <text x="300" y="20" text-anchor="middle" font-size="17" font-weight="700">무엇인가</text>
+          <circle class="node" cx="430" cy="190" r="30"/><text class="nt" x="430" y="197" text-anchor="middle" font-size="19">2</text>
+          <text x="472" y="196" text-anchor="start" font-size="17" font-weight="700">누구에게</text>
+          <circle class="node" cx="300" cy="320" r="30"/><text class="nt" x="300" y="327" text-anchor="middle" font-size="19">3</text>
+          <text x="300" y="377" text-anchor="middle" font-size="17" font-weight="700">어떻게 쓰나</text>
+          <circle class="node" cx="170" cy="190" r="30"/><text class="nt" x="170" y="197" text-anchor="middle" font-size="19">4</text>
+          <text x="128" y="196" text-anchor="end" font-size="17" font-weight="700">구성·가격</text>
+        </svg>
+      </div>
+      <div class="steps4">
+        <div data-a style="--i:3"><span>1</span><div><b>무엇인가</b><p>"20년 장벽 연구로 만든 홈쇼핑 단독 장벽·탄력 크림"</p></div></div>
+        <div data-a style="--i:4"><span>2</span><div><b>누구에게</b><p>"크림을 발라도 금방 당기는 분, 온 가족이 같이 쓸 순한 크림 찾는 분"</p></div></div>
+        <div data-a style="--i:5"><span>3</span><div><b>어떻게 쓰나</b><p>바르는 양과 순서를 손등·얼굴에 직접 보여주기 (다음 장)</p></div></div>
+        <div data-a style="--i:6"><span>4</span><div><b>구성·가격</b><p>"100ml 4통, 1년 넘게 쓰는 양, 한 통에 24,975원"을 한 문장으로</p></div></div>
+      </div>
+    </div>
+  </div>
+  <span class="sn">24</span>
+</section>
+
+<section class="slide mist" id="s28" data-title="사용법 3단계">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>How to Use</span><h2 class="h2" data-a style="--i:1">사용법은 3단계로, 화면에서 직접 보여준다</h2></div>
+    <div class="how">
+      <div data-a style="--i:2"><img src="img/rb-essence-toner.jpg" alt="익스트림 에센스 토너" loading="lazy"><div><span class="n">STEP 1</span><b>세안 후 토너</b><p>익스트림 에센스 토너로 피부결 정돈</p></div></div>
+      <div data-a style="--i:3"><span class="minib" aria-hidden="true"><i></i></span><div><span class="n">STEP 2</span><b>1펌프 펴 바르기</b><p>1펌프를 얼굴 전체에, 건조한 곳엔 반 펌프 더</p></div></div>
+      <div data-a style="--i:4"><span class="minib" aria-hidden="true"><i></i><i></i></span><div><span class="n">STEP 3</span><b>자기 전 2펌프</b><p>밤에는 2펌프로 한 겹 더 (밤 집중 케어)</p></div></div>
+    </div>
+    <div class="fixed" data-a style="--i:5">
+      <p class="finding" style="font-size:15px">화면에 항상 띄워 둘 4가지 (언제 들어와도 보이게)</p>
+      <div class="pills"><span>익스트림 장벽 탄력 크림 (홈쇼핑 단독)</span><span>장벽 보습 + 탄력 2중 기능성</span><span>100ml 4통 + 15ml 미니 2개 + 체험 키트</span><span class="p">총 99,900원 · 한 통당 24,975원</span></div>
+      <p class="note" style="margin-top:0">예시는 가격 시뮬레이션의 추천안 기준. 사용 순서·양은 방송 전 공식 사용 가이드로 확인합니다.</p>
+    </div>
+  </div>
+  <span class="sn">25</span>
+</section>
+
+<section class="slide blue" id="s13" data-title="신제품의 바탕이 된 기술 근거">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Our Evidence</span><h2 class="h2" data-a style="--i:1">신제품의 바탕: 이미 검증된 리얼베리어 기술</h2><p class="lead" data-a style="--i:2">기존 익스트림 크림의 결과입니다. 신제품은 출시 전 자체 시험으로 방송에 쓸 숫자를 새로 확보합니다.</p></div>
+    <div class="stats">
+      <div class="stat" data-a style="--i:3"><b data-count>52%</b><span>피부장벽 개선</span><small>자외선 손상 피부, 바르고 6시간 수면 후 · 코어덤 피부과학연구소 · 22명 · 2025.5</small></div>
+      <div class="stat" data-a style="--i:4"><b data-count>47%</b><span>붉어진 피부 개선</span><small>같은 시험 조건</small></div>
+      <div class="stat" data-a style="--i:5"><b data-count>100시간</b><span>보습 지속</span><small>스킨메드임상시험센터 · 20명 · 2024.7–8</small></div>
+      <div class="stat" data-a style="--i:6"><b data-count>250만 개</b><span>익스트림 크림 오리지널 누적 판매</span><small>2025년 7월 보도 기준</small></div>
+      <div class="stat" data-a style="--i:7"><b data-count>2.5배</b><span>흡수 (MLE® 미적용 자사 크림 대비)</span><small>독자 피부장벽 기술 MLE®</small></div>
+      <div class="stat" data-a style="--i:8"><b data-count>3종</b><span>저자극 테스트 완료</span><small>하이포알러제닉 · 민감성 피부 · 논코메도제닉</small></div>
+    </div>
+    <p class="note">출처: <a href="https://www.cosinkorea.com/mobile/article.html?no=55750" target="_blank" rel="noopener">코스인코리아 2025.7.24</a> · <a href="https://www.newswire.co.kr/newsRead.php?no=1015434" target="_blank" rel="noopener">뉴스와이어 보도자료</a> (네오팜 발표). 방송 전 시험 보고서 원본 확인 필요.</p>
+  </div>
+  <span class="sn">26</span>
+</section>
+
+<section class="slide mist" id="s14" data-title="방송 화면 예시">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>On-Air Screen</span><h2 class="h2" data-a style="--i:1">방송 화면은 이렇게</h2></div>
+    <div class="tvwrap">
+      <div data-a style="--i:2">
+        <div class="tv" role="img" aria-label="홈쇼핑 방송 화면 구성 예시">
+          <div class="screen">
+            <div class="ba">
+              <div><img src="img/ba-ai-before.png" alt="비포 연출 이미지 (AI 생성)"></div>
+              <div><img src="img/ba-ai-after.png" alt="애프터 6시간 연출 이미지 (AI 생성)"></div>
+            </div>
+            <p class="tag">*수치 자막은 신제품 인체적용시험 결과로 넣습니다<br>*사진은 AI 생성 연출 이미지이며 실제 시험 사진이 아닙니다</p>
+            <div class="side">
+              <div class="badge" data-pop style="--i:4">누적 250만 개<small>익스트림 크림 오리지널</small></div>
+              <div class="badge" data-pop style="--i:6;background:#111318">장벽 회복 + 주름 개선<small>2중 기능성 (개발 목표)</small></div>
+              <div class="rev" data-pop style="--i:8"><b>★ 실제 구매 후기</b><br>"자고 일어나도 당기지 않아요"<br><span style="color:#5f6472">후기 원문 자리 · 동의 받은 후기만</span></div>
+            </div>
+            <div class="lower"><strong>홈쇼핑 단독 · 장벽 탄력 크림<span>20년 장벽 연구 · 리얼베리어 익스트림 신제품</span></strong><span class="offer-tag">100ml 4통 구성</span></div>
+          </div>
+        </div>
+        <p class="tvnote">신제품 방송 화면 구성 예시(목업)입니다. 비포/애프터는 화면 배치를 보여주기 위한 AI 생성 연출 이미지로, 실제 방송에서는 쓸 수 없습니다. 방송에는 신제품 인체적용시험 원본 사진으로 바꿔야 합니다. 후기 문구는 자리 표시용 예시입니다.</p>
+      </div>
+      <div class="rules" data-a style="--i:3">
+        <h3>쓸 때 지켜야 할 4가지</h3>
+        <ol>
+          <li><b>비포/애프터는 시험 사진만</b>인체적용시험 원본 사진을 보정 없이 쓰고, 시험 조건(대상·기간·기관)을 함께 표기</li>
+          <li><b>고객 후기 사진은 동의 후</b>얼굴이 나오는 후기는 사용 동의를 받고, 개인 효과임을 함께 안내</li>
+          <li><b>'1등'에는 출처와 시점</b>어느 채널, 어느 기간의 1등인지 화면에 함께 표기</li>
+          <li><b>추천인은 대가 여부 표기</b>협찬 여부를 밝히고, '치료' 같은 의약품 오인 표현은 쓰지 않기</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <span class="sn">27</span>
+</section>
+
+<section class="slide mist" id="sFaq" data-title="시청자 질문 4가지">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>FAQ</span><h2 class="h2" data-a style="--i:1">신제품에 시청자가 바로 물을 질문</h2></div>
+    <div class="faq2">
+      <div data-a style="--i:2"><p class="q">기존 익스트림 크림과 뭐가 달라요?</p><p class="a">리얼베리어의 장벽 기술은 그대로 두고 <strong>탄력 성분을 더한 홈쇼핑 단독 제품</strong>입니다. 용량도 <strong>100ml 펌프</strong>로 키워 넉넉하게 쓰실 수 있습니다.</p><small>기획안 기준 · 성분과 처방은 네오팜 연구소와 확정</small></div>
+      <div data-a style="--i:3"><p class="q">예민한 피부도 써도 되나요?</p><p class="a">기존 익스트림 크림은 <strong>저자극 테스트 3가지</strong>를 마쳤고, 신제품도 출시 전 같은 시험을 거칩니다. 처음엔 귀 뒤나 팔 안쪽에 먼저 발라 보세요.</p><small>근거: 네오팜 발표(코스인코리아 2025.7) · 신제품은 시험 후 확정</small></div>
+      <div data-a style="--i:4"><p class="q">얼마나 촉촉함이 가나요?</p><p class="a">바탕이 된 익스트림 크림은 <strong>100시간 보습 지속</strong> 시험 결과가 있습니다. 신제품도 보습 지속·장벽·탄력 시험으로 <strong>방송 전에 숫자를 확인</strong>합니다.</p><small>근거: 스킨메드임상시험센터 · 20명 · 2024 (기존 크림)</small></div>
+      <div data-a style="--i:5"><p class="q">한 통으로 얼마나 쓰나요?</p><p class="a"><strong>1펌프씩 하루 두 번</strong> 쓰면 100ml 한 통에 <strong>약 3달</strong>, 4통이면 <strong>1년 넘게</strong> 씁니다. 한 통 24,975원이라 <strong>한 달 7천 원대</strong>입니다.</p><small>예시 계산: 1펌프 0.5g, 하루 2회, 1ml≈1g 가정 · 펌프 용량 확정 후 다시 계산</small></div>
+    </div>
+  </div>
+  <span class="sn">28</span>
+</section>
+
+<section class="slide" id="sScript" data-title="오프닝 30초 대본">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Opening Script</span><h2 class="h2" data-a style="--i:1">쇼호스트 오프닝 30초</h2><p class="lead" data-a style="--i:2">채널을 돌리던 시청자를 30초 안에 붙잡는 대본입니다. 공감 → 원인 → 증거 → 구성·가격 순서입니다.</p></div>
+    <div class="script">
+      <div class="cue" data-a style="--i:3"><span class="tc">0–5초</span><p class="scr"><b>화면</b>손등에 1펌프 클로즈업 · 하단 자막 '홈쇼핑 단독 신제품'</p><p class="say">"크림 바르고 오후만 되면 얼굴이 당기고, 볼은 점점 처지는 느낌 드세요? 채널, 잠깐만 멈춰 주세요."</p></div>
+      <div class="cue" data-a style="--i:4"><span class="tc">5–15초</span><p class="scr"><b>화면</b>연구소·제품 컷 · 오른쪽 위 배지 '누적 250만 개'</p><p class="say">"수분을 붙잡는 피부 보호막, '장벽'이 약해서 그렇습니다. 장벽만 20년 넘게 연구한 리얼베리어가 장벽에 탄력까지 더해, 홈쇼핑에서만 파는 크림을 만들었습니다."</p></div>
+      <div class="cue" data-a style="--i:5"><span class="tc">15–25초</span><p class="scr"><b>화면</b>측정기 전후 수치 · 시험 조건 자막</p><p class="say">"바르기 전과 후, 수분량을 지금 바로 재 보겠습니다. 숫자로 직접 확인하세요."</p></div>
+      <div class="cue" data-a style="--i:6"><span class="tc">25–30초</span><p class="scr"><b>화면</b>구성 카드 + 가격 · 상시 정보 바</p><p class="say">"오늘은 100ml 큰 통 4개에 미니 2개, 체험 키트까지. 한 통에 2만 4천 원대입니다."</p></div>
+    </div>
+    <p class="note">신제품 효능 수치는 출시 전 인체적용시험 결과가 나오면 15–25초 구간에 넣습니다. 가격은 예시이며, 실제 대본은 방송 심의를 거쳐 확정합니다.</p>
+  </div>
+  <span class="sn">29</span>
+</section>
+
+<section class="slide" id="s30" data-title="60분 방송 흐름">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Broadcast Rundown</span><h2 class="h2" data-a style="--i:1">60분 방송 흐름 (안)</h2><p class="lead" data-a style="--i:2">막대 길이가 시간 비중입니다. 0·15·30·45분에 '무엇·누구·사용법·구성' 요약을 1분씩 다시 넣습니다.</p></div>
+    <div class="tbl" style="border:0;background:transparent;--i:3" data-a>
+      <div class="runbar">
+        <div class="seg" style="flex:8;--i:0"><span class="t">0–8분</span><b>고민 공감</b><span>"보습해도 왜 건조할까?"</span><span class="p">→ 속건조 50대</span></div>
+        <div class="seg" style="flex:10;--i:1"><span class="t">8–18분</span><b>원인과 브랜드</b><span>연구원이 장벽 원리 설명</span></div>
+        <div class="seg key" style="flex:14;--i:2"><span class="t">18–32분</span><b>시연</b><span>온도계·수분 측정기 전후 비교</span></div>
+        <div class="seg" style="flex:10;--i:3"><span class="t">32–42분</span><b>후기와 가족</b><span>실제 고객 후기, 가족 사용</span><span class="p">→ 가족 살림꾼 60대</span></div>
+        <div class="seg key" style="flex:10;--i:4"><span class="t">42–52분</span><b>구성 공개</b><span>신제품 4통 + 미니, 한 통 가격</span><span class="p">→ 속건조 50대·탄력 60대</span></div>
+        <div class="seg" style="flex:8;--i:5"><span class="t">52–60분</span><b>마감</b><span>한정 사은품, 남은 수량</span></div>
+      </div>
+    </div>
+    <div class="tbl" style="margin-top:28px;--i:4" data-a>
+      <table class="kpi">
+        <thead><tr><th>단계</th><th>할 일</th><th>성과 지표</th></tr></thead>
+        <tbody>
+          <tr><td>준비</td><td>방송용 수치 정리, 광고 심의, 페르소나 검증</td><td>사용 가능한 수치 3개 이상</td></tr>
+          <tr><td>개발</td><td>신제품 처방·인체적용시험·기능성 보고</td><td>방송용 시험 수치 3개 이상</td></tr>
+          <tr><td>구성</td><td>4통 세트·가족 세트·체험 키트 기획, 가격 설계</td><td>ml당 체감 할인율</td></tr>
+          <tr><td>제작</td><td>시연 장비, 연구원 섭외, 후기 수집</td><td>시연 리허설 완료</td></tr>
+          <tr><td>방송</td><td>60분 흐름대로 진행</td><td>분당 주문 수, 매출 달성률</td></tr>
+          <tr><td>이후</td><td>체험 키트 고객의 다른 라인 구매 추적</td><td>재구매율, 몰 신규 가입</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span class="sn">30</span>
+</section>
+
+<section class="slide blue" id="s31" data-title="결론">
+  <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Conclusion</span><h2 class="h2" data-a style="--i:1">무엇을, 누구에게, 어떻게</h2></div>
+    <dl class="concl">
+      <div data-a style="--i:2"><dt>WHAT</dt><dd>홈쇼핑 단독 신제품 '익스트림 장벽 탄력 크림'(가칭) 100ml 4통 + 15ml 미니</dd></div>
+      <div data-a style="--i:3"><dt>WHO</dt><dd>속건조로 고민하는 50대 직장인과 탄력이 고민인 60대, 50대 이상</dd></div>
+      <div data-a style="--i:4"><dt>HOW</dt><dd>15분마다 반복하는 쉬운 설명 + 시험 수치와 측정 시연 + 한 통당 가격</dd></div>
+      <div data-a style="--i:5"><dt>WHERE·WHEN</dt><dd>기존 크림으로 겨울 시험 방송 → 다음 건조 시즌 신제품 론칭, TV 생방송 중심 + T커머스·모바일 라이브</dd></div>
+      <div data-a style="--i:6"><dt>GOAL</dt><dd>방송 1회 1억 원 예시 = 4통 세트 약 1천 개, 분당 17세트</dd></div>
+    </dl>
+    <p class="closing" data-a style="--i:8">성수 매장들이 체험·숫자·사람 이야기로 손님을 설득했듯이, 리얼베리어는 20년 장벽 연구를 5060을 위한 홈쇼핑 단독 신제품으로 만들고, 화면에서 직접 보여주고 쉽게 설명할 때 가장 잘 팔릴 것입니다.</p>
+  </div>
+  <span class="sn">31</span>
+</section>
+
+<section class="slide" id="s32" data-title="출처">
+  <div class="wrap">
+    <div class="head"><span class="kick" data-a>Sources</span><h2 class="h2" data-a style="--i:1">사진과 자료 출처</h2></div>
+    <div class="sources" data-a style="--i:2">
+      <p>현장 사진: <a href="https://drive.google.com/drive/folders/1ncGnDO6meRFfk9OMg7mt7rRJz96jcFft" target="_blank" rel="noopener">Google Drive '백가영' 폴더</a> (45장 중 일부 수록)</p>
+      <p>제품 사진·가격: <a href="https://myrealbarrier.co.kr/" target="_blank" rel="noopener">리얼베리어 공식 몰</a>, <a href="https://www.whipped.co.kr/" target="_blank" rel="noopener">휩드 공식몰</a> (2026년 11월 9일 기준)</p>
+      <p>매장 대표 사진: <a href="https://popga.co.kr/popup/14552" target="_blank" rel="noopener">팝가 리바이포유 10주년 팝업</a> · <a href="https://popga.co.kr/popup/6900" target="_blank" rel="noopener">팝가 휩드 팝업</a> · <a href="https://popga.co.kr/content/magazine/92" target="_blank" rel="noopener">팝가 온그리디언츠 팝업 후기</a> · <a href="https://byline.network/2026/04/22_musinsa-3/" target="_blank" rel="noopener">바이라인네트워크(무신사 제공)</a> · <a href="https://magazine.hankyung.com/business/article/202609020520b" target="_blank" rel="noopener">한경비즈니스 뷰티약국 기사</a></p>
+      <p>고객 리뷰: <a href="https://www.kurly.com/goods/1000964874" target="_blank" rel="noopener">컬리 리얼베리어 익스트림 크림 상품 후기 59개</a> (2026.11.11 수집, 개인 정보 제외)</p>
+      <p>리얼베리어 시험 결과: <a href="https://www.cosinkorea.com/mobile/article.html?no=55750" target="_blank" rel="noopener">코스인코리아</a>, <a href="https://www.newswire.co.kr/newsRead.php?no=1015434" target="_blank" rel="noopener">뉴스와이어</a> · 신제품: <a href="https://www.insight.co.kr/amp/news/575787" target="_blank" rel="noopener">인사이트</a></p>
+      <p>홈쇼핑 시장: <a href="https://mobile.newsis.com/view/NISX20260710_0003704386" target="_blank" rel="noopener">뉴시스 2026.7.10</a> · <a href="https://www.ddaily.co.kr/page/view/2026041509142671861" target="_blank" rel="noopener">디지털데일리 2026.4.15</a> · <a href="https://mobile.newsis.com/view/NISX20260310_0003542234" target="_blank" rel="noopener">뉴시스 2026.3.11</a></p>
+      <p>외부 사진은 내부 보고용이며, 외부 배포 전 사용 허락 확인이 필요합니다. 비포/애프터 사진은 AI 생성 연출 이미지입니다.</p>
+    </div>
+  </div>
+  <span class="sn">32</span>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  const cur=document.getElementById('cur'), tot=document.getElementById('tot');
+  const nowT=document.getElementById('nowTitle'), prog=document.getElementById('progress');
+  tot.textContent=String(total).padStart(2,'0');
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let active=0;
+
+  function setActive(i){
+    active=i;
+    cur.textContent=String(i+1).padStart(2,'0');
+    nowT.textContent=slides[i].dataset.title||'';
+    prog.style.setProperty('--p',((i+1)/total).toFixed(4));
+  }
+
+  // count-up: keeps the final text in the HTML so the page is correct at rest
+  function countUp(el){
+    if(reduce)return;
+    const final=el.dataset.final||el.textContent.trim();
+    el.dataset.final=final;
+    const m=final.match(/^([^0-9]*)([0-9][0-9,]*\.?[0-9]*)(.*)$/);
+    if(!m)return;
+    const pre=m[1], numStr=m[2], suf=m[3];
+    const hasComma=numStr.includes(',');
+    const target=parseFloat(numStr.replace(/,/g,''));
+    const dec=(numStr.split('.')[1]||'').length;
+    const dur=1100, t0=performance.now();
+    function fmt(v){let s=v.toFixed(dec);if(hasComma){const [a,b]=s.split('.');s=Number(a).toLocaleString('en-US')+(b?'.'+b:'');}return pre+s+suf;}
+    function step(t){const p=Math.min(1,(t-t0)/dur);const e=1-Math.pow(1-p,3);el.textContent=fmt(target*e);if(p<1)requestAnimationFrame(step);else el.textContent=final;}
+    requestAnimationFrame(step);
+  }
+
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        const s=en.target;
+        if(en.isIntersecting&&en.intersectionRatio>=0.35){
+          if(!s.classList.contains('play')){
+            s.classList.add('play');
+            s.querySelectorAll('[data-count]').forEach(countUp);
+          }
+          setActive(slides.indexOf(s));
+        }else if(!en.isIntersecting){
+          s.classList.remove('play');
+        }
+      });
+    },{threshold:[0,0.35,0.6]});
+    slides.forEach(s=>io.observe(s));
+  }
+  setActive(0);
+
+  // sales simulation calculator
+  const rng=document.getElementById('simTarget');
+  if(rng){
+    const PRICE=99900, MIN=60, TUBES=4;
+    const fmt=n=>n.toLocaleString('ko-KR');
+    const won=v=>{const eok=Math.floor(v/10000), man=v%10000;return (eok?eok+'억 ':'')+(man?fmt(man)+'만 ':'')+'원';};
+    const upd=()=>{
+      const v=Number(rng.value); // 만 원 단위
+      const sets=Math.ceil(v*10000/PRICE);
+      document.getElementById('simOut').textContent=won(v).replace('  ',' ');
+      document.getElementById('simSets').textContent=fmt(sets);
+      document.getElementById('simMin').textContent=(sets/MIN).toFixed(1);
+      document.getElementById('simTubes').textContent=fmt(sets*TUBES);
+    };
+    rng.addEventListener('input',upd);
+  }
+
+  function go(d){
+    const i=Math.max(0,Math.min(total-1,active+d));
+    slides[i].scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+  document.getElementById('prev').addEventListener('click',()=>go(-1));
+  document.getElementById('next').addEventListener('click',()=>go(1));
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest&&e.target.closest('input,textarea,select'))return;
+    if(['ArrowRight','ArrowDown','PageDown'].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){e.preventDefault();slides[0].scrollIntoView({behavior:'smooth'});}
+    else if(e.key==='End'){e.preventDefault();slides[total-1].scrollIntoView({behavior:'smooth'});}
+  });
+})();
+</script>

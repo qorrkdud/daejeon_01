@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>휩드 준비 시스템</title>
+<meta name="description" content="휩드 콘텐츠 마케터 인턴 지원을 위해 만든 페르소나 분석 스킬과 면접 준비 스킬, 그리고 내 포트폴리오를 한눈에 정리한 개인용 페이지">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c13; --bg2:#0f1220; --panel:#131728; --panel2:#181d33; --line:#252c45; --line2:#323a5a;
+  --text:#e9ecf5; --muted:#8f97ad; --dim:#5d6580; --accent:#8aa4ff;
+  --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+  --c-res:#38bdf8; --c-str:#a78bfa; --c-cre:#f472b6; --c-cpy:#fb923c; --c-art:#facc15; --c-vdr:#4ade80;
+  --c-edt:#2dd4bf; --c-prf:#60a5fa; --c-cmp:#f87171; --c-prt:#a3e635; --c-web:#818cf8; --c-int:#f9a8d4;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --radius:14px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+code,.mono{font-family:var(--mono);font-size:.86em}
+::selection{background:#8aa4ff55}
+
+nav.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px 28px;background:linear-gradient(#0a0c13ee,#0a0c1300);backdrop-filter:blur(6px)}
+nav.top .brand{font-weight:900;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+nav.top .brand i{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff}
+nav.top ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+nav.top a{text-decoration:none;font-size:13px;color:var(--muted);padding:6px 10px;border-radius:999px;transition:.2s}
+nav.top a:hover,nav.top a.on{color:var(--text);background:#ffffff12}
+#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--c-res),var(--c-str),var(--c-cre),var(--c-cpy),var(--c-art),var(--c-vdr));z-index:60;width:0}
+
+section{position:relative;padding:110px 28px;max-width:1240px;margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,44px);line-height:1.2;letter-spacing:-.03em;margin:0 0 16px;font-weight:900}
+.lead{color:var(--muted);font-size:17px;max-width:740px;margin:0 0 44px}
+.reveal.in{animation:rise .8s ease both}
+@keyframes rise{from{opacity:.35;transform:translateY(18px)}to{opacity:1;transform:none}}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:6px;border:1px solid currentColor;line-height:1.6;white-space:nowrap}
+.t-ok{color:var(--ok)}.t-inf{color:var(--accent)}.t-hyp{color:var(--warn)}.t-unk{color:var(--muted)}
+.note{font-size:12px;color:var(--dim);font-family:var(--mono)}
+
+/* hero */
+#hero{max-width:none;height:min(86vh,760px);min-height:540px;padding:0;display:grid;place-items:center;overflow:hidden}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-copy{position:relative;text-align:center;pointer-events:none;padding:0 20px}
+.hero-copy h1{font-size:clamp(38px,6.6vw,86px);line-height:1.04;letter-spacing:-.045em;margin:0 0 20px;font-weight:900}
+.hero-copy h1 span{background:linear-gradient(90deg,var(--c-res),var(--c-str) 30%,var(--c-cre) 55%,var(--c-cpy) 80%,var(--c-art));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy p{color:var(--muted);font-size:clamp(15px,1.6vw,19px);margin:0 auto 30px;max-width:640px}
+.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-stats div{background:#ffffff0a;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:14px;backdrop-filter:blur(6px)}
+.hero-stats b{font-family:var(--mono);margin-right:6px}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.2em;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* principles */
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pr{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden}
+.pr .n{font-family:var(--mono);color:var(--dim);font-size:12px}
+.pr h3{margin:8px 0 8px;font-size:18px}
+.pr p{margin:0;color:var(--muted);font-size:14px}
+.pr small{display:block;margin-top:10px;font-size:12px;color:var(--dim)}
+.pr::after{content:"";position:absolute;inset:auto -40% -60% auto;width:200px;height:200px;border-radius:50%;background:radial-gradient(var(--glow,#8aa4ff33),transparent 70%)}
+
+/* modules */
+.org{display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start}
+.dir-card{position:sticky;top:90px;background:linear-gradient(160deg,#1c2240,#121628);border:1px solid var(--line2);border-radius:var(--radius);padding:26px}
+.dir-card .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-family:var(--mono);color:var(--muted)}
+.dir-card .badge i{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 10px #fff}
+.dir-card h3{font-size:22px;margin:10px 0 6px}
+.dir-card ul{margin:14px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
+.dir-card li{margin:4px 0}
+.detail{margin-top:18px;border-top:1px solid var(--line);padding-top:18px;min-height:220px}
+.detail h4{margin:0 0 2px;font-size:19px}
+.detail .en{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.detail dl{display:grid;grid-template-columns:64px 1fr;gap:6px 10px;margin:14px 0 0;font-size:13px}
+.detail dt{color:var(--dim)}
+.detail dd{margin:0}
+.detail .files{display:flex;flex-wrap:wrap;gap:4px}
+.detail .files code{background:#ffffff0c;padding:1px 6px;border-radius:5px}
+.grp{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.08em;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.grp::after{content:"";flex:1;height:1px;background:var(--line)}
+.grp + .agents{margin-bottom:26px}
+.agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.ag{--c:#fff;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:relative;transition:transform .25s,border-color .25s,box-shadow .25s,opacity .25s}
+.ag:hover,.ag.sel{transform:translateY(-3px);border-color:var(--c);box-shadow:0 10px 40px -12px var(--c)}
+.ag .dot{width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--c) 18%,transparent);border:1px solid color-mix(in srgb,var(--c) 60%,transparent);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--c);font-weight:600}
+.ag h4{margin:12px 0 0;font-size:16px}
+.ag .en{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ag p{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.5}
+.ag .folder{position:absolute;top:18px;right:16px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.ag .rv{position:absolute;inset:auto 12px 12px auto;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--accent);color:#0a0c13;font-weight:700;opacity:0;transform:scale(.8);transition:.25s}
+.wrapAg.focus .ag:not(.sel):not(.isrev){opacity:.35}
+.ag.isrev{border-color:var(--accent);border-style:dashed}
+.ag.isrev .rv{opacity:1;transform:none}
+
+/* simulation */
+.sim-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:9px 16px;font-size:14px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--text);color:#0a0c13;border-color:var(--text);font-weight:700}
+.speed{display:flex;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.speed button{background:none;border:0;padding:9px 11px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.speed button.on{background:#ffffff18;color:var(--text)}
+.rail{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-bottom:18px}
+.rail div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:12.5px;color:var(--dim);transition:.35s}
+.rail div b{display:block;font-family:var(--mono);font-size:10px;font-weight:400;opacity:.7}
+.rail div.done{color:var(--muted);border-color:var(--line2)}
+.rail div.on{color:#0a0c13;background:var(--rc,var(--text));border-color:var(--rc,var(--text));transform:translateY(-3px);box-shadow:0 8px 30px -8px var(--rc,#fff)}
+.stage{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px}
+.board{background:radial-gradient(ellipse at center,#161b33 0%,var(--bg2) 70%);border:1px solid var(--line);border-radius:var(--radius);position:relative;overflow:hidden;min-height:470px;display:flex;flex-direction:column}
+.nowcard{display:flex;gap:10px;align-items:center;font-size:14px;min-height:28px;padding:14px 16px 0}
+.nowcard .who{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;color:#0a0c13;font-weight:600;white-space:nowrap}
+.pipe{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:22px 18px 70px;align-content:center}
+.pnode{border:1px solid var(--line2);border-radius:12px;padding:12px;background:var(--panel);transition:.35s;opacity:.4;position:relative}
+.pnode b{font-family:var(--mono);font-size:10px;color:var(--dim);display:block;font-weight:400}
+.pnode span{font-size:14px;font-weight:700}
+.pnode small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;line-height:1.4}
+.pnode.done{opacity:.85;border-color:color-mix(in srgb,var(--nc) 50%,var(--line2))}
+.pnode.on{opacity:1;border-color:var(--nc);box-shadow:0 0 0 1px var(--nc),0 10px 30px -10px var(--nc);background:color-mix(in srgb,var(--nc) 14%,var(--panel))}
+.pnode.on::after{content:"";position:absolute;inset:-6px;border-radius:16px;border:2px solid var(--nc);animation:pulse 1.2s ease-out infinite}
+@keyframes pulse{from{opacity:.8;transform:scale(1)}to{opacity:0;transform:scale(1.06)}}
+.paused .pnode.on::after{animation-play-state:paused}
+.counters{position:absolute;right:14px;bottom:12px;display:flex;gap:16px;font-size:11px;color:var(--muted)}
+.counters b{font-family:var(--mono);font-size:16px;color:var(--text);display:block;text-align:right}
+.side{display:grid;grid-template-rows:auto 1fr;gap:16px;min-height:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-height:0}
+.panel h5{margin:0;padding:12px 16px;font-size:12px;font-family:var(--mono);color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;font-weight:400}
+.tree{padding:10px 14px;font-family:var(--mono);font-size:12px;max-height:220px;overflow:auto}
+.tree .f{padding:1px 0;color:var(--dim);white-space:nowrap}
+.tree .file{padding-left:18px;color:var(--text);animation:pop .8s ease}
+.tree .file.hyp{color:var(--warn)}
+@keyframes pop{0%{background:#ffffff30;transform:translateX(-6px);opacity:0}100%{background:transparent;transform:none;opacity:1}}
+.log{padding:8px 0;font-size:13px;overflow:auto;height:300px}
+.log .row{display:grid;grid-template-columns:auto 1fr;gap:8px;padding:5px 14px;align-items:start;animation:pop .6s ease}
+.log .who{font-family:var(--mono);font-size:10.5px;padding:1px 7px;border-radius:999px;color:#0a0c13;font-weight:600;white-space:nowrap;margin-top:2px}
+.log .msg small{color:var(--muted);display:block;font-size:11.5px}
+.disclaim{margin-top:12px;font-size:12px;color:var(--dim)}
+
+/* router */
+.router{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:stretch}
+.reqs{display:flex;flex-direction:column;gap:10px}
+.req{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;transition:.25s;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.req small{color:var(--dim);font-family:var(--mono);font-size:11px;white-space:nowrap}
+.req.on{border-color:var(--text);background:var(--panel2)}
+.route{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.route h4{margin:0 0 4px;font-size:20px}
+.route p{color:var(--muted);margin:0;font-size:14px}
+.route .lane{display:flex;align-items:center;gap:8px;margin:18px 0 6px;flex-wrap:wrap}
+.chip{padding:7px 13px;border-radius:999px;border:1px solid var(--line2);font-size:13px;background:var(--bg2);opacity:.25;transition:.4s}
+.chip.on{opacity:1;border-color:var(--cc,#fff);box-shadow:0 0 20px -6px var(--cc,#fff)}
+.route .out{margin-top:16px;font-size:13px;color:var(--muted)}
+.route .out code{background:#ffffff0c;padding:1px 6px;border-radius:5px;color:var(--text)}
+
+/* evidence */
+.ev-wrap{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.ev-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:46px;position:relative;z-index:1}
+.ev-col h5{margin:0 0 12px;font-size:12px;font-family:var(--mono);color:var(--muted);font-weight:400;letter-spacing:.06em}
+.ev{display:block;width:100%;text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13px;transition:.3s;line-height:1.45}
+.ev .id{font-family:var(--mono);font-weight:600;margin-right:6px}
+.ev.lit{border-color:var(--text);background:var(--panel2);box-shadow:0 0 0 1px #fff3}
+.ev.weak{border-color:var(--warn);border-style:dashed}
+.ev.dim{opacity:.3}
+.ev.out{cursor:pointer}
+.ev.out:hover{border-color:var(--accent)}
+#evSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#evSvg path{fill:none;stroke:var(--line2);stroke-width:1.4;transition:stroke .3s,opacity .3s}
+#evSvg path.lit{stroke:#fff;stroke-width:2.2;stroke-dasharray:6 6;animation:flow 1s linear infinite}
+#evSvg path.weak{stroke:var(--warn)}
+#evSvg path.dim{opacity:.15}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.gate{margin-top:18px;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);min-height:58px}
+.gate .light{width:14px;height:14px;border-radius:50%;background:var(--dim);flex:none;transition:.3s}
+.gate.ok .light{background:var(--ok);box-shadow:0 0 14px var(--ok)}
+.gate.hyp .light{background:var(--warn);box-shadow:0 0 14px var(--warn)}
+.tags4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.tags4 div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--muted)}
+
+/* works */
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.stat .big{font-family:var(--mono);font-size:42px;font-weight:600;line-height:1;letter-spacing:-.03em}
+.stat .big small{font-size:18px;color:var(--muted);margin-left:2px}
+.stat h4{margin:10px 0 4px;font-size:15px}
+.stat p{margin:0;font-size:13px;color:var(--muted)}
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.work{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px}
+.work .kind{font-family:var(--mono);font-size:11px;color:var(--wc,var(--accent));letter-spacing:.06em}
+.work h3{margin:0;font-size:18px;line-height:1.35}
+.work ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--muted)}
+.work li{margin:3px 0}
+.work .use{margin-top:auto;border-top:1px dashed var(--line2);padding-top:10px;font-size:13px}
+.work .use b{font-family:var(--mono);font-size:11px;color:var(--wc,var(--accent));display:block;font-weight:600;margin-bottom:2px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cards img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}
+.cards figcaption{font-size:11px;color:var(--dim);margin-top:4px;font-family:var(--mono)}
+.cards figure{margin:0}
+
+/* docs */
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.doc{background:#f4f1ea;color:#1b1d24;border-radius:6px;padding:26px 28px;font-size:13.5px;box-shadow:0 30px 60px -30px #000;position:relative;transform:rotate(-.6deg);transition:transform .4s}
+.doc:nth-child(2){transform:rotate(.6deg)}
+.doc:hover{transform:rotate(0) translateY(-4px)}
+.doc h4{margin:0 0 4px;font-size:17px}
+.doc .meta{font-family:var(--mono);font-size:11px;color:#6b6f7c;margin-bottom:14px}
+.doc .ln{border-top:1px solid #0000001a;padding:8px 0;display:grid;grid-template-columns:110px 1fr;gap:10px}
+.doc .ln b{font-size:12.5px}
+.doc .ln span{color:#454956}
+.stamp{position:absolute;right:24px;top:22px;border:3px solid #c2410c;color:#c2410c;font-weight:900;padding:4px 12px;border-radius:6px;transform:rotate(-8deg) scale(1.6);opacity:0;transition:.4s cubic-bezier(.5,1.8,.6,1);font-size:14px}
+.doc.in .stamp{opacity:.9;transform:rotate(-8deg) scale(1);transition-delay:1.2s}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.why div{border-left:2px solid var(--accent);padding:4px 0 4px 14px;font-size:14px;color:var(--muted)}
+.why b{color:var(--text);display:block;margin-bottom:2px}
+
+/* learnings + todo */
+.timeline{display:flex;flex-direction:column;gap:12px}
+.tl{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:13px}
+.tl h6{margin:0 0 4px;font-size:11px;font-family:var(--mono);font-weight:400}
+.tl .g h6{color:var(--ok)}.tl .b h6{color:var(--warn)}.tl .n h6{color:var(--accent)}
+.tl .t{grid-column:1/-1;font-weight:700;font-size:14px;display:flex;justify-content:space-between;gap:10px}
+.tl .t span{font-family:var(--mono);color:var(--dim);font-weight:400;font-size:11px}
+.tl div{color:var(--muted)}
+.todo{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:40px}
+.todo label{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;cursor:pointer;transition:.2s}
+.todo label:hover{border-color:var(--line2)}
+.todo input{margin-top:4px;accent-color:var(--ok);width:16px;height:16px;flex:none}
+.todo small{display:block;color:var(--dim);font-size:12px;font-family:var(--mono)}
+.todo label:has(input:checked){opacity:.5}
+.todo label:has(input:checked) span{text-decoration:line-through}
+h3.sub{font-size:16px;margin:0 0 14px;color:var(--muted);font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:40px 28px;text-align:center;color:var(--dim);font-size:13px}
+footer code{color:var(--muted)}
+
+@media (max-width:1000px){
+  .principles{grid-template-columns:1fr 1fr}
+  .org{grid-template-columns:1fr}.dir-card{position:static}
+  .stage,.router,.docs,.works{grid-template-columns:1fr}
+  .rail{grid-template-columns:repeat(5,1fr)}
+  .ev-cols{grid-template-columns:1fr 1fr;gap:20px}
+  #evSvg{display:none}
+  .why,.stats3{grid-template-columns:1fr}
+  .tags4,.todo{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  section{padding:90px 16px}
+  nav.top{padding:14px 16px}
+  nav.top ul{display:none}
+  .principles{grid-template-columns:1fr}
+  .rail{grid-template-columns:repeat(3,1fr)}
+  .pipe{grid-template-columns:1fr 1fr}
+  .ev-cols,.tags4,.todo{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr}
+  .doc .ln{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav class="top">
+  <div class="brand"><i></i>휩드 준비 시스템</div>
+  <ul>
+    <li><a href="#skills">스킬 구성</a></li>
+    <li><a href="#sim">흐름 재생</a></li>
+    <li><a href="#use">부르는 법</a></li>
+    <li><a href="#evidence">근거 사슬</a></li>
+    <li><a href="#works">내 재료</a></li>
+    <li><a href="#interview">면접 카드</a></li>
+    <li><a href="#next">할 일</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <div class="eyebrow">My Notes · WHIPPED Content Marketer Intern</div>
+    <h1>리뷰에서 시작해<br><span>면접장까지 한 줄로</span></h1>
+    <p>휩드 지원을 위해 만든 스킬 두 개와, 그 스킬이 꺼내 쓰는 내 포트폴리오를 한 장에 정리한 나만 보는 페이지.</p>
+    <div class="hero-stats">
+      <div><b>2</b>스킬</div>
+      <div><b>14</b>단계</div>
+      <div><b>100</b>명 설문 재료</div>
+      <div><b>14</b>장 카드뉴스</div>
+    </div>
+  </div>
+  <div class="scroll-cue">SCROLL ↓</div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="intro">
+  <div class="eyebrow reveal">Why this way</div>
+  <h2 class="reveal">두 스킬을 관통하는 네 가지 원칙</h2>
+  <p class="lead reveal">설문에서 배운 것("사람들은 광고보다 후기를 믿는다")을 그대로 스킬 규칙으로 옮겼다. 헷갈리면 여기로 돌아오기.</p>
+  <div class="principles">
+    <div class="pr reveal" style="--glow:#38bdf833"><div class="n">01</div><h3>리뷰가 근거다</h3><p>아이디어는 고객이 실제로 쓴 말에서 출발한다. 리뷰 50개 이상, 채널 2곳 이상.</p><small>← 설문: 숏폼 보는 이유 1위 '제품 후기' 49%</small></div>
+    <div class="pr reveal" style="--glow:#a78bfa33"><div class="n">02</div><h3>숫자는 모수와 함께</h3><p>항상 "N개 중 M개(○%)". 모르는 수치는 만들지 않고, 추측은 "(추정)".</p><small>← 연구에서 표본 한계를 결론에 적었던 습관</small></div>
+    <div class="pr reveal" style="--glow:#f472b633"><div class="n">03</div><h3>망설임에서 출발</h3><p>장점 나열 대신 "왜 안 사지?"를 먼저 찾는다. 불만 리뷰 = 기회.</p><small>← 미구매 25명 중 17명이 '불신'</small></div>
+    <div class="pr reveal" style="--glow:#fbbf2433"><div class="n">04</div><h3>분석은 실행으로 끝난다</h3><p>페르소나 → 카드뉴스 → 캠페인 → KPI까지. 면접에서는 그걸 내 말로 방어한다.</p><small>← LUMORA 회고: 감성만으론 '왜 지금'이 약했다</small></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="eyebrow reveal">Skills</div>
+  <h2 class="reveal">무엇이 무엇을 하나</h2>
+  <p class="lead reveal">단계 카드를 누르면 입력·산출물·지킬 규칙이 보이고, <span style="color:var(--accent)">그 결과를 받아 쓰는 다음 단계</span>가 점선으로 표시된다.</p>
+  <div class="org">
+    <aside class="dir-card reveal">
+      <span class="badge"><i></i>ME · 사용하는 사람</span>
+      <h3>나 (콘텐츠 마케터 인턴 지원)</h3>
+      <div style="color:var(--muted);font-size:14px">스킬을 부르고, 결과를 확인하고, 최종 선택은 내가 한다</div>
+      <ul>
+        <li><code>whipped-persona-analysis</code> 8단계</li>
+        <li><code>content-marketer-interview</code> 6단계</li>
+        <li>재료: 설문 연구 · 캡스톤 · LUMORA · 카드뉴스</li>
+      </ul>
+      <div class="detail" id="agentDetail"><div style="color:var(--dim);font-size:14px">← 오른쪽 단계 카드를 눌러 보세요</div></div>
+    </aside>
+    <div class="wrapAg" id="wrapAg">
+      <div class="grp">SKILL 1 · whipped-persona-analysis</div>
+      <div class="agents" id="gridP"></div>
+      <div class="grp">SKILL 2 · content-marketer-interview</div>
+      <div class="agents" id="gridI"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIM -->
+<section id="sim">
+  <div class="sim-head">
+    <div>
+      <div class="eyebrow reveal">Walkthrough</div>
+      <h2 class="reveal" style="margin:0">한 번 돌리면 이렇게 흘러간다</h2>
+    </div>
+    <div class="controls">
+      <button class="btn primary" id="playBtn">▶ 재생</button>
+      <button class="btn" id="stepBtn">⏭ 한 단계</button>
+      <button class="btn" id="resetBtn">↺ 처음부터</button>
+      <div class="speed" id="speed"><button data-s="0.5">0.5×</button><button data-s="1" class="on">1×</button><button data-s="2">2×</button><button data-s="4">4×</button></div>
+    </div>
+  </div>
+  <div class="rail" id="rail"></div>
+  <div class="stage">
+    <div class="board" id="board">
+      <div class="nowcard"><span class="who" id="nowWho" style="background:var(--dim)">대기</span><span id="nowWhat" style="color:var(--muted)">▶ 재생을 누르면 예시 흐름이 시작돼요</span></div>
+      <div class="pipe" id="pipe"></div>
+      <div class="counters">
+        <div><b id="cStep">0</b>완료 단계</div>
+        <div><b id="cFiles">0</b>산출물</div>
+        <div><b id="cHyp">0</b>검증할 가설</div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="panel"><h5><span>휩드_페르소나분석_YYYYMMDD/</span><span id="treeCount">0 files</span></h5><div class="tree" id="tree"></div></div>
+      <div class="panel"><h5><span>작업 로그</span><span id="clock">STEP 0/9</span></h5><div class="log" id="log"></div></div>
+    </div>
+  </div>
+  <div class="disclaim">※ 예시 흐름이에요. 스킬은 아직 한 번도 실행하지 않았고, 실제 리뷰 숫자는 실행해야 나와요. 핵심 페르소나는 포트폴리오에 적은 타깃을 출발점(가설)으로 넣었어요.</div>
+</section>
+
+<!-- ROUTER -->
+<section id="use">
+  <div class="eyebrow reveal">How to call</div>
+  <h2 class="reveal">이렇게 말하면 이게 움직인다</h2>
+  <p class="lead reveal">자주 쓸 요청을 골라 보면, 어떤 스킬의 어느 단계가 돌고 무엇이 남는지 보인다.</p>
+  <div class="router reveal">
+    <div class="reqs" id="reqs"></div>
+    <div class="route" id="route"></div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section id="evidence">
+  <div class="eyebrow reveal">Evidence Chain</div>
+  <h2 class="reveal">내 휩드 제안, 어디까지 근거가 있나</h2>
+  <p class="lead reveal">포트폴리오의 휩드 제안을 근거(E) → 해석(I) → 메시지(M) → 결과물로 다시 쪼갰다. <b>오른쪽 결과물을 눌러</b> 사슬을 따라가 보기. 노란 점선이 스킬로 검증해야 할 고리.</p>
+  <div class="ev-wrap reveal" id="evWrap">
+    <svg id="evSvg" aria-hidden="true"></svg>
+    <div class="ev-cols" id="evCols"></div>
+    <div class="gate" id="gate"><span class="light"></span><span id="gateText" style="color:var(--muted)">결과물을 하나 고르면 근거 상태가 나와요.</span></div>
+  </div>
+  <div class="note" style="margin-top:10px">※ E1~E3: 2025.05 개인 설문(20대 100명). E4~E6: 휩드 공식몰 상품 정보(2026.11 확인, 포트폴리오 기준).</div>
+  <div class="tags4">
+    <div class="reveal"><span class="tag t-ok">[확인]</span><br>직접 조사했거나 공식 자료로 확인</div>
+    <div class="reveal"><span class="tag t-inf">[추론]</span><br>근거에서 끌어낸 해석</div>
+    <div class="reveal"><span class="tag t-hyp">[가설]</span><br>아직 근거 없음 → 리뷰 집계로 검증</div>
+    <div class="reveal"><span class="tag t-unk">[미확인]</span><br>확인 못 함 — 숨기지 않고 남김</div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="eyebrow reveal">My Materials</div>
+  <h2 class="reveal">스킬이 꺼내 쓰는 내 재료</h2>
+  <p class="lead reveal">면접 스킬 1단계가 읽는 것들. 각 카드 아래에 "어디에 쓰이나"를 적어 뒀다.</p>
+  <div class="stats3">
+    <div class="stat reveal"><div class="big" style="color:var(--c-res)">49<small>%</small></div><h4>숏폼 보는 이유 1위 '제품 후기'</h4><p>100명 중 49명. 사용법 26 · 트렌드 20 · 재미 5</p></div>
+    <div class="stat reveal"><div class="big" style="color:var(--c-cre)">75<small>%</small></div><h4>콘텐츠 보고 구매한 경험</h4><p>100명 중 75명. 구매 이유 1위 '좋아 보여서'(44/75)</p></div>
+    <div class="stat reveal"><div class="big" style="color:var(--c-art)">17<small>/25</small></div><h4>안 산 이유는 '불신'</h4><p>효과·품질 불신 10 + 광고 같아서 7</p></div>
+  </div>
+  <div class="works">
+    <div class="work reveal" style="--wc:var(--c-res)">
+      <div class="kind">RESEARCH · 개인 연구 · 2025.05</div>
+      <h3>모바일 뷰티 숏폼 콘텐츠 이용 실태 연구</h3>
+      <ul>
+        <li>20대 100명 설문, 가설 3개(흥미 / 구매의도 / 정보 제공)</li>
+        <li>"믿을 수 있다" 40%뿐 · 댓글 질문 경험 없음 85%</li>
+        <li>한계: 여성·대전/충청 편중 → 결론에 명시</li>
+      </ul>
+      <div class="use"><b>어디에 쓰이나</b>1분 자기소개 ② 대표 숫자 · 원칙 01·02의 출처 · "모수가 작지 않나?" 방어 연습</div>
+    </div>
+    <div class="work reveal" style="--wc:var(--c-cpy)">
+      <div class="kind">CAPSTONE · 4인 팀 '뷰티랩' · 2025.03~04</div>
+      <h3>남은 내용물까지 쓰는 화장품 용기 개선</h3>
+      <ul>
+        <li>내 역할: 주제 구성, AI로 스케치 → 구조도·사용 순서 이미지</li>
+        <li>튜브 지퍼 → 소비자 의견 듣고 펌프형으로 전환</li>
+        <li>"좋은 구조도 설명이 없으면 쓰이지 않는다"</li>
+      </ul>
+      <div class="use"><b>어디에 쓰이나</b>소재 B(튜브형) 근거 경험 · 인성 질문 "의견을 듣고 바꾼 경험" · 협업 질문</div>
+    </div>
+    <div class="work reveal" style="--wc:var(--c-str)">
+      <div class="kind">BRAND PLANNING · 개인 · 수업</div>
+      <h3>감성 색조 브랜드 'LUMORA' 기획</h3>
+      <ul>
+        <li>네이밍 LUMOS+AURA · 라카/클리오/힌스 포지션 비교</li>
+        <li>제품 라인업·컬러 시스템·인플루언서 전략·SWOT</li>
+        <li>회고: 감성만으로는 '왜 지금 사야 하는지'가 약했다</li>
+      </ul>
+      <div class="use"><b>어디에 쓰이나</b>실패에서 배운 점 질문 · 페르소나 스킬의 "망설임에서 출발" 원칙의 이유</div>
+    </div>
+    <div class="work reveal" style="--wc:var(--c-edt)">
+      <div class="kind">NOW RUNNING · @weekly.beauty.recipe</div>
+      <h3>세안 레시피 카드뉴스 (14장, 휩드 1분 팩 세안)</h3>
+      <div class="cards">
+        <figure><img src="assets/card_01.png" alt="1장 표지: 세안할 때 다들 하는 실수 5가지" loading="lazy"><figcaption>01 · 문제 제기</figcaption></figure>
+        <figure><img src="assets/card_07.png" alt="7장: 실수 정리 카드" loading="lazy"><figcaption>07 · 실수 정리</figcaption></figure>
+        <figure><img src="assets/card_14.png" alt="14장: 실수에서 레시피로 해결 정리표" loading="lazy"><figcaption>14 · 실수 → 레시피</figcaption></figure>
+      </div>
+      <div class="use"><b>어디에 쓰이나</b>즉석 과제 답변 공식의 실제 예시 · "운영 중인 계정" 질문 · 다음 할 일: 저장·공유 수 기록</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW DOCS -->
+<section id="interview">
+  <div class="eyebrow reveal">Interview Cards</div>
+  <h2 class="reveal">면접 전에 다시 볼 두 장</h2>
+  <p class="lead reveal">면접 스킬이 만들어 줄 결과물의 뼈대를 내 재료로 미리 채워 본 초안. 외우지 말고 키워드만 기억하기.</p>
+  <div class="docs">
+    <div class="doc reveal">
+      <div class="stamp">키워드만</div>
+      <h4>1분 자기소개 — 키워드 카드</h4>
+      <div class="meta">면접준비_휩드.md · 2-5 · 약 300~350자</div>
+      <div class="ln"><b>① 정체성</b><span>리뷰로 설득하는 콘텐츠 마케터 · 뷰티케어 전공</span></div>
+      <div class="ln"><b>② 대표 경험</b><span>20대 100명 설문 → 숏폼 보는 이유 1위 '후기' 49%</span></div>
+      <div class="ln"><b>③ 일관성</b><span>캡스톤(불편 → 구조) · LUMORA(회고) · 카드뉴스(정보 → 제품) = 고객의 망설임에서 출발</span></div>
+      <div class="ln"><b>④ 휩드 연결</b><span>'망설임 해소형' 소재 A/B/C · 인스타 광고로 휩드를 처음 만난 소비자</span></div>
+      <div class="ln"><b>꼬리 질문</b><span>"49%면 표본이 편향되지 않았나?" · "캡스톤에서 본인 역할은?"</span></div>
+    </div>
+    <div class="doc reveal">
+      <h4>즉석 콘텐츠 과제 — 답변 공식</h4>
+      <div class="meta">면접준비_휩드.md · 2-6 · 근거 → 아이디어 → 형식·채널 → 측정</div>
+      <div class="ln"><b>근거</b><span>설문: 사람들은 '후기'를 보려고 숏폼을 본다 (49%) · 리뷰 집계 결과가 나오면 여기 교체</span></div>
+      <div class="ln"><b>아이디어</b><span>세안 실수 5가지 → 휩드 1분 팩 세안 레시피 (이미 만든 14장 구조)</span></div>
+      <div class="ln"><b>형식·채널</b><span>인스타 캐러셀 4:5 + 15초 릴스, 퇴근 후 밤 시간대</span></div>
+      <div class="ln"><b>측정</b><span>저장·공유 수 · 첫 장 문구 A/B · 이후 리뷰 속 사용법 불만 비중</span></div>
+      <div class="ln"><b>흔한 실수</b><span>근거 없이 "재밌을 것 같아서" · 어느 브랜드에나 통하는 아이디어</span></div>
+    </div>
+  </div>
+  <div class="why">
+    <div class="reveal"><b>모의 면접 명령</b><code>패스</code> <code>다시</code> <code>힌트</code> <code>종료</code> <code>자기소개</code> <code>즉석과제</code></div>
+    <div class="reveal"><b>면접관 스타일</b>실전형 · 꼬리 질문 2~3번 · 내 답변에서 바로 만든 질문</div>
+    <div class="reveal"><b>피드백</b>답변마다 3줄 + 끝나면 6기준 점수 리포트 · 지난번과 비교</div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section id="next">
+  <div class="eyebrow reveal">Learnings &amp; Next</div>
+  <h2 class="reveal">지난 작업에서 배운 것 → 스킬에 넣은 것</h2>
+  <p class="lead reveal">포트폴리오의 회고를 스킬 규칙으로 옮긴 기록. 아래 체크리스트는 이 브라우저에만 저장된다.</p>
+  <div class="timeline" id="timeline"></div>
+  <div class="todo" id="todo"></div>
+</section>
+
+<footer>나만 보는 정리 · 스킬 <code>whipped-persona-analysis</code> · <code>content-marketer-interview</code> · 카드뉴스 <code>cardnews-bot/</code></footer>
+
+<script>
+const col=id=>getComputedStyle(document.documentElement).getPropertyValue('--c-'+id).trim()||'#fff';
+
+/* ============ DATA: SKILL STEPS ============ */
+const P=[
+ {id:'p1',c:'res',sh:'01',ko:'웹 리서치',en:'research',role:'공식몰·올리브영·SNS·기사 조사, 공식 사진 수집',in:'검색 (휩드 팩클렌저 후기 등)',out:['sources.md','images/official/'],rule:'출처 URL + 확인 날짜 필수. 접근 못 한 페이지는 건너뛰고 기록',next:['p2']},
+ {id:'p2',c:'str',sh:'02',ko:'리뷰 직접 집계',en:'review count',role:'리뷰 50개+ 분류: 별점·키워드·구매 동기·피부 고민·재구매',in:'리뷰 원문',out:['data/reviews.csv'],rule:'"N개 중 M개(○%)". 같은 뜻 키워드는 묶고 기준을 적는다',next:['p3','p5','p6']},
+ {id:'p3',c:'cre',sh:'03',ko:'불만 → 기회',en:'opportunity',role:'불만 TOP5의 진짜 원인(제품/사용법/기대) → 콘텐츠·상품으로 풀기',in:'불만 키워드 통계',out:['기회 표','1순위 기회 한 문장'],rule:'비중 크고 + 핵심 페르소나 관련 + 콘텐츠로 빨리 풀 수 있는 것이 1순위',next:['p8']},
+ {id:'p4',c:'cpy',sh:'04',ko:'경쟁사 비교',en:'competitors',role:'2~3곳 별점·리뷰 수·용량당 가격·메시지 비교 + 시장 통계(보조)',in:'같은 채널·같은 날짜 수치',out:['비교표','차별점 한 문장'],rule:'출처 불분명한 시장 수치는 쓰지 않는다',next:['p5','p8']},
+ {id:'p5',c:'art',sh:'05',ko:'페르소나 3명',en:'personas',role:'3명 도출, 핵심 1명을 숫자 근거로 선정',in:'리뷰 통계 + 경쟁사 결론',out:['페르소나 카드 ×3'],rule:'선정 기준: 빈도 · 차별점 반응 · 재구매 가능성',next:['p7','p8']},
+ {id:'p6',c:'vdr',sh:'06',ko:'시각 자료',en:'charts & photos',role:'그래프 7종 PNG(1080×1350) · 공식 사진 위주, AI 보충 최대 2장',in:'reviews.csv · 공식 사진',out:['images/charts/01~07.png','images/ai/'],rule:'그래프 하나에 메시지 하나. 하단에 모수·조사일',next:['p7']},
+ {id:'p7',c:'edt',sh:'07',ko:'카드뉴스 5~7장',en:'card news',role:'핵심 페르소나 이야기 중심, 3장 이상 숫자·그래프',in:'페르소나 + 그래프 + 사진',out:['휩드_카드뉴스.md'],rule:'문구는 휩드 톤, 기획 의도는 1인칭 포트폴리오 말투',next:['p8']},
+ {id:'p8',c:'prf',sh:'08',ko:'캠페인 제안',en:'campaign',role:'"내가 휩드 마케터라면" 1개 + 4주 실행 + KPI',in:'핵심 페르소나 + 1순위 기회 + 차별점',out:['캠페인 제안서'],rule:'리뷰 통계를 캠페인 전 기준값으로. 예산·매출은 지어내지 않는다',next:['i1']},
+];
+const I=[
+ {id:'i1',c:'web',sh:'I1',ko:'자료 읽기',en:'read materials',role:'분석 결과·연구·캡스톤·LUMORA·자소서에서 숫자와 강한 표현 추출',in:'결과 폴더 + 포트폴리오 + 자소서',out:['검증 포인트 목록'],rule:'경험을 지어내지 않는다. 없는 건 [본인 경험으로 채우기]',next:['i2','i3','i4']},
+ {id:'i2',c:'prt',sh:'I2',ko:'1분 자기소개',en:'self intro',role:'정체성 → 대표 경험 → 일관성 → 휩드 연결',in:'모든 포트폴리오',out:['30초 버전','1분 버전','키워드 카드'],rule:'나열 금지. 키워드 하나로 꿰기. 숫자는 1~2개',next:['i5']},
+ {id:'i3',c:'int',sh:'I3',ko:'예상 질문',en:'questions',role:'8개 카테고리, 답변 뼈대는 키워드로, 약점 방어 노트',in:'검증 포인트',out:['면접준비_휩드.md'],rule:'비중: 포트폴리오 25 · 지원동기·실무감각·즉석과제·경험·인성 각 15',next:['i5']},
+ {id:'i4',c:'cre',sh:'I4',ko:'즉석 콘텐츠 과제',en:'on-the-spot',role:'근거 → 아이디어 → 형식·채널 → 측정, 7가지 유형',in:'페르소나·리뷰 통계·1순위 기회',out:['연습 세트'],rule:'좋은 아이디어보다 "고객 근거에서 출발했는가"',next:['i5']},
+ {id:'i5',c:'cmp',sh:'I5',ko:'모의 면접',en:'mock interview',role:'실전형, 꼬리 질문 2~3번, 답변마다 3줄 피드백',in:'질문 리스트 (보여 주지 않음)',out:['모의면접기록.md'],rule:'첫 질문은 항상 1분 자기소개. 즉석 과제 5문항당 1개',next:['i6']},
+ {id:'i6',c:'cpy',sh:'I6',ko:'종합 리포트',en:'report',role:'6기준 1~5점 · 가장 먼저 고칠 3가지 · 다시 연습할 질문',in:'모의 면접 기록',out:['리포트 + 지난번 비교'],rule:'점수마다 내 실제 답변을 인용해 이유를 쓴다',next:[]},
+];
+const ALL=[...P,...I];const BY=Object.fromEntries(ALL.map(a=>[a.id,a]));
+
+/* ============ HERO CANVAS ============ */
+(function hero(){
+  const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
+  let W,H,t=0;const parts=[];const cols=ALL.map(a=>col(a.c));const N=cols.length;
+  function rs(){const d=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+  rs();addEventListener('resize',rs);
+  const stars=Array.from({length:110},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.2,a:Math.random()}));
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pos(i){const u=i/(N-1);const x=W*.08+u*W*.84;const y=H*.5+Math.sin(u*Math.PI*2+t*.0006)*H*.22;return[x,y]}
+  function frame(){t+=reduce?0:16;cx.clearRect(0,0,W,H);
+    stars.forEach(s=>{cx.fillStyle=`rgba(255,255,255,${.12+.22*Math.sin(t*.001+s.a*6)})`;cx.beginPath();cx.arc(s.x*W,s.y*H,s.r,0,7);cx.fill()});
+    cx.lineWidth=1;for(let i=0;i<N-1;i++){const a=pos(i),b=pos(i+1);const g=cx.createLinearGradient(a[0],a[1],b[0],b[1]);g.addColorStop(0,cols[i]+'55');g.addColorStop(1,cols[i+1]+'55');cx.strokeStyle=g;cx.beginPath();cx.moveTo(...a);cx.lineTo(...b);cx.stroke()}
+    if(!reduce&&Math.random()<.12)parts.push({p:0,v:.0016+Math.random()*.002});
+    for(let k=parts.length-1;k>=0;k--){const q=parts[k];q.p+=q.v;if(q.p>=1){parts.splice(k,1);continue}
+      const f=q.p*(N-1),i=Math.floor(f),u=f-i,a=pos(i),b=pos(Math.min(i+1,N-1));const x=a[0]+(b[0]-a[0])*u,y=a[1]+(b[1]-a[1])*u;
+      cx.fillStyle=cols[i];cx.shadowColor=cols[i];cx.shadowBlur=10;cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill();cx.shadowBlur=0}
+    for(let i=0;i<N;i++){const p=pos(i);cx.fillStyle=cols[i]+'22';cx.beginPath();cx.arc(p[0],p[1],14,0,7);cx.fill();cx.fillStyle=cols[i];cx.beginPath();cx.arc(p[0],p[1],4.5,0,7);cx.fill()}
+    requestAnimationFrame(frame)}
+  frame();
+})();
+
+/* ============ SCROLL UX ============ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(s.getBoundingClientRect().top<200)cur=s.id});
+  document.querySelectorAll('nav.top a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur))},{passive:true});
+
+/* ============ SKILL GRID ============ */
+const wrap=document.getElementById('wrapAg');
+function card(a,i){const b=document.createElement('button');b.className='ag reveal';b.style.setProperty('--c',col(a.c));b.dataset.id=a.id;
+  b.innerHTML=`<div class="dot">${a.sh}</div><span class="folder">${a.en}</span><h4>${a.ko}</h4><p>${a.role}</p><span class="rv">다음 단계</span>`;
+  b.onclick=()=>pick(a.id);return b}
+P.forEach((a,i)=>document.getElementById('gridP').appendChild(card(a,i)));
+I.forEach((a,i)=>document.getElementById('gridI').appendChild(card(a,i)));
+function pick(id){
+  const a=BY[id],cards=wrap.querySelectorAll('.ag'),already=wrap.querySelector('.ag.sel')?.dataset.id===id;
+  cards.forEach(c=>c.classList.remove('sel','isrev'));wrap.classList.remove('focus');
+  const d=document.getElementById('agentDetail');
+  if(already){d.innerHTML='<div style="color:var(--dim);font-size:14px">← 오른쪽 단계 카드를 눌러 보세요</div>';return}
+  wrap.classList.add('focus');wrap.querySelector(`[data-id=${id}]`).classList.add('sel');
+  a.next.forEach(n=>wrap.querySelector(`[data-id=${n}]`).classList.add('isrev'));
+  const prev=ALL.filter(x=>x.next.includes(id)).map(x=>x.ko);
+  d.innerHTML=`<h4 style="color:${col(a.c)}">${a.ko}</h4><div class="en">${a.en}</div>
+   <dl><dt>하는 일</dt><dd>${a.role}</dd><dt>입력</dt><dd>${a.in}</dd>
+   <dt>산출물</dt><dd class="files">${a.out.map(o=>`<code>${o}</code>`).join('')}</dd>
+   <dt>규칙</dt><dd>${a.rule}</dd>
+   ${prev.length?`<dt>받는 곳</dt><dd>${prev.join(', ')}</dd>`:''}
+   <dt>넘기는 곳</dt><dd>${a.next.length?a.next.map(n=>`<span style="color:${col(BY[n].c)}">${BY[n].ko}</span>`).join(', '):'— 마지막 단계'}</dd></dl>`;
+}
+
+/* ============ SIMULATION ============ */
+const PH=[...P.map(p=>({t:p.ko,c:p.c})),{t:'면접 준비',c:'int'}];
+const rail=document.getElementById('rail');
+rail.innerHTML=PH.map((p,i)=>`<div data-i="${i}" style="--rc:${col(p.c)}"><b>STEP ${i+1}</b>${p.t}</div>`).join('');
+const PIPE=[...P.map(p=>({t:p.ko,s:p.out[0],c:p.c})),{t:'면접 준비',s:'자기소개 · 질문 · 모의 면접',c:'int'}];
+const pipe=document.getElementById('pipe');
+pipe.innerHTML=PIPE.map((p,i)=>`<div class="pnode" data-i="${i}" style="--nc:${col(p.c)}"><b>STEP ${i+1}</b><span>${p.t}</span><small>${p.s}</small></div>`).join('');
+const S=[
+ {w:'me',p:-1,t:'"휩드 페르소나 분석해줘"',s:'whipped-persona-analysis 시작'},
+ {w:'p1',p:0,t:'공식몰·올리브영 리뷰·인스타·기사 조사',s:'공식 사진은 출처와 함께 저장',files:['sources.md','images/official/product_01.jpg','images/official/texture_01.jpg']},
+ {w:'p2',p:1,t:'리뷰 분류·집계 (채널 2곳 이상, 50개+)',s:'별점 · 만족/불만 키워드 · 구매 동기 · 재구매',files:['data/reviews.csv']},
+ {w:'p3',p:2,t:'불만 TOP5 → 진짜 원인 구분',s:'내 포트폴리오 가설 확인: "단지에 손 넣기 찝찝" · "리뉴얼 불안"',hyp:2},
+ {w:'p4',p:3,t:'경쟁 클렌저 2~3곳 비교표',s:'같은 채널 · 같은 날짜 기준 별점/리뷰 수/용량당 가격'},
+ {w:'p5',p:4,t:'페르소나 3명 + 핵심 1명 선정',s:'출발점(가설): 퇴근 후 지친 27살 사무직 → 리뷰 비중으로 확인',hyp:1},
+ {w:'p6',p:5,t:'그래프 7종 + 사진 배치',s:'공식 사진 위주, AI 이미지는 최대 2장',files:['images/charts/01_별점분포.png','images/charts/02_만족키워드.png','images/charts/05_페르소나비중.png','images/charts/06_경쟁사비교.png']},
+ {w:'p7',p:6,t:'카드뉴스 7장 + 장별 기획 의도',s:'3장 이상에 숫자 · 5장 "리뷰 N개를 직접 읽어 봤습니다"',files:['휩드_카드뉴스.md']},
+ {w:'p8',p:7,t:'캠페인 제안 + KPI',s:'핵심 페르소나 × 1순위 기회 × 차별점 → 4주 실행',files:['휩드_페르소나분석.md']},
+ {w:'me',p:-1,t:'"면접 준비해줘, 모의 면접 10문항"',s:'content-marketer-interview 시작'},
+ {w:'i1',p:8,t:'분석 결과 + 연구·캡스톤·LUMORA·자소서 읽기',s:'강한 표현과 숫자에 표시'},
+ {w:'i2',p:8,t:'1분 자기소개 3버전',s:'키워드: 리뷰로 설득하는 콘텐츠 마케터'},
+ {w:'i3',p:8,t:'예상 질문 + 약점 방어 + 즉석 과제 세트',files:['면접준비_휩드_YYYYMMDD.md']},
+ {w:'i5',p:8,t:'모의 면접 진행 (실전형)',s:'자기소개 → … → 즉석 과제 2개 · 답변마다 3줄 피드백'},
+ {w:'i6',p:8,t:'종합 리포트 저장',s:'6기준 점수 · 고칠 점 3 · 다시 연습할 질문',files:['모의면접기록_YYYYMMDD.md']},
+];
+const NAME=w=>w==='me'?'나':BY[w].ko;const CLR=w=>w==='me'?'#ffffff':col(BY[w].c);
+let speed=1,playing=false,idx=0,runId=0,stepping=false,files=0,hyps=0,done=false;
+const logEl=document.getElementById('log'),tree=document.getElementById('tree'),playBtn=document.getElementById('playBtn');
+function wait(ms){const my=runId;return new Promise(r=>{const t0=performance.now();(function tick(){if(my!==runId)return;if(!playing){setTimeout(tick,60);return}if(performance.now()-t0>=ms/speed)r();else setTimeout(tick,30)})()})}
+function buildTree(){tree.innerHTML='<div class="f">📁 ./</div>'}
+function addFile(f){const d=document.createElement('div');d.className='f file';d.textContent=f;tree.appendChild(d);files++;
+  document.getElementById('treeCount').textContent=files+' files';document.getElementById('cFiles').textContent=files;tree.scrollTop=tree.scrollHeight}
+function setPhase(p){if(p<0)return;rail.querySelectorAll('div').forEach((d,i)=>{d.classList.toggle('on',i===p);if(i<p)d.classList.add('done')});
+  pipe.querySelectorAll('.pnode').forEach((d,i)=>{d.classList.toggle('on',i===p);if(i<p)d.classList.add('done')});
+  document.getElementById('clock').textContent=`STEP ${p+1}/9`;document.getElementById('cStep').textContent=p}
+async function run(){const my=runId;
+  for(;idx<S.length;idx++){if(my!==runId)return;const e=S[idx];setPhase(e.p);
+    const w=document.getElementById('nowWho');w.textContent=NAME(e.w);w.style.background=CLR(e.w);
+    const n=document.getElementById('nowWhat');n.textContent=e.t;n.style.color='var(--text)';
+    const r=document.createElement('div');r.className='row';r.innerHTML=`<span class="who" style="background:${CLR(e.w)}">${NAME(e.w)}</span><span class="msg">${e.t}${e.s?`<small>${e.s}</small>`:''}</span>`;logEl.appendChild(r);logEl.scrollTop=logEl.scrollHeight;
+    if(e.hyp){hyps+=e.hyp;document.getElementById('cHyp').textContent=hyps}
+    await wait(700);for(const f of e.files||[]){if(my!==runId)return;addFile(f);await wait(260)}
+    await wait(500);
+    if(stepping){stepping=false;setPlaying(false)}}
+  if(my!==runId)return;
+  rail.querySelectorAll('div').forEach(d=>{d.classList.remove('on');d.classList.add('done')});pipe.querySelectorAll('.pnode').forEach(d=>{d.classList.remove('on');d.classList.add('done')});
+  document.getElementById('cStep').textContent=9;document.getElementById('clock').textContent='DONE';
+  document.getElementById('nowWhat').textContent='완료 — 리포트에서 다시 연습할 질문부터';done=true;setPlaying(false);playBtn.textContent='↺ 다시 재생'}
+function setPlaying(v){playing=v;document.getElementById('board').classList.toggle('paused',!v);if(!done)playBtn.textContent=v?'❚❚ 일시정지':'▶ 재생'}
+let started=false;
+function reset(){runId++;idx=0;files=0;hyps=0;done=false;started=false;logEl.innerHTML='';buildTree();
+  ['cStep','cFiles','cHyp'].forEach(i=>document.getElementById(i).textContent=0);document.getElementById('treeCount').textContent='0 files';document.getElementById('clock').textContent='STEP 0/9';
+  rail.querySelectorAll('div').forEach(d=>d.classList.remove('on','done'));pipe.querySelectorAll('.pnode').forEach(d=>d.classList.remove('on','done'));
+  const w=document.getElementById('nowWho');w.textContent='대기';w.style.background='var(--dim)';const n=document.getElementById('nowWhat');n.textContent='▶ 재생을 누르면 예시 흐름이 시작돼요';n.style.color='var(--muted)';setPlaying(false)}
+playBtn.onclick=()=>{if(done)reset();if(!started){started=true;setPlaying(true);run()}else setPlaying(!playing)};
+document.getElementById('stepBtn').onclick=()=>{if(done)reset();stepping=true;if(!started){started=true;setPlaying(true);run()}else setPlaying(true)};
+document.getElementById('resetBtn').onclick=reset;
+document.querySelectorAll('#speed button').forEach(b=>b.onclick=()=>{speed=+b.dataset.s;document.querySelectorAll('#speed button').forEach(x=>x.classList.toggle('on',x===b))});
+buildTree();
+new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting&&!started&&!matchMedia('(prefers-reduced-motion: reduce)').matches){started=true;setPlaying(true);run();o.disconnect()}})},{threshold:.45}).observe(document.getElementById('board'));
+
+/* ============ ROUTER ============ */
+const REQ=[
+ {q:'"휩드 페르소나 분석해줘"',k:'스킬 1 전체',path:['p1','p2','p3','p4','p5','p6','p7','p8'],h:'페르소나 분석 8단계 전부',p:'리서치부터 캠페인 제안까지. 끝나면 핵심 페르소나·인상적인 통계·1순위 기회·캠페인명만 채팅으로 짧게 알려 준다.',o:['휩드_페르소나분석_날짜/','휩드_카드뉴스.md']},
+ {q:'"휩드 리뷰 불만만 다시 봐줘"',k:'일부 단계',path:['p2','p3'],h:'리뷰 집계 + 불만 → 기회',p:'이미 모은 reviews.csv가 있으면 다시 집계하고, 불만 TOP5의 진짜 원인과 1순위 기회만 새로 뽑는다.',o:['기회 표']},
+ {q:'"면접 준비해줘"',k:'스킬 2 정리',path:['i1','i2','i3','i4'],h:'질문 리스트 + 답변 방향',p:'분석 결과와 포트폴리오, 자소서를 읽고 자기소개·예상 질문·즉석 과제 세트를 정리한다. 자소서는 위치를 물어본다.',o:['면접준비_휩드_날짜.md']},
+ {q:'"모의 면접 10문항"',k:'스킬 2 연습',path:['i5','i6'],h:'실전형 모의 면접',p:'첫 질문은 1분 자기소개. 꼬리 질문 2~3번, 답변마다 3줄 피드백, 끝나면 6기준 리포트.',o:['모의면접기록_날짜.md']},
+ {q:'"즉석과제"',k:'명령',path:['i4','i5'],h:'즉석 콘텐츠 과제만 연속',p:'유형을 바꿔 가며 계속 낸다. 피드백은 근거·아이디어·형식·측정 4칸 체크.',o:['기록에 추가']},
+];
+const reqs=document.getElementById('reqs'),route=document.getElementById('route');
+reqs.innerHTML=REQ.map((r,i)=>`<button class="req" data-i="${i}"><span>${r.q}</span><small>${r.k}</small></button>`).join('');
+function pickReq(i){const r=REQ[i];reqs.querySelectorAll('.req').forEach((b,j)=>b.classList.toggle('on',i===j));
+  route.innerHTML=`<h4>${r.h}</h4><p>${r.p}</p><div class="lane">${ALL.map(a=>`<span class="chip" data-c="${a.id}" style="--cc:${col(a.c)}">${a.ko}</span>`).join('')}</div><div class="out">남는 것: ${r.o.map(x=>`<code>${x}</code>`).join(' ')}</div>`;
+  r.path.forEach((c,k)=>setTimeout(()=>route.querySelector(`[data-c=${c}]`)?.classList.add('on'),k*110))}
+reqs.querySelectorAll('.req').forEach(b=>b.onclick=()=>pickReq(+b.dataset.i));pickReq(0);
+
+/* ============ EVIDENCE ============ */
+const EV={
+ E:[{id:'E1',t:'숏폼 보는 이유 1위 "제품 후기" 49/100',tag:'ok'},{id:'E2',t:'미구매 25명 중 17명 "불신"(효과 10 · 광고 같아서 7)',tag:'ok'},{id:'E3',t:'댓글로 질문해 본 적 거의 없음 85%',tag:'ok'},{id:'E4',t:'공식몰: 휘핑 300 → 500회 리뉴얼',tag:'ok'},{id:'E5',t:'공식몰: 튜브형 · 80g 소용량 운영',tag:'ok'},{id:'E6',t:'공식몰: 피부 고민별 6가지 레시피',tag:'ok'}],
+ I:[{id:'I1',t:'광고보다 "써 본 사람의 이유"를 믿는다',tag:'inf',from:['E1','E2']},{id:'I2',t:'리뉴얼 소식은 "바뀌었으면 어떡하지" 불안을 만든다',tag:'hyp',note:'검증: 리뷰 속 리뉴얼 언급'},{id:'I3',t:'단지형은 손을 넣는 게 찝찝하다',tag:'hyp',note:'검증: 불만 키워드 집계'},{id:'I4',t:'"나한테 맞을까"가 첫 구매를 막는다',tag:'inf',from:['E2']},{id:'I5',t:'레시피가 6개라 내 피부용을 고르기 어렵다',tag:'inf',from:['E6']}],
+ M:[{id:'M1',t:'"사세요" 대신 친구가 추천하는 말투',tag:'inf',from:['I1']},{id:'M2',t:'바뀐 점을 좋아진 점으로 보여 준다',tag:'inf',from:['I2','E4']},{id:'M3',t:'사용 방식을 고를 수 있다고 알린다',tag:'inf',from:['I3','E5']},{id:'M4',t:'실패 비용을 낮춘다',tag:'inf',from:['I4','E5']},{id:'M5',t:'피부 고민으로 고르게 한다',tag:'inf',from:['I5']}],
+ O:[{id:'O1',t:'소재 A — "휘핑을 500번으로 늘렸대"',from:['M1','M2']},{id:'O2',t:'소재 B — "짜서 쓰는 튜브형도 있어"',from:['M1','M3']},{id:'O3',t:'소재 C — "80g부터 써 봐"',from:['M1','M4']},{id:'O4',t:'피부 타입별 팩클렌저 가이드',from:['M5']},{id:'O5',t:'세안 실수 5가지 → 1분 팩 세안 카드뉴스',from:['M1','E3']}],
+};
+const TAGS={ok:['[확인]','t-ok'],inf:['[추론]','t-inf'],hyp:['[가설]','t-hyp']};
+const COLT={E:'근거 E · 확인한 사실',I:'해석 I',M:'메시지 M',O:'내 휩드 제안 결과물'};
+const evCols=document.getElementById('evCols'),EVBY={};
+evCols.innerHTML=Object.keys(EV).map(k=>`<div class="ev-col"><h5>${COLT[k]}</h5>${EV[k].map(x=>{EVBY[x.id]=x;const out=k==='O';
+  return `<${out?'button':'div'} class="ev${out?' out':''}${x.tag==='hyp'?' weak':''}" data-id="${x.id}">${out?'':`<span class="id">${x.id}</span>`}${x.t}${x.tag?`<br><span class="tag ${TAGS[x.tag][1]}">${TAGS[x.tag][0]}</span>`:''}${x.note?`<br><span class="note">${x.note}</span>`:''}${out?`<br><span class="note">근거: ${x.from.join(', ')}</span>`:''}</${out?'button':'div'}>`}).join('')}</div>`).join('');
+const evSvg=document.getElementById('evSvg'),evWrap=document.getElementById('evWrap'),NS='http://www.w3.org/2000/svg';
+const LINKS=[];Object.values(EVBY).forEach(x=>(x.from||[]).forEach(f=>LINKS.push([f,x.id])));
+function drawLinks(){evSvg.innerHTML='';const wr=evWrap.getBoundingClientRect();
+  LINKS.forEach(([a,b])=>{const ea=evCols.querySelector(`[data-id=${a}]`).getBoundingClientRect(),eb=evCols.querySelector(`[data-id=${b}]`).getBoundingClientRect();
+    const x1=ea.right-wr.left,y1=ea.top+ea.height/2-wr.top,x2=eb.left-wr.left,y2=eb.top+eb.height/2-wr.top,mx=(x1+x2)/2;
+    const p=document.createElementNS(NS,'path');p.setAttribute('d',`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`);p.dataset.a=a;p.dataset.b=b;
+    if(EVBY[a].tag==='hyp'||EVBY[b].tag==='hyp')p.classList.add('weak');evSvg.appendChild(p)})}
+function chain(id,set=new Set()){set.add(id);(EVBY[id].from||[]).forEach(f=>chain(f,set));return set}
+function pickOut(id){const s=chain(id);
+  evCols.querySelectorAll('.ev').forEach(e=>{const on=s.has(e.dataset.id);e.classList.toggle('lit',on);e.classList.toggle('dim',!on)});
+  evSvg.querySelectorAll('path').forEach(p=>{const on=s.has(p.dataset.a)&&s.has(p.dataset.b);p.classList.toggle('lit',on);p.classList.toggle('dim',!on)});
+  const hyp=[...s].filter(x=>EVBY[x].tag==='hyp'),es=[...s].filter(x=>x[0]==='E');
+  const g=document.getElementById('gate'),gt=document.getElementById('gateText');g.className='gate';
+  if(hyp.length){g.classList.add('hyp');gt.innerHTML=`<b style="color:var(--warn)">검증할 고리 ${hyp.join(', ')}</b> — 근거 사슬 일부가 [가설]이에요. 페르소나 분석 스킬의 <b>리뷰 집계(2단계)</b>와 <b>불만 → 기회(3단계)</b>에서 숫자로 확인할 것. 면접에서 물으면 "가설이었고, 이렇게 검증하려 한다"로 답하기.`}
+  else{g.classList.add('ok');gt.innerHTML=`<b style="color:var(--ok)">근거 사슬 완결</b> — ${es.join(', ')}의 [확인] 자료까지 거슬러 올라가요. 면접에서 자신 있게 써도 되는 결과물.`}}
+evCols.querySelectorAll('.ev.out').forEach(b=>b.onclick=()=>pickOut(b.dataset.id));
+addEventListener('resize',drawLinks);
+let evPicked=false;evCols.querySelectorAll('.ev.out').forEach(b=>b.addEventListener('click',()=>evPicked=true));
+new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{drawLinks();if(!evPicked)pickOut('O2')},700);o.disconnect()}})},{threshold:.3}).observe(evWrap);
+setTimeout(drawLinks,300);
+
+/* ============ LEARNINGS + TODO ============ */
+const TL=[
+ {t:'뷰티 숏폼 이용 실태 연구',d:'2025.05',g:'100명 설문으로 "후기가 구매를 만든다"를 숫자로 확인',b:'표본이 여성·대전/충청에 몰림',n:'→ 스킬: 리뷰는 채널 2곳 이상, 숫자에 항상 모수, 한계는 문서에 적기'},
+ {t:'캡스톤 · 용기 개선',d:'2025.03~04',g:'소비자 의견을 듣고 지퍼 → 펌프형으로 방향 전환',b:'구조만으론 부족, 설명이 없으면 안 쓰인다는 걸 늦게 깨달음',n:'→ 스킬: 불만의 "진짜 원인"이 사용법인지 먼저 구분, 사용법 콘텐츠로 풀기'},
+ {t:'LUMORA 브랜드 기획',d:'수업',g:'경쟁 3사 포지션 비교, 컬러 시스템까지 직접 설계',b:'감성만으로는 "왜 지금 사야 하는지"가 약했다',n:'→ 스킬: 망설임(불만)에서 출발, 캠페인은 1순위 기회에서 시작'},
+ {t:'휩드 제안 A/B/C + 카드뉴스',d:'2026.11',g:'망설임 3가지를 소재 3개로, 카드뉴스 14장 실제 제작',b:'"리뉴얼 불안"·"단지 위생"은 리뷰 근거 없이 세운 가설',n:'→ 스킬 실행으로 숫자 확인 후 포트폴리오 문장 업데이트'},
+];
+document.getElementById('timeline').innerHTML=TL.map(r=>`<div class="tl reveal"><div class="t">${r.t}<span>${r.d}</span></div><div class="g"><h6>잘 된 것</h6>${r.g}</div><div class="b"><h6>아쉬웠던 것</h6>${r.b}</div><div class="n"><h6>스킬에 넣은 것</h6>${r.n}</div></div>`).join('');
+const TODO=[
+ ['두 스킬을 ~/.claude/skills/에 설치','설치'],
+ ['페르소나 분석 스킬 첫 실행','whipped-persona-analysis'],
+ ['가설 I2·I3을 리뷰 숫자로 확인','근거 사슬'],
+ ['자기소개서 파일 위치 정리','면접 스킬 입력'],
+ ['1분 자기소개 3버전 받고 소리 내 연습','자기소개'],
+ ['모의 면접 5문항 → 10문항','모의 면접'],
+ ['카드뉴스 저장·공유 수 기록','@weekly.beauty.recipe'],
+ ['포트폴리오 숫자 업데이트 (리뷰 집계 반영)','포트폴리오'],
+];
+let saved={};try{saved=JSON.parse(localStorage.getItem('whippedTodo')||'{}')}catch(e){}
+const todo=document.getElementById('todo');
+todo.innerHTML=TODO.map((t,i)=>`<label class="reveal"><input type="checkbox" data-i="${i}" ${saved[i]?'checked':''}><span>${t[0]}<small>${t[1]}</small></span></label>`).join('');
+todo.querySelectorAll('input').forEach(c=>c.onchange=()=>{saved[c.dataset.i]=c.checked;try{localStorage.setItem('whippedTodo',JSON.stringify(saved))}catch(e){}});
+
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

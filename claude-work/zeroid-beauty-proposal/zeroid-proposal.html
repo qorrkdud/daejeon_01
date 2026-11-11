@@ -1,0 +1,933 @@
+<title>제로이드 × 무신사 뷰티 입점 제안서</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 제로이드 패키지처럼 하얀 바탕에 라인 컬러 포인트. 결론 → 상황·빈칸 → 고객 이야기 → 근거 → 실행 → 요청 순서의 한 줄 스토리. */
+:root{
+  --bg:#f6f8f3; --card:#ffffff; --ink:#1d2a44; --muted:#5f6b7a; --line:#e2e7dc;
+  --green:#7a9a2e; --green-d:#557018; --green-s:#eef3e1;
+  --blue:#3f6fc8; --blue-s:#e7eefa; --pink:#cf5579; --pink-s:#fbe9ef; --orange:#d9803a; --orange-s:#fbefe3;
+  --navy:#1d2a44; --on-navy:#f3f6ee;
+  --f-ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-en:"Montserrat","Noto Sans KR",system-ui,sans-serif;
+  --r:18px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10150f; --card:#181f17; --ink:#eef2ea; --muted:#a3ad9f; --line:#2a3327;
+  --green:#a9c95c; --green-d:#c3dd7d; --green-s:#1f2a14;
+  --blue:#8aa8ee; --blue-s:#18213a; --pink:#ef8eab; --pink-s:#341a24; --orange:#efaa6e; --orange-s:#33231a;
+  --navy:#0b1220; --on-navy:#eef2ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10150f; --card:#181f17; --ink:#eef2ea; --muted:#a3ad9f; --line:#2a3327;
+  --green:#a9c95c; --green-d:#c3dd7d; --green-s:#1f2a14;
+  --blue:#8aa8ee; --blue-s:#18213a; --pink:#ef8eab; --pink-s:#341a24; --orange:#efaa6e; --orange-s:#33231a;
+  --navy:#0b1220; --on-navy:#eef2ea; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ko);font-size:16px;line-height:1.7;word-break:keep-all}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:80px}
+section.alt{background:var(--card);border-block:1px solid var(--line)}
+h1,h2,h3,h4{margin:0;line-height:1.3;text-wrap:balance}
+h2{font-size:clamp(26px,3.8vw,38px);font-weight:900;letter-spacing:-.02em}
+h3{font-size:19px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.kicker{font-family:var(--f-en);font-weight:700;font-size:12px;letter-spacing:.22em;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.kicker .no{font-weight:800;color:var(--ink);letter-spacing:.06em}
+.kicker::before{content:"";width:24px;height:2px;background:var(--green)}
+.lead{color:var(--muted);max-width:64ch;margin-top:14px;font-size:17px}
+.ex{display:inline-block;font-size:11px;font-weight:700;color:var(--orange);background:var(--orange-s);border-radius:999px;padding:1px 9px;vertical-align:middle;margin-left:6px}
+sup a{font-family:var(--f-en);font-size:10px;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+section.alt .card.soft{background:var(--bg)}
+.pimg{background:#fff;border-radius:14px;display:block;object-fit:contain}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px;max-width:92ch}
+section.cont{padding-top:0}
+.subh{font-size:clamp(20px,2.6vw,26px);font-weight:900;letter-spacing:-.01em;padding-top:36px;border-top:1px solid var(--line)}
+.lanes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.85fr);gap:24px;margin-top:36px;align-items:start}
+.lane-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.lane-h b{font-size:17px}
+.lane-h span{font-size:12px;font-weight:700;color:var(--c);background:var(--cs);border-radius:999px;padding:2px 10px}
+.both{margin-top:8px;padding:22px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;background:var(--green-s);border-color:transparent}
+.both div{display:grid;gap:4px}
+.both b{font-size:15px;color:var(--green-d)}
+.both p{font-size:14px}
+.close-ask{max-width:760px;margin:28px auto 0;text-align:left}
+@media (max-width:900px){.lanes,.both{grid-template-columns:1fr}}
+.takeaway{margin-top:24px;display:flex;gap:14px;align-items:flex-start;font-size:17px;font-weight:700}
+.takeaway::before{content:"SO";font-family:var(--f-en);font-weight:800;font-size:11px;letter-spacing:.1em;color:#fff;background:var(--green);border-radius:6px;padding:4px 7px;margin-top:3px;flex:none}
+
+/* COVER */
+.cover{padding-block:48px 40px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--f-en);font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--muted)}
+.wordmark{font-family:var(--f-en);font-weight:800;letter-spacing:.32em;color:var(--ink)}
+.cover-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:48px}
+.cover h1{font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-.03em;line-height:1.22}
+.cover h1 em{font-style:normal;color:var(--green)}
+.cover .lead{font-size:17.5px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pill{font-size:13px;font-weight:500;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.pill b{color:var(--green-d)}
+.shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.shelf figure{margin:0;display:grid;gap:8px;text-align:center;font-size:12.5px;color:var(--muted)}
+.shelf img{width:100%;aspect-ratio:1;border:1px solid var(--line)}
+.shelf figure:nth-child(2),.shelf figure:nth-child(5){transform:translateY(18px)}
+
+/* PYRAMID */
+.sum{background:var(--navy);color:var(--on-navy);border-radius:28px;padding:44px clamp(20px,4vw,48px);margin-top:16px}
+.sum .kicker{color:#c3dd7d}.sum .kicker::before{background:#c3dd7d}
+.sum .key{font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.4;letter-spacing:-.01em}
+.sum .key em{font-style:normal;color:#c3dd7d}
+.sum-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,.15)}
+.sum-grid .q{font-family:var(--f-en);font-weight:800;font-size:13px;letter-spacing:.14em;color:#c3dd7d}
+.sum-grid h3{color:#fff;font-size:18px;margin:8px 0 6px}
+.sum-grid p{font-size:14.5px;color:#c9d2c4}
+.sum-grid p b{color:#fff}
+.decide{margin-top:16px;padding:26px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;border:2px solid var(--green)}
+.decide h3{font-size:18px}
+.decide ol{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:d}
+.decide li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;font-size:15px;counter-increment:d}
+.decide li::before{content:counter(d);font-family:var(--f-en);font-weight:800;color:#fff;background:var(--green);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-size:12px}
+.decide li span{font-size:12.5px;font-weight:700;color:var(--orange);white-space:nowrap}
+.decide .next{background:var(--green-s);border-radius:14px;padding:16px;font-size:14px;display:grid;gap:6px;align-content:start}
+.decide .next b{font-size:13px;color:var(--green-d);font-family:var(--f-en);letter-spacing:.08em}
+
+/* SCQA */
+.scqa{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:36px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.sq{padding:24px;display:grid;gap:10px;align-content:start;border-right:1px solid var(--line);position:relative}
+.sq:last-child{border-right:0;background:var(--green-s)}
+.sq .l{font-family:var(--f-en);font-weight:800;font-size:28px;line-height:1;color:var(--c)}
+.sq .t{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.sq h3{font-size:17px}
+.sq p{font-size:14px;color:var(--muted)}
+.sq p b{color:var(--ink)}
+
+/* STORY */
+.story{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;margin-top:36px;align-items:start}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding-bottom:20px;position:relative}
+.steps .dot{width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--c,var(--green));display:grid;place-items:center;font-family:var(--f-en);font-weight:800;font-size:12px;color:var(--c,var(--green-d));z-index:1}
+.steps .tm{font-family:var(--f-en);font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.steps b{display:block;font-size:16px;margin:2px 0 4px}
+.steps p{font-size:14.5px;color:var(--muted)}
+.steps .before{--c:var(--muted)}
+.steps .gain{--c:var(--green-d)}
+.phone{justify-self:center;width:min(300px,100%);border:10px solid var(--ink);border-radius:36px;background:var(--card);padding:16px 14px 20px;display:grid;gap:10px;box-shadow:0 20px 40px -24px rgba(0,0,0,.35);position:sticky;top:24px}
+.phone .bar{display:flex;justify-content:space-between;font-family:var(--f-en);font-size:10px;font-weight:700;color:var(--muted)}
+.phone .cat{font-size:12px;font-weight:700;color:var(--muted)}
+.phone .cat b{color:var(--ink)}
+.phone .chips{display:flex;gap:6px;flex-wrap:wrap}
+.phone .chips span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+.phone .chips span.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.phone .hero{border-radius:14px;background:var(--pink-s);padding:12px;display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center}
+.phone .hero img{width:72px;height:72px;border-radius:10px}
+.phone .hero b{font-size:13px;display:block}
+.phone .hero span{font-size:11px;color:var(--muted)}
+.phone .badges{display:flex;gap:4px;flex-wrap:wrap}
+.phone .badges span{font-size:10px;font-weight:700;color:var(--green-d);background:var(--green-s);border-radius:4px;padding:1px 6px}
+.phone .price{display:flex;align-items:baseline;gap:6px;font-size:12px}
+.phone .price b{font-family:var(--f-en);font-size:20px;color:var(--pink)}
+.phone .price s{color:var(--muted)}
+.phone .rv{font-size:11.5px;background:var(--bg);border-radius:10px;padding:8px}
+.phone .cta{background:var(--ink);color:var(--card);text-align:center;border-radius:10px;padding:9px;font-size:13px;font-weight:700}
+.phone-cap{text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
+
+/* BRAND */
+.brand3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:36px}
+.b3{padding:28px;display:grid;gap:12px;align-content:start}
+.ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--green-s);color:var(--green-d)}
+.ico svg{width:28px;height:28px}
+.b3 p{color:var(--muted);font-size:15px}
+.b3 .num{font-family:var(--f-en);font-weight:800;font-size:30px;color:var(--green-d);line-height:1}
+.b3 .num small{font-family:var(--f-ko);font-size:14px;color:var(--muted);font-weight:500;margin-left:4px}
+.mle{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;align-items:center;margin-top:18px;padding:28px}
+.mle figure{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center;font-size:12px;color:var(--muted)}
+.mle figure img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#000;margin-bottom:6px}
+.mle h3{font-size:21px}
+.mle p{color:var(--muted);margin-top:8px}
+
+/* FAMILY */
+.fam{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
+.fm{padding:24px;display:grid;gap:10px;align-content:start;border-top:6px solid var(--c)}
+.fm .st{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;justify-self:start}
+.fm .st.on{background:var(--bg);color:var(--muted)}
+.fm .st.new{background:var(--green);color:#fff}
+.fm h3{font-family:var(--f-en);font-size:20px;letter-spacing:.06em}
+.fm .role{font-size:17px;font-weight:700}
+.fm dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+.fm dt{color:var(--muted)}
+.fm dd{margin:0}
+.fm.z{background:var(--green-s);border-color:var(--green)}
+.rules{margin-top:18px;padding:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.rules div{display:grid;gap:4px}
+.rules b{font-size:15px}
+.rules p{font-size:14px;color:var(--muted)}
+
+/* COMPARE */
+.ctbl{margin-top:32px;overflow-x:auto}
+.ctbl table{border-collapse:collapse;width:100%;min-width:820px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:14px}
+.ctbl th,.ctbl td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.ctbl th{font-size:12px;color:var(--muted);font-weight:500}
+.ctbl td.n{text-align:right;font-family:var(--f-en);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctbl tr.z td{background:var(--green-s)}
+.ctbl tr.z td:first-child{font-weight:800;color:var(--green-d)}
+.gap3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.gap3 div{padding:20px;display:grid;gap:6px;align-content:start}
+.gap3 b{font-size:16px;color:var(--green-d)}
+.gap3 p{font-size:14px;color:var(--muted)}
+
+/* PERSONA */
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:36px}
+.pc{padding:26px;display:grid;gap:16px;align-content:start;border-top:6px solid var(--c)}
+.pc .tag{font-size:12px;font-weight:700;color:var(--c);background:var(--cs);border-radius:999px;padding:2px 10px;display:inline-block}
+.pc h3{font-size:21px;margin-top:8px}
+.pc .who{font-size:13px;color:var(--muted)}
+.pc .worry{font-size:15px;background:var(--bg);border-radius:12px;padding:12px 14px}
+.pc .worry b{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.moments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.mo{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:13px;display:grid;gap:4px;align-content:start}
+.mo .t{font-family:var(--f-en);font-size:11px;font-weight:700;color:var(--c);letter-spacing:.06em}
+.mo b{font-size:13.5px}
+.pc-prod{display:flex;gap:10px;align-items:center}
+.pc-prod img{width:64px;height:64px;border:1px solid var(--line)}
+.pc-prod .proof{font-size:13px;color:var(--muted)}
+.pc-prod .proof b{font-family:var(--f-en);font-size:22px;color:var(--c);display:block;line-height:1.1}
+.pc .voice{font-size:14px;color:var(--ink);border-left:3px solid var(--c);padding-left:12px}
+.pc .voice cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:2px}
+.pfoot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;border-top:1px dashed var(--line);padding-top:12px;font-size:13px}
+.pfoot div{display:grid;gap:2px}
+.pfoot span{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--muted);font-family:var(--f-en)}
+.pfoot b{color:var(--c)}
+
+/* PROOF */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:36px}
+.nb{padding:22px;display:grid;gap:6px;align-content:start}
+.nb .v{font-family:var(--f-en);font-weight:800;font-size:38px;line-height:1;color:var(--c,var(--green-d))}
+.nb .v small{font-size:16px}
+.nb .k{font-size:14px;font-weight:500}
+.nb .p{font-size:12px;color:var(--muted)}
+.voices{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;margin-top:40px;align-items:start}
+.bars{padding:26px;display:grid;gap:14px}
+.bar{display:grid;gap:6px}
+.bar .lab{display:flex;justify-content:space-between;font-size:14px}
+.bar .lab b{font-family:var(--f-en)}
+.bar .track{height:10px;border-radius:999px;background:var(--card);overflow:hidden}
+.bar .fill{height:100%;border-radius:999px;background:var(--green)}
+.quotes{display:grid;gap:14px}
+.qt{padding:20px 22px;font-size:15.5px;position:relative}
+.qt::before{content:"“";font-family:var(--f-en);font-size:56px;line-height:1;color:var(--green);position:absolute;top:6px;left:16px;opacity:.35}
+.qt p{padding-left:26px}
+.qt cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:6px;padding-left:26px}
+
+/* ROADMAP */
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px}
+.rd{padding:22px;display:grid;gap:10px;align-content:start;position:relative}
+.rd .when{font-family:var(--f-en);font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--c)}
+.rd .step{position:absolute;top:-14px;right:18px;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--f-en);font-weight:800;font-size:14px;display:grid;place-items:center}
+.rd h3{font-size:18px}
+.rd .where{font-size:12.5px;color:var(--muted)}
+.rd ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+.rd.cond{border-style:dashed}
+.rd .if{font-size:12px;font-weight:700;color:var(--orange);background:var(--orange-s);border-radius:999px;padding:1px 9px;justify-self:start}
+.o2o{margin-top:18px;padding:26px}
+.o2o h3{font-size:19px}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.fl{background:var(--bg);border-radius:14px;padding:14px;display:grid;gap:6px;align-content:start;font-size:13px;color:var(--muted)}
+.fl b{font-size:14.5px;color:var(--ink)}
+.fl .n{font-family:var(--f-en);font-weight:800;font-size:12px;color:var(--green-d)}
+.popmini{margin-top:14px;font-size:14px;color:var(--muted)}
+.popmini b{color:var(--ink)}
+
+/* PLAYBOOK */
+.play{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
+.pb{padding:24px;display:grid;gap:10px;align-content:start}
+.pb .k{font-family:var(--f-en);font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--c,var(--green-d))}
+.pb ul{margin:0;padding-left:18px;font-size:14.5px;display:grid;gap:6px}
+.pb .kw{display:flex;flex-wrap:wrap;gap:6px}
+.pb .kw span{font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.pb .tw{overflow-x:auto}
+.pb table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+.pb th,.pb td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.pb th{font-size:11.5px;color:var(--muted);font-weight:500}
+
+/* KITS */
+.promise{margin-top:28px;padding:22px 26px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--navy);color:var(--on-navy);border-color:transparent}
+.promise .badge{font-family:var(--f-en);font-weight:800;font-size:13px;letter-spacing:.12em;color:#c3dd7d;border:2px solid #c3dd7d;border-radius:12px;padding:10px 12px;text-align:center;line-height:1.2}
+.promise p{font-size:15px}
+.promise b{color:#fff}
+.kits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+.kt{padding:20px;display:grid;gap:10px;align-content:start;border-top:6px solid var(--c)}
+.kt .imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kt .imgs img{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:10px}
+.kt .when{font-family:var(--f-en);font-size:11px;font-weight:700;color:var(--c);letter-spacing:.08em}
+.kt h3{font-size:17px}
+.kt .for{font-size:12.5px;color:var(--muted)}
+.kt .items{font-size:13px;color:var(--muted)}
+.cmpx{display:grid;gap:4px;font-size:12.5px;border-top:1px dashed var(--line);padding-top:10px}
+.cmpx div{display:flex;justify-content:space-between;gap:8px}
+.cmpx span{color:var(--muted)}
+.cmpx s{color:var(--muted)}
+.cmpx .me{font-size:14px;font-weight:700}
+.cmpx .me b{font-family:var(--f-en);font-size:22px;color:var(--c)}
+.cmpx .diff{font-family:var(--f-en);font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:0 8px;font-size:12px}
+.collab{margin-top:18px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:center}
+.collab .mock{aspect-ratio:16/10;border-radius:16px;background:repeating-linear-gradient(135deg,var(--green-s) 0 14px,var(--card) 14px 28px);border:2px dashed var(--green);display:grid;place-items:center;text-align:center;font-family:var(--f-en);font-weight:800;letter-spacing:.2em;color:var(--green-d);font-size:15px;line-height:1.6}
+.collab ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;display:grid;gap:4px}
+
+/* PROPOSAL */
+.commit{padding:26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;background:var(--navy);color:var(--on-navy);border-color:transparent;margin-top:32px}
+.commit .h{grid-column:1/-1;font-size:18px;font-weight:700;color:#fff}
+.commit div{display:grid;gap:4px}
+.commit b{font-family:var(--f-en);font-size:28px;font-weight:800;color:#c3dd7d;line-height:1.1}
+.commit span{font-size:13px;color:#c9d2c4}
+.give{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.gv{padding:26px}
+.gv h3{display:flex;align-items:center;gap:10px}
+.gv h3 i{width:12px;height:12px;border-radius:50%;background:var(--c);display:inline-block}
+.gv ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.gv li{font-size:15px;padding-left:28px;position:relative}
+.gv li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:6px;background:var(--cs)}
+.gv li::after{content:"";position:absolute;left:6px;top:9px;width:6px;height:9px;border:solid var(--c);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.gv li small{display:block;font-size:12px;color:var(--muted)}
+.gv li.later::after{border-color:var(--orange)}
+.gv li.later::before{background:var(--orange-s)}
+.grow{margin-top:18px;padding:28px}
+.grow-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.gs{background:var(--bg);border-radius:14px;padding:16px;display:grid;gap:6px;align-content:start}
+.gs .h{font-family:var(--f-en);font-weight:800;font-size:12px;color:var(--green-d);letter-spacing:.08em}
+.gs b{font-size:15px}
+.gs p{font-size:13px;color:var(--muted)}
+.gs .miss{font-size:12.5px;color:var(--orange);border-top:1px dashed var(--line);padding-top:6px}
+.calc{margin-top:18px;overflow-x:auto}
+.calc table{border-collapse:collapse;width:100%;min-width:640px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:14px}
+.calc th,.calc td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+.calc th{font-size:12px;color:var(--muted);font-weight:500}
+.calc td.n,.calc th.n{text-align:right;font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.calc tr.tot td{font-weight:800;border-bottom:0}
+.calc tr.tot td.n{color:var(--green-d);font-size:17px}
+
+/* APPENDIX */
+.appx details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.appx summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:16px}
+.appx .in{padding:0 20px 20px;overflow-x:auto}
+.appx table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+.appx th,.appx td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.appx th{font-size:11.5px;color:var(--muted);font-weight:500}
+.appx td.n,.appx th.n{text-align:right;font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.appx ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+
+/* CLOSING */
+.closing{text-align:center;padding-block:80px}
+.closing .wordmark{font-size:28px;display:block}
+.closing h2{margin-top:18px}
+.closing p{color:var(--muted);margin-top:12px}
+.closing .links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+.closing .links a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;text-decoration:none;font-size:14px;color:var(--ink)}
+.closing .links a.main{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.refs{font-size:12px;color:var(--muted);max-width:820px;margin:32px auto 0;text-align:left;display:grid;gap:4px}
+footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:var(--muted)}
+
+@media (max-width:900px){
+  .cover-grid,.mle,.voices,.collab,.story,.decide{grid-template-columns:1fr}
+  .sum-grid,.brand3,.fam,.gap3,.play,.give,.grow-steps{grid-template-columns:1fr}
+  .scqa{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sq:nth-child(2){border-right:0}
+  .sq:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .pgrid{grid-template-columns:1fr}
+  .nums,.kits,.road,.flow,.rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .commit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .promise{grid-template-columns:1fr}
+  .phone{position:static}
+}
+@media (max-width:520px){
+  section{padding-block:56px}
+  .scqa{grid-template-columns:1fr}
+  .sq{border-right:0;border-bottom:1px solid var(--line)}
+  .nums,.kits,.road,.flow,.rules{grid-template-columns:1fr}
+  .moments,.pfoot{grid-template-columns:1fr}
+  .shelf figure:nth-child(2),.shelf figure:nth-child(5){transform:none}
+}
+</style>
+
+<!-- COVER -->
+<div class="wrap">
+<header class="cover">
+  <div class="topbar"><span class="wordmark" style="font-size:18px">ZEROID</span><span>× MUSINSA BEAUTY · v12 · 2026.10.30</span></div>
+  <div class="cover-grid">
+    <div>
+      <div class="kicker">PROPOSAL</div>
+      <h1>피부가 뒤집힌 날,<br>고객이 가장 먼저<br><em>무신사 앱</em>을 열도록</h1>
+      <p class="lead">제로이드는 2002년 피부과 채널에서 시작한 네오팜의 장벽 케어 브랜드입니다. 트러블, 붉은기, 관리 후 건조가 생겼을 때 바로 쓸 수 있는 해결 루틴을 무신사 뷰티 더마 코너 전용 구성으로 제안합니다.</p>
+      <div class="pill-row">
+        <span class="pill">식약처 기능성 <b>4개 영역</b></span>
+        <span class="pill">고민별 <b>6개 라인</b></span>
+        <span class="pill"><b>무신사 단독</b> 콜라보 키트</span>
+      </div>
+    </div>
+    <div class="shelf">
+      <figure><img class="pimg" src="img/p_pim_rcc.jpg" alt="핌프로브 레드 컨트롤 크림">레드 컨트롤 크림</figure>
+      <figure><img class="pimg" src="img/p_intensive_cream.jpg" alt="인텐시브 크림">인텐시브 크림</figure>
+      <figure><img class="pimg" src="img/p_soothing_cream.jpg" alt="수딩 크림">수딩 크림</figure>
+      <figure><img class="pimg" src="img/p_pim_gel.jpg" alt="핌프로브 젤 클렌저">젤 클렌저</figure>
+      <figure><img class="pimg" src="img/p_oint.jpg" alt="인텐시브 오인트 크림">오인트 크림</figure>
+      <figure><img class="pimg" src="img/p_sun_daily.jpg" alt="데일리 선크림">데일리 선크림</figure>
+    </div>
+  </div>
+</header>
+
+<!-- PYRAMID SUMMARY -->
+<div class="sum">
+  <div class="kicker">ONE MESSAGE</div>
+  <p class="key">무신사 더마 코너의 비어 있는 "고민 해결" 칸을<br>제로이드가 <em>기능성 루틴과 무신사 단독 구성</em>으로 채우겠습니다.</p>
+  <div class="sum-grid">
+    <div><div class="q">01 · 고객에게 필요해요</div><h3>고민이 생기면 루틴이 필요합니다</h3><p>최근 리뷰 720건 중 <b>35%</b>가 민감·트러블을 이야기합니다. 고객이 찾는 것은 크림 하나가 아니라 세안부터 크림까지 이어지는 해결 루틴입니다.</p></div>
+    <div><div class="q">02 · 무신사에 비어 있어요</div><h3>장벽 크림은 있지만, 해결 루틴은 없습니다</h3><p>더마 코너는 <b>10월에 막 생겼고</b> 잘 팔리는 장벽 크림도 이미 있습니다. 하지만 트러블·관리 후·톤 고민을 한 브랜드로 잇는 칸은 아직 비어 있습니다.<sup><a href="#r1" style="color:#c3dd7d">1</a></sup></p></div>
+    <div><div class="q">03 · 제로이드는 준비됐어요</div><h3>기능성, 단독 구성, 실행 계획까지</h3><p>식약처 기능성 <b>4개 영역</b>, 올리브영 행사가보다 25% 이상 저렴한 <b>무신사 단독 키트</b>, 실적에 따라 넓혀 가는 <b>3단계 계획</b>을 준비했습니다.</p></div>
+  </div>
+</div>
+<div class="card decide">
+  <div>
+    <h3>무신사 뷰티에 결정을 부탁드리는 3가지</h3>
+    <ol>
+      <li>12월 더마 화장품 코너 입점과 런칭 기획전<span>11.20까지 회신</span></li>
+      <li>2027년 1월 성수 더모존·터치업 바 진열<span>12.10까지 회신</span></li>
+      <li>무신사 단독 콜라보 패키지 공동 기획 착수<span>11월 말 킥오프</span></li>
+    </ol>
+  </div>
+  <div class="next"><b>NEXT STEP</b><span>11월 2주 차 조건 협의 미팅</span><span>11월 4주 차 상품 등록 서류 제출</span><span>12월 1주 차 상세페이지·키트 입고</span><span>단독 팝업·페스타는 2027년 2월 말 실적으로 재협의</span></div>
+</div>
+</div>
+
+<!-- 01 SCQA -->
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="no">01</span>THE GAP</div>
+    <h2>지금 무신사 더마 코너에 생긴 빈칸</h2>
+    <div class="scqa">
+      <div class="sq" style="--c:var(--muted)"><span class="l">S</span><span class="t">지금 상황</span><h3>무신사가 더마를 키우고 있습니다</h3><p>10월에 더마 화장품 코너가 생겼고, 에스트라 거래액은 <b>193%</b> 늘었습니다(1~8월). 11월에는 더모존을 갖춘 성수 400평 매장이 문을 엽니다.<sup><a href="#r1">1</a>,<a href="#r2">2</a></sup></p></div>
+      <div class="sq" style="--c:var(--orange)"><span class="l">C</span><span class="t">문제</span><h3>고민이 생긴 고객은 앱을 떠납니다</h3><p>장벽 크림은 이미 있지만, 피부가 뒤집히거나 관리 후 예민해진 고객은 해결 루틴을 찾아 <b>약국과 다른 채널</b>로 갑니다.</p></div>
+      <div class="sq" style="--c:var(--blue)"><span class="l">Q</span><span class="t">질문</span><h3>그 고객을 무신사에 붙잡으려면?</h3><p>피부 고민이 생긴 1030 고객이 <b>무신사 앱에서 바로</b> 맞는 루틴을 찾고 다시 사게 하려면 무엇이 필요할까요?</p></div>
+      <div class="sq" style="--c:var(--green-d)"><span class="l">A</span><span class="t">답</span><h3>고민 해결형 브랜드, 제로이드</h3><p>고민별 기능성 루틴을 <b>무신사 단독 구성</b>으로 내놓고, 온라인과 성수 더모존에서 먼저 검증합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01b COMPARE -->
+<section class="cont">
+  <div class="wrap">
+    <h3 class="subh">빈칸의 근거 · 더마 코너에서 제로이드가 채우는 칸</h3>
+    <p class="lead">무신사에서 이미 잘 팔리는 장벽·진정 크림과 나란히 놓았습니다. 제로이드는 가격으로 다투지 않고, 아직 비어 있는 해결 루틴을 채웁니다.</p>
+    <div class="ctbl">
+      <table>
+        <thead><tr><th>브랜드</th><th>대표 제품 (무신사 판매 구성)</th><th class="n">무신사 가격</th><th class="n">ml당</th><th class="n">무신사 리뷰</th><th>무신사에서의 자리</th></tr></thead>
+        <tbody>
+          <tr><td>에스트라</td><td>아토베리어365 크림 80ml</td><td class="n">26,400</td><td class="n">330원</td><td class="n">24,783</td><td>장벽 크림 대표, 무신사 단독 2개 세트 운영</td></tr>
+          <tr><td>닥터지</td><td>레드 블레미쉬 클리어 수딩 크림 50ml × 3</td><td class="n">46,880</td><td class="n">313원</td><td class="n">3,301</td><td>트러블·붉은기 진정</td></tr>
+          <tr><td>피지오겔</td><td>더마 DMT 페이셜 수분 크림 150ml</td><td class="n">31,900</td><td class="n">213원</td><td class="n">2,604</td><td>대용량 페이셜 수분</td></tr>
+          <tr><td>리얼베리어</td><td>익스트림 크림 65ml × 2</td><td class="n">43,900</td><td class="n">338원</td><td class="n">1,037</td><td>네오팜 형제 브랜드, 데일리 장벽</td></tr>
+          <tr><td>일리윤</td><td>세라마이드 아토 집중 크림 500ml</td><td class="n">26,800</td><td class="n">54원</td><td class="n">235</td><td>대용량 바디·가족 보습</td></tr>
+          <tr class="z"><td>제로이드</td><td>히어로 듀오 (인텐시브 + 수딩 크림 160ml)</td><td class="n">42,900</td><td class="n">268원</td><td class="n">신규</td><td>장벽 + 진정을 한 번에, 콜라보 패키지</td></tr>
+          <tr class="z"><td>제로이드</td><td>트러블 진정 키트 (클렌저·앰플·크림 본품 3종)</td><td class="n">59,900</td><td class="n">—</td><td class="n">신규</td><td>여드름성 피부 완화 기능성 세안부터 크림까지</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">무신사 가격은 2026.10.30 무신사 검색 결과의 회원 쿠폰가(쿠폰이 없으면 판매가)입니다. 제로이드 가격은 제안 협의안입니다.</p>
+    <div class="gap3">
+      <div class="card"><b>세안부터 크림까지 트러블 루틴</b><p>여드름성 피부 완화 기능성 클렌저와 pH4 장벽 크림을 한 브랜드 루틴으로 제안합니다.</p></div>
+      <div class="card"><b>피부과 채널 이력</b><p>병·의원 유통으로 시작해 지금도 의료기기 라인을 만드는 브랜드입니다. 이 이력은 효능 주장이 아닌 브랜드 스토리로만 전합니다.</p></div>
+      <div class="card"><b>민감 피부용 기능성</b><p>미백 기능성 프로텍트 크림, 미백·주름·자외선 3중 기능성 비비 크림으로 순한 기능성 칸을 채웁니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 STORY -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker"><span class="no">02</span>TWO CUSTOMER STORIES</div>
+    <h2>수아와 지후, 무신사 앱을 연 두 가지 이유</h2>
+    <p class="lead">피부가 뒤집혀서 앱을 연 수아, 러닝화를 사러 앱을 연 지후. 이유는 달라도 두 사람 모두 제로이드를 만나고, 다음 구매도 무신사에 남깁니다.</p>
+    <div class="lanes">
+      <div>
+        <div class="lane-h" style="--c:var(--pink);--cs:var(--pink-s)"><b>수아 · 28세 마케터</b><span>트러블 · 붉은기</span></div>
+        <ol class="steps">
+          <li class="before"><span class="dot">23:10</span><div><span class="tm">BEFORE</span><b>양 볼이 붉어지고 좁쌀이 올라왔다</b><p>무엇부터 발라야 할지 몰라, 내일 피부과나 약국에 가기로 한다.</p></div></li>
+          <li style="--c:var(--pink)"><span class="dot">23:15</span><div><span class="tm">더마 코너</span><b>"트러블·붉은기"를 고른다</b><p>첫 화면에 세안부터 크림까지 이어진 트러블 진정 키트와 기능성 배지, 1주 진정 수치가 보인다.</p></div></li>
+          <li style="--c:var(--pink)"><span class="dot">+1일</span><div><span class="tm">루틴 시작</span><b>젤 클렌저 → 앰플 → 크림</b><p>올영에서 따로 사면 81,700원, 무신사 키트는 59,900원.</p></div></li>
+          <li class="gain"><span class="dot">+2달</span><div><span class="tm">AFTER</span><b>다 쓴 크림을 무신사에서 다시 산다</b><p>사진 후기를 남기고, 같은 고민의 고객이 그 후기를 보고 산다.</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <div class="lane-h" style="--c:var(--blue);--cs:var(--blue-s)"><b>지후 · 32세 런크루</b><span>러닝 · 자외선</span></div>
+        <ol class="steps">
+          <li class="before"><span class="dot">토</span><div><span class="tm">BEFORE · 토요일 10시</span><b>러닝화와 바람막이를 장바구니에 담는다</b><p>선크림은 땀과 섞이면 눈이 시려 늘 안 바르고 뛴다.</p></div></li>
+          <li style="--c:var(--blue)"><span class="dot">10:02</span><div><span class="tm">장바구니 추천</span><b>"러너를 위한 선케어"가 보인다</b><p>SPF50+ 무기자차 선크림 2개와 크림 미스트가 든 러너스 선 키트를 함께 담는다.</p></div></li>
+          <li style="--c:var(--blue)"><span class="dot">D-day</span><div><span class="tm">2027년 봄 대회 날</span><b>하나는 얼굴에, 하나는 가방에</b><p>덧바름용 선크림과 찬바람용 미스트로 10km를 뛴다.</p></div></li>
+          <li class="gain"><span class="dot">+1달</span><div><span class="tm">AFTER</span><b>러닝 크루에 공유하고 다시 산다</b><p>패션을 사러 온 고객이 무신사에서 첫 뷰티 구매를 한다.</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <div class="phone" aria-label="무신사 앱 더마 코너에서 제로이드 트러블 진정 키트를 보는 화면 예시">
+          <div class="bar"><span>9:41</span><span>MUSINSA BEAUTY</span></div>
+          <div class="cat">더마 화장품 · <b>고민별로 찾기</b></div>
+          <div class="chips"><span class="on">트러블·붉은기</span><span>건조·당김</span><span>야외·자외선</span><span>기미·톤</span></div>
+          <div class="hero"><img class="pimg" src="img/p_pim_rcc.jpg" alt=""><div><b>제로이드 트러블 진정 키트</b><span>젤 클렌저 + 카밍 앰플 + 레드 컨트롤 크림</span></div></div>
+          <div class="badges"><span>여드름성 피부 완화 기능성</span><span>무신사 단독</span><span>pH4 약산성</span></div>
+          <div class="price"><b>59,900</b><s>98,000</s><span>콜라보 파우치 포함</span></div>
+          <div class="rv">"1주 사용 후 붉은기 진정 89.36%" · 공식 인체적용시험</div>
+          <div class="cta">고민 루틴 담기</div>
+        </div>
+        <p class="phone-cap">무신사 앱 상세페이지 첫 화면 시안</p>
+      </div>
+    </div>
+    <div class="card both">
+      <div><b>수아에게서 얻는 것</b><p>앱 안에서 고민을 해결한 고객의 재구매</p></div>
+      <div><b>지후에게서 얻는 것</b><p>패션 고객의 첫 뷰티 구매와 더 커진 장바구니</p></div>
+      <div><b>두 사람의 공통점</b><p>다른 채널로 떠나지 않고 무신사에서 해결한다</p></div>
+    </div>
+    <p class="takeaway">고민이 생긴 고객도, 패션을 사러 온 고객도 무신사 안에서 제로이드를 만나면 다음 구매가 무신사에 남습니다.</p>
+  </div>
+</section>
+
+<!-- 03 BRAND -->
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="no">03</span>ABOUT ZEROID</div>
+    <h2>제로이드는 이런 브랜드예요</h2>
+    <div class="brand3">
+      <div class="card b3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M12 9v6M9 12h6"/></svg></div>
+        <h3>피부과 채널에서 시작</h3>
+        <div class="num">2002<small>년 런칭</small></div>
+        <p>병·의원 유통으로 시작한 브랜드입니다. 의료기기(MD) 라인은 병·의원 채널에만 두고, 무신사와 약국에는 <b>일반 화장품 라인</b>만 제안합니다.</p>
+      </div>
+      <div class="card b3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6z"/></svg></div>
+        <h3>고민별 기능성</h3>
+        <div class="num">4<small>개 영역</small></div>
+        <p>여드름성 피부 완화(핌프로브 젤·포밍 클렌저), 미백(프로텍트 크림), 주름 개선·자외선 차단(비비 크림), 자외선 차단(선크림 2종).</p>
+      </div>
+      <div class="card b3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2-6 6-10z"/></svg></div>
+        <h3>예민한 피부를 위한 처방</h3>
+        <div class="num">10<small>가지 무첨가</small></div>
+        <p>주요 기초 제품에 인공향료, 인공색소, 에탄올, 파라벤 등 10가지 성분을 넣지 않았습니다. 성별과 관계없이 쓸 수 있는 저자극 처방입니다.</p>
+      </div>
+    </div>
+    <div class="card mle">
+      <figure>
+        <div><img src="img/c_skin.png" alt="건강한 피부 지질을 편광현미경으로 본 모습">건강한 피부 지질</div>
+        <div><img src="img/c_mle.png" alt="MLE 제형을 편광현미경으로 본 모습">MLE® 제형</div>
+      </figure>
+      <div>
+        <h3>네오팜 공통 기술 MLE® 위에, 고민별 해결을 더했어요</h3>
+        <p>MLE®는 네오팜의 보습 제형 기술로, 편광현미경에서 건강한 피부 지질과 비슷한 층상 구조(십자 무늬)를 보입니다. 리얼베리어·아토팜도 같은 기술을 씁니다. 제로이드는 그 위에 트러블·톤·자외선 같은 고민별 기능성과 진정 성분을 더했습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03b FAMILY -->
+<section class="cont">
+  <div class="wrap">
+    <h3 class="subh">네오팜 패밀리 · 무신사 안에서 세 브랜드는 겹치지 않아요</h3>
+    <p class="lead">리얼베리어와 아토팜은 이미 무신사에서 판매되고 있습니다. 제로이드는 두 브랜드가 맡지 않은 자리에 들어갑니다.</p>
+    <div class="fam">
+      <div class="card fm" style="--c:var(--blue)"><span class="st on">무신사 판매 중</span><h3>REAL BARRIER</h3><p class="role">매일 바르는 데일리 보습</p><dl><dt>고객</dt><dd>건조함이 고민인 2030</dd><dt>대표</dt><dd>익스트림 크림</dd><dt>사는 순간</dt><dd>평소 루틴, 대용량 쟁여 두기</dd></dl></div>
+      <div class="card fm" style="--c:var(--orange)"><span class="st on">무신사 판매 중</span><h3>ATOPALM</h3><p class="role">아이와 함께 쓰는 가족 케어</p><dl><dt>고객</dt><dd>영유아 부모, 가족</dd><dt>대표</dt><dd>MLE 크림·로션</dd><dt>사는 순간</dt><dd>출산, 육아, 선물</dd></dl></div>
+      <div class="card fm z" style="--c:var(--green)"><span class="st new">신규 제안</span><h3>ZEROID</h3><p class="role">피부 고민이 생긴 순간의 해결</p><dl><dt>고객</dt><dd>트러블·붉은기·관리 후 건조가 생긴 1030</dd><dt>대표</dt><dd>레드 컨트롤 크림, 젤 클렌저, 인텐시브 크림</dd><dt>사는 순간</dt><dd>피부가 뒤집혔을 때, 관리 후, 계절이 바뀔 때</dd></dl></div>
+    </div>
+    <div class="card rules soft">
+      <div><b>제품으로 나눠요</b><p>제로이드는 기능성과 고민 키트에 집중하고, 데일리 대용량 보습은 리얼베리어에 맡깁니다.</p></div>
+      <div><b>진열로 나눠요</b><p>제로이드는 더마 코너와 더모존의 "고민별 해결" 칸에 둡니다.</p></div>
+      <div><b>채널로 나눠요</b><p>의료기기 라인은 병·의원에만, 무신사와 약국에는 화장품만 둡니다.</p></div>
+      <div><b>운영은 함께해요</b><p>그룹 브랜드의 무신사 입고·정산·CS 운영 경험을 이어 갑니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PERSONA -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker"><span class="no">04</span>FOR WHOM</div>
+    <h2>네 명의 고객, 네 가지 순간</h2>
+    <p class="lead">리뷰에서 반복된 고민으로 만든 가상 인물 네 명입니다. 성별보다 "트러블이 잦은 민감 피부"에 초점을 맞췄습니다. 카드마다 제품을 쓰는 순간, 근거의 크기, 무신사에서 만날 키트를 담았습니다.</p>
+    <div class="pgrid">
+      <article class="card pc" style="--c:var(--pink);--cs:var(--pink-s)">
+        <div><span class="tag">트러블 · 붉은기</span><h3>자꾸 뒤집어지는 민감 피부</h3><p class="who">좁쌀과 붉은기가 반복되는 20~30대 직장인 (수아)</p></div>
+        <p class="worry"><b>고민</b>순하다는 제품을 다 써 봤는데 기름진 크림은 여드름이 나고, 가벼운 크림은 진정이 안 돼요.</p>
+        <div class="moments">
+          <div class="mo"><span class="t">MORNING</span><b>젤 클렌저</b>여드름성 피부 완화 기능성</div>
+          <div class="mo"><span class="t">AFTERNOON</span><b>카밍 앰플</b>올라온 붉은기 진정</div>
+          <div class="mo"><span class="t">NIGHT</span><b>레드 컨트롤 크림</b>pH4 약산성 장벽 크림</div>
+        </div>
+        <div class="pc-prod"><img class="pimg" src="img/p_pim_rcc.jpg" alt=""><p class="proof"><b>89.36%</b>레드 컨트롤 크림, 1주 사용 후 붉은기 진정 개선</p></div>
+        <p class="voice">"양 볼 초민감, 건조, 홍조로 장벽이 무너진 지 1년째인데 구원템이에요."<cite>레드 컨트롤 크림 · 올리브영 리뷰 · 2026</cite></p>
+        <div class="pfoot"><div><span>EVIDENCE</span>핌프로브 리뷰의 <b>66%</b>가 민감·트러블 언급</div><div><span>MUSINSA KIT</span><b>트러블 진정 키트</b> 59,900원 · 2026.12</div></div>
+      </article>
+      <article class="card pc" style="--c:var(--blue);--cs:var(--blue-s)">
+        <div><span class="tag">야외 활동 · 자외선</span><h3>러닝·등산을 즐기는 사람</h3><p class="who">새벽 러닝, 주말 등산을 하는 런크루 멤버</p></div>
+        <p class="worry"><b>고민</b>뛰고 나면 얼굴이 벌겋고, 선크림은 땀과 섞이면 눈이 시려서 자꾸 안 바르게 돼요.</p>
+        <div class="moments">
+          <div class="mo"><span class="t">BEFORE RUN</span><b>데일리 선크림</b>SPF50+ 무기자차</div>
+          <div class="mo"><span class="t">AFTER RUN</span><b>클렌징 젤</b>땀 흘린 뒤 순한 세안</div>
+          <div class="mo"><span class="t">ON THE TRAIL</span><b>크림 미스트</b>찬바람엔 칙칙 뿌리기</div>
+        </div>
+        <div class="pc-prod"><img class="pimg" src="img/p_sun_daily.jpg" alt=""><p class="proof"><b>SPF50+</b>데일리 선크림, 자외선 차단 기능성</p></div>
+        <p class="voice">"눈시림이 아예 없고 피부 트러블도 덜 나서 꾸준히 사용합니다."<cite>데일리 선크림 · 올리브영 리뷰 · 2026</cite></p>
+        <div class="pfoot"><div><span>EVIDENCE</span>선케어 리뷰의 <b>15%</b>가 야외 활동 언급 (라인 중 최고)</div><div><span>MUSINSA KIT</span><b>러너스 선 키트</b> 39,900원 · 2027.04</div></div>
+      </article>
+      <article class="card pc" style="--c:var(--green-d);--cs:var(--green-s)">
+        <div><span class="tag">극건조 · 당김</span><h3>캠핑·웰니스를 즐기는 사람</h3><p class="who">캠핑과 요가 리트리트를 다니는 30대</p></div>
+        <p class="worry"><b>고민</b>캠핑만 다녀오면 얼굴이 사막이에요. 짐은 줄이고 싶은데 보습은 포기 못 해요.</p>
+        <div class="moments">
+          <div class="mo"><span class="t">PACKING</span><b>크림 미스트</b>단계를 줄이는 뿌리는 크림</div>
+          <div class="mo"><span class="t">CAMPFIRE</span><b>오인트 크림</b>밤새 지켜 주는 보습막</div>
+          <div class="mo"><span class="t">RESET DAY</span><b>크림 마스크</b>주 1회 집중 보습</div>
+        </div>
+        <div class="pc-prod"><img class="pimg" src="img/p_oint.jpg" alt=""><p class="proof"><b>150h</b>오인트 크림, 보습 지속 시간</p></div>
+        <p class="voice">"두둑이 바르면 확실히 다음 날 진정되어 있는 게 눈에 보여요."<cite>인텐시브 오인트 크림 · 공식몰 리뷰 · 2020</cite></p>
+        <div class="pfoot"><div><span>EVIDENCE</span>인텐시브 라인 리뷰의 <b>33%</b>가 건조·당김 언급</div><div><span>MUSINSA KIT</span><b>겨울 장벽 키트</b> 46,900원 · 2026.12</div></div>
+      </article>
+      <article class="card pc" style="--c:var(--orange);--cs:var(--orange-s)">
+        <div><span class="tag">기미 · 톤</span><h3>기미·톤이 고민인 민감 피부</h3><p class="who">자극적인 기능성 화장품이 맞지 않는 30대</p></div>
+        <p class="worry"><b>고민</b>기미가 신경 쓰여 미백 제품을 쓰고 싶은데, 바르기만 하면 따갑고 붉어져요.</p>
+        <div class="moments">
+          <div class="mo"><span class="t">DAILY</span><b>이지워시 선크림</b>지우기 쉬운 순한 선크림</div>
+          <div class="mo"><span class="t">TONE CARE</span><b>프로텍트 크림</b>미백 기능성 크림</div>
+          <div class="mo"><span class="t">COVER</span><b>비비 크림</b>미백·주름·자외선 3중 기능성</div>
+        </div>
+        <div class="pc-prod"><img class="pimg" src="img/p_dm_protect.jpg" alt=""><p class="proof"><b>미백 기능성</b>프로텍트 크림, 식약처 심사 기능성 화장품</p></div>
+        <p class="voice">"기미, 잡티로 일 년 내내 신경 쓰이는 피부라… 자극 없이 기미잡티 관리에 도움된다길래 열심히 사용 중입니다."<cite>더마뉴얼 프로텍트 크림 · 공식몰 리뷰 · 2020</cite></p>
+        <div class="pfoot"><div><span>EVIDENCE</span>리뷰 언급이 <b>1.9%</b>로 적어, 기능성 근거로 먼저 검증할 페르소나</div><div><span>MUSINSA KIT</span><b>톤케어 키트</b> · 가격 확인 후 확정</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PROOF + VOICES -->
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="no">05</span>PROVEN</div>
+    <h2>효과는 숫자로, 만족은 고객의 말로</h2>
+    <p class="lead">제로이드 공식 상세페이지에 공개된 인체적용시험 결과입니다. 측정 지표와 시험 조건은 부록에, 실증 자료는 입점 서류로 함께 드립니다.</p>
+    <div class="nums">
+      <div class="card nb"><div class="v">120<small>h</small></div><div class="k">보습 지속</div><div class="p">인텐시브 크림</div></div>
+      <div class="card nb"><div class="v">150<small>h</small></div><div class="k">보습 지속</div><div class="p">인텐시브 오인트 크림</div></div>
+      <div class="card nb" style="--c:var(--blue)"><div class="v">62<small>%</small></div><div class="k">피부 보습 개선 (2주 누적)</div><div class="p">수딩 크림</div></div>
+      <div class="card nb" style="--c:var(--blue)"><div class="v">54<small>%</small></div><div class="k">민감 반응 완화 (자극 후 1회, 일시적)</div><div class="p">수딩 크림</div></div>
+      <div class="card nb" style="--c:var(--pink)"><div class="v">89.36<small>%</small></div><div class="k">붉은기 진정 개선 (1주)</div><div class="p">레드 컨트롤 크림</div></div>
+      <div class="card nb" style="--c:var(--pink)"><div class="v">62<small>%</small></div><div class="k">피부 유분량 감소 (4주)</div><div class="p">핌프로브 모이스처라이저</div></div>
+      <div class="card nb" style="--c:var(--pink)"><div class="v">94.56<small>%</small></div><div class="k">묵은 각질 감소</div><div class="p">핌프로브 토너</div></div>
+      <div class="card nb" style="--c:var(--orange)"><div class="v">44<small>%</small></div><div class="k">피부과 관리 후 붉은기 개선 (1회)</div><div class="p">더마뉴얼 리페어 크림</div></div>
+    </div>
+    <div class="voices">
+      <div class="card bars" style="background:var(--green-s);border-color:transparent">
+        <h3 style="font-size:16px">최근 리뷰 720건에서 언급된 고민 (2024.09~2026.10)</h3>
+        <div class="bar"><div class="lab"><span>민감·트러블·진정 언급</span><b>35%</b></div><div class="track"><div class="fill" style="width:35%"></div></div></div>
+        <div class="bar"><div class="lab"><span>건조·당김·각질 언급</span><b>24%</b></div><div class="track"><div class="fill" style="width:24%"></div></div></div>
+        <div class="bar"><div class="lab"><span>재구매·정착 언급</span><b>14%</b></div><div class="track"><div class="fill" style="width:14%"></div></div></div>
+        <div class="bar"><div class="lab"><span>피부과·병원 언급</span><b>11%</b></div><div class="track"><div class="fill" style="width:11%"></div></div></div>
+        <p class="note" style="margin-top:0">올리브영 리뷰 720건(제품 18종 × 최신 40건, 체험단 포함)에서 단어가 언급된 비율입니다. 제품마다 같은 수를 뽑아 판매 비중은 반영하지 않았습니다. 2020~2021년 작성분이 대부분인 공식몰 리뷰 429건에서는 피부과·병원 언급이 49%였습니다.</p>
+      </div>
+      <div class="quotes">
+        <div class="card qt"><p>얼굴이 엉망인데도 이것만 3~5일 바르고 나면 진정돼서 살 만해져요.</p><cite>수딩 크림 · 올리브영 · 2026</cite></div>
+        <div class="card qt"><p>올여름 땀을 많이 흘려서 피부 장벽이 처음으로 무너졌는데, 이 제품으로 버텼어요.</p><cite>더마뉴얼 클렌징 젤 · 올리브영 · 2026</cite></div>
+        <div class="card qt"><p>막 유분 있지도 너무 가볍지도 않은 딱 적당한 유수분 밸런스, 화장 전에 써도 안 밀려요.</p><cite>수딩 로션 · 올리브영 · 2026</cite></div>
+        <div class="card qt"><p>유분감 없이 산뜻하고 수분만 채워 줘서 민감해진 피부가 금방 안정돼요.</p><cite>핌프로브 카밍 앰플 · 올리브영 · 2026</cite></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 ROADMAP -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker"><span class="no">06</span>HOW WE SELL</div>
+    <h2>작게 들어가서, 실적으로 넓혀요</h2>
+    <p class="lead">온라인과 성수 더모존에서 먼저 실적을 만들고, 단독 팝업과 페스타는 그 실적을 근거로 함께 판단합니다. <span class="ex">협의안</span></p>
+    <div class="road">
+      <div class="card rd soft" style="--c:var(--green-d)"><span class="step">1</span><div class="when">2026.12</div><h3>온라인 입점</h3><p class="where">무신사 뷰티 앱 · 더마 화장품 코너</p><ul><li>히어로 단품과 겨울 키트</li><li>무신사 단독 콜라보 패키지</li><li>신제품 2종 2주 선판매</li></ul></div>
+      <div class="card rd soft" style="--c:var(--blue)"><span class="step">2</span><div class="when">2027.01~</div><h3>성수 더모존 진열</h3><p class="where">무신사 뷰티 성수 · 더모존 · 터치업 바<br>홍대 파머시 뷰티 소규모 진열 함께 검토</p><ul><li>고민별 테스터 4종</li><li>QR 장벽 체크 → 앱 쿠폰</li><li>월간 판매 리뷰</li></ul></div>
+      <div class="card rd soft" style="--c:var(--pink)"><span class="step">3</span><div class="when">2027.04</div><h3>봄·야외 시즌 확장</h3><p class="where">앱 · 아웃도어 기획전 연계</p><ul><li>러너스 선 키트 출시</li><li>환절기 트러블 기획전</li><li>러닝·아웃도어 카테고리 연계</li></ul></div>
+      <div class="card rd cond soft" style="--c:var(--orange)"><span class="step">4</span><div class="when">2027 하반기</div><span class="if">실적 달성 시 협의</span><h3>단독 팝업 · 페스타</h3><p class="where">성수 단독 팝업존 신청 · 무뷰페 선정 시 참가</p><ul><li>3개 존, 10분 체험</li><li>앱 예약제 운영</li><li>측정 결과 → 앱 쿠폰</li></ul></div>
+    </div>
+    <div class="card o2o">
+      <h3>매장 체험을 무신사 앱 구매로 잇는 4단계</h3>
+      <div class="flow">
+        <div class="fl"><span class="n">01</span><b>QR 장벽 체크</b>더모존 테스터 옆 QR로 5문항 체크, 내 고민 타입 확인</div>
+        <div class="fl"><span class="n">02</span><b>앱에 저장</b>무신사 앱 회원으로 결과 저장 (개인정보 동의)</div>
+        <div class="fl"><span class="n">03</span><b>7일 쿠폰</b>타입에 맞는 키트 전용 쿠폰 발급</div>
+        <div class="fl"><span class="n">04</span><b>구매 후기 리워드</b>사진 후기 작성 시 적립, 재구매 쿠폰</div>
+      </div>
+      <p class="popmini">단독 팝업(조건 달성 시)은 15평에서 <b>장벽 체크 → 텍스처 바 → 내 장벽 카드 포토·구매</b>의 3개 존, 10분 동선으로 운영합니다. 장벽 체크는 손등이나 팔 안쪽 맨살로 하고, 앱 시간대 예약(시간당 30명)과 현장 대기 상한(10명)을 둡니다. 체크 없이 테스터만 써 보는 3분 동선도 따로 엽니다. 운영 인력은 4명이며, 약국 진열은 약국 운영사와 따로 협의합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06b PLAYBOOK -->
+<section class="alt cont">
+  <div class="wrap">
+    <h3 class="subh">온라인 플레이북 · 무신사 앱에서 이렇게 팔아요</h3>
+    <p class="lead">랭킹, 검색, 사진 후기로 고르는 무신사 고객의 방식에 맞췄습니다. <span class="ex">협의안</span></p>
+    <div class="play">
+      <div class="card pb" style="--c:var(--green-d)"><span class="k">LAUNCH 2 WEEKS</span><h3>런칭 첫 2주</h3>
+        <ul>
+          <li>더마 화장품 코너 랭킹 <b>20위 안</b> 진입 목표</li>
+          <li>상세페이지 첫 화면: 고민 선택 → 맞는 키트 → 기능성 배지 → 임상 수치 (02 시안 참고)</li>
+          <li>구매 인증 사진 후기에는 적립금을 주고, 체험단 후기는 표시해 전체의 20% 이내로 관리</li>
+          <li>히어로 듀오는 피부 고민이 처음 생긴 10대 후반~20대 초반에게 "첫 장벽 크림"으로 소개</li>
+        </ul>
+        <div class="kw"><span>세라마이드 크림</span><span>진정 크림</span><span>트러블 크림</span><span>장벽 크림</span><span>판테놀</span><span>마데카소사이드</span><span>약산성 클렌저</span></div>
+      </div>
+      <div class="card pb" style="--c:var(--blue)"><span class="k">CROSS-SELL</span><h3>패션에서 뷰티로 잇기</h3>
+        <ul>
+          <li>러닝·아웃도어 기획전에 러너스 선 키트 함께 노출</li>
+          <li>러닝화·바람막이 장바구니에 선케어 연관 추천</li>
+          <li>콜라보 패션 브랜드 구매 고객에게 제로이드 미니 증정</li>
+          <li>더마 코너 구매 데이터를 무신사와 함께 분석해 다음 시즌 구성에 반영</li>
+        </ul>
+      </div>
+      <div class="card pb" style="--c:var(--pink);grid-column:1/-1"><span class="k">CONTENT</span><h3>1030이 끝까지 보는 콘텐츠</h3>
+        <div class="tw"><table>
+          <thead><tr><th>구분</th><th>인원</th><th>내용</th><th>시기</th></tr></thead>
+          <tbody>
+            <tr><td>앰배서더</td><td>1명</td><td>2030 뷰티 크리에이터, 콜라보 패키지 공개와 3개월 장기 사용 기록</td><td>2026.12~2027.02</td></tr>
+            <tr><td>마이크로 크리에이터</td><td>20명</td><td>뷰티 10, 러닝 5, 캠핑·웰니스 5명의 고민별 숏폼</td><td>런칭 후 4주</td></tr>
+            <tr><td>나노 시딩</td><td>100명</td><td>트러블·건조 고민 고객 대상 키트 체험, 무신사 후기 연동</td><td>2027.01</td></tr>
+          </tbody>
+        </table></div>
+        <div class="kw"><span>숏폼 1 · 피부 뒤집어진 날 3단계 루틴</span><span>숏폼 2 · 러닝 전후 30초 선케어</span><span>숏폼 3 · 겨울 캠핑 파우치 털기</span><span>예산 4,000만 원 · 지표: 조회, 앱 유입, 쿠폰 사용</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 OFFER -->
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="no">07</span>OUR OFFER</div>
+    <h2>무신사에서만 만나는 구성과 우리의 약속</h2>
+    <p class="lead">올리브영과 같은 상품을 같은 묶음으로 팔지 않습니다. 무신사 전용 구성과 콜라보 패키지로, 따로 사는 것보다 확실히 저렴하게 만들었습니다. <span class="ex">협의안</span></p>
+    <div class="card promise">
+      <div class="badge">PRICE<br>PROMISE</div>
+      <p><b>무신사 키트 가격은 같은 제품을 올리브영 행사가로 따로 살 때보다 25% 이상 낮게 유지합니다.</b> 올리브영 대형 세일 기간에는 무신사 쿠폰을 추가해 이 차이를 지킵니다(쿠폰 분담 협의).</p>
+    </div>
+    <div class="kits">
+      <div class="card kt soft" style="--c:var(--green-d)">
+        <div class="imgs"><img class="pimg" src="img/p_intensive_cream.jpg" alt=""><img class="pimg" src="img/p_soothing_cream.jpg" alt=""><img class="pimg" src="img/p_soothing_lotion.jpg" alt=""></div>
+        <span class="when">2026.12 · ENTRY</span>
+        <h3>히어로 듀오</h3><p class="for">처음 써 보는 분</p>
+        <p class="items">인텐시브 크림 80ml + 수딩 크림 80ml, 콜라보 패키지</p>
+        <div class="cmpx"><div><span>정가 합계</span><s>62,000</s></div><div><span>올영 할인가로 따로</span><span>58,800</span></div><div class="me"><span>무신사 키트</span><b>42,900</b></div><div><span></span><span class="diff">−27%</span></div></div>
+      </div>
+      <div class="card kt soft" style="--c:var(--pink)">
+        <div class="imgs"><img class="pimg" src="img/p_pim_rcc.jpg" alt=""><img class="pimg" src="img/p_pim_gel.jpg" alt=""><img class="pimg" src="img/p_pim_amp.jpg" alt=""></div>
+        <span class="when">2026.12</span>
+        <h3>트러블 진정 키트</h3><p class="for">자꾸 뒤집어지는 민감 피부</p>
+        <p class="items">레드 컨트롤 크림 + 젤 클렌저 + 카밍 앰플, 모두 본품</p>
+        <div class="cmpx"><div><span>정가 합계</span><s>98,000</s></div><div><span>올영 할인가로 따로</span><span>81,700</span></div><div class="me"><span>무신사 키트</span><b>59,900</b></div><div><span></span><span class="diff">−27%</span></div></div>
+      </div>
+      <div class="card kt soft" style="--c:var(--blue)">
+        <div class="imgs"><img class="pimg" src="img/p_oint.jpg" alt=""><img class="pimg" src="img/p_mist.jpg" alt=""><img class="pimg" src="img/p_creammask.jpg" alt=""></div>
+        <span class="when">2026.12 · WINTER</span>
+        <h3>겨울 장벽 키트</h3><p class="for">캠핑·찬바람에 건조한 피부</p>
+        <p class="items">오인트 크림 + 크림 미스트 + 크림 마스크 5매</p>
+        <div class="cmpx"><div><span>정가 합계</span><s>88,000</s></div><div><span>올영 할인가로 따로</span><span>64,600</span></div><div class="me"><span>무신사 키트</span><b>46,900</b></div><div><span></span><span class="diff">−27%</span></div></div>
+      </div>
+      <div class="card kt soft" style="--c:var(--orange)">
+        <div class="imgs"><img class="pimg" src="img/p_sun_daily.jpg" alt=""><img class="pimg" src="img/p_sun_daily.jpg" alt=""><img class="pimg" src="img/p_mist.jpg" alt=""></div>
+        <span class="when">2027.04 · SPRING</span>
+        <h3>러너스 선 키트</h3><p class="for">러닝·등산을 즐기는 사람</p>
+        <p class="items">데일리 선크림 50ml × 2 + 크림 미스트</p>
+        <div class="cmpx"><div><span>정가 합계</span><s>87,000</s></div><div><span>올영 할인가로 따로</span><span>55,800</span></div><div class="me"><span>무신사 키트</span><b>39,900</b></div><div><span></span><span class="diff">−29%</span></div></div>
+      </div>
+    </div>
+    <div class="card collab">
+      <div class="mock">ZEROID ×<br>MUSINSA COLLAB<br><span style="font-size:11px;letter-spacing:.1em">한정 패키지 · 협업 대상 협의</span></div>
+      <div>
+        <h3>무신사 단독 콜라보 패키지</h3>
+        <p class="note" style="margin-top:6px">"병원 브랜드"가 아니라 1030이 들고 다니고 싶은 브랜드로 보이도록, 무신사 고객 취향에 맞춘 협업 패키지를 만듭니다.</p>
+        <ul>
+          <li>무신사가 추천하는 패션·캐릭터 브랜드와의 한정 패키지·파우치</li>
+          <li>키트 전 구성에 적용, 3개월 무신사 독점</li>
+          <li>올리브영에서 팔지 않는 신제품 2종(인텐시브 SOS 플러스 밤, 립케어)을 무신사 온라인에서 2주 먼저 판매</li>
+          <li>기미·톤 고민 키트(프로텍트 크림 포함)는 판매가가 확정되면 구성을 정합니다</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">정가와 올영 할인가는 올리브영 온라인몰 2026.10.30 조회 기준입니다. 수딩 크림 80ml 단품은 할인이 없어 정가로 계산했습니다. 히어로 단품은 키트와 별도로 정가에 무신사 쿠폰을 적용해 판매합니다.</p>
+  </div>
+</section>
+
+<!-- 07b PROPOSAL -->
+<section class="cont">
+  <div class="wrap">
+    <h3 class="subh">단계별 목표와 예상 매출</h3>
+    <div class="card grow">
+      <h3>목표를 넘을 때마다 다음 단계로, 못 넘으면 이렇게 고쳐요</h3>
+      <div class="grow-steps">
+        <div class="gs"><span class="h">STEP 1 · 2026.12~2027.02 (12주)</span><b>키트 3,500개 · 구매 인증 후기 700건</b><p>2027년 2월 말에 판단합니다. 더마 코너 랭킹 20위 안 진입을 함께 봅니다.</p><p class="miss">미달 시 · 키트 구성과 가격을 조정해 4주 연장, 재고는 단품 기획전으로 소진</p></div>
+        <div class="gs"><span class="h">STEP 2 · 2027.01~03 더모존</span><b>월 키트 150개 · QR 쿠폰 사용률 15%</b><p>매장 체험이 앱 구매로 이어지는지 쿠폰 사용률로 확인합니다.</p><p class="miss">미달 시 · 테스터를 히어로 2종으로 줄이고, 단독 팝업은 신청하지 않음</p></div>
+        <div class="gs"><span class="h">STEP 3 · 2027.04~06</span><b>두 조건 달성 시 하반기 단독 팝업 신청</b><p>무뷰페는 무신사 선정 기준에 맞춰 실적 자료를 드립니다.</p><p class="miss">미달 시 · 온라인 시즌 기획전 중심으로 운영하고 다음 반기에 재검토</p></div>
+      </div>
+    </div>
+    <div class="calc">
+      <table>
+        <thead><tr><th>기간 · 채널</th><th>구성</th><th class="n">수량</th><th class="n">단가</th><th class="n">예상 매출</th></tr></thead>
+        <tbody>
+          <tr><td>2026.12~2027.02 온라인</td><td>히어로 듀오</td><td class="n">1,500</td><td class="n">42,900</td><td class="n">6,435만</td></tr>
+          <tr><td>2026.12~2027.02 온라인</td><td>트러블 진정 키트</td><td class="n">1,000</td><td class="n">59,900</td><td class="n">5,990만</td></tr>
+          <tr><td>2026.12~2027.02 온라인</td><td>겨울 장벽 키트</td><td class="n">1,000</td><td class="n">46,900</td><td class="n">4,690만</td></tr>
+          <tr><td>2027.01~03 성수 더모존</td><td>키트 3종 평균</td><td class="n">450</td><td class="n">49,900</td><td class="n">2,246만</td></tr>
+          <tr><td>2027.04~06 온라인</td><td>러너스 선 키트</td><td class="n">1,200</td><td class="n">39,900</td><td class="n">4,788만</td></tr>
+          <tr class="tot"><td colspan="2">7개월 합계 (단품·팝업·페스타 제외)</td><td class="n">5,150</td><td class="n"></td><td class="n">약 2억 4,149만</td></tr>
+        </tbody>
+      </table>
+      <p class="note">소비자가 기준 매출입니다. 수량은 협의를 위한 초안이며, 단독 팝업과 페스타는 조건부라 합계에 넣지 않았습니다.</p>
+    </div>
+
+    <div class="appx">
+      <h3 style="margin-top:48px;font-size:20px">MD 검토용 부록</h3>
+      <p class="note" style="margin-top:4px">내부 품의에 필요한 조건과 근거를 모았습니다. 모든 수치는 협의를 위한 초안입니다.</p>
+      <details>
+        <summary>A. 거래 조건 초안</summary>
+        <div class="in"><table>
+          <thead><tr><th>항목</th><th>제안</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>거래 형태</td><td>특약매입(위탁), 성과 확인 후 직매입 전환 검토</td><td>초기 재고 부담을 나눔</td></tr>
+            <tr><td>판매 수수료</td><td>무신사 뷰티 표준 수수료 적용</td><td>아래 손익 시나리오는 30%로 가정</td></tr>
+            <tr><td>가격 정책</td><td>단품은 정가 + 무신사 쿠폰, 할인은 키트로만. 매장가와 앱가는 동일</td><td>올리브영 행사가 대비 키트 25% 이상 낮게 유지</td></tr>
+            <tr><td>단독성</td><td>콜라보 패키지·전용 구성 3개월 독점, 신제품 2종 2주 선판매</td><td>본사 승인과 타 채널 계약 검토 후 확정</td></tr>
+            <tr><td>정산·반품</td><td>월 1회 정산, 키트 미판매분은 분기 말 반품</td><td>유통기한 12개월 이상 재고만 입고</td></tr>
+          </tbody>
+        </table></div>
+      </details>
+      <details>
+        <summary>B. 무신사 수익 시나리오 (7개월)</summary>
+        <div class="in"><table>
+          <thead><tr><th>시나리오</th><th class="n">거래액</th><th class="n">반품 3% 차감</th><th class="n">무신사 수수료 수익 (30% 가정)</th></tr></thead>
+          <tbody>
+            <tr><td>보수 (목표의 70%)</td><td class="n">1억 6,904만</td><td class="n">1억 6,397만</td><td class="n">4,919만</td></tr>
+            <tr><td>기본 (목표 달성)</td><td class="n">2억 4,149만</td><td class="n">2억 3,424만</td><td class="n">7,027만</td></tr>
+            <tr><td>낙관 (목표의 130%)</td><td class="n">3억 1,394만</td><td class="n">3억 452만</td><td class="n">9,136만</td></tr>
+          </tbody>
+        </table><p class="note">쿠폰 할인분 중 무신사 부담분은 위 수익에서 빠집니다. 실제 수수료율이 정해지면 다시 계산합니다.</p></div>
+      </details>
+      <details>
+        <summary>C. 비용 분담</summary>
+        <div class="in"><table>
+          <thead><tr><th>항목</th><th class="n">예상 비용</th><th>부담</th></tr></thead>
+          <tbody>
+            <tr><td>콘텐츠·크리에이터</td><td class="n">4,000만</td><td>제로이드</td></tr>
+            <tr><td>런칭 쿠폰 (총 1억 중)</td><td class="n">5,000만</td><td>제로이드 50 : 무신사 50</td></tr>
+            <tr><td>더모존 테스터·집기·교육·주말 판매 직원</td><td class="n">1,500만</td><td>제로이드</td></tr>
+            <tr><td>콜라보 패키지 제작</td><td class="n">1,500만</td><td>제로이드</td></tr>
+            <tr><td>단독 팝업 (조건 달성 시)</td><td class="n">3,500만</td><td>제로이드, 별도 승인</td></tr>
+            <tr><td>공간·노출·앱 푸시·콜라보 파트너 연결</td><td class="n">—</td><td>무신사 (현물)</td></tr>
+          </tbody>
+        </table></div>
+      </details>
+      <details>
+        <summary>D. 입점 SKU와 운영</summary>
+        <div class="in"><table>
+          <thead><tr><th>차수</th><th>시기</th><th>SKU</th></tr></thead>
+          <tbody>
+            <tr><td>1차</td><td>2026.12</td><td>단품 7종 (인텐시브 크림, 수딩 크림, 레드 컨트롤 크림, 핌프로브 젤 클렌저, 오인트 크림, 크림 미스트, 포밍 클렌저) + 키트 3종 (히어로 듀오, 트러블 진정, 겨울 장벽) + 선판매 2종 (SOS 플러스 밤, 립케어)</td></tr>
+            <tr><td>2차</td><td>2027.03~04</td><td>데일리 선크림, 이지워시 마일드 선크림, 카밍 앰플, 러너스 선 키트</td></tr>
+            <tr><td>3차</td><td>가격 확인 후</td><td>프로텍트 크림, 비비 크림, 톤케어 키트</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px">
+          <li>키트 초도 물량 3,500개, 안전재고 4주. 키팅은 네오팜 물류센터에서 하고 무신사 물류로 입고</li>
+          <li>재입고 리드타임 7일, 품절 시 같은 고민의 단품 묶음으로 대체 판매</li>
+          <li>매장은 무신사 POS로 결제, 백룸 재고 하루 1회 보충</li>
+          <li>테스터는 펌프·튜브형만 쓰고 일회용 스패출러를 둡니다. 주 2회 교체, 담당은 주말 판매 직원과 브랜드 영업 담당</li>
+          <li>피부 트러블 문의는 브랜드 CS가 직접 응대하고, 반품 기준은 무신사 정책을 따름</li>
+          <li>SKU별 전성분·품목보고·기능성 심사서·상품정보고시 서류는 11월 4주 차에 제출</li>
+          <li>무신사 글로벌: 제로이드는 해외 12개국 수출 경험이 있어, 무신사 글로벌 스토어 입점 가능 국가와 인증 현황을 본사와 확인해 2027년 하반기에 제안</li>
+        </ul></div>
+      </details>
+      <details>
+        <summary>E. 연간 캘린더와 성과 지표 정의</summary>
+        <div class="in"><table>
+          <thead><tr><th>시기</th><th>테마</th><th>중심 키트</th></tr></thead>
+          <tbody>
+            <tr><td>12월</td><td>런칭 · 연말 기획전</td><td>히어로 듀오, 겨울 장벽</td></tr>
+            <tr><td>1~2월</td><td>겨울 장벽 · 더모존 진열</td><td>겨울 장벽, 히어로 듀오</td></tr>
+            <tr><td>3~4월</td><td>환절기 트러블</td><td>트러블 진정</td></tr>
+            <tr><td>4~6월</td><td>선케어 · 러닝 시즌</td><td>러너스 선</td></tr>
+            <tr><td>8월</td><td>무신사 뷰티 페스타 (선정 시)</td><td>러너스 선, 트러블 진정</td></tr>
+            <tr><td>11월</td><td>연말 대형 세일</td><td>전 키트</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px">
+          <li><b>체험</b>: QR 장벽 체크 완료 수 · <b>매장 방문</b>: 피플카운터 · <b>구매</b>: 무신사 POS·앱 결제</li>
+          <li><b>재구매</b>: 앱 회원이 첫 구매 후 90일 안에 제로이드 상품을 다시 산 비율</li>
+          <li><b>오프라인 → 온라인 전환</b>: 체험자 7일 쿠폰 사용률</li>
+          <li><b>후기</b>: 구매 인증 후기와 체험단 후기를 나눠 집계</li>
+        </ul></div>
+      </details>
+      <details>
+        <summary>F. 근거 자료 (효능·리뷰·브랜드 추세)</summary>
+        <div class="in"><table>
+          <thead><tr><th>수치</th><th>측정 지표</th><th>시험 조건</th></tr></thead>
+          <tbody>
+            <tr><td>인텐시브 크림 120h · 오인트 크림 150h</td><td>보습 지속 시간</td><td>인체적용시험, 기관·기간·대상 수는 실증자료 별첨</td></tr>
+            <tr><td>수딩 크림 62%</td><td>2주 누적 사용 후 피부 보습</td><td>인체적용시험, 실증자료 별첨</td></tr>
+            <tr><td>수딩 크림 54%</td><td>자극 후 1회 도포 시 민감 반응 점수</td><td>일시적 효과, 측정 방법은 실증자료 별첨</td></tr>
+            <tr><td>레드 컨트롤 크림 89.36%</td><td>1주 사용 후 붉은기 진정</td><td>기기 측정값인지 설문값인지 실증자료로 확인 후 표기</td></tr>
+            <tr><td>핌프로브 모이스처라이저 62%</td><td>4주 사용 후 피부 유분량</td><td>여드름성 피부 사용 적합 테스트, 실증자료 별첨</td></tr>
+            <tr><td>핌프로브 토너 94.56%</td><td>묵은 각질 감소</td><td>인체적용시험, 실증자료 별첨</td></tr>
+            <tr><td>리페어 크림 44%</td><td>1회 사용 후 붉은기</td><td>인체적용시험, 실증자료 별첨</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px">
+          <li>리뷰 분석: 올리브영 720건(2024.09~2026.10, 제품당 40건, 체험단 포함), 공식몰 429건(2020~2024). 판매 비중 가중치와 체험단을 뺀 수치는 본사 데이터로 다시 산출해 드립니다.</li>
+          <li>인용 리뷰는 원문 캡처와 작성일을 별첨합니다. 질환명이 들어간 리뷰는 인용하지 않습니다.</li>
+          <li>브랜드 추세: 인텐시브 크림이 올리브영 2025 어워즈 표기 상품이고, 레드 컨트롤 크림은 올리브영 온라인몰 판매 랭킹 1위를 기록했습니다(상세페이지 기준). 최근 신제품 9종을 선보였습니다.</li>
+          <li>다른 채널의 런칭 첫 3개월 판매량과 최근 3년 매출 추이는 본사 승인 후 별도 자료로 드립니다.</li>
+        </ul></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing alt">
+  <div class="wrap">
+    <span class="wordmark">ZEROID</span>
+    <h2>더마 코너의 빈칸,<br>이렇게 함께 채워 가겠습니다</h2>
+    <div class="card decide close-ask">
+      <div>
+        <h3>결정을 부탁드리는 3가지</h3>
+        <ol>
+          <li>12월 더마 화장품 코너 입점과 런칭 기획전<span>11.20까지 회신</span></li>
+          <li>2027년 1월 성수 더모존·터치업 바 진열<span>12.10까지 회신</span></li>
+          <li>무신사 단독 콜라보 패키지 공동 기획 착수<span>11월 말 킥오프</span></li>
+        </ol>
+      </div>
+      <div class="next"><b>NEXT STEP</b><span>11월 2주 차 · 조건 협의 미팅</span><span>11월 4주 차 · 상품 등록 서류 제출</span><span>12월 1주 차 · 상세페이지·키트 입고</span><span>2027년 2월 말 · 실적 리뷰, 다음 단계 협의</span></div>
+    </div>
+    <p>제로이드 영업팀 · 담당 MD 최하늘 · zeroid.md@example.com · 02-0000-0000<br>의사결정 · 영업팀장 윤재원 · 회의용 PDF 버전을 함께 보내 드립니다</p>
+    <div class="links">
+      <a class="main" href="https://claude.ai/artifact/TcjAx5LURqTYjbgxqiKLHw" target="_blank" rel="noopener">제품 37종 자세히 보기</a>
+      <a href="https://www.zeroid.co.kr/web/brand/brand_story.asp" target="_blank" rel="noopener">공식 브랜드 스토리</a>
+      <a href="https://www.youtube.com/watch?v=4fITB_F5bnw" target="_blank" rel="noopener">브랜드 필름 2026</a>
+      <a href="https://www.instagram.com/zeroidkorea" target="_blank" rel="noopener">@zeroidkorea</a>
+    </div>
+    <ol class="refs">
+      <li id="r1"><a href="https://www.newsinside.kr/news/articleView.html?idxno=5012936" target="_blank" rel="noopener">뉴스인사이드, 무신사 뷰티 10월 '더마 코스메틱' 분리…에스트라 거래액 193%↑ (2026.09.30)</a></li>
+      <li id="r2"><a href="https://www.segye.com/newsView/20261030502988" target="_blank" rel="noopener">세계일보, 무신사 성수에 400평 뷰티 매장…약국까지 품고 '정면 승부' (2026.10.30)</a></li>
+      <li id="r3"><a href="https://www.hankyung.com/article/202610029325g" target="_blank" rel="noopener">한국경제, 월 100개씩 선출시…뷰티 브랜드가 무신사 찾는 이유 (2026.10)</a></li>
+      <li>제품 효능: 제로이드 공식 홈페이지 상세페이지의 인체적용시험 결과이며 개인차가 있습니다. 시험 조건은 입점 서류로 제출합니다.</li>
+      <li>리뷰: 올리브영 720건(2024.09~2026.10), 제로이드 공식몰 429건(2020~2024, 대부분 2020~2021). 단어 언급 비율이며 체험단 리뷰가 포함되어 있습니다.</li>
+      <li>일정, 키트 구성·가격, 목표 수치는 협의를 위한 초안입니다. 담당자 정보는 예시입니다.</li>
+    </ol>
+  </div>
+</section>
+<footer><div class="wrap">ZEROID · ㈜네오팜 · 무신사 뷰티 입점 제안서 v12 · 2026.10.30</div></footer>
