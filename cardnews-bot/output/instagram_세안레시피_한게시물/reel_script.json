@@ -1,0 +1,117 @@
+{
+ "title": "세안 실수 5가지 → 문지르지 않는 1분 팩 세안",
+ "photo_dir": "assets/people/세안",
+ "video_dir": "assets/people/세안_AI영상",
+ "seconds": 3.0,
+ "fade": 0.4,
+ "scenes": [
+  {
+   "photo": "m3x.jpg",
+   "label": "CHECK",
+   "head": "세안할 때\n이렇게 박박?",
+   "sub": "다들 하는 실수, 1분 레시피로 바꿔 볼게요",
+   "seconds": 3.5,
+   "move": "in",
+   "fx": "bubbles",
+   "video": "01.mp4"
+  },
+  {
+   "photo": "m2x.jpg",
+   "label": "×  실수 02",
+   "head": "거품 없이\n바로 쓱쓱",
+   "sub": "바쁜 아침엔 특히 이렇게 하기 쉬워요",
+   "bad": true,
+   "move": "right",
+   "video": "02.mp4"
+  },
+  {
+   "photo": "m2o.jpg",
+   "label": "○  이렇게",
+   "head": "손에서 거품을\n먼저 휘핑",
+   "sub": "휘핑크림처럼 쫀쫀해질 때까지",
+   "move": "out",
+   "fx": "bubbles",
+   "video": "03.mp4"
+  },
+  {
+   "photo": "m3o.jpg",
+   "label": "○  이렇게",
+   "head": "힘 빼고\n손끝으로 롤링",
+   "sub": "짧고 부드럽게 굴리듯",
+   "move": "left",
+   "fx": "bubbles",
+   "video": "04.mp4"
+  },
+  {
+   "photo": "step1_apply.webp",
+   "label": "STEP 1 · 바르기",
+   "head": "마른 얼굴에\n도톰하게 펴 바르기",
+   "sub": "휩드 비건 팩클렌저 · 눈 주위는 피해서",
+   "src": "사용법 출처 · 휩드 비건 팩클렌저 상품 정보",
+   "move": "up",
+   "video": "05.mp4"
+  },
+  {
+   "photo": "pack.jpg",
+   "label": "STEP 2 · 기다리기",
+   "head": "문지르지 말고\n약 1분 기다리기",
+   "sub": "세게 문지르는 대신 기다리는 시간으로",
+   "timer": true,
+   "src": "사용법 출처 · 휩드 비건 팩클렌저 상품 정보",
+   "move": "in",
+   "video": "06.mp4"
+  },
+  {
+   "photo": "m4x.jpg",
+   "label": "STEP 3 · 헹구기",
+   "head": "미온수로\n씻어내기",
+   "sub": "뜨거운 물 말고 미지근한 물로",
+   "src": "사용법 출처 · 휩드 비건 팩클렌저 상품 정보",
+   "move": "in",
+   "fx": "drops",
+   "video": "07.mp4"
+  },
+  {
+   "photo": "hair.jpg",
+   "label": "STEP 3 · 한 번 더",
+   "head": "헤어라인·턱 밑까지\n꼼꼼하게",
+   "sub": "가장자리에 남은 거품까지",
+   "src": "일반 세안 팁",
+   "move": "right",
+   "fx": "drops",
+   "video": "08.mp4"
+  },
+  {
+   "photo": "pat.jpg",
+   "label": "STEP 4 · 마무리",
+   "head": "톡톡 닦고\n바로 보습",
+   "sub": "물기가 마르기 전에",
+   "src": "일반 세안 팁",
+   "move": "out",
+   "fx": "sparkle",
+   "video": "09.mp4"
+  },
+  {
+   "photo": "foam.jpg",
+   "label": "TIP · 바쁜 아침",
+   "head": "젖은 손에 손톱만큼\n거품 내서 롤링",
+   "sub": "폼으로 쓸 땐 30초 이상 롤링 후 미온수로",
+   "src": "사용법 출처 · 휩드 비건 팩클렌저 상품 정보",
+   "move": "left",
+   "fx": "bubbles",
+   "video": "10.mp4"
+  },
+  {
+   "photo": "whipped_tubes.jpg",
+   "label": "RECIPE COMPLETE",
+   "head": "오늘 밤,\n1분 팩 세안",
+   "sub": "저장해 두고 그대로 따라 해 보세요",
+   "end": true,
+   "seconds": 3.5,
+   "src": "사용법 출처 · 휩드 비건 팩클렌저 상품 정보 · 사진 · 휩드(올리브영 상품 페이지)",
+   "move": "in",
+   "fx": "sparkle",
+   "video": "11.mp4"
+  }
+ ]
+}

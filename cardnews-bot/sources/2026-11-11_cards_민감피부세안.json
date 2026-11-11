@@ -1,0 +1,201 @@
+{
+ "source": {
+  "name": "Allure",
+  "title": "7 Best Face Washes for Sensitive Skin That Are Gentle Yet Effective",
+  "date": "2026.11.10",
+  "link": "https://www.allure.com/gallery/best-face-wash-for-sensitive-skin"
+ },
+ "extra_sources": [],
+ "photo": {
+  "file": "assets/products/2026-11-11_fw_collage.jpg",
+  "credit": "Allure 기사 속 제품 사진 (브랜드 제공)"
+ },
+ "story": "고민(세안 후 붉고 따가움) → 민감 피부란 → 세안제 고르는 기준 → 추천 세안제 3가지 → 세안법 → 정리",
+ "cards": [
+  {
+   "no": 1,
+   "layout": "cover",
+   "title": "세안 후 따갑고 붉다면?",
+   "body": "순한 세안 레시피로\n풀어볼게요",
+   "display_title": "세안 후\n[[따갑고 붉다면?]]",
+   "eyebrow": "CLEANSING RECIPE",
+   "section": "민감 피부 편",
+   "photo_tag": "3 PICKS",
+   "tagline": "고민 · 기준 · 재료 · 세안법",
+   "cover_photo": "assets/products/2026-11-11_fw_cover_scene.png"
+  },
+  {
+   "no": 2,
+   "layout": "checklist",
+   "title": "이런 고민 있죠?",
+   "body": "세안 후 불편하다면 순한 세안제로 바꿔 볼 때래요.",
+   "display_title": "이런 [[고민]] 있죠?",
+   "label": "MY CONCERN",
+   "eyebrow": "STEP 0 · 고민 체크",
+   "items": [
+    "세안하고 나면 얼굴이 붉어져요",
+    "물기 닦자마자 당기고 따가워요",
+    "각질이 일고 가려울 때가 있어요"
+   ],
+   "note_label": "정답은",
+   "preview": {
+    "label": "TODAY'S RECIPE",
+    "title": "민감 피부 세안 레시피",
+    "desc": "다음 장에서 내 피부부터 볼게요 →",
+    "photo": "assets/products/2026-11-11_fw_collage.jpg"
+   }
+  },
+  {
+   "no": 3,
+   "layout": "flow",
+   "title": "민감 피부가 뭐예요?",
+   "body": "평소보다 쉽게 반응하는 피부를 말해요. 병명은 아니라서, 헷갈리면 피부과 전문의에게 물어보세요.",
+   "display_title": "민감 피부,\n[[쉽게 반응하는]] 피부",
+   "label": "CHECK MY SKIN",
+   "tag": "내 피부 알기",
+   "steps": [
+    {
+     "icon": "🧴",
+     "label": "날씨·화장품",
+     "en": "TRIGGER"
+    },
+    {
+     "icon": "🔥",
+     "label": "붉고 가려움",
+     "en": "REACTION"
+    },
+    {
+     "icon": "🔁",
+     "label": "자주 그렇다면",
+     "en": "SENSITIVE"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "layout": "compare",
+   "title": "세안제 고르는 기준",
+   "body": "성분표는 짧게, 향은 없게. 자극이 될 만한 성분은 피해요.",
+   "display_title": "세안제 고를 땐\n[[이것만 체크]]",
+   "label": "HOW TO PICK",
+   "eyebrow": "피부과 전문의 조언",
+   "left": {
+    "tag": "👍 이런 걸 골라요",
+    "icon": "🫧",
+    "title": "짧은 성분표\n무향·약산성",
+    "desc": "히알루론산·오트밀·알로에 같은 진정·보습 성분"
+   },
+   "right": {
+    "tag": "🚫 예민하면 피해요",
+    "icon": "⚠️",
+    "title": "황산염·알코올\n각질 제거 성분",
+    "desc": "글리콜산·살리실산, 레티노이드도 조심"
+   },
+   "tip_label": "참고",
+   "tip": "자극 요인은 사람마다 달라요. 새 제품을 쓴 뒤엔 피부 반응을 잘 살펴보세요."
+  },
+  {
+   "no": 5,
+   "layout": "list",
+   "title": "추천 세안제 3가지",
+   "body": "Allure 추천 중 3가지예요. 국내 판매처와 가격은 직접 확인해 주세요.",
+   "display_title": "Allure 추천 [[세안제 3가지]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · 내 고민에 맞게",
+   "items": [
+    {
+     "name": "당김·건조 · 라로슈포제 밀키 클렌저",
+     "desc": "성분 9가지 · 거품 없는 로션 제형 · 무향",
+     "photo": "assets/products/2026-11-11_fw_lrp_fit.jpg"
+    },
+    {
+     "name": "붉은기 · 더말로지카 울트라카밍",
+     "desc": "오트·오이 추출물 · Allure ‘붉은기’ 추천",
+     "photo": "assets/products/2026-11-11_fw_dermalogica_fit.jpg"
+    },
+    {
+     "name": "모공 걱정 · 세타필 젠틀 클렌저",
+     "desc": "무향·논코메도제닉 · 물 없이도 사용 가능",
+     "photo": "assets/products/2026-11-11_fw_cetaphil_fit.jpg"
+    }
+   ],
+   "note_label": "참고"
+  },
+  {
+   "no": 6,
+   "layout": "steps",
+   "title": "이렇게 씻어요",
+   "body": "피부과 전문의 조언이에요. 문지르지 말고 짧게 끝내요.",
+   "display_title": "세안은 [[30초면 충분]]",
+   "label": "HOW TO WASH",
+   "tag": "피부과 전문의 레시피 · 3 STEP",
+   "steps": [
+    {
+     "title": "밤엔 순한 세안제로",
+     "desc": "아주 예민하면 아침엔 미지근한 물로만",
+     "icon": "🌙"
+    },
+    {
+     "title": "30초만 부드럽게",
+     "desc": "세안 타월·스펀지·브러시는 피하기",
+     "icon": "⏱️"
+    },
+    {
+     "title": "낮엔 보습제 + 선크림",
+     "desc": "루틴은 짧고 간단하게",
+     "icon": "☀️"
+    }
+   ],
+   "note_label": "레시피"
+  },
+  {
+   "no": 7,
+   "layout": "recap",
+   "title": "순한 세안 레시피 정리",
+   "body": "출처: Allure, 「7 Best Face Washes for Sensitive Skin That Are Gentle Yet Effective」, 2026.11.10\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "따가움 →\n[[순한 세안]] 레시피",
+   "rows": [
+    [
+     "붉고 따가움",
+     "순한 세안제로 바꾸기"
+    ],
+    [
+     "고를 때",
+     "무향 · 짧은 성분표"
+    ],
+    [
+     "피할 것",
+     "황산염 · 각질 제거 성분"
+    ],
+    [
+     "씻을 때",
+     "30초, 도구 없이"
+    ]
+   ],
+   "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution": "※ 국내 판매처·가격은 직접 확인 · 증상이 계속되면 피부과 상담"
+  }
+ ],
+ "caption": {
+  "hook": "세안만 하면 얼굴이 붉고 따갑다면, 세안제부터 바꿔 봐요 🫧",
+  "summary": [
+   "민감 피부는 평소보다 쉽게 반응하는 피부예요",
+   "고를 땐 무향·짧은 성분표, 예민하면 황산염·각질 제거 성분은 피하기",
+   "피부과 전문의 레시피: 30초만 부드럽게, 세안 도구 없이",
+   "Allure 추천 세안제 중 라로슈포제·더말로지카·세타필 3가지를 골라 봤어요"
+  ],
+  "cta": "오늘 밤 세안 전에 다시 보려면 저장하고, 피부가 예민한 친구에게 공유해 주세요 🔖",
+  "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note": "국내 판매처와 가격은 직접 확인해 주세요. 증상이 계속되면 피부과 전문의와 상담하세요. 사진: Allure 기사 속 제품 사진(브랜드 제공)",
+  "hashtags": [
+   "스킨케어",
+   "민감피부",
+   "뷰티초보",
+   "세안",
+   "클렌저추천",
+   "순한세안제",
+   "세안루틴",
+   "스킨케어순서"
+  ]
+ }
+}

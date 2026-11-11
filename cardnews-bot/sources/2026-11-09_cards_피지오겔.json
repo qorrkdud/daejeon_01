@@ -1,0 +1,220 @@
+{
+ "source": {
+  "name": "코스모닝",
+  "title": "피지오겔 ‘Moments of Comfort’ 홀리데이 에디션",
+  "date": "2026.11.08",
+  "link": "https://www.cosmorning.com/news/article.html?no=53900"
+ },
+ "extra_sources": [],
+ "photo": {
+  "file": "assets/products/2026-11-09_physiogel_art_17941262365992_78d944.jpg",
+  "credit": "코스모닝 기사 사진·피지오겔 공식몰"
+ },
+ "story": "고민(겨울 건조·선물) → DMT가 뭐예요? → 세트 4종 → 누구에게? → 포인트·구매처 → 정리",
+ "cards": [
+  {
+   "no": 1,
+   "layout": "cover",
+   "title": "건조한 겨울, 뭐 선물하지?",
+   "body": "피지오겔 홀리데이 세트로\n풀어볼게요",
+   "display_title": "건조한 겨울,\n[[뭐 선물하지?]]",
+   "eyebrow": "WINTER GIFT RECIPE",
+   "section": "연말 편",
+   "photo_tag": "HOLIDAY",
+   "tagline": "고민 · 라인 · 세트 · 선물"
+  },
+  {
+   "no": 2,
+   "layout": "checklist",
+   "title": "이런 고민 있죠?",
+   "body": "피지오겔이 보습 라인으로 꾸린 연말 한정 세트 4종을 내놨대요. 하나씩 볼게요.",
+   "display_title": "이런 [[고민]] 있죠?",
+   "label": "MY CONCERN",
+   "eyebrow": "STEP 0 · 고민 체크",
+   "items": [
+    "찬바람만 불면 얼굴이 당겨요",
+    "손이랑 입술이 자꾸 건조해요",
+    "연말 선물, 뭘 줘야 할지 고민돼요"
+   ],
+   "note_label": "그래서",
+   "preview": {
+    "label": "TODAY'S RECIPE",
+    "title": "겨울 보습 선물 레시피",
+    "desc": "다음 장에서 라인부터 볼게요 →"
+   }
+  },
+  {
+   "no": 3,
+   "layout": "flow",
+   "title": "DMT가 뭐예요?",
+   "body": "DMT는 피지오겔의 대표 보습·피부 장벽 케어 라인이에요. 이번 세트 4종 모두 이 라인으로 꾸렸대요.",
+   "display_title": "세트 이름 속\n[[DMT]], 뭐예요?",
+   "label": "LINE CHECK",
+   "tag": "Daily Moisture Therapy",
+   "steps": [
+    {
+     "icon": "🥶",
+     "label": "찬바람·건조",
+     "en": "WINTER"
+    },
+    {
+     "icon": "💧",
+     "label": "보습",
+     "en": "MOISTURE"
+    },
+    {
+     "icon": "🛡️",
+     "label": "장벽 케어",
+     "en": "BARRIER"
+    }
+   ],
+   "stat": {
+    "value": "1,300",
+    "unit": "만 개",
+    "label": "DMT 페이셜 크림\n글로벌 누적 판매량",
+    "note": "2018.1~2026.1 · 브랜드 발표 기준"
+   },
+   "image": "assets/cards/2026-11-09_03_dmt.png"
+  },
+  {
+   "no": 4,
+   "layout": "list",
+   "title": "세트 4종 한눈에",
+   "body": "4종 모두 한정 수량이래요. 가격은 판매처 확인! 토너·립밤 사진은 단품 제품 사진이에요.",
+   "display_title": "홀리데이 [[세트 4종]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · 고민별로 골라요",
+   "items": [
+    {
+     "name": "얼굴 당김 · DMT 페이셜 크림 세트",
+     "desc": "크림 100ml + 75ml 추가 + 에센스 인 토너 50ml",
+     "photo": "assets/products/2026-11-09_physiogel_facialcream_set_fit.jpg"
+    },
+    {
+     "name": "간단 루틴 · DMT 토너 세트",
+     "desc": "에센스 인 토너 200ml + 페이셜 로션 50ml",
+     "photo": "assets/products/2026-11-09_physiogel_toner_fit.jpg"
+    },
+    {
+     "name": "손 건조 · DMT 핸드크림 더블",
+     "desc": "핸드크림 50ml × 2개",
+     "photo": "assets/products/2026-11-09_physiogel_handcream_double_fit.jpg"
+    },
+    {
+     "name": "입술 건조 · DMT 마일드 립밤 더블",
+     "desc": "마일드 립밤 4.2g × 2개",
+     "photo": "assets/products/2026-11-09_physiogel_lipbalm_fit.jpg"
+    }
+   ],
+   "note_label": "참고"
+  },
+  {
+   "no": 5,
+   "layout": "compare",
+   "title": "누구에게 줄까?",
+   "body": "얼굴 보습이 고민이면 크림·토너 세트, 가볍게 챙기려면 핸드크림·립밤 더블을 골라 보세요.",
+   "display_title": "나에게? 친구에게?\n[[이렇게 골라요]]",
+   "label": "GIFT GUIDE",
+   "eyebrow": "선물 레시피",
+   "left": {
+    "tag": "🏠 나에게",
+    "icon": "🧴",
+    "title": "페이셜 크림 ·\n토너 세트",
+    "desc": "겨울 얼굴 보습 루틴을 한 번에 챙기기",
+    "photo": "assets/products/2026-11-09_physiogel_facialcream_set_fit.jpg",
+    "photo_bg": "#0f1626"
+   },
+   "right": {
+    "tag": "🎁 친구에게",
+    "icon": "💝",
+    "title": "핸드크림 ·\n립밤 더블",
+    "desc": "2개씩 들어 있어 하나는 나눠 주기 좋아요",
+    "photo": "assets/products/2026-11-09_physiogel_handcream_double_fit.jpg",
+    "photo_bg": "#0f1626"
+   },
+   "tip_label": "참고",
+   "tip": "사용 방법과 순서는 제품 상세 페이지에서 확인해 주세요."
+  },
+  {
+   "no": 6,
+   "layout": "steps",
+   "title": "포인트·구매처",
+   "body": "올리브영·네이버 스토어·피지오겔 직영몰·뷰티컬리에서 특별 프로모션과 함께 판매한대요.",
+   "display_title": "알아 두면 [[좋은 점]]",
+   "label": "POINT",
+   "tag": "홀리데이 에디션 · 4가지 포인트",
+   "step_word": "No.",
+   "steps": [
+    {
+     "title": "동화 같은 일러스트",
+     "desc": "이이오 작가와 협업한 연말 패키지",
+     "icon": "photo"
+    },
+    {
+     "title": "한정 수량",
+     "desc": "연말 홀리데이 에디션이에요",
+     "icon": "⏳"
+    },
+    {
+     "title": "올리브영에서도 판매",
+     "desc": "네이버 스토어·직영몰·뷰티컬리도",
+     "icon": "🛍️"
+    },
+    {
+     "title": "가격은 판매처 확인",
+     "desc": "채널별 특별 프로모션 진행 중",
+     "icon": "🏷️"
+    }
+   ],
+   "note_label": "구매처"
+  },
+  {
+   "no": 7,
+   "layout": "recap",
+   "title": "겨울 선물 레시피 정리",
+   "body": "출처: 코스모닝, 「피지오겔 ‘Moments of Comfort’ 홀리데이 에디션」, 2026.11.08\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "겨울 건조 →\n[[선물]] 레시피",
+   "rows": [
+    [
+     "얼굴 당김",
+     "DMT 페이셜 크림 세트"
+    ],
+    [
+     "간단 루틴",
+     "에센스 인 토너 세트"
+    ],
+    [
+     "손·입술 건조",
+     "핸드크림·립밤 더블"
+    ],
+    [
+     "어디서 사요",
+     "올리브영 등 온라인"
+    ]
+   ],
+   "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution": "※ 가격·프로모션은 판매처에서 확인하세요 · 한정 수량이에요"
+  }
+ ],
+ "caption": {
+  "hook": "찬바람에 얼굴 당기는 계절, 연말 선물까지 한 번에 고민 끝 🎁",
+  "summary": [
+   "피지오겔이 보습·피부 장벽 케어 라인 DMT로 연말 한정 홀리데이 세트 4종을 내놨어요",
+   "얼굴 보습은 페이셜 크림·토너 세트, 가볍게 챙기려면 핸드크림·립밤 더블(2개입)",
+   "올리브영·네이버 스토어·피지오겔 직영몰·뷰티컬리에서 특별 프로모션과 함께 판매해요"
+  ],
+  "cta": "선물 고를 때 다시 보려면 저장하고, 손 트는 친구에게 공유해 주세요 🔖",
+  "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note": "한정 수량이에요. 가격과 프로모션 내용, 사용 방법은 판매처 상세 페이지에서 확인해 주세요. 사진: 코스모닝 기사 사진",
+  "hashtags": [
+   "스킨케어",
+   "겨울보습",
+   "뷰티초보",
+   "연말선물",
+   "피지오겔",
+   "DMT크림",
+   "홀리데이에디션",
+   "올리브영"
+  ]
+ }
+}

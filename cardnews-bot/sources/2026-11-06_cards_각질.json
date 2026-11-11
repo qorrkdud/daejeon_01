@@ -1,0 +1,251 @@
+{
+ "source": {
+  "name": "Vogue Beauty",
+  "title": "The Best Korean Exfoliator to Get (and Maintain) Glass Skin",
+  "date": "2025.10.14 (2026.11.05 갱신)",
+  "link": "https://www.vogue.com/article/korean-exfoliants"
+ },
+ "extra_sources": [],
+ "photo": {
+  "file": "assets/products/2026-11-06_exfoliators_collage.jpg",
+  "credit": "각 브랜드 공식몰"
+ },
+ "story": "고민 → 원리 → 피부 타입별 제품 → 제품 이름 속 AHA·BHA·PHA → 몇 번? → 멈춤 신호 → 정리",
+ "cards": [
+  {
+   "no": 1,
+   "layout": "cover",
+   "title": "각질, 내 피부엔 몇 번?",
+   "body": "피부 타입별 각질 레시피\n풀어볼게요",
+   "display_title": "각질, 내 피부엔\n[[몇 번?]]",
+   "eyebrow": "EXFOLIATION RECIPE",
+   "section": "루틴 편",
+   "photo_tag": "4 PICKS",
+   "tagline": "고민 · 원리 · 성분 · 제품 · 횟수"
+  },
+  {
+   "no": 2,
+   "layout": "checklist",
+   "title": "이런 고민 있죠?",
+   "body": "각질 관리는 피부 타입과 제품 세기에 따라 알맞은 횟수가 달라진대요.",
+   "display_title": "이런 [[고민]] 있죠?",
+   "label": "MY CONCERN",
+   "eyebrow": "STEP 0 · 고민 체크",
+   "items": [
+    "세안해도 피부결이 거칠고 칙칙해요",
+    "각질 제품, 매일 써도 되나 헷갈려요",
+    "예민한 피부라 따가울까 걱정돼요"
+   ],
+   "note_label": "정답은",
+   "preview": {
+    "label": "TODAY'S RECIPE",
+    "title": "피부 타입별 각질 레시피",
+    "desc": "다음 장에서 원리부터 볼게요 →"
+   }
+  },
+  {
+   "no": 3,
+   "layout": "flow",
+   "title": "각질 관리, 왜 할까?",
+   "body": "피부 맨 바깥의 묵은 각질을 덜어내 피부결을 매끄럽게 해 준대요. K뷰티는 순한 성분을 주로 써요.",
+   "display_title": "묵은 각질,\n[[살살 덜어내기]]",
+   "label": "HOW IT WORKS",
+   "tag": "조리 원리",
+   "steps": [
+    {
+     "icon": "🌫️",
+     "label": "각질 쌓임",
+     "en": "DULL"
+    },
+    {
+     "icon": "🫧",
+     "label": "순하게 녹이기",
+     "en": "GENTLE"
+    },
+    {
+     "icon": "✨",
+     "label": "매끈한 결",
+     "en": "SMOOTH"
+    }
+   ],
+   "stat": {
+    "value": "PHA",
+    "unit": "",
+    "label": "자극이 적은 산 성분\n뒤에서 쉽게 풀어 볼게요",
+    "note": "K뷰티 에스테티션 설명 기준"
+   }
+  },
+  {
+   "no": 4,
+   "layout": "list",
+   "title": "피부 타입별 재료",
+   "body": "보그가 고른 K뷰티 각질 제품 중 4가지예요. 이름에 붙은 PHA·AHA는 다음 장에서 풀어 볼게요.",
+   "display_title": "피부 타입별 [[각질 재료]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · Vogue 추천 중에서",
+   "items": [
+    {
+     "name": "예민 · 아누아 라이스 엔자임 파우더",
+     "desc": "효소 파우더 · 물과 섞어 거품 세안",
+     "photo": "assets/products/2026-11-06_anua_rice_enzyme_powder_fit.jpg"
+    },
+    {
+     "name": "건성 · 이니스프리 그린티 PHA 토너",
+     "desc": "PHA 토너 · 아주 예민한 피부도 쓸 만하대요",
+     "photo": "assets/products/2026-11-06_innisfree_pha_toner_fit.jpg"
+    },
+    {
+     "name": "지성 · 썸바이미 미라클 토너",
+     "desc": "AHA·BHA·PHA · 페퍼민트 오일이 자극될 수 있어요",
+     "photo": "assets/products/2026-11-06_somebymi_miracle_toner_fit.jpg"
+    },
+    {
+     "name": "트러블 · 코스알엑스 AHA/BHA 토너",
+     "desc": "낮은 농도 산 · 꾸준히 써야 차이가 보여요",
+     "photo": "assets/products/2026-11-06_cosrx_aha_bha_toner_fit.jpg"
+    }
+   ],
+   "note_label": "참고"
+  },
+  {
+   "no": 5,
+   "layout": "list",
+   "title": "토너 속 PHA, 뭐예요?",
+   "body": "세 가지 모두 각질을 녹이는 산이에요. 그중 PHA는 천천히, 순하게 작용하는 편이래요.",
+   "display_title": "토너 이름에 붙은\n[[PHA]], 뭐예요?",
+   "label": "LABEL CHECK",
+   "eyebrow": "앞 장 제품, 이름 읽어 보기",
+   "no_photo": true,
+   "note_label": "한 줄 정리",
+   "items": [
+    {
+     "name": "PHA · 천천히 순하게",
+     "desc": "분자가 커서 각질을 천천히 녹여요 · 이니스프리 토너"
+    },
+    {
+     "name": "AHA · 각질 녹이는 산",
+     "desc": "젖산·과일 추출물에서 와요 · 썸바이미·코스알엑스 토너"
+    },
+    {
+     "name": "BHA · 지성 피부 단골",
+     "desc": "살리실산·버드나무 껍질 · 지성·트러블 피부에 자주 써요"
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "layout": "compare",
+   "title": "몇 번이 좋을까?",
+   "body": "건성·예민 피부는 주 1~2회, 지성·트러블 피부는 가볍게 매일도 괜찮대요.",
+   "display_title": "내 피부는\n[[몇 번?]]",
+   "label": "HOW OFTEN",
+   "eyebrow": "피부과 전문의 조언",
+   "left": {
+    "tag": "🌵 건성·예민",
+    "icon": "🗓️",
+    "title": "주 1~2회\n순한 산으로",
+    "desc": "약한 산 성분이면 이 정도로 충분해요"
+   },
+   "right": {
+    "tag": "💧 지성·트러블",
+    "icon": "☀️",
+    "title": "가볍게\n매일도 OK",
+    "desc": "살리실산 같은 성분, 피부가 잘 받으면"
+   },
+   "tip_label": "기억해요",
+   "tip": "센 제품일수록 덜 자주, 아주 순한 제품은 매일도 쓸 수 있어요."
+  },
+  {
+   "no": 7,
+   "layout": "steps",
+   "title": "이런 신호면 멈춤",
+   "body": "이런 느낌이 들면 각질 관리 횟수를 줄여 주세요. 피부과 전문의가 알려 준 신호예요.",
+   "display_title": "이런 신호면 [[줄이기]]",
+   "label": "STOP SIGNS",
+   "tag": "과한 각질 관리 · 4가지 신호",
+   "step_word": "SIGN",
+   "steps": [
+    {
+     "title": "따끔거려요",
+     "desc": "바르자마자 쓰라린 느낌",
+     "icon": "⚡"
+    },
+    {
+     "title": "붉어져요",
+     "desc": "얼굴이 빨갛게 올라와요",
+     "icon": "🔴"
+    },
+    {
+     "title": "각질이 일어나요",
+     "desc": "하얗게 들뜨고 벗겨져요",
+     "icon": "🍂"
+    },
+    {
+     "title": "당겨요",
+     "desc": "세안 후 땅기는 느낌",
+     "icon": "😣"
+    }
+   ],
+   "note_label": "TIP",
+   "image": "assets/cards/2026-11-06_07_stop_signs.png"
+  },
+  {
+   "no": 8,
+   "layout": "recap",
+   "title": "각질 레시피 정리",
+   "body": "출처: Vogue Beauty, 「The Best Korean Exfoliator to Get (and Maintain) Glass Skin」, 2025.10.14 (2026.11.05 갱신)\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "각질 →\n[[레시피]] 정리",
+   "rows": [
+    [
+     "거칠고 칙칙한 결",
+     "순한 각질 관리"
+    ],
+    [
+     "PHA란?",
+     "천천히, 순한 산"
+    ],
+    [
+     "건성·예민",
+     "주 1~2회 · 순한 산"
+    ],
+    [
+     "지성·트러블",
+     "가볍게 매일도 OK"
+    ],
+    [
+     "따끔·붉음·당김",
+     "횟수 줄이기"
+    ]
+   ],
+   "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution": "※ 판매처·가격은 직접 확인하세요 · 피부 반응은 사람마다 달라요"
+  }
+ ],
+ "caption": {
+  "hook": "각질 제품, 매일 써도 될까? 내 피부 타입별 정답 🫧",
+  "summary": [
+   "건성·예민 피부는 순한 산으로 주 1~2회, 지성·트러블 피부는 가볍게 매일도 괜찮대요",
+   "따끔거림·붉어짐·각질 들뜸·당김이 느껴지면 횟수를 줄이라는 게 피부과 전문의 조언이에요",
+   "순한 산 성분 PHA가 뭔지부터 피부 타입별 K뷰티 각질 제품 4가지까지 정리했어요"
+  ],
+  "cta": "각질 관리 전에 다시 보려면 저장하고, 피부 고민 있는 친구에게 공유해 주세요 🔖",
+  "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note": "제품 판매처와 가격은 직접 확인해 주세요. 피부 반응은 사람마다 달라서, 피부 상태를 보면서 횟수를 조절해 주세요.",
+  "hashtags": [
+   "스킨케어",
+   "각질관리",
+   "각질제거",
+   "뷰티초보",
+   "피부결",
+   "PHA토너",
+   "K뷰티",
+   "스킨케어루틴"
+  ]
+ },
+ "photo_sources": {
+  "anua": "https://anua.com/products/rice-enzyme-brightening-cleansing-powder",
+  "innisfree": "https://us.innisfree.com/products/green-tea-enzyme-pha-toner",
+  "somebymi": "https://somebymi.com (아하 바하 파하 30 데이즈 미라클 토너 150ml 상품 페이지)",
+  "cosrx": "https://www.cosrx.com/products/aha-bha-clarifying-treatment-toner-new"
+ }
+}

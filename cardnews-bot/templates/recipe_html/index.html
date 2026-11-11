@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>크림 미스트 레시피</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+:root{--cream:#FFF8EF;--paper:#FFFDF9;--ink:#3B2A24;--soft:#8A766C;--line:#EADBCF;--peach:#F8D3C0;--peach2:#FBE6DA;--deep:#C9735A;--butter:#FFEBB0;--mono:'Courier Prime',"Noto Sans KR",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#EFE6DC;font-family:"Noto Sans KR",system-ui,sans-serif;color:var(--ink);word-break:keep-all}
+.wrap{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;padding:28px 16px}
+.holder{width:432px;height:540px;position:relative;flex:none}
+.holder .card{transform:scale(.4);transform-origin:0 0;position:absolute;left:0;top:0}
+.card{width:1080px;height:1350px;background:var(--cream);padding:84px 84px 76px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:26px;color:var(--soft);border-bottom:2px dashed var(--line);padding-bottom:22px;position:relative}
+.top b{color:var(--ink);font-weight:700}
+.eb{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--deep);letter-spacing:.04em}
+h1{font-size:100px;line-height:1.14;font-weight:900;letter-spacing:-.03em}
+h2{font-size:72px;line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.hl{background:linear-gradient(transparent 60%,var(--peach) 60%,var(--peach) 92%,transparent 92%)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:22px;color:var(--soft);gap:20px;position:relative}
+.src{font-family:"Noto Sans KR",sans-serif;font-size:21px;color:var(--soft);line-height:1.45}
+.rc{background:var(--paper);border:2.5px solid var(--ink);border-radius:28px;padding:30px 36px}
+.blob{position:absolute;border-radius:50%}
+.photo{border:3px solid var(--ink);border-radius:30px;background:#fff url(img/product.jpg) center/contain no-repeat;position:relative}
+.photo i{position:absolute;left:-14px;bottom:-16px;font-style:normal;font-family:var(--mono);font-size:20px;font-weight:700;background:var(--ink);color:var(--cream);padding:5px 14px;border-radius:99px;white-space:nowrap}
+.why{background:var(--peach2);border:2.5px dashed var(--deep);border-radius:26px;padding:30px 36px;font-size:34px;line-height:1.55}
+.why em{font-style:normal;font-family:var(--mono);font-weight:700;color:var(--deep);margin-right:10px}
+.chk{display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:center;padding:26px 28px;border-bottom:2px dashed var(--line);font-size:38px;font-weight:700}
+.chk:last-child{border-bottom:0}
+.chk .bx{width:58px;height:58px;border:3px solid var(--ink);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--deep);background:var(--paper)}
+.ingr{display:grid;grid-template-columns:110px 1fr;gap:22px;align-items:center;padding:24px 30px;border:2.5px solid var(--ink);border-radius:26px;background:var(--paper)}
+.ingr .n{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--deep)}
+.ingr b{font-size:40px;font-weight:900;display:block}
+.ingr small{font-size:26px;color:var(--soft)}
+.flow{display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;align-items:center;margin-top:56px}
+.flow .st{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.flow .ic{width:220px;height:220px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:110px}
+.flow .ic.ph{background:#fff url(img/product.jpg) center/150% no-repeat}
+.flow b{font-size:34px;font-weight:900}
+.flow small{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--deep)}
+.flow .ar{font-family:var(--mono);font-size:56px;font-weight:700;color:var(--deep);text-align:center;margin-top:-70px}
+.num{display:flex;align-items:center;gap:30px;margin-top:44px}
+.num .big{font-family:var(--mono);font-size:120px;font-weight:700;line-height:1;color:var(--deep)}
+.num p{font-size:32px;line-height:1.45;font-weight:700}
+.num p small{display:block;font-size:24px;color:var(--soft);font-weight:500}
+.tagx{font-family:var(--mono);font-size:26px;font-weight:700;align-self:flex-start;padding:6px 18px;border-radius:99px;color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:44px}
+.vs .rc{display:flex;flex-direction:column;gap:16px;padding:34px 32px}
+.vs .big{font-size:100px;line-height:1}
+.vs b{font-size:42px;font-weight:900;line-height:1.3}
+.vs p{font-size:29px;line-height:1.5;color:var(--soft)}
+.map{display:grid;grid-template-columns:1fr 60px 1.15fr;gap:12px;align-items:center;padding:24px 0;border-bottom:2px dashed var(--line);font-size:30px;font-weight:700}
+.map:last-child{border-bottom:0}
+.map .a{color:#9B877C}
+.map .arr{text-align:center;font-family:var(--mono);color:var(--deep);font-size:34px}
+.cream-top{position:absolute;left:0;right:0;top:0;height:120px;background:radial-gradient(circle at 10% 100%,var(--paper) 60px,transparent 61px),radial-gradient(circle at 30% 100%,var(--paper) 80px,transparent 81px),radial-gradient(circle at 55% 100%,var(--paper) 70px,transparent 71px),radial-gradient(circle at 80% 100%,var(--paper) 85px,transparent 86px),radial-gradient(circle at 100% 100%,var(--paper) 60px,transparent 61px)}
+.stepbig{font-family:var(--mono);font-size:30px;font-weight:700;color:#fff;background:var(--deep);padding:10px 26px;border-radius:99px;align-self:flex-start}
+</style></head><body>
+<div class="wrap">
+
+<!-- 01 COVER : 고민으로 시작 -->
+<div class="holder"><section class="card" style="background:var(--peach)">
+  <div class="cream-top"></div>
+  <div class="top" style="margin-top:40px;border-color:#E5B9A3"><b>HEALING RECIPE · NEW</b><span>신상 편</span></div>
+  <div style="position:relative;margin-top:84px">
+    <div class="eb" style="color:var(--ink)">SKIN CONCERN RECIPE</div>
+    <h1 style="margin-top:20px">피부가 당기고<br><span style="background:var(--paper);padding:0 12px">예민한 날?</span></h1>
+    <p style="font-size:38px;line-height:1.5;font-weight:600;margin-top:36px">뿌리는 크림 미스트로<br>풀어볼게요</p>
+  </div>
+  <div class="photo" style="position:absolute;right:84px;top:690px;width:480px;height:480px;transform:rotate(-3deg)"><i>PHOTO · AP BEAUTY</i></div>
+  <div class="blob" style="width:170px;height:170px;left:120px;top:1010px;background:var(--butter)"></div>
+  <div class="foot" style="color:var(--ink)"><span>고민 · 재료 · 원리 · 사용</span><span>01 / 06  swipe →</span></div>
+</section></div>
+
+<!-- 02 PROBLEM : 이런 고민 -->
+<div class="holder"><section class="card">
+  <div class="top"><b>MY CONCERN</b><span>02 / 06</span></div>
+  <div class="eb" style="margin-top:64px">STEP 0 · 고민 체크</div>
+  <h2 style="margin-top:14px">이런 <span class="hl">고민</span> 있죠?</h2>
+  <div class="rc" style="margin-top:44px;padding:8px 32px">
+    <div class="chk"><span class="bx">✓</span>피부가 건조하고 당기는 느낌</div>
+    <div class="chk"><span class="bx">✓</span>예민해서 뭘 바르기 조심스러워요</div>
+    <div class="chk"><span class="bx">✓</span>피부과 관리 받은 뒤라 더 신경 쓰여요</div>
+  </div>
+  <div class="why" style="margin-top:40px"><em>그래서</em>이 미스트는 피부과 관리 뒤 건조하고 예민해진 피부를 생각해서 만들었대요.</div>
+  <div class="rc" style="margin-top:36px;display:flex;gap:30px;align-items:center;background:var(--peach2)">
+    <div class="photo" style="flex:none;width:170px;height:170px;border-radius:24px"></div>
+    <div><span style="font-family:var(--mono);font-size:24px;font-weight:700;color:var(--deep)">TODAY'S RECIPE</span><b style="display:block;font-size:40px;font-weight:900;margin-top:6px">뿌리는 크림 미스트</b><p style="font-size:28px;color:var(--soft);margin-top:4px">다음 장에서 재료부터 볼게요 →</p></div>
+  </div>
+  <div class="foot"><span class="src">출처 · 아모레퍼시픽 스토리, 코스인코리아 (2026.11.05) · 사진 · 아모레퍼시픽</span><span>02</span></div>
+</section></div>
+
+<!-- 03 SOLUTION : 재료 -->
+<div class="holder"><section class="card">
+  <div class="top"><b>INGREDIENTS</b><span>03 / 06</span></div>
+  <div style="display:flex;gap:40px;align-items:flex-end;margin-top:60px">
+    <div style="flex:1">
+      <div class="eb">해결 재료</div>
+      <h2 style="margin-top:14px">크림을 담은<br><span class="hl">미스트 1병</span></h2>
+      <p style="font-size:30px;color:var(--soft);margin-top:20px;line-height:1.4;font-weight:600">에이피 뷰티<br>듀얼 리페어 리프트 M.D. 크림 미스트</p>
+    </div>
+    <div class="photo" style="flex:none;width:300px;height:300px"><i>PHOTO</i></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:34px">
+    <div class="ingr"><span class="n">01</span><div><b>228K PDRN</b><small>고순도 PDRN · 주요 성분</small></div></div>
+    <div class="ingr"><span class="n">02</span><div><b>엑소인 (EXOYNE™)</b><small>주요 성분</small></div></div>
+    <div class="ingr" style="background:var(--peach2)"><span class="n">03</span><div><b>히알루론산 (TRF H.A.)</b><small>고분자 히알루론산 · 수분 공급</small></div></div>
+  </div>
+  <div class="why" style="margin-top:24px;margin-bottom:24px;font-size:32px"><em>BRAND SAYS</em>주재료는 PDRN과 엑소인이에요. 히알루론산도 더해 수분과 윤기를 챙겼다고 브랜드가 설명해요.</div>
+  <div class="foot"><span class="src">출처 · 코스인코리아 (2026.11.05) · 사진 · 아모레퍼시픽</span><span>03</span></div>
+</section></div>
+
+<!-- 04 HOW IT WORKS : 원리 -->
+<div class="holder"><section class="card" style="background:var(--butter)">
+  <div class="top" style="border-color:#E9D28C"><b>HOW IT WORKS</b><span>04 / 06</span></div>
+  <span class="stepbig" style="margin-top:64px">조리 원리</span>
+  <h2 style="margin-top:20px">뿌리면<br><span style="background:var(--paper);padding:0 10px">크림 막으로</span> 변신</h2>
+  <div class="flow">
+    <div class="st"><div class="ic ph"></div><b>칙 뿌리면</b><small>MIST</small></div>
+    <div class="ar">→</div>
+    <div class="st"><div class="ic">🍦</div><b>크림처럼</b><small>CREAM</small></div>
+    <div class="ar">→</div>
+    <div class="st"><div class="ic">🛡️</div><b>얇은 막</b><small>FILM</small></div>
+  </div>
+  <div class="rc" style="margin-top:46px">
+    <div style="font-size:34px;line-height:1.55">뿌린 뒤 피부 위에서 크림 같은 얇은 막으로 바뀐대요. 크림 입자를 아주 잘게 만들어 고르게 닿게 했대요.</div>
+    <div class="num" style="margin-top:22px"><span class="big" style="font-size:96px">1,800<span style="font-size:48px">배</span></span><p>모공보다 약 1,800배 작은<br>크림 입자<small>브랜드 설명 기준</small></p></div>
+  </div>
+  <div class="foot" style="color:var(--ink)"><span class="src" style="color:var(--ink)">출처 · 코스인코리아 (2026.11.05) · 사진 · 아모레퍼시픽</span><span>04</span></div>
+</section></div>
+
+<!-- 05 WHEN TO USE : 언제 -->
+<div class="holder"><section class="card">
+  <div class="top"><b>WHEN TO USE</b><span>05 / 06</span></div>
+  <div class="eb" style="margin-top:64px">이렇게 써요</div>
+  <h2 style="margin-top:14px">평소에도,<br><span class="hl">관리 받은 날에도</span></h2>
+  <div class="vs">
+    <div class="rc"><span class="tagx" style="background:var(--ink)">☀️ DAILY</span><span class="big">🧴</span><b>평소<br>스킨케어</b><p>매일 하는 루틴 안에서</p></div>
+    <div class="rc" style="background:var(--peach2)"><span class="tagx" style="background:var(--deep)">🌙 AFTER CARE</span><span class="big">💧</span><b>피부과<br>관리 뒤</b><p>건조하고 예민해진 날 집중 케어로</p></div>
+  </div>
+  <div class="why" style="margin-top:36px"><em>TIP</em>뿌리는 양·거리·순서는 제품 상세 페이지와 설명서를 꼭 확인해 주세요.</div>
+  <div class="foot"><span class="src">출처 · 아모레퍼시픽 스토리 (2026.11.05)</span><span>05</span></div>
+</section></div>
+
+<!-- 06 RECAP : 정리 -->
+<div class="holder"><section class="card" style="background:var(--ink);color:var(--cream)">
+  <div class="top" style="color:#C9B6AA;border-color:#5A463E"><b style="color:var(--butter)">RECIPE COMPLETE</b><span>06 / 06</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:56px">
+    <h2>고민 →<br><span style="color:var(--butter)">레시피</span> 정리</h2>
+    <div class="photo" style="width:210px;height:210px;border-color:var(--cream)"></div>
+  </div>
+  <div class="rc" style="margin-top:34px;padding:6px 30px;background:var(--paper);color:var(--ink)">
+    <div class="map"><span class="a">건조·예민한 피부</span><span class="arr">→</span><span>뿌리는 크림 미스트</span></div>
+    <div class="map"><span class="a">무엇이 들었나</span><span class="arr">→</span><span>PDRN·엑소인·히알루론산</span></div>
+    <div class="map"><span class="a">어떻게 작용</span><span class="arr">→</span><span>크림 같은 얇은 막</span></div>
+    <div class="map"><span class="a">어디서 사요</span><span class="arr">→</span><span>온라인몰·백화점 매장</span></div>
+  </div>
+  <p style="font-size:28px;line-height:1.55;color:#E9DCD3;margin-top:28px">🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요</p>
+  <div class="foot" style="flex-direction:column;align-items:flex-start;gap:8px;color:#C9B6AA">
+    <span class="src" style="color:#C9B6AA">출처 · 코스인코리아, 「아모레퍼시픽, 228K PDRN 담은 에이피 뷰티 크림 미스트 출시」, 2026.11.05 / 아모레퍼시픽 스토리, 2026.11.05 · 사진 · 아모레퍼시픽</span>
+    <span class="src" style="color:#C9B6AA;display:flex;justify-content:space-between;width:100%"><span>※ 가격·올리브영 판매 여부는 판매처에서 확인하세요 · 사용감은 사람마다 달라요</span><span style="font-family:var(--mono)">@weekly.beauty.recipe</span></span>
+  </div>
+</section></div>
+
+</div>
+</body></html>

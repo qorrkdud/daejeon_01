@@ -1,0 +1,208 @@
+{
+ "source": {
+  "name": "Allure",
+  "title": "9 Best Hyaluronic Acid Serums 2026 for Dry, Dehydrated Skin",
+  "date": "2026.11.09 갱신",
+  "link": "https://www.allure.com/gallery/best-hyaluronic-acid-serum"
+ },
+ "extra_sources": [
+  {
+   "name": "Anua 공식몰(anua.com) 제품 페이지",
+   "date": "2026.11.10 확인"
+  }
+ ],
+ "photo": {
+  "file": "assets/products/2026-11-10_ha_collage.jpg",
+  "credit": "각 브랜드 공식몰"
+ },
+ "story": "고민(크림 발라도 당김) → 히알루론산 원리 → 바르는 순서 → 추천 세럼 3가지 → 예민 피부 체크 → 정리",
+ "cards": [
+  {
+   "no": 1,
+   "layout": "cover",
+   "title": "크림 발라도 당긴다면?",
+   "body": "히알루론산 세럼 레시피로\n풀어볼게요",
+   "display_title": "크림 발라도\n[[당긴다면?]]",
+   "eyebrow": "HYDRATION RECIPE",
+   "section": "보습 편",
+   "photo_tag": "3 PICKS",
+   "tagline": "고민 · 원리 · 바르기 · 재료",
+   "cover_photo": "assets/products/2026-11-10_ha_cover_scene.png"
+  },
+  {
+   "no": 2,
+   "layout": "checklist",
+   "title": "이런 고민 있죠?",
+   "body": "보습 성분 히알루론산은 ‘언제·어떻게’ 바르느냐가 포인트래요.",
+   "display_title": "이런 [[고민]] 있죠?",
+   "label": "MY CONCERN",
+   "eyebrow": "STEP 0 · 고민 체크",
+   "items": [
+    "세안하고 조금만 지나도 당겨요",
+    "크림을 발라도 금방 건조해요",
+    "세럼은 언제 바르는지 헷갈려요"
+   ],
+   "note_label": "정답은",
+   "preview": {
+    "label": "TODAY'S RECIPE",
+    "title": "히알루론산 세럼 레시피",
+    "desc": "다음 장에서 원리부터 볼게요 →",
+    "photo": "assets/products/2026-11-10_ha_row.png"
+   }
+  },
+  {
+   "no": 3,
+   "layout": "flow",
+   "title": "히알루론산이 뭐예요?",
+   "body": "히알루론산은 수분을 붙잡아 두는 보습 성분이에요. 나이가 들수록 몸속 양이 줄어든대요.",
+   "display_title": "히알루론산,\n[[물을 붙잡는]] 성분",
+   "label": "HOW IT WORKS",
+   "tag": "조리 원리",
+   "steps": [
+    {
+     "icon": "💧",
+     "label": "수분 붙잡기",
+     "en": "HOLD WATER"
+    },
+    {
+     "icon": "🫧",
+     "label": "촉촉한 피부",
+     "en": "HYDRATED"
+    },
+    {
+     "icon": "🧴",
+     "label": "크림으로 잠그기",
+     "en": "LOCK IN"
+    }
+   ],
+   "image": "assets/cards/2026-11-10_03_how_it_works.png"
+  },
+  {
+   "no": 4,
+   "layout": "steps",
+   "title": "이렇게 발라요",
+   "body": "피부과 전문의 조언이에요. 세럼은 살짝 촉촉한 피부에 먼저, 크림은 그 위에 발라요.",
+   "display_title": "세럼, [[이 순서로]]",
+   "label": "HOW TO USE",
+   "tag": "피부과 전문의 레시피 · 3 STEP",
+   "steps": [
+    {
+     "title": "세안 후 살짝 촉촉할 때",
+     "desc": "물기를 완전히 말리기 전에",
+     "icon": "💧"
+    },
+    {
+     "title": "히알루론산 세럼 먼저",
+     "desc": "다른 제품보다 먼저 펴 바르기",
+     "icon": "photo"
+    },
+    {
+     "title": "도톰한 크림으로 덮기",
+     "desc": "수분이 날아가지 않게 잠가 줘요",
+     "icon": "🧴"
+    }
+   ],
+   "note_label": "레시피",
+   "image": "assets/cards/2026-11-10_04_how_to_use.png"
+  },
+  {
+   "no": 5,
+   "layout": "list",
+   "title": "추천 세럼 3가지",
+   "body": "Allure 추천 중 3가지예요. 국내 판매처와 가격은 직접 확인해 주세요.",
+   "display_title": "Allure 추천 [[세럼 3가지]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · 내게 맞는 기준으로",
+   "items": [
+    {
+     "name": "모공 걱정 · 아누아 히알루론산",
+     "desc": "논코메도제닉 테스트 완료 · 묽고 산뜻한 제형",
+     "photo": "assets/products/2026-11-10_ha_anua_fit.jpg"
+    },
+    {
+     "name": "민감 피부 · 라로슈포제 히알루 B5",
+     "desc": "히알루 B5 세럼 · 지금은 새 이름으로 판매",
+     "photo": "assets/products/2026-11-10_ha_lrp_fit.jpg"
+    },
+    {
+     "name": "복합성 · 디오디너리 히알루론산",
+     "desc": "히알루론산 2% + B5 · Allure ‘복합성 피부’ 추천",
+     "photo": "assets/products/2026-11-10_ha_to_fit.jpg"
+    }
+   ],
+   "note_label": "참고"
+  },
+  {
+   "no": 6,
+   "layout": "compare",
+   "title": "예민 피부라면?",
+   "body": "히알루론산 자체는 순한 편이에요. 예민하면 향료·색소 같은 다른 성분을 먼저 확인하세요.",
+   "display_title": "예민한 피부라면?\n[[이것만 체크]]",
+   "label": "CHECK",
+   "eyebrow": "피부과 전문의 조언",
+   "left": {
+    "tag": "👍 대부분 OK",
+    "icon": "✅",
+    "title": "순한 성분\n부작용 보고 없음",
+    "desc": "대부분의 피부 타입에 맞는 편이래요"
+   },
+   "right": {
+    "tag": "🔎 예민하다면",
+    "icon": "🏷️",
+    "title": "향료·색소\n먼저 확인",
+    "desc": "자극은 함께 든 다른 성분 때문일 수 있어요"
+   },
+   "tip_label": "참고",
+   "tip": "예민한 피부는 새 제품을 쓰기 전에 피부과 전문의와 상담하래요.",
+   "image": "assets/cards/2026-11-10_06_sensitive_check.png"
+  },
+  {
+   "no": 7,
+   "layout": "recap",
+   "title": "보습 레시피 정리",
+   "body": "출처: Allure, 「9 Best Hyaluronic Acid Serums 2026 for Dry, Dehydrated Skin」, 2026.11.09 갱신 / Anua 공식몰 제품 페이지, 2026.11.10 확인\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "당김 →\n[[보습]] 레시피",
+   "rows": [
+    [
+     "당김·건조",
+     "히알루론산 세럼"
+    ],
+    [
+     "언제?",
+     "세안 후 살짝 촉촉할 때"
+    ],
+    [
+     "순서",
+     "세럼 먼저 → 크림으로 잠그기"
+    ],
+    [
+     "예민하면",
+     "향료·색소 확인"
+    ]
+   ],
+   "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution": "※ 국내 판매처·가격은 직접 확인하세요 · 피부 반응은 사람마다 달라요"
+  }
+ ],
+ "caption": {
+  "hook": "크림을 발라도 금방 당긴다면, 바르는 순서부터 바꿔 봐요 💧",
+  "summary": [
+   "히알루론산은 수분을 붙잡아 두는 보습 성분이에요",
+   "피부과 전문의 레시피: 세안 후 살짝 촉촉할 때 세럼 먼저 → 도톰한 크림으로 잠그기",
+   "Allure 추천 세럼 중 아누아·라로슈포제·디오디너리 3가지를 골라 봤어요"
+  ],
+  "cta": "오늘 밤 세안 후에 따라 하려면 저장하고, 건조한 친구에게 공유해 주세요 🔖",
+  "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note": "국내 판매처와 가격은 직접 확인해 주세요. 예민한 피부는 새 제품을 쓰기 전에 전문의와 상담하세요. 사진: 각 브랜드 공식몰",
+  "hashtags": [
+   "스킨케어",
+   "겨울보습",
+   "뷰티초보",
+   "히알루론산",
+   "히알루론산세럼",
+   "보습루틴",
+   "아누아",
+   "스킨케어순서"
+  ]
+ }
+}

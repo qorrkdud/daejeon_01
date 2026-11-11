@@ -1,0 +1,20 @@
+# 매일 아침 소식을 가져올 RSS 주소 목록
+# 형식:  사이트 이름 | RSS 주소
+# 맨 앞에 # 을 붙이면 그 줄은 건너뜁니다 (잠시 끄고 싶을 때).
+# 2026-11-05에 Claude가 직접 접속해서 열리는 것을 확인한 주소만 넣었습니다.
+
+# --- 한국어 ---
+장업신문 | https://www.jangup.com/rss/allArticle.xml
+뷰티경제 | https://www.thebk.co.kr/rss/allArticle.xml
+코스모닝 | https://www.cosmorning.com/data/rss/news.xml
+코스인코리아 | https://www.cosinkorea.com/data/rss/news.xml
+뷰티누리 | https://www.beautynury.com/rss
+식품의약품안전처 보도자료 | https://www.mfds.go.kr/www/rss/brd.do?brdId=ntc0021
+
+# --- 영어 ---
+Allure | https://www.allure.com/feed/rss
+Vogue Beauty | https://www.vogue.com/feed/beauty/rss
+WWD Beauty | https://wwd.com/beauty-industry-news/feed/
+Glossy | https://www.glossy.co/feed/
+Beauty Independent | https://www.beautyindependent.com/feed/
+Cosmetics Business | https://www.cosmeticsbusiness.com/rss

@@ -1,0 +1,56 @@
+{"source":{"name":"코스인코리아","title":"아모레퍼시픽, 228K PDRN 담은 에이피 뷰티 크림 미스트 출시","date":"2026.11.05","link":"http://www.cosinkorea.com/news/article.html?no=58672"},
+ "extra_sources":[
+  {"name":"아모레퍼시픽 스토리","title":"에이피 뷰티, 듀얼 리페어 리프트 M.D. 크림 미스트 출시","date":"2026.11.05","link":"https://stories.amorepacific.com/%EC%95%84%EB%AA%A8%EB%A0%88%ED%8D%BC%EC%8B%9C%ED%94%BD-%EC%97%90%EC%9D%B4%ED%94%BC-%EB%B7%B0%ED%8B%B0-%EB%93%80%EC%96%BC-%EB%A6%AC%ED%8E%98%EC%96%B4-%EB%A6%AC%ED%94%84%ED%8A%B8-m-d-%ED%81%AC%EB%A6%BC/"},
+  {"name":"CJ온스타일 「미스트 사용법, 팁부터 주의사항까지 총정리」 (일반 미스트 팁)","link":"https://display.cjonstyle.com/nfront/content/info/%EB%AF%B8%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%9A%A9%EB%B2%95/index.html"}
+ ],
+ "photo":{"file":"assets/products/apbeauty_cream_mist.jpg","credit":"아모레퍼시픽 (코스인코리아 기사 사진)"},
+ "story":"고민 → 해결 재료 → 원리 → 이렇게 뿌려요 → 언제 쓰나요 → 정리",
+ "cards":[
+  {"no":1,"layout":"cover","title":"피부가 당기고 예민한 날?","body":"뿌리는 크림 미스트로\n풀어볼게요",
+   "display_title":"피부가 당기고\n[[예민한 날?]]","eyebrow":"SKIN CONCERN RECIPE","section":"신상 편","photo_tag":"AP BEAUTY","tagline":"고민 · 재료 · 원리 · 사용법"},
+  {"no":2,"layout":"checklist","title":"이런 고민 있죠?","body":"이 미스트는 피부과 관리 뒤 건조하고 예민해진 피부를 생각해서 만들었대요.",
+   "display_title":"이런 [[고민]] 있죠?","label":"MY CONCERN","eyebrow":"STEP 0 · 고민 체크",
+   "items":["피부가 건조하고 당기는 느낌","예민해서 뭘 바르기 조심스러워요","피부과 관리 받은 뒤라 더 신경 쓰여요"],
+   "note_label":"그래서","preview":{"label":"TODAY'S RECIPE","title":"뿌리는 크림 미스트","desc":"다음 장에서 재료부터 볼게요 →"},
+   "src":"출처 · 아모레퍼시픽 스토리, 코스인코리아 (2026.11.05)"},
+  {"no":3,"layout":"list","title":"해결 재료는 이것","body":"주재료는 PDRN과 엑소인이에요. 히알루론산도 더해 수분과 윤기를 챙겼다고 브랜드가 설명해요.",
+   "display_title":"크림을 담은\n[[미스트 1병]]","label":"INGREDIENTS","eyebrow":"해결 재료","subtitle":"에이피 뷰티\n듀얼 리페어 리프트 M.D. 크림 미스트",
+   "items":[{"name":"228K PDRN","desc":"고순도 PDRN · 주요 성분"},{"name":"엑소인 (EXOYNE™)","desc":"주요 성분"},{"name":"히알루론산 (TRF H.A.)","desc":"고분자 히알루론산 · 수분 공급"}],
+   "note_label":"BRAND SAYS"},
+  {"no":4,"layout":"flow","title":"뿌리면 크림 막으로","body":"뿌린 뒤 피부 위에서 크림 같은 얇은 막으로 바뀐대요. 크림 입자를 아주 잘게 만들어 고르게 닿게 했대요.",
+   "display_title":"뿌리면\n[[크림 막으로]] 변신","label":"HOW IT WORKS","tag":"조리 원리",
+   "steps":[{"icon":"photo","label":"칙 뿌리면","en":"MIST"},{"icon":"🍦","label":"크림처럼","en":"CREAM"},{"icon":"🛡️","label":"얇은 막","en":"FILM"}],
+   "stat":{"value":"1,800","unit":"배","label":"모공보다 약 1,800배 작은\n크림 입자","note":"브랜드 설명 기준"}},
+  {"no":5,"layout":"steps","title":"이렇게 뿌려요","body":"일반 미스트 사용 팁이에요. 이 제품의 정확한 양과 순서는 상세 페이지에서 꼭 확인해 주세요.",
+   "display_title":"미스트, [[이렇게 뿌려요]]","label":"HOW TO USE","tag":"기본 레시피 · 4 STEP",
+   "steps":[
+    {"title":"눈 감고 20~30cm 떨어져서","desc":"가까이 뿌리면 물방울이 맺힐 수 있어요","icon":"photo"},
+    {"title":"2~3번만 칙칙","desc":"한 번에 많이 뿌리지 않기","icon":"💨"},
+    {"title":"10~20초 기다리기","desc":"뿌리자마자 문지르지 않기","icon":"⏱️"},
+    {"title":"손바닥으로 가볍게 누르기","desc":"문지르지 말고 톡톡 눌러 주기","icon":"🤲"}],
+   "note_label":"참고","src":"출처 · CJ온스타일 미스트 사용법 (일반 팁)"},
+  {"no":6,"layout":"compare","title":"언제 쓰면 좋아요?","body":"평소 스킨케어에도, 피부과 관리 뒤 집중 케어에도 쓸 수 있게 만들었대요.",
+   "display_title":"평소에도,\n[[관리 받은 날에도]]","label":"WHEN TO USE","eyebrow":"언제 쓰나요",
+   "left":{"tag":"☀️ DAILY","icon":"🧴","title":"평소\n스킨케어","desc":"매일 하는 루틴 안에서"},
+   "right":{"tag":"🌙 AFTER CARE","icon":"💧","title":"피부과\n관리 뒤","desc":"건조하고 예민해진 날 집중 케어로"},
+   "tip_label":"주의","tip":"사용 중 붉어짐·가려움 등 이상이 있으면 사용을 멈춰 주세요.",
+   "src":"출처 · 아모레퍼시픽 스토리 (2026.11.05)"},
+  {"no":7,"layout":"recap","title":"고민 → 레시피 정리","body":"출처: 코스인코리아, 「아모레퍼시픽, 228K PDRN 담은 에이피 뷰티 크림 미스트 출시」, 2026.11.05 / 아모레퍼시픽 스토리, 2026.11.05\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title":"고민 →\n[[레시피]] 정리",
+   "rows":[["건조·예민한 피부","뿌리는 크림 미스트"],["무엇이 들었나","PDRN·엑소인·히알루론산"],["어떻게 작용","크림 같은 얇은 막"],["어떻게 뿌리나","20~30cm · 2~3번 · 톡톡"],["어디서 사요","온라인몰·백화점 매장"]],
+   "cta":"🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution":"※ 가격·올리브영 판매 여부는 판매처에서 확인하세요 · 사용감은 사람마다 달라요"}
+ ],
+ "caption":{
+  "hook":"피부가 당기고 예민하게 느껴지는 날, 크림을 뿌린다면? 🫧",
+  "summary":[
+   "에이피 뷰티가 11월 5일 '듀얼 리페어 리프트 M.D. 크림 미스트' 출시 소식을 알렸어요",
+   "피부과 관리 뒤 건조하고 예민해진 피부를 생각해 만든 미스트래요 (평소 스킨케어에도 OK)",
+   "뿌릴 땐 눈 감고 20~30cm 떨어져 2~3번, 손바닥으로 톡톡 (일반 미스트 팁)"
+  ],
+  "cta":"피부가 예민한 날 다시 보려면 저장하고, 같은 고민 있는 친구에게 공유해 주세요 🔖",
+  "follow":"팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note":"5장 사용법은 일반 미스트 팁이에요 (CJ온스타일 미스트 사용법). 이 제품의 정확한 사용 순서와 가격은 제품 상세 페이지에서 확인해 주세요. 사용감은 사람마다 다를 수 있어요. 사진: 아모레퍼시픽 (코스인코리아 기사 사진)",
+  "hashtags":["스킨케어","뷰티신상","보습루틴","뷰티초보","에이피뷰티","크림미스트","PDRN","듀얼리페어리프트"]
+ }
+}
