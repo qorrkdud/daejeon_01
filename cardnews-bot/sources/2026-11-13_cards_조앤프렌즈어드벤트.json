@@ -1,0 +1,209 @@
+{
+ "source": {
+  "name": "아모레몰",
+  "title": "2026 아모레몰 조앤프렌즈 어드벤트 캘린더 상품 페이지",
+  "date": "2026.11.13 확인",
+  "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=71848"
+ },
+ "extra_sources": [],
+ "photo": {
+  "file": "assets/products/2026-11-13_zoadvent_01_fit.jpg",
+  "credit": "아모레몰"
+ },
+ "story": "고민(연말 선물·여러 브랜드 맛보기) → 어드벤트 캘린더란 → 구성(10상자·16선물) → 뷰티 미니 10개를 루틴별로 → 이런 분께·알고 사요 → 정리",
+ "cards": [
+  {
+   "no": 1,
+   "layout": "cover",
+   "title": "매일 하나씩 여는 연말 선물",
+   "body": "아모레몰 어드벤트 캘린더,\n레시피로 풀어볼게요",
+   "display_title": "크리스마스까지\n[[매일 하나씩]]",
+   "eyebrow": "HOLIDAY RECIPE",
+   "section": "연말 편",
+   "photo_tag": "10 BOXES",
+   "tagline": "고민 · 구성 · 루틴 · 체크"
+  },
+  {
+   "no": 2,
+   "layout": "checklist",
+   "title": "이런 고민 있죠?",
+   "body": "하루에 하나씩 여는 선물 상자, 어드벤트 캘린더로 풀어 볼게요.",
+   "display_title": "이런 [[고민]] 있죠?",
+   "label": "MY CONCERN",
+   "eyebrow": "STEP 0 · 고민 체크",
+   "items": [
+    "연말 선물, 뭘 줄지 고민돼요",
+    "써 보고 싶은 브랜드가 많아요",
+    "나한테도 작은 선물을 주고 싶어요"
+   ],
+   "note_label": "오늘의 답",
+   "preview": {
+    "label": "TODAY'S RECIPE",
+    "title": "조앤프렌즈 어드벤트 캘린더",
+    "desc": "다음 장에서 어드벤트가 뭔지 볼게요 →",
+    "photo": "assets/products/2026-11-13_zoadvent_03_fit.jpg"
+   }
+  },
+  {
+   "no": 3,
+   "layout": "flow",
+   "title": "어드벤트 캘린더가 뭐예요?",
+   "body": "크리스마스를 기다리며 하루에 하나씩 작은 선물을 열어 보는 달력이에요.",
+   "display_title": "어드벤트 캘린더,\n[[하루 한 칸]] 선물",
+   "label": "HOW IT WORKS",
+   "tag": "알고 보기",
+   "steps": [
+    {
+     "icon": "📦",
+     "label": "오늘의 상자",
+     "en": "OPEN"
+    },
+    {
+     "icon": "🎁",
+     "label": "작은 선물",
+     "en": "GIFT"
+    },
+    {
+     "icon": "🎄",
+     "label": "크리스마스까지",
+     "en": "COUNTDOWN"
+    }
+   ],
+   "image": "assets/cards/2026-11-13_03_what_is_advent.png"
+  },
+  {
+   "no": 4,
+   "layout": "list",
+   "title": "뭐가 들었나요?",
+   "body": "아모레몰 단독 · 50,000원 → 45,000원 (11월 13일 기준, 쿠폰 별도)",
+   "display_title": "10개 상자, [[16가지 선물]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · 상자 속 구성",
+   "items": [
+    {
+     "name": "뷰티 미니 10개",
+     "desc": "헤라·설화수·에스트라·프리메라·라네즈",
+     "photo": "assets/products/2026-11-13_zoadvent_04_fit.jpg"
+    },
+    {
+     "name": "조앤프렌즈 굿즈 6종",
+     "desc": "괄사·퍼 파우치·퍼프·오르골·캔들·수면양말",
+     "photo": "assets/products/2026-11-13_zoadvent_02_fit.jpg"
+    },
+    {
+     "name": "2단 상자",
+     "desc": "다 꺼낸 뒤엔 보관함으로 쓸 수 있어요",
+     "photo": "assets/products/2026-11-13_zoadvent_03_fit.jpg"
+    }
+   ],
+   "note_label": "가격"
+  },
+  {
+   "no": 5,
+   "layout": "list",
+   "title": "미니 10개, 루틴으로 보기",
+   "body": "상자 순서가 아니라, 종류별로 묶어 봤어요.",
+   "display_title": "미니로 [[루틴 한 바퀴]]",
+   "label": "ROUTINE",
+   "eyebrow": "뷰티 미니 10개를 종류별로",
+   "items": [
+    {
+     "name": "세안·토너",
+     "desc": "프리메라 아미노 폼 · 에스트라 캡슐 토너",
+     "photo": "assets/products/2026-11-13_zoadvent_r1_wash.jpg"
+    },
+    {
+     "name": "크림·아이",
+     "desc": "라네즈 크림스킨 · 에스트라 수딩크림 · 설화수 2종",
+     "photo": "assets/products/2026-11-13_zoadvent_r2_cream.jpg"
+    },
+    {
+     "name": "선크림·베이스",
+     "desc": "헤라 톤업 선크림 · 헤라 글로우 파운데이션",
+     "photo": "assets/products/2026-11-13_zoadvent_r3_sun.jpg"
+    },
+    {
+     "name": "밤 마무리",
+     "desc": "라네즈 워터슬리핑마스크 · 프리메라 립세럼",
+     "photo": "assets/products/2026-11-13_zoadvent_r4_night.jpg"
+    }
+   ],
+   "note_label": "참고",
+   "big_thumbs": true
+  },
+  {
+   "no": 6,
+   "layout": "compare",
+   "title": "사기 전에 체크",
+   "body": "정품보다는 미니 위주라 '맛보기' 선물로 보면 좋아요.",
+   "display_title": "사기 전에\n[[이것만 체크]]",
+   "label": "CHECK",
+   "eyebrow": "상품 페이지 기준",
+   "left": {
+    "tag": "👍 이런 분께",
+    "icon": "🎁",
+    "title": "여러 브랜드\n조금씩 써 보기",
+    "desc": "뷰티 미니로 맛보고 굿즈는 덤"
+   },
+   "right": {
+    "tag": "🔎 알고 사요",
+    "icon": "📏",
+    "title": "대부분 미니 사이즈\n파운데이션은 21N1",
+    "desc": "파운데이션 색이 한 가지예요"
+   },
+   "tip_label": "참고",
+   "tip": "아모레몰 이벤트 조건(11/9~11/29)은 상품 페이지에서 직접 확인해 주세요.",
+   "image": "assets/cards/2026-11-13_06_check.png"
+  },
+  {
+   "no": 7,
+   "layout": "recap",
+   "title": "연말 선물 레시피 정리",
+   "body": "출처: 아모레몰, 「2026 아모레몰 조앤프렌즈 어드벤트 캘린더」 상품 페이지, 2026.11.13 확인\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "연말 선물 →\n[[어드벤트]] 레시피",
+   "rows": [
+    [
+     "연말 선물 고민",
+     "조앤프렌즈 어드벤트 캘린더"
+    ],
+    [
+     "구성",
+     "뷰티 미니 10 + 굿즈 6"
+    ],
+    [
+     "가격",
+     "45,000원 (11/13 기준)"
+    ],
+    [
+     "판매",
+     "아모레몰 단독"
+    ]
+   ],
+   "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "caution": "※ 가격·이벤트는 바뀔 수 있어요 · 아모레몰에서 확인",
+   "image": "assets/cards/2026-11-13_07_recap.png"
+  }
+ ],
+ "caption": {
+  "hook": "연말 선물 고민이라면, 크리스마스까지 하루에 하나씩 여는 선물은 어때요? 🎁",
+  "summary": [
+   "아모레몰 단독 '2026 조앤프렌즈 어드벤트 캘린더': 10개 상자 속 16가지 선물",
+   "헤라·설화수·에스트라·프리메라·라네즈 뷰티 미니 10개 + 조앤프렌즈 굿즈 6종",
+   "미니 10개를 모으면 세안부터 선크림, 밤 마무리까지 루틴 한 바퀴",
+   "대부분 미니 사이즈이고, 파운데이션은 21N1 한 가지예요"
+  ],
+  "cta": "연말 선물 고를 때 다시 보려면 저장하고, 선물 고민 중인 친구에게 공유해 주세요 🔖",
+  "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+  "note": "가격: 아모레몰 50,000원 → 45,000원 (11월 13일 기준, 쿠폰 별도). 이벤트 조건은 상품 페이지에서 확인해 주세요. 사진: 아모레몰",
+  "hashtags": [
+   "어드벤트캘린더",
+   "연말선물",
+   "크리스마스선물",
+   "아모레몰",
+   "조앤프렌즈",
+   "뷰티어드벤트캘린더",
+   "뷰티초보",
+   "선물추천"
+  ]
+ }
+}

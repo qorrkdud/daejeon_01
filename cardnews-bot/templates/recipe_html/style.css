@@ -58,3 +58,5 @@ h2{font-size:72px;line-height:1.2;font-weight:900;letter-spacing:-.03em}
 .routine .th{width:110px;height:110px;border-radius:22px;border:2.5px solid var(--ink);background:#fff var(--photo) center/150% no-repeat;justify-self:center}
 .ingr.th3{grid-template-columns:80px 1fr 112px;padding:14px 22px 14px 30px}
 .ingr .pth{width:108px;height:108px;border-radius:18px;border:2.5px solid var(--ink);background:#fff center/contain no-repeat;justify-self:end}
+.ingr.th3.big{grid-template-columns:64px 1fr 150px;padding:10px 12px 10px 30px}
+.ingr.big .pth{width:146px;height:146px;background-size:cover}

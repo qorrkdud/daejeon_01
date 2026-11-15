@@ -1,210 +1,209 @@
 {
  "source": {
-  "name": "장업신문",
-  "title": "온라인 흥행 업은 미미박스 누니, 올리브영 오프라인 진출",
-  "date": "2026.11.10",
-  "link": "https://www.jangup.com/news/articleView.html?idxno=100436"
+  "name": "아모레몰",
+  "title": "2026 아모레몰 조앤프렌즈 어드벤트 캘린더 상품 페이지",
+  "date": "2026.11.13 확인",
+  "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=71848"
  },
- "extra_sources": [
-  {
-   "name": "누니 공식몰(nooni.me) 제품 페이지",
-   "date": "2026.11.11 확인"
-  }
- ],
+ "extra_sources": [],
  "photo": {
-  "file": "assets/products/2026-11-11_nooni_appleberry_fit.jpg",
-  "credit": "누니 공식몰"
+  "file": "assets/products/2026-11-13_zoadvent_01_fit.jpg",
+  "credit": "아모레몰"
  },
- "story": "고민(푸석한 입술·진한 립 부담) → 해결 재료(애플 립오일 성분) → 기본 vs 쉬머 → 컬러 고르기 → 바르는 법 → 정리(올영 체험 매대)",
+ "story": "고민(연말 선물·여러 브랜드 맛보기) → 어드벤트 캘린더란 → 구성(10상자·16선물) → 뷰티 미니 10개를 루틴별로 → 이런 분께·알고 사요 → 정리",
  "cards": [
   {
    "no": 1,
    "layout": "cover",
-   "title": "입술이 푸석해 보인다면?",
-   "body": "올영에 들어온 립오일,\n레시피로 풀어볼게요",
-   "display_title": "입술이\n[[푸석해 보인다면?]]",
-   "eyebrow": "LIP RECIPE",
-   "section": "입술 편",
-   "photo_tag": "NOONI",
-   "tagline": "고민 · 재료 · 컬러 · 바르기",
-   "cover_photo": "assets/products/2026-11-11_nooni_cover_scene.png"
+   "title": "매일 하나씩 여는 연말 선물",
+   "body": "아모레몰 어드벤트 캘린더,\n레시피로 풀어볼게요",
+   "display_title": "크리스마스까지\n[[매일 하나씩]]",
+   "eyebrow": "HOLIDAY RECIPE",
+   "section": "연말 편",
+   "photo_tag": "10 BOXES",
+   "tagline": "고민 · 구성 · 루틴 · 체크"
   },
   {
    "no": 2,
    "layout": "checklist",
    "title": "이런 고민 있죠?",
-   "body": "맑은 색에 촉촉한 광택, 립오일 하나로 풀어 볼게요.",
+   "body": "하루에 하나씩 여는 선물 상자, 어드벤트 캘린더로 풀어 볼게요.",
    "display_title": "이런 [[고민]] 있죠?",
    "label": "MY CONCERN",
    "eyebrow": "STEP 0 · 고민 체크",
    "items": [
-    "입술이 건조하고 푸석해 보여요",
-    "진한 립스틱은 부담스러워요",
-    "맑고 촉촉한 광택을 원해요"
+    "연말 선물, 뭘 줄지 고민돼요",
+    "써 보고 싶은 브랜드가 많아요",
+    "나한테도 작은 선물을 주고 싶어요"
    ],
    "note_label": "오늘의 답",
    "preview": {
     "label": "TODAY'S RECIPE",
-    "title": "누니 애플 립오일",
-    "desc": "다음 장에서 재료부터 볼게요 →",
-    "photo": "assets/products/2026-11-11_nooni_appleberry_fit.jpg"
+    "title": "조앤프렌즈 어드벤트 캘린더",
+    "desc": "다음 장에서 어드벤트가 뭔지 볼게요 →",
+    "photo": "assets/products/2026-11-13_zoadvent_03_fit.jpg"
    }
   },
   {
    "no": 3,
-   "layout": "list",
-   "title": "재료는 이거예요",
-   "body": "용량은 3.7mL예요 (공식몰 기준). 가격은 올리브영에서 직접 확인해 주세요.",
-   "display_title": "애플 립오일 [[재료]]",
-   "label": "INGREDIENTS",
-   "eyebrow": "해결 재료 · 누니 애플 립오일",
-   "items": [
+   "layout": "flow",
+   "title": "어드벤트 캘린더가 뭐예요?",
+   "body": "크리스마스를 기다리며 하루에 하나씩 작은 선물을 열어 보는 달력이에요.",
+   "display_title": "어드벤트 캘린더,\n[[하루 한 칸]] 선물",
+   "label": "HOW IT WORKS",
+   "tag": "알고 보기",
+   "steps": [
     {
-     "name": "애플시드 오일",
-     "desc": "사과씨 오일 · 입술을 부드럽고 촉촉하게"
+     "icon": "📦",
+     "label": "오늘의 상자",
+     "en": "OPEN"
     },
     {
-     "name": "과일 추출물",
-     "desc": "입술에 촉촉함을 더해 줘요"
+     "icon": "🎁",
+     "label": "작은 선물",
+     "en": "GIFT"
     },
     {
-     "name": "식물성 오일 + 비타민 E",
-     "desc": "촉촉함이 오래 머물도록 도와요"
+     "icon": "🎄",
+     "label": "크리스마스까지",
+     "en": "COUNTDOWN"
     }
    ],
-   "note_label": "참고",
-   "src": "출처 · 장업신문 (2026.11.10) · 누니 공식몰 (2026.11.11 확인)"
+   "image": "assets/cards/2026-11-13_03_what_is_advent.png"
   },
   {
    "no": 4,
-   "layout": "compare",
-   "title": "기본 vs 쉬머",
-   "body": "맑은 광택이 좋다면 기본, 반짝임을 원하면 쉬머예요.",
-   "display_title": "기본이냐 쉬머냐,\n[[취향대로]]",
-   "label": "PICK ONE",
-   "eyebrow": "라인 고르기",
-   "left": {
-    "tag": "💧 기본",
-    "icon": "🍎",
-    "title": "애플 립오일\n맑은 발색·광택",
-    "desc": "가볍고 편안하게 발려요"
-   },
-   "right": {
-    "tag": "✨ 쉬머",
-    "icon": "✨",
-    "title": "애플 립오일 쉬머\n섬세한 펄",
-    "desc": "입체적인 반짝임을 더해요"
-   },
-   "tip_label": "참고",
-   "tip": "쉬머는 애플바닐라·애플베리 2가지 컬러로 나와요.",
-   "image": "assets/cards/2026-11-11_04_basic_vs_shimmer.png"
+   "layout": "list",
+   "title": "뭐가 들었나요?",
+   "body": "아모레몰 단독 · 50,000원 → 45,000원 (11월 13일 기준, 쿠폰 별도)",
+   "display_title": "10개 상자, [[16가지 선물]]",
+   "label": "INGREDIENTS",
+   "eyebrow": "해결 재료 · 상자 속 구성",
+   "items": [
+    {
+     "name": "뷰티 미니 10개",
+     "desc": "헤라·설화수·에스트라·프리메라·라네즈",
+     "photo": "assets/products/2026-11-13_zoadvent_04_fit.jpg"
+    },
+    {
+     "name": "조앤프렌즈 굿즈 6종",
+     "desc": "괄사·퍼 파우치·퍼프·오르골·캔들·수면양말",
+     "photo": "assets/products/2026-11-13_zoadvent_02_fit.jpg"
+    },
+    {
+     "name": "2단 상자",
+     "desc": "다 꺼낸 뒤엔 보관함으로 쓸 수 있어요",
+     "photo": "assets/products/2026-11-13_zoadvent_03_fit.jpg"
+    }
+   ],
+   "note_label": "가격"
   },
   {
    "no": 5,
    "layout": "list",
-   "title": "컬러 고르기",
-   "body": "이 밖에 애플구아바·애플로즈힙·애플아사이베리 등 기본 10가지예요. 입술 색에 따라 달라 보일 수 있어요.",
-   "display_title": "어떤 [[컬러]]로 할까?",
-   "label": "COLOR",
-   "eyebrow": "올영 매장 컬러 중에서",
+   "title": "미니 10개, 루틴으로 보기",
+   "body": "상자 순서가 아니라, 종류별로 묶어 봤어요.",
+   "display_title": "미니로 [[루틴 한 바퀴]]",
+   "label": "ROUTINE",
+   "eyebrow": "뷰티 미니 10개를 종류별로",
    "items": [
     {
-     "name": "애플바닐라",
-     "desc": "누니 주력 컬러 · 쉬머도 있어요",
-     "photo": "assets/products/2026-11-11_nooni_swatch_applevanilla.jpg"
+     "name": "세안·토너",
+     "desc": "프리메라 아미노 폼 · 에스트라 캡슐 토너",
+     "photo": "assets/products/2026-11-13_zoadvent_r1_wash.jpg"
     },
     {
-     "name": "애플베리",
-     "desc": "은은한 붉은 빛 · 쉬머도 있어요",
-     "photo": "assets/products/2026-11-11_nooni_swatch_appleberry.jpg"
+     "name": "크림·아이",
+     "desc": "라네즈 크림스킨 · 에스트라 수딩크림 · 설화수 2종",
+     "photo": "assets/products/2026-11-13_zoadvent_r2_cream.jpg"
     },
     {
-     "name": "애플클리어",
-     "desc": "색 없이 맑은 광택만",
-     "photo": "assets/products/2026-11-11_nooni_swatch_appleclear.jpg"
+     "name": "선크림·베이스",
+     "desc": "헤라 톤업 선크림 · 헤라 글로우 파운데이션",
+     "photo": "assets/products/2026-11-13_zoadvent_r3_sun.jpg"
+    },
+    {
+     "name": "밤 마무리",
+     "desc": "라네즈 워터슬리핑마스크 · 프리메라 립세럼",
+     "photo": "assets/products/2026-11-13_zoadvent_r4_night.jpg"
     }
    ],
    "note_label": "참고",
-   "src": "출처 · 장업신문 (2026.11.10) · 누니 공식몰 (2026.11.11 확인)",
-   "image": "assets/cards/2026-11-11_05_colors.png"
+   "big_thumbs": true
   },
   {
    "no": 6,
-   "layout": "steps",
-   "title": "이렇게 발라요",
-   "body": "누니 공식몰 사용법이에요. 입술이 깨끗하고 마른 상태에서 시작해요.",
-   "display_title": "립오일, [[이렇게]] 발라요",
-   "label": "HOW TO USE",
-   "tag": "공식 사용법 · 3 STEP",
-   "steps": [
-    {
-     "title": "깨끗하고 마른 입술에",
-     "desc": "물기나 남은 립 제품 없이",
-     "icon": "👄"
-    },
-    {
-     "title": "팁으로 고르게 펴 바르기",
-     "desc": "뾰족한 팁이라 바르기 쉬워요",
-     "icon": "photo"
-    },
-    {
-     "title": "필요할 때 덧바르기",
-     "desc": "건조하다 싶을 때 수시로",
-     "icon": "🔁"
-    }
-   ],
-   "note_label": "레시피",
-   "src": "출처 · 장업신문 (2026.11.10) · 누니 공식몰 (2026.11.11 확인)",
-   "image": "assets/cards/2026-11-11_06_how_to_use.png"
+   "layout": "compare",
+   "title": "사기 전에 체크",
+   "body": "정품보다는 미니 위주라 '맛보기' 선물로 보면 좋아요.",
+   "display_title": "사기 전에\n[[이것만 체크]]",
+   "label": "CHECK",
+   "eyebrow": "상품 페이지 기준",
+   "left": {
+    "tag": "👍 이런 분께",
+    "icon": "🎁",
+    "title": "여러 브랜드\n조금씩 써 보기",
+    "desc": "뷰티 미니로 맛보고 굿즈는 덤"
+   },
+   "right": {
+    "tag": "🔎 알고 사요",
+    "icon": "📏",
+    "title": "대부분 미니 사이즈\n파운데이션은 21N1",
+    "desc": "파운데이션 색이 한 가지예요"
+   },
+   "tip_label": "참고",
+   "tip": "아모레몰 이벤트 조건(11/9~11/29)은 상품 페이지에서 직접 확인해 주세요.",
+   "image": "assets/cards/2026-11-13_06_check.png"
   },
   {
    "no": 7,
    "layout": "recap",
-   "title": "립오일 레시피 정리",
-   "body": "출처: 장업신문, 「온라인 흥행 업은 미미박스 누니, 올리브영 오프라인 진출」, 2026.11.10 / 누니 공식몰 제품 페이지, 2026.11.11 확인\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
-   "display_title": "푸석한 입술 →\n[[립오일]] 레시피",
+   "title": "연말 선물 레시피 정리",
+   "body": "출처: 아모레몰, 「2026 아모레몰 조앤프렌즈 어드벤트 캘린더」 상품 페이지, 2026.11.13 확인\n팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
+   "display_title": "연말 선물 →\n[[어드벤트]] 레시피",
    "rows": [
     [
-     "푸석한 입술",
-     "누니 애플 립오일"
+     "연말 선물 고민",
+     "조앤프렌즈 어드벤트 캘린더"
     ],
     [
-     "재료",
-     "애플시드 오일 · 비타민 E"
+     "구성",
+     "뷰티 미니 10 + 굿즈 6"
     ],
     [
-     "바르기",
-     "마른 입술에 고르게, 수시로"
+     "가격",
+     "45,000원 (11/13 기준)"
     ],
     [
-     "체험",
-     "올영 매장 체험 매대 ~12/31"
+     "판매",
+     "아모레몰 단독"
     ]
    ],
    "cta": "🔖 저장 · 팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
-   "caution": "※ 가격은 올리브영에서 확인 · 컬러는 사람마다 달라 보여요"
+   "caution": "※ 가격·이벤트는 바뀔 수 있어요 · 아모레몰에서 확인",
+   "image": "assets/cards/2026-11-13_07_recap.png"
   }
  ],
  "caption": {
-  "hook": "입술이 푸석해 보이는데 진한 립스틱은 부담스럽다면, 립오일 한 번 볼까요? 🍎",
+  "hook": "연말 선물 고민이라면, 크리스마스까지 하루에 하나씩 여는 선물은 어때요? 🎁",
   "summary": [
-   "누니 애플 립오일: 애플시드 오일·과일 추출물·비타민 E가 들어 있어요",
-   "맑은 광택이 좋다면 기본, 반짝임을 원하면 쉬머 (애플바닐라·애플베리)",
-   "공식 사용법: 깨끗하고 마른 입술에 고르게 → 필요할 때 덧바르기",
-   "올리브영 강남 타운·두타점 등에서 12월 31일까지 체험 매대를 운영해요"
+   "아모레몰 단독 '2026 조앤프렌즈 어드벤트 캘린더': 10개 상자 속 16가지 선물",
+   "헤라·설화수·에스트라·프리메라·라네즈 뷰티 미니 10개 + 조앤프렌즈 굿즈 6종",
+   "미니 10개를 모으면 세안부터 선크림, 밤 마무리까지 루틴 한 바퀴",
+   "대부분 미니 사이즈이고, 파운데이션은 21N1 한 가지예요"
   ],
-  "cta": "올영 가기 전에 저장하고, 립 고민 있는 친구에게 공유해 주세요 🔖",
+  "cta": "연말 선물 고를 때 다시 보려면 저장하고, 선물 고민 중인 친구에게 공유해 주세요 🔖",
   "follow": "팔로우하면 뷰티 고민을 레시피처럼 쉽게 풀어 드려요",
-  "note": "가격은 올리브영에서 직접 확인해 주세요. 체험 매대 정보는 11월 10일 기사 기준이에요. 사진: 누니 공식몰",
+  "note": "가격: 아모레몰 50,000원 → 45,000원 (11월 13일 기준, 쿠폰 별도). 이벤트 조건은 상품 페이지에서 확인해 주세요. 사진: 아모레몰",
   "hashtags": [
-   "올리브영",
-   "올영신상",
-   "누니",
-   "립오일",
-   "애플립오일",
-   "입술보습",
+   "어드벤트캘린더",
+   "연말선물",
+   "크리스마스선물",
+   "아모레몰",
+   "조앤프렌즈",
+   "뷰티어드벤트캘린더",
    "뷰티초보",
-   "립추천"
+   "선물추천"
   ]
  }
 }

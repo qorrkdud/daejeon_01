@@ -153,7 +153,7 @@ def list_(c, card, no):
     for k, it in enumerate(items, 1):
         bg = ' style="background:var(--peach2)"' if k == len(items) else ""
         thumb = c.item_photo(it.get("photo"))   # 항목별 제품 사진 (있으면 오른쪽에 작게)
-        cls = "ingr th3" if thumb else "ingr"
+        cls = ("ingr th3 big" if card.get("big_thumbs") else "ingr th3") if thumb else "ingr"   # big_thumbs: 사진을 크게
         th = f'<div class="pth" style="background-image:url({thumb})"></div>' if thumb else ""
         rows.append(f'<div class="{cls}"{bg}><span class="n">{k:02d}</span><div><b>{t(it.get("name"))}</b>'
                     f'<small>{t(it.get("desc"))}</small></div>{th}</div>')
